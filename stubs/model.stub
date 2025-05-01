@@ -4,8 +4,18 @@ namespace {{ namespace }};
 
 {{ factoryImport }}
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class {{ class }} extends Model
 {
-    {{ factory }}
+    use HasFactory;
+
+    protected $table = '';
+
+    protected $fillable = [];
+
+   // public function {{name}}()
+    // {
+    //     return $this->belongsTo({{model}}::class, {{culomn}});
+    // }
 }
