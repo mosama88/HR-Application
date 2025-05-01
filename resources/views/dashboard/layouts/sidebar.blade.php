@@ -39,7 +39,7 @@
        with font-awesome or any other icon font library -->
 
                 <li class="nav-item">
-                    <a href="{{ route('dashboard.employee-panel.index') }}" class="nav-link @yield('active-employeePanel')">
+                    <a href="{{ url('/') }}" class="nav-link @yield('active-dashboard')">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             الصفحة الرئيسية
@@ -59,8 +59,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('dashboard.financeCalendars.index') }}"
-                                class="nav-link @yield('active-financeCalendars')">
+                            <a href="" class="nav-link @yield('active-financeCalendars')">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>السنوات المالية</p>
                             </a>
