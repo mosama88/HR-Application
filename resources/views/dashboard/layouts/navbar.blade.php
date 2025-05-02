@@ -33,7 +33,7 @@
                 </li>
                 <li class="dropdown-divider"></li> <!-- Optional separator -->
                 <li>
-                    <form action="" method="POST">
+                    <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit" class="dropdown-item">
                             <i class="fas fa-sign-out-alt mx-1"></i> تسجيل الخروج

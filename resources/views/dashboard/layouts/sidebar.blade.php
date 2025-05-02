@@ -16,14 +16,14 @@ use App\Enums\AdminGenderEnum;
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
                 @if (Auth::user()->gender == AdminGenderEnum::Male)
-                <img src="{{ asset('dashboard') }}/assets/dist/img/employees-default.png" class="img-circle elevation-2"
-                    alt="User Image">
+                    <img src="{{ asset('dashboard') }}/assets/dist/img/employees-default.png"
+                        class="img-circle elevation-2" alt="User Image">
                 @elseif (Auth::user()->gender == AdminGenderEnum::Female)
-                <img src="{{ asset('dashboard') }}/assets/dist/img/employees-female-default.png"
-                    class="img-circle elevation-2" alt="User Image">
+                    <img src="{{ asset('dashboard') }}/assets/dist/img/employees-female-default.png"
+                        class="img-circle elevation-2" alt="User Image">
                 @else
-                <img src="{{ asset('dashboard') }}/assets/dist/img/avatar5.png" class="img-circle elevation-2"
-                    alt="User Image">
+                    <img src="{{ asset('dashboard') }}/assets/dist/img/avatar5.png" class="img-circle elevation-2"
+                        alt="User Image">
                 @endif
 
             </div>
@@ -75,27 +75,6 @@ use App\Enums\AdminGenderEnum;
                                 <p>السنوات المالية</p>
                             </a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a href="{{ route('dashboard.branches.index') }}" class="nav-link @yield('active-branches')">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>الفروع</p>
-                            </a>
-                        </li>
-
-
-                        <li class="nav-item">
-                            <a href="{{ route('dashboard.jobGrades.index') }}" class="nav-link @yield('active-jobGrades')">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>الدرجات الوظيفية</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="{{ route('dashboard.jobTypes.index') }}" class="nav-link @yield('active-jobTypes')">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>نوع الوظيفه</p>
-                            </a>
-                        </li> --}}
                     </ul>
                 </li>
 
