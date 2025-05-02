@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\AdminPanelSetting;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -18,12 +19,11 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('status', [1, 2])->default(1)->nullable();//1=>active,2=>inactive
-            $table->integer('com_code')->nullable();
+            $table->enum('status', [1, 2])->default(1)->nullable(); //1=>active,2=>inactive
+            $table->foreignId('com_code')->references('id')->on('admin_panel_settings')->onUpdate('cascade');
             $table->rememberToken();
             $table->timestamps();
         });
-
     }
 
     /**

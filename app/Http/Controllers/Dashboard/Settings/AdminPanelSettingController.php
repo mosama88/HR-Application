@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Dashboard\Settings;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\AdminPanelSetting;
+use App\Http\Controllers\Controller;
 
 class AdminPanelSettingController extends Controller
 {
@@ -12,7 +13,8 @@ class AdminPanelSettingController extends Controller
      */
     public function index()
     {
-        //
+        $data = AdminPanelSetting::first();
+        return view('dashboard.settings.admin_panel_settings.index', compact('data'));
     }
 
     /**
