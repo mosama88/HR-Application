@@ -1,5 +1,5 @@
-use App\Enums\AdminGenderEnum;
 @php
+use App\Enums\AdminGenderEnum;
     use App\Enum\EmployeeGender;
 @endphp
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
