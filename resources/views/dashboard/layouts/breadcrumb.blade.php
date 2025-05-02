@@ -6,7 +6,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="">{{ $previousPage }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('dashboard.'.$urlPreviousPage)}}">{{ $previousPage }}</a></li>
                     <li class="breadcrumb-item active">{{ $currentPage }}</li>
                 </ol>
             </div><!-- /.col -->

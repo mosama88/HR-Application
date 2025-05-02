@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard\Settings;
 use Illuminate\Http\Request;
 use App\Models\AdminPanelSetting;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class AdminPanelSettingController extends Controller
 {
@@ -13,6 +14,8 @@ class AdminPanelSettingController extends Controller
      */
     public function index()
     {
+        // $admin = Auth::user()->id;
+        // $data = AdminPanelSetting::where('com_code', $admin->id)->first();
         $data = AdminPanelSetting::first();
         return view('dashboard.settings.admin_panel_settings.index', compact('data'));
     }

@@ -48,7 +48,7 @@
 
                 </li>
                 <li
-                    class="nav-item has-treeview {{ request()->is('financeCalendars*') || request()->is('branches*') || request()->is('jobGrades*') || request()->is('jobTypes*') ? 'menu-open' : '' }} ">
+                    class="nav-item has-treeview {{ request()->is('financeCalendars*') || request()->is('admin_panel_settings*') || request()->is('jobGrades*') || request()->is('jobTypes*') ? 'menu-open' : '' }} ">
                     <a href="#"
                         class="nav-link {{ request()->is('financeCalendars*') || request()->is('branches*') || request()->is('jobGrades*') || request()->is('jobTypes*') ? 'active' : '' }} ">
                         <i class="nav-icon fas fa-cog"></i>
@@ -58,6 +58,16 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.admin_panel_settings.index') }}"
+                                class="nav-link @yield('active-admin_panel_settings')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>إعدادت الشركة</p>
+                            </a>
+                        </li>
+
+
                         <li class="nav-item">
                             <a href="" class="nav-link @yield('active-financeCalendars')">
                                 <i class="far fa-circle nav-icon"></i>
