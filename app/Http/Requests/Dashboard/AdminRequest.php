@@ -22,7 +22,20 @@ class AdminRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'username' => ['required', 'string', 'min:3', 'max:50'],
+            'password' => ['required', 'string'],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'username.required' => 'اسم المستخدم مطلوب.',
+            'username.string' => 'اسم المستخدم يجب أن يكون نصًا.',
+            'username.min' => 'اسم المستخدم يجب أن يحتوي على 3 أحرف على الأقل.',
+            'username.max' => 'اسم المستخدم يجب ألا يزيد عن 50 حرفًا.',
+            'password.required' => 'كلمة المرور مطلوبة.',
+            'password.string' => 'كلمة المرور يجب أن تكون نصًا.',
         ];
     }
 }
