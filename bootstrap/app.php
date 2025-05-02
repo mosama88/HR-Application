@@ -19,7 +19,9 @@ return Application::configure(basePath: dirname(__DIR__))
         },
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->redirectGuestsTo('/');
+        //when the user authanticated and tru to access / redirect automatically to /dashboard
+        $middleware->redirectTo('/dashboard');
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

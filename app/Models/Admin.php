@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Enums\AdminGenderEnum;
 use App\Enums\AdminStatusEnum;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Admin extends Authenticatable
 {
@@ -19,6 +20,7 @@ class Admin extends Authenticatable
         'username',
         'email',
         'password',
+        'gender',
         'status',
         'com_code',
     ];
@@ -54,5 +56,6 @@ class Admin extends Authenticatable
 
     protected $casts = [
         'status' => AdminStatusEnum::class,
+        'gender' => AdminGenderEnum::class,
     ];
 }

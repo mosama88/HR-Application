@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\AdminGenderEnum;
 use App\Enums\AdminStatusEnum;
 use App\Models\AdminPanelSetting;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -24,6 +25,7 @@ class AdminFactory extends Factory
             'username' => fake()->unique()->userName(),
             'password' => 'password', // password
             'status' => fake()->randomElement([AdminStatusEnum::Active->value, AdminStatusEnum::Inactive->value]),
+            'gender' => fake()->randomElement([AdminGenderEnum::Male->value, AdminGenderEnum::Female->value]),
             'com_code' => AdminPanelSetting::all()->random()->id,
 
         ];
