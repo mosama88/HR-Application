@@ -35,7 +35,7 @@
                 <h4 class="login-box-msg">قم بتسجيل الدخول</h4>
 
                 <div class="mb-3 text-center">
-                    <img src="{{ asset('dashboard') }}/assets/dist/img/administrativprosecution.png" alt="AdminLTE Logo"
+                    <img src="{{ asset('dashboard') }}/assets/dist/img/hr-manager.jfif" alt="AdminLTE Logo"
                         class="elevation-3"
                         style="
                     width: 100px;
@@ -56,8 +56,8 @@
                 <div class="social-auth-links text-center mb-3">
                     <p>- أو -</p>
 
-                    <img src="{{ asset('dashboard') }}/assets/dist/img/dt-apa.png" alt="وحدة التحول الرقمى"
-                        class="elevation-3"
+                    <img src="{{ asset('dashboard') }}/assets/dist/img/ECU Online How to Become a Human Resources Manager.avif"
+                        alt="وحدة التحول الرقمى" class="elevation-3"
                         style="
                     width: 50px;
                     height: 50px;
@@ -70,7 +70,7 @@
                         onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 12px rgba(0,0,0,0.15)';"
                         onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 8px rgba(0,0,0,0.1)';">
                     التواصل مع
-                    وحدة التحول الرقمى
+                    مدير إدارة الموارد البشرية
 
                 </div>
             </div>

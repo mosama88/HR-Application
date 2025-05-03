@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use App\Http\Middleware\RedirectToDashboard;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use Illuminate\Support\Facades\Route;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -22,6 +23,10 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->redirectGuestsTo('/');
         //when the user authanticated and tru to access / redirect automatically to /dashboard
         $middleware->redirectTo('/dashboard');
+        $middleware->alias([
+        'redirect.employee' =>RedirectToDashboard::class,
+        ]);
+
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

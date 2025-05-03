@@ -12,3 +12,10 @@ Route::middleware([
     //     return view('dashboard');
     // })->name('dashboard');
 });
+
+
+
+
+Route::get('/', function () {
+    return view('welcome');
+})->name('welcome')->middleware('redirect.employee');    
