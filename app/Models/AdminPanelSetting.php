@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Enums\PanelSettingSystemStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class AdminPanelSetting extends Model
@@ -12,7 +13,6 @@ class AdminPanelSetting extends Model
     protected $table = 'admin_panel_settings';
 
     protected $fillable = [
-        'com_code',
         'company_name',
         'system_status',
         'mobile',
@@ -34,6 +34,7 @@ class AdminPanelSetting extends Model
         'sanctions_value_forth_absence',
         'created_by',
         'updated_by',
+        'com_code',
 
     ];
 
@@ -46,4 +47,10 @@ class AdminPanelSetting extends Model
     {
         return $this->belongsTo(Admin::class, 'updated_by');
     }
+
+
+
+    protected $casts = [
+        'system_status' => PanelSettingSystemStatusEnum::class,
+    ];
 }

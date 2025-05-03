@@ -21,7 +21,7 @@
         <div class="dropdown">
             <!-- Dropdown Trigger Button -->
             <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                <i class="fas fa-user"></i> Mohamed Osama
+                <i class="fas fa-user"></i> {{ auth()->user()->name }}
             </button>
 
             <!-- Dropdown Menu -->

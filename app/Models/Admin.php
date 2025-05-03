@@ -25,11 +25,6 @@ class Admin extends Authenticatable
         'com_code',
     ];
 
-    public function comCode()
-    {
-        return $this->belongsTo(AdminPanelSetting::class, 'com_code');
-    }
-
 
     /**
      * The attributes that should be hidden for serialization.

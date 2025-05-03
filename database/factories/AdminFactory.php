@@ -20,14 +20,13 @@ class AdminFactory extends Factory
     public function definition(): array
     {
         return [
+            'com_code' => fake()->numberBetween(1, 5000),
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'username' => fake()->unique()->userName(),
             'password' => 'password', // password
             'status' => fake()->randomElement([AdminStatusEnum::Active->value, AdminStatusEnum::Inactive->value]),
             'gender' => fake()->randomElement([AdminGenderEnum::Male->value, AdminGenderEnum::Female->value]),
-            'com_code' => AdminPanelSetting::all()->random()->id,
-
         ];
     }
 }

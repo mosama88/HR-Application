@@ -1,3 +1,6 @@
+@php
+    use App\Enums\PanelSettingSystemStatusEnum;
+@endphp
 @extends('dashboard.layouts.master')
 @section('active-admin_panel_settings', 'active')
 @section('title', 'الصفحة الرئيسية')
@@ -23,31 +26,19 @@
                         <div class="card-header">
                             <h3 class="card-title">
                                 <a href="{{ route('dashboard.admin_panel_settings.edit', $data->id) }}"
-                                    class="btn btn-block text-white btn-info"> <i class="fas fa-plus-circle mx-1"></i>
+                                    class="btn btn-block text-white btn-info"> <i class="fas fa-edit mx-1"></i>
                                     تعديل</a>
                             </h3>
 
-
+                            <h4> شركة {{ $data['company_name'] }} </h4>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body p-0">
 
                             <div class="table-responsive">
-                                <table class="table table-bordered mg-b-0 text-md-nowrap">
-                                    <tr>
-                                        <td class="wd-500">اسم الشركة</td>
-                                        <td> {{ $data['company_name'] }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="wd-500"> حالة التفعيل</td>
-                                        <td>
-                                            @if ($data['system_status'] == 1)
-                                                مفعل
-                                            @else
-                                                معطل
-                                            @endif
-                                        </td>
-                                    </tr>
+                                <table class="table table-bordered table-striped mg-b-0 text-md-nowrap">
+
+
                                     <tr>
                                         <td class="wd-500">هاتف الشركة</td>
                                         <td> {{ $data['mobile'] }}</td>
@@ -60,7 +51,17 @@
                                         <td class="wd-500">بريد الشركة</td>
                                         <td> {{ $data['email'] }}</td>
                                     </tr>
+                                    <tr>
+                                        <td class="wd-500"> حالة التفعيل</td>
+                                        <td>
 
+                                            @if ($data['system_status'] == PanelSettingSystemStatusEnum::Active)
+                                                <span class="badge badge-primary"> مفعل</span>
+                                            @else
+                                                <span class="badge badge-danger"> معطل</span>
+                                            @endif
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td class="wd-500"> الحد الأقصى لاحتساب عدد ساعات عمل اضافية عند انصراف الموظف
                                             واحتساب
@@ -282,12 +283,7 @@
                                             @endif
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td colspan="2" class="text-center">
-                                            <a href="{{ route('dashboard.admin_panel_settings.edit', $data->id) }}"
-                                                class="btn btn-info-gradient col-4">تعديل</a>
-                                        </td>
-                                    </tr>
+
                                 </table>
                             </div>
 

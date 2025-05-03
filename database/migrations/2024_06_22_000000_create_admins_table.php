@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->enum('gender', [1, 2])->default(1)->nullable(); //1=>active,2=>inactive
             $table->enum('status', [1, 2])->default(1)->nullable(); //1=>male,2=>female
-            $table->foreignId('com_code')->references('id')->on('admin_panel_settings')->onUpdate('cascade');
+            $table->integer('com_code')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

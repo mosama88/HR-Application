@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->withPersonalTeam()->create();
 
         $this->call([
-            AdminPanelSettingSeeder::class,
             AdminSeeder::class,
+            AdminPanelSettingSeeder::class,
         ]);
     }
 }

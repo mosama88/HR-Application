@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('admin_panel_settings', function (Blueprint $table) {
             $table->id();
-            $table->integer('com_code');
             $table->string('company_name', 250);
             $table->enum('system_status', [1, 2])->default(1)->nullable(); //1=>active,2=>inactive
             $table->string('mobile', 250);
@@ -34,7 +33,8 @@ return new class extends Migration
             $table->decimal('sanctions_value_thaird_absence', 10, 2)->default(0); //'قيمة خصم الايام بعد ثالث مرة غياب بدون اذن'
             $table->decimal('sanctions_value_forth_absence', 10, 2)->default(0); //قيمة خصم الايام بعد رابع مرة غياب بدون اذن
             $table->integer('created_by');
-            $table->integer('updated_by');
+            $table->integer('updated_by')->nullable();
+            $table->integer('com_code');
             $table->timestamps();
         });
     }

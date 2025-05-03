@@ -28,7 +28,7 @@ use App\Enums\AdminGenderEnum;
 
             </div>
             <div class="info">
-                <a href="#" class="d-block">mosama</a>
+                <a href="#" class="d-block">{{ auth()->user()->username }}</a>
             </div>
         </div>
 

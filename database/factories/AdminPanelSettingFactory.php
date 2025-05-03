@@ -18,7 +18,7 @@ class AdminPanelSettingFactory extends Factory
     public function definition(): array
     {
         return [
-            'com_code' => fake()->numberBetween(100, 5000),
+            'com_code' => Admin::all()->random()->com_code,
             'company_name' => fake()->company(),
             'system_status' => fake()->randomElement([1, 2]),
             'mobile' => fake()->regexify('/^(012|015|010|011)[0-9]{8}$/'),
