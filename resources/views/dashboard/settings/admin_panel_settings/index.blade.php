@@ -25,7 +25,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
-                                <a href="{{ route('dashboard.admin_panel_settings.edit', $data->id) }}"
+                                <a href="{{ route('dashboard.admin_panel_settings.edit', $data->slug) }}"
                                     class="btn btn-block text-white btn-info"> <i class="fas fa-edit mx-1"></i>
                                     تعديل</a>
                             </h3>

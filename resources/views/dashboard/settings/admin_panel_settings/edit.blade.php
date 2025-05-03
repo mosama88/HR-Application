@@ -19,7 +19,7 @@
 
     <section class="content">
         <div class="container-fluid">
-            <form action="{{ route('dashboard.admin_panel_settings.update', $adminPanelSetting->id) }}" method="POST"
+            <form action="{{ route('dashboard.admin_panel_settings.update', $adminPanelSetting->slug) }}" method="POST"
                 id="editForm" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -42,11 +42,11 @@
                                                 <input type="text" name="mobile"
                                                     class="form-control @error('mobile') is-invalid @enderror"
                                                     value="{{ $adminPanelSetting['mobile'] }}">
-                                                    @error('mobile')
-                                                        <span class="invalid-feedback text-right" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
+                                                @error('mobile')
+                                                    <span class="invalid-feedback text-right" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </td>
 
                                         </tr>
@@ -56,11 +56,11 @@
                                                 <input type="text" name="address"
                                                     class="form-control @error('address') is-invalid @enderror"
                                                     value="{{ $adminPanelSetting['address'] }}">
-                                                    @error('address')
-                                                        <span class="invalid-feedback text-right" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
+                                                @error('address')
+                                                    <span class="invalid-feedback text-right" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </td>
 
                                         </tr>
@@ -70,11 +70,11 @@
                                                 <input type="text" name="email"
                                                     class="form-control @error('email') is-invalid @enderror"
                                                     value="{{ $adminPanelSetting['email'] }}">
-                                                    @error('email')
-                                                        <span class="invalid-feedback text-right" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
+                                                @error('email')
+                                                    <span class="invalid-feedback text-right" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </td>
 
                                         </tr>
