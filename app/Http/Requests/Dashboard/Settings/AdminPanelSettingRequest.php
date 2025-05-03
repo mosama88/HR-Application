@@ -26,7 +26,7 @@ class AdminPanelSettingRequest extends FormRequest
         $admin_panel_settingsId = $this->route('admin_panel_settings') ? $this->route('admin_panel_settings')->id : null;
 
         return [
-            'mobile' => 'required|numeric|regex:/^([0-9]{10})$/', // تحقق من أن الهاتف يحتوي على 10 أرقام
+            'mobile' => 'required|max:15', // تحقق من أن الهاتف يحتوي على 10 أرقام
             'address' => 'required|string|max:255|unique:admin_panel_settings,email' . $admin_panel_settingsId, // تحقق من أن العنوان نصي ولا يتجاوز 255 حرف
             'email' => 'required|email|max:255', // تحقق من أن البريد الإلكتروني صالح
             'system_status' => 'required|string|in:1,2',
@@ -57,8 +57,7 @@ class AdminPanelSettingRequest extends FormRequest
     {
         return [
             'mobile.required' => 'يجب إدخال رقم هاتف الشركة.',
-            'mobile.numeric' => 'رقم الهاتف يجب أن يكون عبارة عن أرقام.',
-            'mobile.regex' => 'رقم الهاتف يجب أن يتكون من 10 أرقام.',
+            'mobile.max' => 'رقم الهاتف يجب أن يكون أقل من 15 رقم.',
             'address.required' => 'يجب إدخال عنوان الشركة.',
             'address.string' => 'عنوان الشركة يجب أن يكون نصًا.',
             'address.max' => 'عنوان الشركة لا يجب أن يتجاوز 255 حرفًا.',

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('admin_panel_settings', function (Blueprint $table) {
             $table->id();
             $table->string('company_name', 250);
+            $table->string('slug', 255)->nullable();
             $table->enum('system_status', [1, 2])->default(1)->nullable(); //1=>active,2=>inactive
             $table->string('mobile', 250);
             $table->string('address', 250);

@@ -59,9 +59,21 @@ class AdminPanelSettingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(AdminPanelSettingRequest $request, string $id)
+    public function update(AdminPanelSettingRequest $request, AdminPanelSetting $adminPanelSetting)
     {
-        //
+        $com_code = Auth::user()->com_code;
+        $adminPanelSettings = $request->validated();
+        $dataUpdate =  array_merge(
+            $adminPanelSettings,
+            [
+                'updated_by' => Auth::user()->id,
+                'com_code' => $com_code,
+            ]
+        );
+        $adminPanelSetting->update($dataUpdate);
+
+        session()->flash('success', 'تم تعديل الشركة بنجاح');
+        return redirect()->route('dashboard.admin_panel_settings.index');
     }
 
     /**
