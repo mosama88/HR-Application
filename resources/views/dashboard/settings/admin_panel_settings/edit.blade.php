@@ -11,8 +11,8 @@
     @include('dashboard.layouts.message')
     <!-- Content Header (Page header) -->
     @include('dashboard.layouts.breadcrumb', [
-        'pageTitle' => 'إعدادات الشركة',
-        'previousPage' => 'لوحة التحكم',
+        'pageTitle' => 'تعديل إعدادات الشركة',
+        'previousPage' => 'إعدادات الشركة',
         'urlPreviousPage' => 'admin_panel_settings.index', //سيتم تغيير لوحة التحكم لاحقآ
         'currentPage' => 'تعديل إعدادات الشركة',
     ])
