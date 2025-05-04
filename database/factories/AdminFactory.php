@@ -20,7 +20,7 @@ class AdminFactory extends Factory
     public function definition(): array
     {
         return [
-            'com_code' => fake()->numberBetween(1, 5000),
+            'com_code' => AdminPanelSetting::all()->random()->com_code,
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'username' => fake()->unique()->userName(),
