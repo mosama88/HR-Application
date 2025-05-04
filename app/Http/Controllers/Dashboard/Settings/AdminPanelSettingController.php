@@ -6,21 +6,21 @@ use Illuminate\Http\Request;
 use App\Models\AdminPanelSetting;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Services\AdminPanelSettingService;
 use App\Enums\PanelSettingSystemStatusEnum;
 use App\Http\Requests\Dashboard\Settings\AdminPanelSettingRequest;
 
 class AdminPanelSettingController extends Controller
 {
+
+
+    public function __construct(protected AdminPanelSettingService $service) {}
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $com_code = Auth::user()->com_code;
-        $data = AdminPanelSetting::where('com_code', $com_code)->where('system_status', PanelSettingSystemStatusEnum::Active)->first();
-        if (!$data) {
-            return redirect()->back()->withErrors(['error' => 'لا توجد أعدادت الشركة للموظف'])->withInput();
-        }
+       $data = $this->service->index();
         return view('dashboard.settings.admin_panel_settings.index', compact('data'));
     }
 

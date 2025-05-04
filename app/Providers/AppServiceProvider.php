@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\AdminPanelSettingRepository;
+use App\Repositories\Interfaces\AdminPanelSettingInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        app()->bind(AdminPanelSettingInterface::class, AdminPanelSettingRepository::class);
     }
 }
