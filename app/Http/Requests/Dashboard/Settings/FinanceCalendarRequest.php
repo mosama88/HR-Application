@@ -21,8 +21,10 @@ class FinanceCalendarRequest extends FormRequest
      */
     public function rules(): array
     {
+        $finance_yr_id = $this->route('financeCalendars') ? $this->route('financeCalendars')->id : null;
+
         return [
-            'finance_yr' => 'required|string|unique:finance_calendars',
+            'finance_yr' => 'required|string|unique:finance_calendars,finance_yr,' . $finance_yr_id,
             'finance_yr_desc' => 'required',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date',
