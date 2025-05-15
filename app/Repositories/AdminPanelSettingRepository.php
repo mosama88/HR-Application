@@ -16,9 +16,7 @@ class AdminPanelSettingRepository implements AdminPanelSettingInterface
     {
         $com_code = Auth::user()->com_code;
         $data = AdminPanelSetting::where('com_code', $com_code)->where('system_status', PanelSettingSystemStatusEnum::Active)->first();
-        if (!$data) {
-            return redirect()->back()->withErrors(['error' => 'لا توجد أعدادت الشركة للموظف'])->withInput();
-        }
+      
         return $data;
     }
 }

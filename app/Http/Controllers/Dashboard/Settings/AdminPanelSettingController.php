@@ -20,7 +20,10 @@ class AdminPanelSettingController extends Controller
      */
     public function index()
     {
-       $data = $this->service->index();
+        $data = $this->service->index();
+        if ($data == null) {
+            return redirect('dashboard')->withErrors(['error' => 'لا توجد أعدادت الشركة للموظف']);
+        }
         return view('dashboard.settings.admin_panel_settings.index', compact('data'));
     }
 
