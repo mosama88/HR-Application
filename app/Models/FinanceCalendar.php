@@ -11,7 +11,9 @@ class FinanceCalendar extends Model
     use HasFactory;
 
     protected $table = 'finance_calendars';
-
+    protected $casts = [
+        'is_open' => FinanceCalendarsIsOpen::class,
+    ];
     protected $fillable = [
         'finance_yr',
         'finance_yr_desc',
@@ -37,7 +39,4 @@ class FinanceCalendar extends Model
     {
         return $this->belongsTo(Admin::class, 'updated_by');
     }
-    protected $casts = [
-        'is_open' => FinanceCalendarsIsOpen::class,
-    ];
 }

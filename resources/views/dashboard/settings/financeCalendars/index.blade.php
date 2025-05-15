@@ -71,7 +71,7 @@
                                                 <td>{{ $info->start_date }}</td>
                                                 <td>{{ $info->end_date }}</td>
                                                 <td>
-                                                    @if ($info->is_open == FinanceCalendarsIsOpen::Active)
+                                                    @if ($info->is_open == FinanceCalendarsIsOpen::Open)
                                                         <span class="badge bg-success">مفعل</span>
                                                     @elseif ($info->is_open == FinanceCalendarsIsOpen::Pending)
                                                         <span class="badge bg-warning">معلق</span>
@@ -93,7 +93,7 @@
                                                 <td>
                                                     @include('components.actions-component', [
                                                         'name' => 'financeCalendars',
-                                                        'id' => $info->id,
+                                                        'name_id' => $info->id,
                                                     ])
                                                 </td>
                                         </tr>

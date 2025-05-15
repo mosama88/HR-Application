@@ -38,7 +38,7 @@ class FinanceCalendarController extends Controller
 
         $com_code = Auth::user()->com_code;
         $validateData = $request->validated();
-        $dataToInsert = array_merge($request->validated(), [
+        $dataToInsert = array_merge($validateData, [
             'is_open' => FinanceCalendarsIsOpen::Pending,
             'com_code' => $com_code,
             'created_by' => Auth::user()->id,
@@ -78,6 +78,9 @@ class FinanceCalendarController extends Controller
     public function destroy(FinanceCalendar $financeCalendar)
     {
         $financeCalendar->delete();
-        return redirect()->route('dashboard.financeCalendars.index')->with('success', 'تم حذف السنه المالية بنجاح');
+        return response()->json([
+            'success' => true,
+            'message' => 'تم حذف السنه المالية بنجاح'
+        ]);
     }
 }

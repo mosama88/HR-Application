@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Enums\enum\FinanceClnPeriodsIsOpen;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class FinanceClnPeriod extends Model
 {
     use HasFactory;
 
     protected $table = 'finance_cln_periods';
-
+    protected $casts = ['is_open' => FinanceClnPeriodsIsOpen::class,];
     protected $fillable = [
         'finance_calendars_id',
         'number_of_days',
@@ -42,5 +43,8 @@ class FinanceClnPeriod extends Model
         return $this->belongsTo(Admin::class, 'updated_by');
     }
 
-    
+    public function month()
+    {
+        return $this->belongsTo(Month::class, 'month_id');
+    }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Enums;
+namespace App\Enums\enum;
 
-enum FinanceCalendarsIsOpen: int
+enum FinanceClnPeriodsIsOpen: int
 {
     case Pending = 0;
     case Open = 1;
