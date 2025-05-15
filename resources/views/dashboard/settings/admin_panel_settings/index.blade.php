@@ -13,7 +13,7 @@
     @include('dashboard.layouts.breadcrumb', [
         'pageTitle' => 'إعدادات الشركة',
         'previousPage' => 'لوحة التحكم',
-        'urlPreviousPage' => 'admin_panel_settings.index', //سيتم تغيير لوحة التحكم لاحقآ
+        'urlPreviousPage' => 'index', //سيتم تغيير لوحة التحكم لاحقآ
         'currentPage' => 'جدول إعدادات الشركة',
     ])
 

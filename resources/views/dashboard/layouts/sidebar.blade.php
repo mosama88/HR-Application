@@ -49,9 +49,9 @@
 
                 </li>
                 <li
-                    class="nav-item has-treeview {{ request()->is('financeCalendars*') || request()->is('dashboard/admin_panel_settings*') || request()->is('jobGrades*') || request()->is('jobTypes*') ? 'menu-open' : '' }} ">
+                    class="nav-item has-treeview {{ request()->is('dashboard/financeCalendars*') || request()->is('dashboard/admin_panel_settings*') || request()->is('jobGrades*') || request()->is('jobTypes*') ? 'menu-open' : '' }} ">
                     <a href="#"
-                        class="nav-link {{ request()->is('financeCalendars*') || request()->is('admin_panel_settings*') || request()->is('branches*') || request()->is('jobGrades*') || request()->is('jobTypes*') ? 'active' : '' }} ">
+                        class="nav-link {{ request()->is('dashboard/financeCalendars*') || request()->is('dashboard/admin_panel_settings*') || request()->is('branches*') || request()->is('jobGrades*') || request()->is('jobTypes*') ? 'active' : '' }} ">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>
                             الأعدادت
@@ -70,7 +70,8 @@
 
 
                         <li class="nav-item">
-                            <a href="" class="nav-link @yield('active-financeCalendars')">
+                            <a href="{{ route('dashboard.financeCalendars.index') }}"
+                                class="nav-link @yield('active-financeCalendars')">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>السنوات المالية</p>
                             </a>

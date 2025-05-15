@@ -17,13 +17,12 @@ return new class extends Migration
             $table->string('finance_yr_desc', 225); //تفاصيل كود السنه المالية
             $table->date('start_date');
             $table->date('end_date');
-            $table->tinyInteger('is_open')->default(0)->comment('صفر = معلق | واحد = مفتوح | اثنين = مؤرشف'); //غير مفعله او مفعله
+            $table->tinyInteger('is_open')->default(0); //صفر = معلق | واحد = مفتوح | اثنين = مؤرشف' 
             $table->integer('com_code')->nullable();
             $table->foreignId('created_by')->references('id')->on('admins')->onUpdate('cascade');
             $table->foreignId('updated_by')->nullable()->references('id')->on('admins')->onUpdate('cascade');
             $table->timestamps();
         });
-
     }
 
     /**
