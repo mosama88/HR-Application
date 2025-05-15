@@ -25,31 +25,59 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form id="storeForm">
+                        <form action="{{ route('dashboard.financeCalendars.store') }}" method="POST" id="storeForm">
+                            @csrf
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="exampleInputname">السنه</label>
-                                    <input type="text" class="form-control" id="exampleInputname"
-                                        placeholder="أدخل السنه.....">
+                                    <input type="text" name="finance_yr"
+                                        class="form-control @error('finance_yr') is-invalid @enderror"
+                                        value="{{ old('finance_yr') }}" id="exampleInputname" placeholder="أدخل السنه.....">
+                                    @error('finance_yr')
+                                        <span class="invalid-feedback text-right" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">
                                     <label for="exampleInputdesc">وصف السنه</label>
-                                    <input type="text" class="form-control" id="exampleInputdesc"
+                                    <input type="text" name="finance_yr_desc"
+                                        class="form-control @error('finance_yr_desc') is-invalid @enderror"
+                                        id="exampleInputdesc" value="{{ old('finance_yr_desc') }}"
                                         placeholder="أدخل وصف السنه.....">
+                                    @error('finance_yr_desc')
+                                        <span class="invalid-feedback text-right" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
 
                                 <div class="row">
                                     <div class="form-group col-6">
                                         <label for="exampleInputfrom">من</label>
-                                        <input type="date" class="form-control" id="exampleInputfrom"
+                                        <input type="date" name="start_date"
+                                            class="form-control @error('start_date') is-invalid @enderror"
+                                            value="{{ old('start_date') }}" id="exampleInputfrom"
                                             placeholder="أدخل اتاريخ.....">
+                                        @error('start_date')
+                                            <span class="invalid-feedback text-right" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
 
                                     <div class="form-group col-6">
                                         <label for="exampleInputto">إلى</label>
-                                        <input type="date" class="form-control" id="exampleInputto"
+                                        <input type="date" name="end_date"
+                                            class="form-control @error('end_date') is-invalid @enderror"
+                                            value="{{ old('end_date') }}" id="exampleInputto"
                                             placeholder="أدخل اتاريخ.....">
+                                        @error('end_date')
+                                            <span class="invalid-feedback text-right" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
 
                                 </div>

@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Enums\FinanceCalendarsIsOpen;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class FinanceCalendar extends Model
 {
@@ -27,13 +28,16 @@ class FinanceCalendar extends Model
         return $this->belongsTo(FinanceClnPeriod::class);
     }
 
-    public function createdByAdmin()
+    public function createdBy()
     {
         return $this->belongsTo(Admin::class, 'created_by');
     }
 
-    public function updatedByAdmin()
+    public function updatedBy()
     {
         return $this->belongsTo(Admin::class, 'updated_by');
     }
+    protected $casts = [
+        'is_open' => FinanceCalendarsIsOpen::class,
+    ];
 }

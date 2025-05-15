@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers\Dashboard\Settings;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\FinanceCalendar;
+use App\Models\AdminPanelSetting;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Enums\FinanceCalendarsIsOpen;
+use App\Http\Requests\Dashboard\Settings\FinanceCalendarRequest;
 
 class FinanceCalendarController extends Controller
 {
@@ -12,7 +17,9 @@ class FinanceCalendarController extends Controller
      */
     public function index()
     {
-        return view('dashboard.settings.financeCalendars.index');
+        $com_code = Auth::user()->com_code;
+        $data = FinanceCalendar::where('com_code', $com_code)->paginate(10);
+        return view('dashboard.settings.financeCalendars.index', compact('data'));
     }
 
     /**
@@ -26,9 +33,19 @@ class FinanceCalendarController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(FinanceCalendarRequest $request, FinanceCalendar $financeCalendar)
     {
-        //
+
+        $com_code = Auth::user()->com_code;
+        $validateData = $request->validated();
+        $dataToInsert = array_merge($request->validated(), [
+            'is_open' => FinanceCalendarsIsOpen::Pending,
+            'com_code' => $com_code,
+            'created_by' => Auth::user()->id,
+        ]);
+
+        $financeCalendar->create($dataToInsert);
+        return redirect()->route('dashboard.financeCalendars.index')->with('success', 'تم أضافة السنه المالية بنجاح');
     }
 
     /**
@@ -58,8 +75,9 @@ class FinanceCalendarController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(FinanceCalendar $financeCalendar)
     {
-        //
+        $financeCalendar->delete();
+        return redirect()->route('dashboard.financeCalendars.index')->with('success', 'تم حذف السنه المالية بنجاح');
     }
 }

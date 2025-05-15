@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Interfaces;
 
-interface AdminPanelSettingInterface
+interface FinanceCalendarInterface
 {
     public function getData();
 }
