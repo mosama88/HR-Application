@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Month;
-use App\Models\FinanceClnPeriod;
+use App\Models\FinanceCalendar;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -15,9 +15,8 @@ return new class extends Migration
     {
         Schema::create('finance_cln_periods', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(FinanceClnPeriod::class)->nullable()->constrained()->nullOnDelete();
+            $table->foreignIdFor(FinanceCalendar::class)->nullable()->constrained()->nullOnDelete();
             $table->string('finance_yr'); //('السنة المالية')
-            $table->foreignIdFor(Month::class)->nullable()->constrained()->nullOnDelete();
             $table->string('year_and_month', 10); //محتاج ان اقوم بالتسجيل بالشهر و السنه و ليس باليوم
             $table->date('start_date_m');
             $table->date('end_date_m');

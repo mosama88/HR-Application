@@ -28,30 +28,34 @@
                         <form action="{{ route('dashboard.financeCalendars.store') }}" method="POST" id="storeForm">
                             @csrf
                             <div class="card-body">
-                                <div class="form-group">
-                                    <label for="exampleInputname">السنه</label>
-                                    <input type="text" name="finance_yr"
-                                        class="form-control @error('finance_yr') is-invalid @enderror"
-                                        value="{{ old('finance_yr') }}" id="exampleInputname" placeholder="أدخل السنه.....">
-                                    @error('finance_yr')
-                                        <span class="invalid-feedback text-right" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                <div class="row">
+                                    <div class="form-group col-2">
+                                        <label for="exampleInputname">السنه</label>
+                                        <input type="text" name="finance_yr"
+                                            class="form-control @error('finance_yr') is-invalid @enderror"
+                                            value="{{ old('finance_yr') }}" id="exampleInputname"
+                                            placeholder="أدخل السنه.....">
+                                        @error('finance_yr')
+                                            <span class="invalid-feedback text-right" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group col-10">
+                                        <label for="exampleInputdesc">وصف السنه</label>
+                                        <input type="text" name="finance_yr_desc"
+                                            class="form-control @error('finance_yr_desc') is-invalid @enderror"
+                                            id="exampleInputdesc" value="{{ old('finance_yr_desc') }}"
+                                            placeholder="أدخل وصف السنه.....">
+                                        @error('finance_yr_desc')
+                                            <span class="invalid-feedback text-right" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="exampleInputdesc">وصف السنه</label>
-                                    <input type="text" name="finance_yr_desc"
-                                        class="form-control @error('finance_yr_desc') is-invalid @enderror"
-                                        id="exampleInputdesc" value="{{ old('finance_yr_desc') }}"
-                                        placeholder="أدخل وصف السنه.....">
-                                    @error('finance_yr_desc')
-                                        <span class="invalid-feedback text-right" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
 
                                 <div class="row">
                                     <div class="form-group col-6">

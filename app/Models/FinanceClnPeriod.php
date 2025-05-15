@@ -13,7 +13,7 @@ class FinanceClnPeriod extends Model
     protected $table = 'finance_cln_periods';
     protected $casts = ['is_open' => FinanceClnPeriodsIsOpen::class,];
     protected $fillable = [
-        'finance_calendars_id',
+        'finance_calendar_id',
         'number_of_days',
         'year_and_month',
         'finance_yr',
@@ -30,7 +30,7 @@ class FinanceClnPeriod extends Model
 
     public function FinanceCalendar()
     {
-        return $this->belongsTo(FinanceCalendar::class, 'finance_calendars_id');
+        return $this->belongsTo(FinanceCalendar::class, 'finance_calendar_id');
     }
 
     public function createdByAdmin()
@@ -43,8 +43,5 @@ class FinanceClnPeriod extends Model
         return $this->belongsTo(Admin::class, 'updated_by');
     }
 
-    public function month()
-    {
-        return $this->belongsTo(Month::class, 'month_id');
-    }
+
 }
