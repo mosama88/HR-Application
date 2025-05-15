@@ -91,28 +91,10 @@
 
 
                                                 <td>
-                                                    <div style="display: flex; gap: 10px;">
-                                                        <a href="" class="btn btn-actions btn-sm btn-primary"
-                                                            title="تعديل">
-                                                            <i class="fas fa-edit"></i>
-                                                        </a>
-                                                        <a href="" class="btn btn-actions btn-sm btn-info"
-                                                            title="عرض">
-                                                            <i class="fas fa-eye"></i>
-                                                        </a>
-                                                        <form
-                                                            action="{{ route('dashboard.financeCalendars.destroy', $info->id) }}"
-                                                            method="POST"
-                                                            onsubmit="return confirm('هل أنت متأكد من الحذف؟');">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-actions btn-sm btn-danger"
-                                                                title="حذف">
-                                                                <i class="fas fa-trash-alt"></i>
-                                                            </button>
-                                                        </form>
-                                                    </div>
-
+                                                    @include('components.actions-component', [
+                                                        'name' => 'financeCalendars',
+                                                        'id' => $info->id,
+                                                    ])
                                                 </td>
                                         </tr>
                                     @empty
