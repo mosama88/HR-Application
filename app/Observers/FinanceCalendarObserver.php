@@ -34,12 +34,11 @@ class FinanceCalendarObserver
                 $dataMonth['year_and_month'] = $date->format('Y-m');
                 $CalcnumOfDays = strtotime($dataMonth['end_date_m']) - strtotime($dataMonth['start_date_m']);
                 $dataMonth['number_of_days'] = round($CalcnumOfDays / (60 * 60 * 24)) + 1;
-                $dataMonth['com_code'] = $com_code;
-                $dataMonth['updated_at'] = now();
-                $dataMonth['created_at'] = now();
-                $dataMonth['created_by'] = Auth::user()->id;
                 $dataMonth['start_date_fp'] = $dataMonth['start_date_m'];
                 $dataMonth['end_date_fp'] = $dataMonth['end_date_m'];
+                $dataMonth['com_code'] = $com_code;
+                $dataMonth['created_at'] = now();
+                $dataMonth['created_by'] = Auth::user()->id;
 
                 FinanceClnPeriod::insert($dataMonth);
             }
@@ -51,37 +50,38 @@ class FinanceCalendarObserver
      */
     public function updated(FinanceCalendar $financeCalendar): void
     {
-        // $com_code = Auth::user()->com_code;
+        // تحقق هل تغيرت تواريخ البداية أو النهاية
+        if (
+            $financeCalendar->getOriginal('start_date') != $financeCalendar->start_date
+            || $financeCalendar->getOriginal('end_date') != $financeCalendar->end_date
+        ) {
+            // حذف الشهور القديمة المرتبطة بهذه السنة المالية
+            FinanceClnPeriod::where('finance_calendar_id', $financeCalendar->id)->delete();
 
-        // if (
-        //     $financeCalendar->getOriginal('start_date') != $financeCalendar->start_date
-        //     || $financeCalendar->getOriginal('end_date') != $financeCalendar->end_date
-        // ) {
-        //     $flagDelete = FinanceClnPeriod::where('finance_calendar_id', $financeCalendar->id)->delete();
+            // إنشاء الشهور الجديدة بناءً على التاريخ الجديد
+            $startDate = new DateTime($financeCalendar->start_date);
+            $endDate = new DateTime($financeCalendar->end_date);
+            $endDate->modify('first day of next month'); // لضمان شمول آخر شهر
 
-        //     if ($flagDelete) {
-        //         $startDate = new DateTime($financeCalendar->start_date);
-        //         $endDate = new DateTime($financeCalendar->end_date);
-        //         $endDate->modify('first day of next month');
-        //         $dateInterval = new DateInterval('P1M');
-        //         $datePeriod = new DatePeriod($startDate, $dateInterval, $endDate);
+            $dateInterval = new DateInterval('P1M');
+            $datePeriod = new DatePeriod($startDate, $dateInterval, $endDate);
 
-        //         foreach ($datePeriod as $date) {
-        //             FinanceClnPeriod::create([
-        //                 'finance_calendar_id' => $financeCalendar->id,
-        //                 'finance_yr' => $financeCalendar->finance_yr,
-        //                 'start_date_m' => $date->format('Y-m-01'),
-        //                 'end_date_m' => $date->format('Y-m-t'),
-        //                 'year_and_month' => $date->format('Y-m'),
-        //                 'number_of_days' => (int) $date->format('t'),
-        //                 'com_code' => $com_code,
-        //                 'created_by' => Auth::user()->id,
-        //                 'start_date_fp' => $date->format('Y-m-01'),
-        //                 'end_date_fp' => $date->format('Y-m-t'),
-        //             ]);
-        //         }
-        //     }
-        // }
+            foreach ($datePeriod as $dateUpdate) {
+                FinanceClnPeriod::create([
+                    'finance_calendar_id' => $financeCalendar->id,
+                    'finance_yr' => $financeCalendar->finance_yr,
+                    'year_and_month' => $dateUpdate->format('Y-m'),
+                    'start_date_m' => $dateUpdate->format('Y-m-01'),
+                    'end_date_m' => $dateUpdate->format('Y-m-t'),
+                    'number_of_days' => (int)$dateUpdate->format('t'),
+                    'start_date_fp' => $dateUpdate->format('Y-m-01'),
+                    'end_date_fp' => $dateUpdate->format('Y-m-t'),
+                    'com_code' => $financeCalendar->com_code,
+                    'created_by' => Auth::user()->id,
+                    'updated_by' => Auth::user()->id,
+                ]);
+            }
+        }
     }
 
 
