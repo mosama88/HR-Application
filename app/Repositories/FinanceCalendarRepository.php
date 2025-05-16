@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\FinanceCalendar;
 use App\Models\AdminPanelSetting;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +15,8 @@ class FinanceCalendarRepository implements FinanceCalendarInterface
 
     public function getData()
     {
-        //
+        $com_code = Auth::user()->com_code;
+        $data =  FinanceCalendar::where('com_code', $com_code)->paginate(10);
+        return $data;
     }
 }

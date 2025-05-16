@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Dashboard\Settings;
 use DateTime;
 use DatePeriod;
 use DateInterval;
-use App\Models\Month;
 use Illuminate\Http\Request;
 use App\Models\FinanceCalendar;
 use App\Models\FinanceClnPeriod;
@@ -13,17 +12,20 @@ use App\Models\AdminPanelSetting;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Enums\FinanceCalendarsIsOpen;
+use App\Services\FinanceCalendarService;
 use App\Http\Requests\Dashboard\Settings\FinanceCalendarRequest;
+use Illuminate\Database\Eloquent\Collection;
 
 class FinanceCalendarController extends Controller
 {
+
+    public function __construct(protected FinanceCalendarService $financeCalendarService) {}
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $com_code = Auth::user()->com_code;
-        $data = FinanceCalendar::where('com_code', $com_code)->paginate(10);
+        $data = $this->financeCalendarService->index();
         return view('dashboard.settings.financeCalendars.index', compact('data'));
     }
 
