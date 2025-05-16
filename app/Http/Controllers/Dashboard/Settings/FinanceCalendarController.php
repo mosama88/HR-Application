@@ -40,14 +40,9 @@ class FinanceCalendarController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(FinanceCalendarRequest $request, FinanceCalendar $financeCalendar)
+    public function store(FinanceCalendarRequest $request)
     {
-
-
-        $dataToInsert = $this->financeCalendarService->store($request, $financeCalendar);
-
-        $financeCalendar->create($dataToInsert);
-
+        $this->financeCalendarService->store($request);
         return redirect()->route('dashboard.financeCalendars.index')->with('success', 'تم أضافة السنه المالية بنجاح');
     }
 

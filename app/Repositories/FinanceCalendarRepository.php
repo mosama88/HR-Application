@@ -23,7 +23,7 @@ class FinanceCalendarRepository implements FinanceCalendarInterface
     }
 
 
-    public function storeData(FinanceCalendarRequest $request, FinanceCalendar $financeCalendar)
+    public function storeData($request)
     {
         $com_code = Auth::user()->com_code;
         $validateData = $request->validated();
@@ -33,6 +33,6 @@ class FinanceCalendarRepository implements FinanceCalendarInterface
             'created_by' => Auth::user()->id,
         ]);
 
-        return $dataToInsert;
+        return FinanceCalendar::create($dataToInsert);
     }
 }

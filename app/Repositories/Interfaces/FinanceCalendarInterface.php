@@ -8,5 +8,5 @@ use App\Http\Requests\Dashboard\Settings\FinanceCalendarRequest;
 interface FinanceCalendarInterface
 {
     public function getData();
-    public function storeData(FinanceCalendarRequest $request, FinanceCalendar $financeCalendar);
+    public function storeData($request);
 }

@@ -16,8 +16,8 @@ class FinanceCalendarService
         return $this->repository->getData();
     }
 
-    public function store(FinanceCalendarRequest $request, FinanceCalendar $financeCalendar)
+    public function store($request)
     {
-        return $this->repository->storeData($request,  $financeCalendar);
+        return $this->repository->storeData($request);
     }
 }
