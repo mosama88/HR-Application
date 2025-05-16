@@ -270,15 +270,15 @@
                                     <tr>
                                         <td class="wd-500">شعار الشركة</td>
                                         <td>
-                                            @if ($data['image'])
+                                            @if ($data->getFirstMediaUrl('logo', 'preview'))
                                                 <img class="img-thumbnail rounded me-2 mt-2" alt="200x200"
-                                                    style="width: 100px; height:100"
-                                                    src="{{ asset('dashboard/assets/uploads/admin_setting/' . $data['image']) }}"
+                                                    style="width: 60%;"
+                                                    src="{{ $data->getFirstMediaUrl('logo', 'preview') }}"
                                                     data-holder-rendered="true">
                                             @else
                                                 <img class="img-thumbnail rounded me-2 mt-2" alt="200x200"
-                                                    style="width: 100px; height:100"
-                                                    src="{{ asset('dashboard/assets/img/default-logo.png') }}"
+                                                    style="width: 60%;"
+                                                    src="{{ asset('dashboard') }}/assets/dist/img/hr-logo.jpg"
                                                     data-holder-rendered="true">
                                             @endif
                                         </td>

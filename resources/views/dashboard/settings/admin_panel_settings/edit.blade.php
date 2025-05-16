@@ -5,6 +5,20 @@
 @section('active-admin_panel_settings', 'active')
 @section('title', 'الصفحة الرئيسية')
 @push('css')
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet" />
+    <style>
+        .filepond--image-preview-wrapper {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+
+        .filepond--image-preview {
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+    </style>
 @endpush
 @section('content')
 
@@ -31,6 +45,10 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body p-0">
+                                <div class="mt-2">
+
+                                    <x-image-preview name="logo" title="أرفع شعار الشركه" />
+                                </div>
 
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped mg-b-0 text-md-nowrap">
@@ -323,15 +341,18 @@
 
                                         </tr>
                                         <tr>
+
                                             <td style="width: 60%">شعار الشركة</td>
                                             <td>
-                                                @if ($adminPanelSetting['image'])
+                                                @if ($adminPanelSetting->getFirstMediaUrl('logo', 'preview'))
                                                     <img class="img-thumbnail rounded me-2 mt-2" alt="200x200"
-                                                        style="width: 60%;                                                      src="{{ asset('dashboard/assets/uploads/admin_setting/' . $adminPanelSetting['image']) }}"
+                                                        style="width: 60%;"
+                                                        src="{{ $adminPanelSetting->getFirstMediaUrl('logo', 'preview') }}"
                                                         data-holder-rendered="true">
                                                 @else
                                                     <img class="img-thumbnail rounded me-2 mt-2" alt="200x200"
-                                                        style="width: 60%;                                                      src="{{ asset('dashboard/assets/img/default-logo.png') }}"
+                                                        style="width: 60%;"
+                                                        src="{{ asset('dashboard') }}/assets/dist/img/hr-logo.jpg"
                                                         data-holder-rendered="true">
                                                 @endif
                                             </td>
@@ -361,6 +382,9 @@
 
 @endsection
 @push('js')
+    <script src="{{ asset('dashboard') }}/assets/dist/js/filepond/filepond.js"></script>
+    <script src="{{ asset('dashboard') }}/assets/dist/js/filepond/filepond-plugin-image-preview.js"></script>
+    <script src="{{ asset('dashboard') }}/assets/dist/js/filepond/filepond-plugin-file-validate-type.js"></script>
     <script>
         document.getElementById('editForm').addEventListener('submit', function(event) {
             var submitButton = document.getElementById('submitButton');

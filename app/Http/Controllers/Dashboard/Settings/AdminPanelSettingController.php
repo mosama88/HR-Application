@@ -73,6 +73,19 @@ class AdminPanelSettingController extends Controller
                 'com_code' => $com_code,
             ]
         );
+
+
+        if ($request->hasFile('logo')) {
+            // Remove old image if exists
+            $adminPanelSetting->clearMediaCollection('logo');
+
+            // Upload new image
+            $adminPanelSetting->addMediaFromRequest('logo')
+                ->toMediaCollection('logo');
+        }
+
+        // $adminPanelSetting->addMediaFromRequest('logo')
+        //     ->toMediaCollection('logo');
         $adminPanelSetting->update($dataUpdate);
 
         session()->flash('success', 'تم تعديل الشركة بنجاح');

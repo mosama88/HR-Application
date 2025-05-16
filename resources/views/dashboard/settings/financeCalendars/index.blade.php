@@ -89,9 +89,8 @@
 
                                                 </td>
 
-
                                                 <td>
-                                                    @include('components.actions-component', [
+                                                    @include('dashboard.partials.actions', [
                                                         'name' => 'financeCalendars',
                                                         'name_id' => $info->id,
                                                     ])
