@@ -91,6 +91,7 @@ class FinanceCalendarObserver
      */
     public function deleted(FinanceCalendar $financeCalendar): void
     {
+
         //
     }
 

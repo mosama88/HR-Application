@@ -97,7 +97,10 @@ class FinanceCalendarController extends Controller
      */
     public function destroy(FinanceCalendar $financeCalendar)
     {
+        FinanceClnPeriod::where('finance_calendar_id', $financeCalendar->id)->delete();
+
         $financeCalendar->delete();
+
         return response()->json([
             'success' => true,
             'message' => 'تم حذف السنه المالية بنجاح'
