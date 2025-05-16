@@ -4,7 +4,11 @@ namespace App\Models;
 
 use App\Enums\FinanceCalendarsIsOpen;
 use Illuminate\Database\Eloquent\Model;
+use App\Observers\FinanceCalendarObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+
+#[ObservedBy([FinanceCalendarObserver::class])]
 
 class FinanceCalendar extends Model
 {
