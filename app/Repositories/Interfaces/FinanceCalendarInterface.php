@@ -9,4 +9,6 @@ interface FinanceCalendarInterface
 {
     public function getData();
     public function storeData($request);
+    public function updateData($request, FinanceCalendar $financeCalendar);
+    public function deleteData(FinanceCalendar $financeCalendar);
 }

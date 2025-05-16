@@ -20,4 +20,15 @@ class FinanceCalendarService
     {
         return $this->repository->storeData($request);
     }
+
+
+    public function update($request, FinanceCalendar $financeCalendar)
+    {
+        return $this->repository->updateData($request, $financeCalendar);
+    }
+
+    public function destroy( FinanceCalendar $financeCalendar)
+    {
+        return $this->repository->deleteData($financeCalendar);
+    }
 }

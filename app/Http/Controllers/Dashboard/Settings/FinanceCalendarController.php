@@ -67,17 +67,7 @@ class FinanceCalendarController extends Controller
      */
     public function update(FinanceCalendarRequest $request, FinanceCalendar $financeCalendar)
     {
-        $com_code = Auth::user()->com_code;
-        $validatedData = $request->validated();
-
-        // تحديث السنة المالية
-        $dataToInsert = array_merge($validatedData, [
-            'is_open' => FinanceCalendarsIsOpen::Pending,
-            'com_code' => $com_code,
-            'updated_by' => Auth::user()->id,
-        ]);
-
-        $financeCalendar->update($dataToInsert);
+        $this->financeCalendarService->update($request, $financeCalendar);
 
         return redirect()->route('dashboard.financeCalendars.index')->with('success', 'تم تعديل السنة المالية بنجاح');
     }
@@ -87,9 +77,8 @@ class FinanceCalendarController extends Controller
      */
     public function destroy(FinanceCalendar $financeCalendar)
     {
-        FinanceClnPeriod::where('finance_calendar_id', $financeCalendar->id)->delete();
 
-        $financeCalendar->delete();
+        $this->financeCalendarService->destroy($financeCalendar);
 
         return response()->json([
             'success' => true,

@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\FinanceCalendar;
+use App\Models\FinanceClnPeriod;
 use App\Models\AdminPanelSetting;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -34,5 +35,33 @@ class FinanceCalendarRepository implements FinanceCalendarInterface
         ]);
 
         return FinanceCalendar::create($dataToInsert);
+    }
+
+
+
+    public function updateData($request, FinanceCalendar $financeCalendar)
+    {
+        $com_code = Auth::user()->com_code;
+        $validatedData = $request->validated();
+
+        $dataToInsert = array_merge($validatedData, [
+            'is_open' => FinanceCalendarsIsOpen::Pending,
+            'com_code' => $com_code,
+            'updated_by' => Auth::user()->id,
+        ]);
+
+        $financeCalendar->update($dataToInsert);
+
+        return $financeCalendar;
+    }
+
+
+    public function deleteData(FinanceCalendar $financeCalendar)
+    {
+        FinanceClnPeriod::where('finance_calendar_id', $financeCalendar->id)->delete();
+
+        $financeCalendar->delete();
+
+        return $financeCalendar;
     }
 }
