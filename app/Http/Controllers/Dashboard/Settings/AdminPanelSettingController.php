@@ -14,13 +14,13 @@ class AdminPanelSettingController extends Controller
 {
 
 
-    public function __construct(protected AdminPanelSettingService $service) {}
+    public function __construct(protected AdminPanelSettingService $adminPanelSettingService) {}
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data = $this->service->index();
+        $data = $this->adminPanelSettingService->index();
         if ($data == null) {
             return redirect('dashboard')->withErrors(['error' => 'لا توجد أعدادت الشركة للموظف']);
         }
@@ -64,30 +64,7 @@ class AdminPanelSettingController extends Controller
      */
     public function update(AdminPanelSettingRequest $request, AdminPanelSetting $adminPanelSetting)
     {
-        $com_code = Auth::user()->com_code;
-        $adminPanelSettings = $request->validated();
-        $dataUpdate =  array_merge(
-            $adminPanelSettings,
-            [
-                'updated_by' => Auth::user()->id,
-                'com_code' => $com_code,
-            ]
-        );
-
-
-        if ($request->hasFile('logo')) {
-            // Remove old image if exists
-            $adminPanelSetting->clearMediaCollection('logo');
-
-            // Upload new image
-            $adminPanelSetting->addMediaFromRequest('logo')
-                ->toMediaCollection('logo');
-        }
-
-        // $adminPanelSetting->addMediaFromRequest('logo')
-        //     ->toMediaCollection('logo');
-        $adminPanelSetting->update($dataUpdate);
-
+        $this->adminPanelSettingService->update($request, $adminPanelSetting);
         session()->flash('success', 'تم تعديل الشركة بنجاح');
         return redirect()->route('dashboard.admin_panel_settings.index');
     }

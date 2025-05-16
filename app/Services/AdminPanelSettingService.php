@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Models\AdminPanelSetting;
 use App\Repositories\Interfaces\AdminPanelSettingInterface;
+use App\Http\Requests\Dashboard\Settings\AdminPanelSettingRequest;
 
 
 class AdminPanelSettingService
@@ -12,5 +14,12 @@ class AdminPanelSettingService
     public function index()
     {
         return $this->AdminPanelSetting->getData();
+    }
+
+
+    public function update(AdminPanelSettingRequest $request, AdminPanelSetting $adminPanelSetting)
+    {
+
+        return $this->AdminPanelSetting->updateData($request, $adminPanelSetting);
     }
 }
