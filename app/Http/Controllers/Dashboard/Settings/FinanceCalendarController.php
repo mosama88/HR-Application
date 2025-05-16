@@ -43,13 +43,8 @@ class FinanceCalendarController extends Controller
     public function store(FinanceCalendarRequest $request, FinanceCalendar $financeCalendar)
     {
 
-        $com_code = Auth::user()->com_code;
-        $validateData = $request->validated();
-        $dataToInsert = array_merge($validateData, [
-            'is_open' => FinanceCalendarsIsOpen::Pending,
-            'com_code' => $com_code,
-            'created_by' => Auth::user()->id,
-        ]);
+
+        $dataToInsert = $this->financeCalendarService->store($request, $financeCalendar);
 
         $financeCalendar->create($dataToInsert);
 

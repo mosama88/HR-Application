@@ -6,6 +6,7 @@ use App\Models\FinanceCalendar;
 use App\Models\AdminPanelSetting;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use App\Enums\FinanceCalendarsIsOpen;
 use App\Enums\PanelSettingSystemStatusEnum;
 use App\Repositories\Interfaces\FinanceCalendarInterface;
 use App\Http\Requests\Dashboard\Settings\FinanceCalendarRequest;
@@ -22,7 +23,16 @@ class FinanceCalendarRepository implements FinanceCalendarInterface
     }
 
 
-    // public function updateData(FinanceCalendarRequest $request, FinanceCalendar $financeCalendar) {
-        
-    // }
+    public function storeData(FinanceCalendarRequest $request, FinanceCalendar $financeCalendar)
+    {
+        $com_code = Auth::user()->com_code;
+        $validateData = $request->validated();
+        $dataToInsert = array_merge($validateData, [
+            'is_open' => FinanceCalendarsIsOpen::Pending,
+            'com_code' => $com_code,
+            'created_by' => Auth::user()->id,
+        ]);
+
+        return $dataToInsert;
+    }
 }

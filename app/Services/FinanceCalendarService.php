@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Models\FinanceCalendar;
 use App\Repositories\Interfaces\FinanceCalendarInterface;
+use App\Http\Requests\Dashboard\Settings\FinanceCalendarRequest;
 
 
 class FinanceCalendarService
@@ -12,5 +14,10 @@ class FinanceCalendarService
     public function index()
     {
         return $this->repository->getData();
+    }
+
+    public function store(FinanceCalendarRequest $request, FinanceCalendar $financeCalendar)
+    {
+        return $this->repository->storeData($request,  $financeCalendar);
     }
 }
