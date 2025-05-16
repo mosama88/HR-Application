@@ -21,8 +21,8 @@ class FinanceClnPeriod extends Model
         'start_date_m',
         'end_date_m',
         'is_open',
-        'start_date_fb',
-        'end_date_fb',
+        'start_date_fp',
+        'end_date_fp',
         'created_by',
         'updated_by',
         'com_code',
@@ -42,6 +42,4 @@ class FinanceClnPeriod extends Model
     {
         return $this->belongsTo(Admin::class, 'updated_by');
     }
-
-
 }

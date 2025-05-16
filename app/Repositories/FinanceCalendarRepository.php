@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use App\Enums\PanelSettingSystemStatusEnum;
 use App\Repositories\Interfaces\FinanceCalendarInterface;
+use App\Http\Requests\Dashboard\Settings\FinanceCalendarRequest;
 
 class FinanceCalendarRepository implements FinanceCalendarInterface
 {
@@ -19,4 +20,9 @@ class FinanceCalendarRepository implements FinanceCalendarInterface
         $data =  FinanceCalendar::where('com_code', $com_code)->paginate(10);
         return $data;
     }
+
+
+    // public function updateData(FinanceCalendarRequest $request, FinanceCalendar $financeCalendar) {
+        
+    // }
 }

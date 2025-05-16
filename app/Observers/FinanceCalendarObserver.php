@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use DateTime;
 use DatePeriod;
+use Carbon\Month;
 use DateInterval;
 use App\Models\FinanceCalendar;
 use App\Models\FinanceClnPeriod;
@@ -37,7 +38,6 @@ class FinanceCalendarObserver
                 $dataMonth['updated_at'] = now();
                 $dataMonth['created_at'] = now();
                 $dataMonth['created_by'] = Auth::user()->id;
-                $dataMonth['updated_by'] = Auth::user()->id;
                 $dataMonth['start_date_fp'] = $dataMonth['start_date_m'];
                 $dataMonth['end_date_fp'] = $dataMonth['end_date_m'];
 
@@ -51,8 +51,40 @@ class FinanceCalendarObserver
      */
     public function updated(FinanceCalendar $financeCalendar): void
     {
-        //
+        // $com_code = Auth::user()->com_code;
+
+        // if (
+        //     $financeCalendar->getOriginal('start_date') != $financeCalendar->start_date
+        //     || $financeCalendar->getOriginal('end_date') != $financeCalendar->end_date
+        // ) {
+        //     $flagDelete = FinanceClnPeriod::where('finance_calendar_id', $financeCalendar->id)->delete();
+
+        //     if ($flagDelete) {
+        //         $startDate = new DateTime($financeCalendar->start_date);
+        //         $endDate = new DateTime($financeCalendar->end_date);
+        //         $endDate->modify('first day of next month');
+        //         $dateInterval = new DateInterval('P1M');
+        //         $datePeriod = new DatePeriod($startDate, $dateInterval, $endDate);
+
+        //         foreach ($datePeriod as $date) {
+        //             FinanceClnPeriod::create([
+        //                 'finance_calendar_id' => $financeCalendar->id,
+        //                 'finance_yr' => $financeCalendar->finance_yr,
+        //                 'start_date_m' => $date->format('Y-m-01'),
+        //                 'end_date_m' => $date->format('Y-m-t'),
+        //                 'year_and_month' => $date->format('Y-m'),
+        //                 'number_of_days' => (int) $date->format('t'),
+        //                 'com_code' => $com_code,
+        //                 'created_by' => Auth::user()->id,
+        //                 'start_date_fp' => $date->format('Y-m-01'),
+        //                 'end_date_fp' => $date->format('Y-m-t'),
+        //             ]);
+        //         }
+        //     }
+        // }
     }
+
+
 
     /**
      * Handle the FinanceCalendar "deleted" event.
