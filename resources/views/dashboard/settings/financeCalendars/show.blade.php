@@ -1,3 +1,8 @@
+@php
+
+    use App\Enums\FinanceClnPeriodsIsOpen;
+
+@endphp
 @extends('dashboard.layouts.master')
 @section('active-financeCalendars', 'active')
 @section('title', 'عرض السنه المالية')
@@ -27,40 +32,51 @@
                         <!-- form start -->
 
                         <div class="card-body">
-                            <div class="row">
-                                <div class="form-group col-2">
-                                    <label for="exampleInputname">السنه</label>
-                                    <input readonly type="text" name="finance_yr" class="form-control bg-white"
-                                        value="{{ old('finance_yr', $financeCalendar->finance_yr) }}" id="exampleInputname"
-                                        placeholder="أدخل السنه.....">
-                                </div>
 
-                                <div class="form-group col-10">
-                                    <label for="exampleInputdesc">وصف السنه</label>
-                                    <input readonly type="text" name="finance_yr_desc" class="form-control bg-white"
-                                        id="exampleInputdesc"
-                                        value="{{ old('finance_yr_desc', $financeCalendar->finance_yr_desc) }}"
-                                        placeholder="أدخل وصف السنه.....">
-                                </div>
-                            </div>
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>الشهر</th>
+                                        <th>بداية الشهر</th>
+                                        <th>نهاية الشهر</th>
+                                        <th>عدد الأيام</th>
+                                        <th>حالة الشهر</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse ($financeClnPeriods as $financeClnPeriod)
+                                        <tr data-widget="expandable-table" aria-expanded="false">
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>
+                                                {{ \Carbon\Carbon::parse($financeClnPeriod->year_and_month)->translatedFormat('F') }}
+                                            </td>
+                                            <td>{{ $financeClnPeriod->start_date_m }}</td>
+                                            <td>{{ $financeClnPeriod->end_date_m }}</td>
+                                            <td>{{ $financeClnPeriod->number_of_days }}</td>
+                                            <td>
+                                                @if ($financeClnPeriod->is_open == FinanceClnPeriodsIsOpen::Pending)
+                                                    <span class="badge bg-warning">
+                                                        {{ FinanceClnPeriodsIsOpen::Pending->label() }}
+                                                    </span>
+                                                @elseif($financeClnPeriod->is_open == FinanceClnPeriodsIsOpen::Open)
+                                                    <span class="badge bg-success">
+                                                        {{ FinanceClnPeriodsIsOpen::Open->label() }}
+                                                    </span>
+                                                @else
+                                                    <span class="badge bg-danger">
+                                                        {{ FinanceClnPeriodsIsOpen::Archived->label() }}
+                                                    </span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        لا توجد بيانات
+                                    @endforelse
 
 
-                            <div class="row">
-                                <div class="form-group col-6">
-                                    <label for="exampleInputfrom">من</label>
-                                    <input readonly type="date" name="start_date" class="form-control bg-white"
-                                        value="{{ old('start_date', $financeCalendar->start_date) }}" id="exampleInputfrom"
-                                        placeholder="أدخل اتاريخ.....">
-                                </div>
-
-                                <div class="form-group col-6">
-                                    <label for="exampleInputto">إلى</label>
-                                    <input readonly type="date" name="end_date" class="form-control bg-white"
-                                        value="{{ old('end_date', $financeCalendar->end_date) }}" id="exampleInputto"
-                                        placeholder="أدخل اتاريخ.....">
-                                </div>
-
-                            </div>
+                                </tbody>
+                            </table>
 
                         </div>
                         <!-- /.card-body -->

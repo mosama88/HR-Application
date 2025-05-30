@@ -1,6 +1,6 @@
 <div class="flex align-items-center list-user-action">
-    <a class="text-success pe-2 mx-1" data-bs-toggle="tooltip" data-placement="top" title="" data-original-title="Add"
-        href="{{ route('dashboard.' . $name . '.show', $name_id) }}">
+    <a class="text-success pe-2 mx-1" title="عرض" data-bs-toggle="tooltip" data-placement="top" title=""
+        data-original-title="Add" href="{{ route('dashboard.' . $name . '.show', $name_id) }}">
         <span class="btn-inner">
 
             <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -15,7 +15,7 @@
 
         </span>
     </a>
-    <a class="text-warning pe-2 mx-1" data-bs-toggle="tooltip" data-placement="top" title=""
+    <a class="text-warning pe-2 mx-1" title="تعديل" data-bs-toggle="tooltip" data-placement="top" title=""
         data-original-title="Edit" href="{{ route('dashboard.' . $name . '.edit', $name_id) }}">
         <span class="btn-inner">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -35,8 +35,8 @@
         @csrf
         @method('DELETE')
     </form>
-    <a class="text-danger delete-btn" id="delete_one" data-id="{{ $name_id }}" data-bs-toggle="tooltip"
-        data-placement="top" title="" data-original-title="Delete" href="#">
+    <a class="text-danger delete-btn" title="حذف" id="delete_one" data-id="{{ $name_id }}"
+        data-bs-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="#">
         <span class="btn-inner">
             <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path

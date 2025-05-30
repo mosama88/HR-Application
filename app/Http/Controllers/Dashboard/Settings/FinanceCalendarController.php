@@ -3,18 +3,14 @@
 namespace App\Http\Controllers\Dashboard\Settings;
 
 
-use DateTime;
-use DatePeriod;
-use DateInterval;
+
 use Illuminate\Http\Request;
 use App\Models\FinanceCalendar;
 use App\Models\FinanceClnPeriod;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Enums\FinanceCalendarsIsOpen;
 use App\Services\FinanceCalendarService;
 use App\Http\Requests\Dashboard\Settings\FinanceCalendarRequest;
-use Carbon\Month;
 
 class FinanceCalendarController extends Controller
 {
@@ -51,7 +47,12 @@ class FinanceCalendarController extends Controller
      */
     public function show(FinanceCalendar $financeCalendar)
     {
-        return view('dashboard.settings.financeCalendars.show', compact('financeCalendar'));
+        $com_code = Auth::user()->com_code;
+        $financeClnPeriods = FinanceClnPeriod::where('finance_calendar_id', $financeCalendar->id)->where('com_code', $com_code)->get();
+        if ($financeClnPeriods->isEmpty()) {
+            return redirect()->route('dashboard.financeCalendars.index')->withErrors(['error' => '!عفوآ لقد حدث خطأ ما']);
+        }
+        return view('dashboard.settings.financeCalendars.show', compact('financeClnPeriods', 'financeCalendar'));
     }
 
     /**
