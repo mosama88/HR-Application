@@ -47,11 +47,14 @@ class FinanceCalendarController extends Controller
      */
     public function show(FinanceCalendar $financeCalendar)
     {
-        $financeClnPeriods = $this->financeCalendarService->show($financeCalendar);
-
-
-
-        return view('dashboard.settings.financeCalendars.show', compact('financeClnPeriods', 'financeCalendar'));
+        try {
+            $financeClnPeriods = $this->financeCalendarService->show($financeCalendar);
+            return view('dashboard.settings.financeCalendars.show', compact('financeClnPeriods', 'financeCalendar'));
+        } catch (\Exception $e) {
+            return redirect()
+                ->route('dashboard.financeCalendars.index')
+                ->withErrors(['error' => $e->getMessage()]);
+        }
     }
 
     /**
