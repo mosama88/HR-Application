@@ -26,7 +26,7 @@
     <div class="login-box">
         <div class="login-logo">
             <span style="color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.5);">
-                <b>هيئة النيابة الأدارية</b> برنامج إدارة شئون العاملين
+                <b>مستشفى الحياة<br></b> إدارة شئون العاملين
             </span>
         </div>
 

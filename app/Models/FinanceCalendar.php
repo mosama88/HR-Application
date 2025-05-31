@@ -7,12 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use App\Observers\FinanceCalendarObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 #[ObservedBy([FinanceCalendarObserver::class])]
 
 class FinanceCalendar extends Model
 {
-    use HasFactory;
+    use HasFactory, HasSlug;
 
     protected $table = 'finance_calendars';
     protected $casts = [
@@ -28,6 +30,15 @@ class FinanceCalendar extends Model
         'created_by',
         'updated_by',
     ];
+
+
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('finance_yr')
+            ->saveSlugsTo('slug');
+    }
+
 
     public function FinanceClnCalendar()
     {

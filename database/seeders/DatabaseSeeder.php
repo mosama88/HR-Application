@@ -55,7 +55,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             AdminSeeder::class,
-            MonthSeeder::class,
             // AdminPanelSettingSeeder::class,
         ]);
     }
