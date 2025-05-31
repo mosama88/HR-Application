@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('employee_code')->nullable()->comment('كود الموظف التلقائي لايتغير');
             $table->integer('fp_code')->unique()->nullable()->comment('كود بصمة الموظف من جهاز البصمة لايتغير');
             $table->string('name', 300)->unique();
+            $table->string('slug')->unique()->nullable();
             $table->enum('gender', ['Male', 'Female'])->default('Male');
             $table->foreignId('branch_id')->comment('الفرع التابع له الموظف ')->references('id')->on('branches')->onUpdate('cascade');
             $table->foreignId('job_grade_id')->comment('الدرجه الوظيفية للموظف')->references('id')->on('job_grades')->onUpdate('cascade')->nullable();

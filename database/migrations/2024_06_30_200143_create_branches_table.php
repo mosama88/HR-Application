@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('branches', function (Blueprint $table) {
             $table->id();
             $table->string('name', 225);
+            $table->string('slug')->unique()->nullable();
             $table->string('address', 225);
             $table->string('phones', 225);
             $table->string('email', 50)->nullable();

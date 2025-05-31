@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('governorates', function (Blueprint $table) {
             $table->id();
             $table->string('name', 225);
+            $table->string('slug')->unique()->nullable();
             $table->foreignId('country_id')->references('id')->on('countries')->onUpdate('cascade')->onDelete('cascade');
             $table->tinyInteger('active')->default(1)->nullable();
             $table->foreignId('created_by')->references('id')->on('admins')->onUpdate('cascade');

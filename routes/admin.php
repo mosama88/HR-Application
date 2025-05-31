@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\AdminController;
+use App\Http\Controllers\Dashboard\Settings\BranchController;
 use App\Http\Controllers\Dashboard\Settings\FinanceCalendarController;
 use App\Http\Controllers\Dashboard\Settings\AdminPanelSettingController;
 
@@ -12,4 +13,6 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::resource('admin_panel_settings', AdminPanelSettingController::class);
     //################################### السنوات المالية ##################################
     Route::resource('financeCalendars', FinanceCalendarController::class);
+    //################################### الفروع ##################################
+    Route::resource('branches', BranchController::class);
 });

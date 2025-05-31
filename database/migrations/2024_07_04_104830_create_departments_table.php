@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
             $table->string('name', 225);
+            $table->string('slug')->unique()->nullable();
             $table->string('phones', 100);
             $table->string('notes', 300);
             $table->foreignId('created_by')->references('id')->on('admins')->onUpdate('cascade');
