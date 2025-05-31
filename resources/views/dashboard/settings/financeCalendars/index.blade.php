@@ -92,7 +92,7 @@
                                                 <td>
                                                     @include('dashboard.partials.actions', [
                                                         'name' => 'financeCalendars',
-                                                        'name_id' => $info->id,
+                                                        'name_id' => $info->slug,
                                                     ])
                                                 </td>
                                         </tr>

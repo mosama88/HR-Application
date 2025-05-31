@@ -47,11 +47,10 @@ class FinanceCalendarController extends Controller
      */
     public function show(FinanceCalendar $financeCalendar)
     {
-        $com_code = Auth::user()->com_code;
-        $financeClnPeriods = FinanceClnPeriod::where('finance_calendar_id', $financeCalendar->id)->where('com_code', $com_code)->get();
-        if ($financeClnPeriods->isEmpty()) {
-            return redirect()->route('dashboard.financeCalendars.index')->withErrors(['error' => '!عفوآ لقد حدث خطأ ما']);
-        }
+        $financeClnPeriods = $this->financeCalendarService->show($financeCalendar);
+
+
+
         return view('dashboard.settings.financeCalendars.show', compact('financeClnPeriods', 'financeCalendar'));
     }
 

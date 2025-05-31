@@ -40,6 +40,11 @@ class FinanceCalendar extends Model
     }
 
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function FinanceClnCalendar()
     {
         return $this->belongsTo(FinanceClnPeriod::class);

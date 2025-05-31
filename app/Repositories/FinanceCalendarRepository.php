@@ -39,6 +39,14 @@ class FinanceCalendarRepository implements FinanceCalendarInterface
 
 
 
+
+    public function showData(FinanceCalendar $financeCalendar)
+    {
+        $com_code = Auth::user()->com_code;
+       return  FinanceClnPeriod::where('finance_calendar_id', $financeCalendar->id)->where('com_code', $com_code)->get();
+    }
+
+
     public function updateData($request, FinanceCalendar $financeCalendar)
     {
         $com_code = Auth::user()->com_code;

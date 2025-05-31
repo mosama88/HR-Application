@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('finance_calendars', function (Blueprint $table) {
             $table->id();
             $table->string('finance_yr');
-            $table->string('slug');
+            $table->string('slug')->unique()->nullable();
             $table->string('finance_yr_desc', 225); //تفاصيل كود السنه المالية
             $table->date('start_date');
             $table->date('end_date');
