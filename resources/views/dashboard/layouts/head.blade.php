@@ -1,58 +1,45 @@
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8" />
+<meta name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
 <title>لوحة التحكم | @yield('title')</title>
-<!-- Logo -->
-<link rel="icon" href="{{ asset('dashboard') }}/assets/dist/img/administrativprosecution.png" type="image/x-icon">
 
-<!-- Tell the browser to be responsive to screen width -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Font Awesome -->
-<link rel="stylesheet" href="{{ asset('dashboard') }}/assets/plugins/fontawesome-free/css/all.min.css">
-<!-- Ionicons -->
-<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-<!-- Tempusdominus Bbootstrap 4 -->
-<link rel="stylesheet"
-    href="{{ asset('dashboard') }}/assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-<!-- iCheck -->
-<link rel="stylesheet" href="{{ asset('dashboard') }}/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-<!-- JQVMap -->
-<link rel="stylesheet" href="{{ asset('dashboard') }}/assets/plugins/jqvmap/jqvmap.min.css">
+<meta name="description" content="" />
 
-<!-- Font Arabic -->
-<link rel="stylesheet" href="{{ asset('fonts') }}/stylesheet.css">
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="{{ asset('dashboard') }}/assets/img/favicon/favicon.ico" />
 
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+    href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet" />
 
-<!-- Theme style -->
-<link rel="stylesheet" href="{{ asset('dashboard') }}/assets/dist/css/adminlte.min.css">
-<!-- overlayScrollbars -->
-<link rel="stylesheet" href="{{ asset('dashboard') }}/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-<!-- Daterange picker -->
-<link rel="stylesheet" href="{{ asset('dashboard') }}/assets/plugins/daterangepicker/daterangepicker.css">
-<!-- summernote -->
-<link rel="stylesheet" href="{{ asset('dashboard') }}/assets/plugins/summernote/summernote-bs4.css">
-<!-- Google Font: Source Sans Pro -->
-<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-<!-- Bootstrap 4 RTL -->
-<link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css">
-<!-- Custom style for RTL -->
-<link rel="stylesheet" href="{{ asset('dashboard') }}/assets/dist/css/custom.css">
-<link rel="stylesheet" href="{{ asset('dashboard') }}/assets/dist/css/style.css">
-<!-- Toastr -->
-<link rel="stylesheet" href="{{ asset('dashboard') }}/assets/plugins/toastr/toastr.min.css">
+<!-- Icons -->
+<link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/fonts/boxicons.css" />
+<link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/fonts/fontawesome.css" />
+<link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/fonts/flag-icons.css" />
 
-<!-- flatpickr -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-@stack('css')
-<style>
-    .select2-container--default .select2-selection--single {
-        height: 40px;
-        /* لتحديد ارتفاع الحقل */
-        /* line-height: 40px; */
-        /* لضبط النص في المنتصف */
-    }
+<!-- Core CSS -->
+<link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/css/rtl/core.css"
+    class="template-customizer-core-css" />
+<link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/css/rtl/theme-default.css"
+    class="template-customizer-theme-css" />
+<link rel="stylesheet" href="{{ asset('dashboard') }}/assets/css/demo.css" />
 
-    .select2-container--default .select2-selection--single .select2-selection__arrow {
-        height: 40px;
-        /* لضبط السهم */
-    }
-</style>
+<!-- Vendors CSS -->
+<link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+<link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/libs/typeahead-js/typeahead.css" />
+<link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/libs/apex-charts/apex-charts.css" />
+
+<!-- Page CSS -->
+
+<!-- Helpers -->
+<script src="{{ asset('dashboard') }}/assets/vendor/js/helpers.js"></script>
+
+<!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+<!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
+<script src="{{ asset('dashboard') }}/assets/vendor/js/template-customizer.js"></script>
+<!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+<script src="{{ asset('dashboard') }}/assets/js/config.js"></script>

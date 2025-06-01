@@ -15,7 +15,7 @@
     @include('dashboard.layouts.breadcrumb', [
         'pageTitle' => 'السنوات المالية',
         'previousPage' => 'السنوات المالية',
-        'urlPreviousPage' => 'financeCalendars.index', //سيتم تغيير لوحة التحكم لاحقآ
+        'urlPreviousPage' => 'dashboard/financeCalendars', //سيتم تغيير لوحة التحكم لاحقآ
         'currentPage' => 'عرض السنه المالية ',
     ])
 

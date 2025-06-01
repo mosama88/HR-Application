@@ -10,7 +10,7 @@
     @include('dashboard.layouts.breadcrumb', [
         'pageTitle' => 'السنوات المالية',
         'previousPage' => 'السنوات المالية',
-        'urlPreviousPage' => 'financeCalendars.index', //سيتم تغيير لوحة التحكم لاحقآ
+        'urlPreviousPage' => 'dashboard/financeCalendars', //سيتم تغيير لوحة التحكم لاحقآ
         'currentPage' => 'تعديل السنه المالية ',
     ])
 
@@ -25,7 +25,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{ route('dashboard.financeCalendars.update', $financeCalendar->id) }}" method="POST"
+                        <form action="{{ route('dashboard.financeCalendars.update', $financeCalendar->slug) }}" method="POST"
                             id="updateForm">
                             @csrf
                             @method('PUT')

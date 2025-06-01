@@ -1,65 +1,64 @@
+@php
+    use App\Enums\AdminGenderEnum;
+@endphp
 <!DOCTYPE html>
-<html>
+
+<html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed" dir="rtl" data-theme="theme-default"
+    data-assets-path="{{ asset('dashboard') }}/assets/" data-template="vertical-menu-template">
 
 <head>
-<style>
-
-    .nav-item .nav-link:hover {
-        background-color: #d6d6d6;
-        color: white;
-        border-color: #007bff;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-        transform: translateY(-5px); /* Slight upward movement */
-        text-decoration: none; /* Removing underline */
-    }
-
-  
-
-    .time-text {
-        opacity: 1;
-    }
-
-    .nav-item .nav-link:hover .time-text {
-        opacity: 0.8; /* Slight fade effect on hover */
-    }
-</style>
     @include('dashboard.layouts.head')
-
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
-    <div class="wrapper">
+<body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            <!-- Menu -->
+            @include('dashboard.layouts.sidebar')
+            <!-- / Menu -->
 
-        <!-- Navbar -->
-        @include('dashboard.layouts.navbar')
+            <!-- Layout container -->
+            <div class="layout-page">
+                <!-- Navbar -->
 
-        <!-- /.navbar -->
+                @include('dashboard.layouts.navbar')
 
-        <!-- Main Sidebar Container -->
-        @include('dashboard.layouts.sidebar')
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
+                <!-- / Navbar -->
 
-            <!-- /.content-header -->
+                <!-- Content wrapper -->
+                <div class="content-wrapper">
+                    <!-- Content -->
 
-            <!-- Main content -->
-            @yield('content')
-            <!-- /.content -->
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                     
+
+                        @yield('content')
+                    </div>
+                    <!-- / Content -->
+
+                    <!-- Footer -->
+                    @include('dashboard.layouts.footer')
+                    <!-- / Footer -->
+
+                    <div class="content-backdrop fade"></div>
+                </div>
+                <!-- Content wrapper -->
+            </div>
+            <!-- / Layout page -->
         </div>
-        <!-- /.content-wrapper -->
-        @include('dashboard.layouts.footer')
 
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
-        <!-- /.control-sidebar -->
+        <!-- Overlay -->
+        <div class="layout-overlay layout-menu-toggle"></div>
+
+        <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+        <div class="drag-target"></div>
     </div>
-    <!-- ./wrapper -->
+
+    </div>
+    <!-- / Layout wrapper -->
 
     @include('dashboard.layouts.scripts')
-
 </body>
 
 </html>

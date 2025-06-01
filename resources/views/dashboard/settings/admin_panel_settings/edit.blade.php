@@ -27,7 +27,7 @@
     @include('dashboard.layouts.breadcrumb', [
         'pageTitle' => 'تعديل إعدادات الشركة',
         'previousPage' => 'إعدادات الشركة',
-        'urlPreviousPage' => 'admin_panel_settings.index', //سيتم تغيير لوحة التحكم لاحقآ
+        'urlPreviousPage' => 'dashboard/admin_panel_settings', //سيتم تغيير لوحة التحكم لاحقآ
         'currentPage' => 'تعديل إعدادات الشركة',
     ])
 
@@ -45,7 +45,7 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body p-0">
-                                <div class="mt-2">
+                                <div class="mx-2 my-2">
 
                                     <x-image-preview name="logo" title="أرفع شعار الشركه" />
                                 </div>
@@ -368,13 +368,13 @@
                         </div>
                     </div>
                     <!-- /.row (main row) -->
+                    <div class="card-footer text-center mt-2">
+                        <button type="submit" id="submitButton" class="btn btn-info">تعديل البيانات <i
+                                class="fas fa-save mx-1"></i>
+                        </button>
+                    </div>
                 </div><!-- /.container-fluid -->
 
-                <div class="card-footer text-center ">
-                    <button type="submit" id="submitButton" class="btn btn-info">تعديل البيانات <i
-                            class="fas fa-save mx-1"></i>
-                    </button>
-                </div>
             </form>
 
     </section>
