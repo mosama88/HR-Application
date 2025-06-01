@@ -3,7 +3,7 @@
 @endphp
 @extends('dashboard.layouts.master')
 @section('active-financeCalendars', 'active')
-@section('title', 'الصفحة الرئيسية')
+@section('title', 'السنوات المالية')
 @push('css')
     <style>
         .btn-actions {

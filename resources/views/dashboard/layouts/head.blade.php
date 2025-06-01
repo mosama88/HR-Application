@@ -32,6 +32,7 @@
 <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/libs/typeahead-js/typeahead.css" />
 <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/libs/apex-charts/apex-charts.css" />
+<link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/libs/toastr/toastr.css" />
 
 <!-- Page CSS -->
 

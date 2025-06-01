@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.master')
 @section('active-branches', 'active')
-@section('title', 'الصفحة الرئيسية')
+@section('title', 'الفروع')
 @push('css')
 @endpush
 @section('content')

@@ -1,9 +1,9 @@
 @php
-    use App\Enums\FinanceCalendarsIsOpen;
+    use App\Enums\StatusActive;
 @endphp
 @extends('dashboard.layouts.master')
 @section('active-branches', 'active')
-@section('title', 'الصفحة الرئيسية')
+@section('title', 'الفروع')
 @push('css')
     <style>
         .btn-actions {
@@ -60,21 +60,18 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0">
-
-                                    <tr>
-                                        @forelse ($data as $info)
+                                    @forelse ($data as $info)
+                                        <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $info->name }}</td>
                                             <td>{{ $info->phones }}</td>
-                                            <td>{{ $info->address }}</td>
+                                            <td>{{ Str::limit($info->address, 30) }}</td>
                                             <td>{{ $info->email }}</td>
                                             <td>
-                                                @if ($info->is_open == FinanceCalendarsIsOpen::Open)
+                                                @if ($info->active == StatusActive::ACTIVE)
                                                     <span class="badge bg-success">مفعل</span>
-                                                @elseif ($info->is_open == FinanceCalendarsIsOpen::Pending)
-                                                    <span class="badge bg-warning">معلق</span>
                                                 @else
-                                                    <span class="badge bg-danger">مؤرشف</span>
+                                                    <span class="badge bg-danger">غير مفعل</span>
                                                 @endif
                                             </td>
                                             <td>{{ $info->createdBy->name }}</td>
@@ -89,13 +86,13 @@
 
                                             <td>
                                                 @include('dashboard.partials.actions', [
-                                                    'name' => 'financeCalendars',
+                                                    'name' => 'branches',
                                                     'name_id' => $info->slug,
                                                 ])
                                             </td>
-                                    </tr>
-                                @empty
-                                    عفوآ لا توجد بيانات
+                                        </tr>
+                                    @empty
+                                        <div class="alert alert-secondary" role="alert">عفوآ لا توجد بيانات!</div>
                                     @endforelse
                                 </tbody>
                             </table>

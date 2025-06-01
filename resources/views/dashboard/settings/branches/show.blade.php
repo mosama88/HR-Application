@@ -1,9 +1,6 @@
-@php
-    use App\Enums\FinanceClnPeriodsIsOpen;
-@endphp
 @extends('dashboard.layouts.master')
 @section('active-branches', 'active')
-@section('title', 'عرض الفروع')
+@section('title', 'عرض بيانات الفرع')
 @push('css')
 @endpush
 @section('content')
@@ -14,7 +11,7 @@
         'pageTitle' => 'الفروع',
         'previousPage' => 'الفروع',
         'urlPreviousPage' => 'dashboard/branches', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'عرض الفروع ',
+        'currentPage' => 'عرض بيانات الفرع',
     ])
 
     <section class="content">
@@ -22,63 +19,58 @@
 
             <div class="row">
                 <div class="col-12">
-                    <div class="card card-dark">
+                    <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">عرض الفروع لسنه {{ $financeCalendar->finance_yr }} </h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-
-                        <div class="card-body">
-
-                            <table class="table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>الشهر</th>
-                                        <th>بداية الشهر</th>
-                                        <th>نهاية الشهر</th>
-                                        <th>عدد الأيام</th>
-                                        <th>حالة الشهر</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse ($financeClnPeriods as $financeClnPeriod)
-                                        <tr data-widget="expandable-table" aria-expanded="false">
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>
-                                                {{ \Carbon\Carbon::parse($financeClnPeriod->year_and_month)->translatedFormat('F') }}
-                                            </td>
-                                            <td>{{ $financeClnPeriod->start_date_m }}</td>
-                                            <td>{{ $financeClnPeriod->end_date_m }}</td>
-                                            <td>{{ $financeClnPeriod->number_of_days }}</td>
-                                            <td>
-                                                @if ($financeClnPeriod->is_open == FinanceClnPeriodsIsOpen::Pending)
-                                                    <span class="badge bg-warning">
-                                                        {{ FinanceClnPeriodsIsOpen::Pending->label() }}
-                                                    </span>
-                                                @elseif($financeClnPeriod->is_open == FinanceClnPeriodsIsOpen::Open)
-                                                    <span class="badge bg-success">
-                                                        {{ FinanceClnPeriodsIsOpen::Open->label() }}
-                                                    </span>
-                                                @else
-                                                    <span class="badge bg-danger">
-                                                        {{ FinanceClnPeriodsIsOpen::Archived->label() }}
-                                                    </span>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @empty
-                                        لا توجد بيانات
-                                    @endforelse
+                        <div class="col-md-12">
+                            <div class="card mb-4">
+                                <h5 class="card-header">عرض بيانات الفرع</h5>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-4 mb-3">
+                                            <label for="exampleFormControlInput1" class="form-label">أسم الفرع</label>
+                                            <input readonly="" name="name" value="{{ $branch->name }}" type="text"
+                                                class="form-control"
+                                                id="exampleFormControlInput1" placeholder="مثال:فرع....">
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="exampleFormControlReadOnlyInput1" class="form-label">هاتف
+                                                الفرع</label>
+                                            <input readonly="" name="phones"
+                                                class="form-control"
+                                                value="{{ $branch->phones }}" type="text"
+                                                id="exampleFormControlReadOnlyInput1" placeholder="010...">
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="exampleFormControlReadOnlyInput1" class="form-label">البريد
+                                                الالكترونى
+                                            </label>
+                                            <input readonly="" name="email"
+                                                class="form-control"
+                                                value="{{ $branch->email }}" type="text"
+                                                id="exampleFormControlReadOnlyInput1" placeholder="p@p.com...">
+                                        </div>
+                                    </div>
 
 
-                                </tbody>
-                            </table>
 
+                                    <div class="col-md-12 mb-3">
+                                        <label for="exampleFormControlReadOnlyInput1" class="form-label">عنوان الفرع
+                                        </label>
+                                        <input readonly="" name="address"
+                                            class="form-control"
+                                            value="{{ $branch->address }}" type="text"
+                                            id="exampleFormControlReadOnlyInput1" placeholder="21 ش...">
+                                    </div>
+
+
+
+                                </div>
+                            </div>
                         </div>
                         <!-- /.card-body -->
-
 
                     </div>
                 </div>

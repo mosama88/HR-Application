@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.master')
 @section('active-financeCalendars', 'active')
-@section('title', 'الصفحة الرئيسية')
+@section('title', 'أضافة سنه مالية')
 @push('css')
 @endpush
 @section('content')
