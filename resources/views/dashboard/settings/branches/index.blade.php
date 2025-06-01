@@ -96,6 +96,11 @@
                                     @endforelse
                                 </tbody>
                             </table>
+                            <div class="row">
+                                <div class="col-12 my-2">
+                                    {{ $data->links() }}
+                                </div>
+                            </div>
                         </div>
                     </div>
 
