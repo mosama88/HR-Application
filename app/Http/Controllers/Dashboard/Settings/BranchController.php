@@ -6,6 +6,7 @@ use App\Models\Branch;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Dashboard\Settings\BranchRequest;
 
 class BranchController extends Controller
 {
@@ -30,7 +31,7 @@ class BranchController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BranchRequest $request)
     {
         //
     }

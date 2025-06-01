@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Enums\StatusActive;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
 class Branch extends Model
@@ -50,4 +51,6 @@ class Branch extends Model
     {
         return $this->belongsTo(Admin::class, 'updated_by');
     }
+
+    protected $casts = ['active' => StatusActive::class];
 }

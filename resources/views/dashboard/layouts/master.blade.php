@@ -34,6 +34,8 @@
                      
 
                         @yield('content')
+
+                        
                     </div>
                     <!-- / Content -->
 

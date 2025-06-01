@@ -34,21 +34,40 @@
                                         <div class="row">
                                             <div class="col-md-4 mb-3">
                                                 <label for="exampleFormControlInput1" class="form-label">أسم الفرع</label>
-                                                <input type="text" class="form-control" id="exampleFormControlInput1"
-                                                    placeholder="مثال:فرع....">
+                                                <input name="name" type="text"
+                                                    class="form-control @error('name') is-invalid @enderror"
+                                                    id="exampleFormControlInput1" placeholder="مثال:فرع....">
+                                                @error('name')
+                                                    <span class="invalid-feedback text-right" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                             <div class="col-md-4 mb-3">
                                                 <label for="exampleFormControlReadOnlyInput1" class="form-label">هاتف
                                                     الفرع</label>
-                                                <input class="form-control" type="text"
-                                                    id="exampleFormControlReadOnlyInput1" placeholder="010...">
+                                                <input name="phones"
+                                                    class="form-control @error('phones') is-invalid @enderror"
+                                                    type="text" id="exampleFormControlReadOnlyInput1"
+                                                    placeholder="010...">
+                                                @error('phones')
+                                                    <span class="invalid-feedback text-right" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                             <div class="col-md-4 mb-3">
                                                 <label for="exampleFormControlReadOnlyInput1" class="form-label">البريد
                                                     الالكترونى
                                                 </label>
-                                                <input class="form-control" type="text"
+                                                <input name="email"
+                                                    class="form-control @error('email') is-invalid @enderror" type="text"
                                                     id="exampleFormControlReadOnlyInput1" placeholder="p@p.com...">
+                                                @error('email')
+                                                    <span class="invalid-feedback text-right" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
 
@@ -57,8 +76,14 @@
                                         <div class="col-md-12 mb-3">
                                             <label for="exampleFormControlReadOnlyInput1" class="form-label">عنوان الفرع
                                             </label>
-                                            <input class="form-control" type="text" id="exampleFormControlReadOnlyInput1"
-                                                placeholder="010...">
+                                            <input name="address"
+                                                class="form-control @error('address') is-invalid @enderror" type="text"
+                                                id="exampleFormControlReadOnlyInput1" placeholder="21 ش...">
+                                            @error('address')
+                                                <span class="invalid-feedback text-right" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
 
 
