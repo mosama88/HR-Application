@@ -24,7 +24,7 @@
     @include('dashboard.layouts.breadcrumb', [
         'pageTitle' => 'الفروع',
         'previousPage' => 'لوحة التحكم',
-        'urlPreviousPage' => 'index', //سيتم تغيير لوحة التحكم لاحقآ
+        'urlPreviousPage' => 'dashboard', //سيتم تغيير لوحة التحكم لاحقآ
         'currentPage' => 'جدول الفروع',
     ])
 

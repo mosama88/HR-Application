@@ -86,6 +86,12 @@
                     </a>
                 </li>
 
+                <li class="menu-item @yield('active-branches')">
+                    <a href="{{ route('dashboard.branches.index') }}" class="menu-link">
+                        <div data-i18n="الفروع">الفروع</div>
+                    </a>
+                </li>
+
 
             </ul>
         </li>

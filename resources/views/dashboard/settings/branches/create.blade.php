@@ -10,7 +10,7 @@
     @include('dashboard.layouts.breadcrumb', [
         'pageTitle' => 'الفروع',
         'previousPage' => 'الفروع',
-        'urlPreviousPage' => 'branches.index', //سيتم تغيير لوحة التحكم لاحقآ
+        'urlPreviousPage' => 'dashboard/branches', //سيتم تغيير لوحة التحكم لاحقآ
         'currentPage' => 'أضافة فرع جديد',
     ])
 

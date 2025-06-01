@@ -10,7 +10,7 @@
     @include('dashboard.layouts.breadcrumb', [
         'pageTitle' => 'السنوات المالية',
         'previousPage' => 'السنوات المالية',
-        'urlPreviousPage' => 'branches.index', //سيتم تغيير لوحة التحكم لاحقآ
+        'urlPreviousPage' => 'dashboard/branches', //سيتم تغيير لوحة التحكم لاحقآ
         'currentPage' => 'تعديل الفرع ',
     ])
 
