@@ -1,25 +1,18 @@
-@if (session('success') || session('error'))
-    <div class="bs-toast toast toast-ex animate__animated my-2 fade {{ session('success') ? 'bg-success' : 'bg-danger' }} animate__tada hide "
-        role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
-        <div class="toast-header">
-            <i class="{{ session('success') ? 'fa-solid fa-thumbs-up me-2' : 'fa-solid fa-triangle-exclamation' }}"></i>
-            <div class="me-auto fw-semibold">{{ session('success') ? 'Success' : 'Error' }}</div>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body"> {{ session('success') ?? session('error') }}
-        </div>
-    </div>
-@endif
-
-
 @push('js')
-    @if (session('success') || session('error'))
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                var toastEl = document.querySelector('.toast');
-                var bsToast = new bootstrap.Toast(toastEl);
-                bsToast.show();
-            });
-        </script>
-    @endif
+    <script>
+        $(document).ready(function() {
+            // إعدادات toastr
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true,
+                "positionClass": "toast-top-left", // <-- الزاوية العلوية اليمنى
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+            };
+
+            @if ($errors->has('error')) toastr.error('{{ $errors->first('error') }}'); @endif
+
+            @if (session('success')) toastr.success('{{ session('success') }}'); @endif
+        });
+    </script>
 @endpush
