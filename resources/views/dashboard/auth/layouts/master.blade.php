@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en" class="light-style customizer-hide" dir="ltr" data-theme="theme-default"
+<html lang="en" class="light-style customizer-hide" dir="rtl" data-theme="theme-default"
     data-assets-path="{{ asset('dashboard') }}/assets/" data-template="vertical-menu-template">
 
 <head>
@@ -71,8 +71,8 @@
                             </a>
                         </div>
                         <!-- /Logo -->
-                        <h4 class="mb-2" dir="rtl">أهلا بك فى مستشفى الحياه! 👋</h4>
-                        <p class="mb-4" dir="rtl">من فضلك سجل الدخول</p>
+                        <h4 class="mb-2">أهلا بك فى مستشفى الحياه! 👋</h4>
+                        <p class="mb-4">من فضلك سجل الدخول</p>
 
                         @yield('content')
 
