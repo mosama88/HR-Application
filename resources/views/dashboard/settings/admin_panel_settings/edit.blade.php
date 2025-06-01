@@ -47,7 +47,10 @@
                             <div class="card-body p-0">
                                 <div class="mx-2 my-2">
 
-                                    <x-image-preview name="logo" title="أرفع شعار الشركه" />
+                                    <div class="col-md-6 mb-3">
+                                        <label for="formFileMultiple" class="form-label">أرفق شعار الشركة</label>
+                                        <input class="form-control" name="logo" type="file" id="formFileMultiple">
+                                    </div>
                                 </div>
 
                                 <div class="table-responsive">
