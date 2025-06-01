@@ -66,7 +66,14 @@ class BranchController extends Controller
      */
     public function update(BranchRequest $request, Branch $branch)
     {
-        //
+        $com_code =  Auth::user()->com_code;
+        $dataValidate = $request->validated();
+        $dataUpdate = array_merge($dataValidate, [
+            'updated_by' => Auth::user()->id,
+            'com_code' => $com_code,
+        ]);
+        $branch->update($dataUpdate);
+        return redirect()->route('dashboard.branches.index')->with('success', 'تم تعديل الفرع بنجاح');
     }
 
     /**

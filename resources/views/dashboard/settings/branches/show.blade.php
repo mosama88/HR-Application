@@ -1,3 +1,6 @@
+@php
+    use App\Enums\StatusActive;
+@endphp
 @extends('dashboard.layouts.master')
 @section('active-branches', 'active')
 @section('title', 'عرض بيانات الفرع')
@@ -29,28 +32,40 @@
                                 <h5 class="card-header">عرض بيانات الفرع</h5>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-4 mb-3">
+                                        <div class="col-md-6 mb-3">
                                             <label for="exampleFormControlInput1" class="form-label">أسم الفرع</label>
                                             <input readonly="" name="name" value="{{ $branch->name }}" type="text"
-                                                class="form-control"
-                                                id="exampleFormControlInput1" placeholder="مثال:فرع....">
+                                                class="form-control" id="exampleFormControlInput1"
+                                                placeholder="مثال:فرع....">
                                         </div>
-                                        <div class="col-md-4 mb-3">
+                                        <div class="col-md-6 mb-3">
                                             <label for="exampleFormControlReadOnlyInput1" class="form-label">هاتف
                                                 الفرع</label>
-                                            <input readonly="" name="phones"
-                                                class="form-control"
+                                            <input readonly="" name="phones" class="form-control"
                                                 value="{{ $branch->phones }}" type="text"
                                                 id="exampleFormControlReadOnlyInput1" placeholder="010...">
                                         </div>
-                                        <div class="col-md-4 mb-3">
+                                        <div class="col-md-6 mb-3">
                                             <label for="exampleFormControlReadOnlyInput1" class="form-label">البريد
                                                 الالكترونى
                                             </label>
-                                            <input readonly="" name="email"
-                                                class="form-control"
+                                            <input readonly="" name="email" class="form-control"
                                                 value="{{ $branch->email }}" type="text"
                                                 id="exampleFormControlReadOnlyInput1" placeholder="p@p.com...">
+                                        </div>
+
+                                        <div class="col-md-6 mb-3">
+                                            <label for="exampleFormControlSelect1" class="form-label">حالة الفرع</label>
+                                            <select readonly="" class="form-select" id="exampleFormControlSelect1"
+                                                aria-label="Default select example">
+                                                <option selected="">-- أختر الحالة--</option>
+                                                <option @if (old('active', $branch->active) == StatusActive::ACTIVE) selected @endif
+                                                    value="{{ StatusActive::ACTIVE }}">
+                                                    {{ StatusActive::ACTIVE->label() }}</option>
+                                                <option @if (old('active', $branch->active) == StatusActive::INACTIVE) selected @endif
+                                                    value="{{ StatusActive::INACTIVE }}">
+                                                    {{ StatusActive::INACTIVE->label() }}</option>
+                                            </select>
                                         </div>
                                     </div>
 
@@ -59,8 +74,7 @@
                                     <div class="col-md-12 mb-3">
                                         <label for="exampleFormControlReadOnlyInput1" class="form-label">عنوان الفرع
                                         </label>
-                                        <input readonly="" name="address"
-                                            class="form-control"
+                                        <input readonly="" name="address" class="form-control"
                                             value="{{ $branch->address }}" type="text"
                                             id="exampleFormControlReadOnlyInput1" placeholder="21 ش...">
                                     </div>

@@ -1,3 +1,6 @@
+@php
+    use App\Enums\StatusActive;
+@endphp
 @extends('dashboard.layouts.master')
 @section('active-branches', 'active')
 @section('title', 'تعديل بيانات الفرع')
@@ -33,7 +36,7 @@
                                     @method('PUT')
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-4 mb-3">
+                                            <div class="col-md-6 mb-3">
                                                 <label for="exampleFormControlInput1" class="form-label">أسم الفرع</label>
                                                 <input name="name" value="{{ $branch->name }}" type="text"
                                                     class="form-control @error('name') is-invalid @enderror"
@@ -44,7 +47,7 @@
                                                     </span>
                                                 @enderror
                                             </div>
-                                            <div class="col-md-4 mb-3">
+                                            <div class="col-md-6 mb-3">
                                                 <label for="exampleFormControlReadOnlyInput1" class="form-label">هاتف
                                                     الفرع</label>
                                                 <input name="phones"
@@ -57,7 +60,7 @@
                                                     </span>
                                                 @enderror
                                             </div>
-                                            <div class="col-md-4 mb-3">
+                                            <div class="col-md-6 mb-3">
                                                 <label for="exampleFormControlReadOnlyInput1" class="form-label">البريد
                                                     الالكترونى
                                                 </label>
@@ -70,6 +73,20 @@
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <label for="exampleFormControlSelect1" class="form-label">حالة الفرع</label>
+                                                <select name="active" class="form-select" id="exampleFormControlSelect1"
+                                                    aria-label="Default select example">
+                                                    <option selected="">-- أختر الحالة--</option>
+                                                    <option @if (old('active', $branch->active) == StatusActive::ACTIVE) selected @endif
+                                                        value="{{ StatusActive::ACTIVE }}">
+                                                        {{ StatusActive::ACTIVE->label() }}</option>
+                                                    <option @if (old('active', $branch->active) == StatusActive::INACTIVE) selected @endif
+                                                        value="{{ StatusActive::INACTIVE }}">
+                                                        {{ StatusActive::INACTIVE->label() }}</option>
+                                                </select>
                                             </div>
                                         </div>
 
