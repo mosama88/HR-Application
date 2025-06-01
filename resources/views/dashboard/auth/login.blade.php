@@ -3,59 +3,46 @@
 @section('content')
     @include('dashboard.layouts.message')
 
-    @if ($errors->any())
-        @foreach ($errors->all() as $error)
-            <div class="alert alert-danger text-center">
-                {{ $error }}
-            </div>
-        @endforeach
-    @endif
-    <form action="" method="POST" id="loginForm">
+    <form action="{{ route('login.store') }}" method="POST" id="loginForm">
         @csrf
-        <div class="input-group mb-3">
-            <input type="text" name="username" class="form-control  @error('username') is-invalid @enderror"
-                placeholder="أسم المستخدم">
-            <div class="input-group-append">
-                <div class="input-group-text">
-                    <span class="fas fa-envelope"></span>
-                </div>
-            </div>
+        <div class="mb-3">
+            <label for="text" name="username" class="form-label">أسم المستخدم</label>
+            <input type="text" class="form-control @error('username') is-invalid @enderror" id="text"
+                name="text-username" placeholder="Enter username" autofocus />
             @error('username')
                 <span class="invalid-feedback text-right" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
         </div>
-        <div class="input-group mb-3">
-            <input type="password" name="password" class="form-control  @error('password') is-invalid @enderror"
-                placeholder="مثال:***********">
-            <div class="input-group-append">
-                <div class="input-group-text">
-                    <span class="fas fa-lock"></span>
-                </div>
+        <div class="mb-3 form-password-toggle">
+            <div class="d-flex justify-content-between">
+                <label class="form-label" for="password">كلمة المرور</label>
+                <a href="auth-forgot-password-basic.html">
+                    <small>Forgot Password?</small>
+                </a>
             </div>
-            @error('password')
-                <span class="invalid-feedback text-right" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+            <div class="input-group input-group-merge">
+                <input type="password" id="password" class="form-control @error('username') is-invalid @enderror"
+                    name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                    aria-describedby="password" />
+                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                @error('password')
+                    <span class="invalid-feedback text-right" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
         </div>
-        <div class="row">
-            <div class="col-6">
-                <button type="submit" id="submitButton" class="btn btn-primary btn-block btn-flat">تسجيل الدخول</button>
+        <div class="mb-3">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="remember-me" />
+                <label class="form-check-label" for="remember-me"> تذكرنى </label>
             </div>
-            <!-- /.col -->
-            <div class="col-6 text-right">
-                <div class="icheck-primary">
-                    <label for="remember">
-                        تذكرنى
-                    </label>
-                    <input type="checkbox" class="mx-1" id="remember">
-
-                </div>
-            </div>
-            <!-- /.col -->
-
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-primary d-grid w-100" id="submitButton" type="submit">تسجيل
+                الدخول</button>
         </div>
     </form>
 @endsection
