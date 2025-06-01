@@ -34,7 +34,7 @@
                                         <div class="row">
                                             <div class="col-md-4 mb-3">
                                                 <label for="exampleFormControlInput1" class="form-label">أسم الفرع</label>
-                                                <input name="name" type="text"
+                                                <input name="name" type="text" value="{{ old('name') }}"
                                                     class="form-control @error('name') is-invalid @enderror"
                                                     id="exampleFormControlInput1" placeholder="مثال:فرع....">
                                                 @error('name')
@@ -46,7 +46,7 @@
                                             <div class="col-md-4 mb-3">
                                                 <label for="exampleFormControlReadOnlyInput1" class="form-label">هاتف
                                                     الفرع</label>
-                                                <input name="phones"
+                                                <input name="phones" value="{{ old('phones') }}"
                                                     class="form-control @error('phones') is-invalid @enderror"
                                                     type="text" id="exampleFormControlReadOnlyInput1"
                                                     placeholder="010...">
@@ -60,7 +60,7 @@
                                                 <label for="exampleFormControlReadOnlyInput1" class="form-label">البريد
                                                     الالكترونى
                                                 </label>
-                                                <input name="email"
+                                                <input name="email" value="{{ old('email') }}"
                                                     class="form-control @error('email') is-invalid @enderror" type="text"
                                                     id="exampleFormControlReadOnlyInput1" placeholder="p@p.com...">
                                                 @error('email')
@@ -76,7 +76,7 @@
                                         <div class="col-md-12 mb-3">
                                             <label for="exampleFormControlReadOnlyInput1" class="form-label">عنوان الفرع
                                             </label>
-                                            <input name="address"
+                                            <input name="address" value="{{ old('address') }}"
                                                 class="form-control @error('address') is-invalid @enderror" type="text"
                                                 id="exampleFormControlReadOnlyInput1" placeholder="21 ش...">
                                             @error('address')

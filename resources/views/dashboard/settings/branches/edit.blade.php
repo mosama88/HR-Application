@@ -38,8 +38,8 @@
                                         <div class="row">
                                             <div class="col-md-6 mb-3">
                                                 <label for="exampleFormControlInput1" class="form-label">أسم الفرع</label>
-                                                <input name="name" value="{{ $branch->name }}" type="text"
-                                                    class="form-control @error('name') is-invalid @enderror"
+                                                <input name="name" value="{{ old('name', $branch->name) }}"
+                                                    type="text" class="form-control @error('name') is-invalid @enderror"
                                                     id="exampleFormControlInput1" placeholder="مثال:فرع....">
                                                 @error('name')
                                                     <span class="invalid-feedback text-right" role="alert">
@@ -52,7 +52,7 @@
                                                     الفرع</label>
                                                 <input name="phones"
                                                     class="form-control @error('phones') is-invalid @enderror"
-                                                    value="{{ $branch->phones }}" type="text"
+                                                    value="{{ old('name', $branch->phones) }}" type="text"
                                                     id="exampleFormControlReadOnlyInput1" placeholder="010...">
                                                 @error('phones')
                                                     <span class="invalid-feedback text-right" role="alert">
@@ -66,7 +66,7 @@
                                                 </label>
                                                 <input name="email"
                                                     class="form-control @error('email') is-invalid @enderror"
-                                                    value="{{ $branch->email }}" type="text"
+                                                    value="{{ old('name', $branch->email) }}" type="text"
                                                     id="exampleFormControlReadOnlyInput1" placeholder="p@p.com...">
                                                 @error('email')
                                                     <span class="invalid-feedback text-right" role="alert">

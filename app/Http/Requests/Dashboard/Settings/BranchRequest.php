@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Dashboard\Settings;
 
+use App\Models\Branch;
 use Illuminate\Foundation\Http\FormRequest;
 
 class BranchRequest extends FormRequest
@@ -21,8 +22,9 @@ class BranchRequest extends FormRequest
      */
     public function rules(): array
     {
+        $branchId = $this->route('branch') ? $this->route('branch')->id : null;
         return [
-            'name' => 'required',
+            'name' => 'required|unique:branches,name,' . $branchId,
             'email' => 'required|email',
             'phones' => 'required',
             'address' => 'required',
@@ -35,6 +37,7 @@ class BranchRequest extends FormRequest
     {
         return [
             'name.required' => 'اسم الفرع مطلوب',
+            'name.unique' => 'اسم الفرع موجود',
             'email.required' => 'البريد الالكترونى للفرع مطلوب',
             'email.email' => 'برجاء كتابة البريد الالكترونى بطريقة صحيحة',
             'phones.required' => 'هاتف الفرع مطلوب',
