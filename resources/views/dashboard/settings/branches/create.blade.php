@@ -21,77 +21,56 @@
                 <div class="col-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">أضافة فرع جديد</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
                         <form action="{{ route('dashboard.branches.store') }}" method="POST" id="storeForm">
                             @csrf
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="form-group col-2">
-                                        <label for="exampleInputname">السنه</label>
-                                        <input type="text" name="finance_yr"
-                                            class="form-control @error('finance_yr') is-invalid @enderror"
-                                            value="{{ old('finance_yr') }}" id="exampleInputname"
-                                            placeholder="أدخل السنه.....">
-                                        @error('finance_yr')
-                                            <span class="invalid-feedback text-right" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
 
-                                    <div class="form-group col-10">
-                                        <label for="exampleInputdesc">وصف السنه</label>
-                                        <input type="text" name="finance_yr_desc"
-                                            class="form-control @error('finance_yr_desc') is-invalid @enderror"
-                                            id="exampleInputdesc" value="{{ old('finance_yr_desc') }}"
-                                            placeholder="أدخل وصف السنه.....">
-                                        @error('finance_yr_desc')
-                                            <span class="invalid-feedback text-right" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                            <div class="col-md-12">
+                                <div class="card mb-4">
+                                    <h5 class="card-header">أضافة فرع جديد</h5>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-4 mb-3">
+                                                <label for="exampleFormControlInput1" class="form-label">أسم الفرع</label>
+                                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                                    placeholder="مثال:فرع....">
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="exampleFormControlReadOnlyInput1" class="form-label">هاتف
+                                                    الفرع</label>
+                                                <input class="form-control" type="text"
+                                                    id="exampleFormControlReadOnlyInput1" placeholder="010...">
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="exampleFormControlReadOnlyInput1" class="form-label">البريد
+                                                    الالكترونى
+                                                </label>
+                                                <input class="form-control" type="text"
+                                                    id="exampleFormControlReadOnlyInput1" placeholder="p@p.com...">
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-md-12 mb-3">
+                                            <label for="exampleFormControlReadOnlyInput1" class="form-label">عنوان الفرع
+                                            </label>
+                                            <input class="form-control" type="text" id="exampleFormControlReadOnlyInput1"
+                                                placeholder="010...">
+                                        </div>
+
+
+
                                     </div>
                                 </div>
-
-
-                                <div class="row">
-                                    <div class="form-group col-6">
-                                        <label for="exampleInputfrom">من</label>
-                                        <input type="date" name="start_date"
-                                            class="form-control @error('start_date') is-invalid @enderror"
-                                            value="{{ old('start_date') }}" id="exampleInputfrom"
-                                            placeholder="أدخل اتاريخ.....">
-                                        @error('start_date')
-                                            <span class="invalid-feedback text-right" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group col-6">
-                                        <label for="exampleInputto">إلى</label>
-                                        <input type="date" name="end_date"
-                                            class="form-control @error('end_date') is-invalid @enderror"
-                                            value="{{ old('end_date') }}" id="exampleInputto"
-                                            placeholder="أدخل اتاريخ.....">
-                                        @error('end_date')
-                                            <span class="invalid-feedback text-right" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-
-                                </div>
-
                             </div>
                             <!-- /.card-body -->
 
                             <div class="card-footer text-center">
                                 <button type="submit" id="submitButton" class="btn btn-primary"> <i
-                                        class="far fa-save"></i> حفظ
+                                        class="far fa-save mx-1"></i> حفظ
                                     البيانات</button>
                             </div>
                         </form>

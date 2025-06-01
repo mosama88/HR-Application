@@ -36,7 +36,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
-                                <a href="{{ route('dashboard.financeCalendars.create') }}"
+                                <a href="{{ route('dashboard.branches.create') }}"
                                     class="btn btn-block text-white btn-info"> <i class="fas fa-edit mx-1"></i>
                                     أضافة</a>
                             </h3>
