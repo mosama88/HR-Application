@@ -1,4 +1,5 @@
 @php
+    use Carbon\Carbon;
     use App\Enums\StatusActiveEnum;
 @endphp
 @extends('dashboard.layouts.master')
@@ -49,10 +50,10 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>أسم الفرع</th>
-                                        <th>الهاتف</th>
-                                        <th>العنوان</th>
-                                        <th>البريد الالكترونى</th>
+                                        <th>نوع الشفت</th>
+                                        <th>من الساعه</th>
+                                        <th>إلى الساعه</th>
+                                        <th>عدد الساعات</th>
                                         <th>الحالة</th>
                                         <th>أضافة بواسطة</th>
                                         <th>تعديل بواسطة</th>
@@ -63,10 +64,11 @@
                                     @forelse ($data as $info)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $info->name }}</td>
-                                            <td>{{ $info->phones }}</td>
-                                            <td>{{ Str::limit($info->address, 30) }}</td>
-                                            <td>{{ $info->email }}</td>
+                                            <td>{{ $info->type->label() }}</td>
+                                            <td>{{ Carbon::createFromFormat('H:i:s', $info->from_time)->format('H:i') }}
+                                            </td>
+                                            <td>{{ Carbon::createFromFormat('H:i:s', $info->to_time)->format('H:i') }}
+                                            <td>{{ $info->total_hours }}</td>
                                             <td>
                                                 @if ($info->active == StatusActiveEnum::ACTIVE)
                                                     <span class="badge bg-success">مفعل</span>

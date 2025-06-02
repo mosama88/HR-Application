@@ -29,11 +29,15 @@ class ShiftsType extends Model
     ];
 
 
+    public function getTypeLabelAttribute(): string
+    {
+        return $this->type->label();
+    }
 
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('name')
+            ->generateSlugsFrom('type_label') // accessor
             ->saveSlugsTo('slug');
     }
 
