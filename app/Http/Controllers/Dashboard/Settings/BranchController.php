@@ -5,19 +5,21 @@ namespace App\Http\Controllers\Dashboard\Settings;
 use App\Models\Branch;
 use App\Enums\StatusActive;
 use Illuminate\Http\Request;
+use App\Services\BranchService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Dashboard\Settings\BranchRequest;
 
 class BranchController extends Controller
 {
+
+    public function __construct(protected BranchService $service) {}
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $com_code  = Auth::user()->com_code;
-        $data = Branch::where('com_code', $com_code)->paginate(10);
+        $data = $this->service->index();
         return view('dashboard.settings.branches.index', compact('data'));
     }
 
@@ -32,16 +34,9 @@ class BranchController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(BranchRequest $request, Branch $branch)
+    public function store(BranchRequest $request)
     {
-        $com_code =  Auth::user()->com_code;
-        $dataValidate = $request->validated();
-        $dataInsert = array_merge($dataValidate, [
-            'created_by' => Auth::user()->id,
-            'com_code' => $com_code,
-            'active' => StatusActive::ACTIVE,
-        ]);
-        $branch->create($dataInsert);
+        $this->service->store($request);
         return redirect()->route('dashboard.branches.index')->with('success', 'تم أضافة الفرع بنجاح');
     }
 
@@ -66,13 +61,8 @@ class BranchController extends Controller
      */
     public function update(BranchRequest $request, Branch $branch)
     {
-        $com_code =  Auth::user()->com_code;
-        $dataValidate = $request->validated();
-        $dataUpdate = array_merge($dataValidate, [
-            'updated_by' => Auth::user()->id,
-            'com_code' => $com_code,
-        ]);
-        $branch->update($dataUpdate);
+
+        $this->service->update($request, $branch);
         return redirect()->route('dashboard.branches.index')->with('success', 'تم تعديل الفرع بنجاح');
     }
 

@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Repositories\BranchRepository;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\FinanceCalendarRepository;
+use App\Repositories\Interfaces\BranchInterface;
 use App\Repositories\AdminPanelSettingRepository;
 use App\Repositories\Interfaces\FinanceCalendarInterface;
 use App\Repositories\Interfaces\AdminPanelSettingInterface;
@@ -25,5 +27,6 @@ class InterfacesRepositoryProvider extends ServiceProvider
     {
         app()->bind(AdminPanelSettingInterface::class, AdminPanelSettingRepository::class);
         app()->bind(FinanceCalendarInterface::class, FinanceCalendarRepository::class);
+        app()->bind(BranchInterface::class, BranchRepository::class);
     }
 }

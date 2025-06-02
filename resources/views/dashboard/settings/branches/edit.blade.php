@@ -66,7 +66,7 @@
                                                 </label>
                                                 <input name="email"
                                                     class="form-control @error('email') is-invalid @enderror"
-                                                    value="{{ old('name', $branch->email) }}" type="text"
+                                                    value="{{ old('email', $branch->email) }}" type="text"
                                                     id="exampleFormControlReadOnlyInput1" placeholder="p@p.com...">
                                                 @error('email')
                                                     <span class="invalid-feedback text-right" role="alert">
@@ -77,8 +77,9 @@
 
                                             <div class="col-md-6 mb-3">
                                                 <label for="exampleFormControlSelect1" class="form-label">حالة الفرع</label>
-                                                <select name="active" class="form-select" id="exampleFormControlSelect1"
-                                                    aria-label="Default select example">
+                                                <select name="active"
+                                                    class="form-select @error('active') is-invalid @enderror"
+                                                    id="exampleFormControlSelect1" aria-label="Default select example">
                                                     <option selected="">-- أختر الحالة--</option>
                                                     <option @if (old('active', $branch->active) == StatusActive::ACTIVE) selected @endif
                                                         value="{{ StatusActive::ACTIVE }}">
@@ -87,6 +88,11 @@
                                                         value="{{ StatusActive::INACTIVE }}">
                                                         {{ StatusActive::INACTIVE->label() }}</option>
                                                 </select>
+                                                @error('active')
+                                                    <span class="invalid-feedback text-right" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
 
@@ -97,7 +103,7 @@
                                             </label>
                                             <input name="address"
                                                 class="form-control @error('address') is-invalid @enderror"
-                                                value="{{ $branch->address }}" type="text"
+                                                value="{{ old('address', $branch->address) }}" type="text"
                                                 id="exampleFormControlReadOnlyInput1" placeholder="21 ش...">
                                             @error('address')
                                                 <span class="invalid-feedback text-right" role="alert">
