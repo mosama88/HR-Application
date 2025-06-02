@@ -4,7 +4,7 @@
 @endphp
 @extends('dashboard.layouts.master')
 @section('active-shiftTypes', 'active')
-@section('title', 'تعديل بيانات الفرع')
+@section('title', 'تعديل بيانات الشفتات')
 @push('css')
     <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/libs/pickr/pickr-themes.css" />
     <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
@@ -20,10 +20,10 @@
     @include('dashboard.layouts.message')
     <!-- Content Header (Page header) -->
     @include('dashboard.layouts.breadcrumb', [
-        'pageTitle' => 'الفروع',
-        'previousPage' => 'الفروع',
-        'urlPreviousPage' => 'dashboard/branches', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'تعديل بيانات الفرع',
+        'pageTitle' => 'الشفتات',
+        'previousPage' => 'الشفتات',
+        'urlPreviousPage' => 'dashboard/shiftTypes', //سيتم تغيير لوحة التحكم لاحقآ
+        'currentPage' => 'تعديل بيانات الشفتات',
     ])
 
     <section class="content">
@@ -38,7 +38,7 @@
                         <!-- form start -->
                         <div class="col-md-12">
                             <div class="card mb-4">
-                                <h5 class="card-header">تعديل بيانات الفرع</h5>
+                                <h5 class="card-header">تعديل بيانات الشفت</h5>
                                 <form action="{{ route('dashboard.shiftTypes.update', $shiftType->slug) }}" method="POST"
                                     id="updateForm">
                                     @csrf

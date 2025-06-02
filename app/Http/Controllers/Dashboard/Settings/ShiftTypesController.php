@@ -6,19 +6,20 @@ use App\Models\ShiftsType;
 use Illuminate\Http\Request;
 use App\Enums\ShiftTypesEnum;
 use App\Enums\StatusActiveEnum;
+use App\Services\ShiftTypesService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Dashboard\Settings\ShiftsTypeRequest;
 
 class ShiftTypesController extends Controller
 {
+    public function __construct(protected ShiftTypesService $service) {}
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $com_code = Auth::user()->com_code;
-        $data = ShiftsType::where('com_code', $com_code)->orderByDesc('id')->paginate(10);
+        $data  = $this->service->index();
         return view('dashboard.settings.shiftTypes.index', compact('data'));
     }
 
@@ -35,16 +36,8 @@ class ShiftTypesController extends Controller
      */
     public function store(ShiftsTypeRequest $request)
     {
-        $com_code =  Auth::user()->com_code;
-        $dataValidate = $request->validated();
-        $dataInsert = array_merge($dataValidate, [
-            'created_by' => Auth::user()->id,
-            'com_code' => $com_code,
-            'type' => ShiftTypesEnum::from((int) $dataValidate['type']),
-            'active' => StatusActiveEnum::ACTIVE,
-        ]);
 
-        ShiftsType::create($dataInsert);
+        $this->service->store($request);
         return redirect()->route('dashboard.shiftTypes.index')->with('success', 'تم أضافة الشفت بنجاح');
     }
 
@@ -69,16 +62,8 @@ class ShiftTypesController extends Controller
      */
     public function update(ShiftsTypeRequest $request, ShiftsType $shiftType)
     {
-        $com_code =  Auth::user()->com_code;
-        $dataValidate = $request->validated();
-        $dataUpdate = array_merge($dataValidate, [
-            'updated_by' => Auth::user()->id,
-            'com_code' => $com_code,
-            'type' => ShiftTypesEnum::from((int) $dataValidate['type']),
-            'active' => $request->active,
-        ]);
+        $this->service->update($request, $shiftType);
 
-        $shiftType->update($dataUpdate);
         return redirect()->route('dashboard.shiftTypes.index')->with('success', 'تم تعديل الشفت بنجاح');
     }
 
@@ -87,6 +72,10 @@ class ShiftTypesController extends Controller
      */
     public function destroy(ShiftsType $shiftType)
     {
-        //
+        $this->service->destroy($shiftType);
+        return response()->json([
+            'success' => true,
+            'message' => 'تم حذف الشفت بنجاح'
+        ]);
     }
 }
