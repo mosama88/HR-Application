@@ -58,8 +58,9 @@ class BranchRepository implements BranchInterface
     }
 
 
-    public function deleteData()
+    public function deleteData(Branch $branch)
     {
-        //
+        $branch->delete();
+        return  $branch;
     }
 }

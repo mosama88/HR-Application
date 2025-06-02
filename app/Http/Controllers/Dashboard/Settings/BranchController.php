@@ -71,7 +71,7 @@ class BranchController extends Controller
      */
     public function destroy(Branch $branch)
     {
-        $branch->delete();
+        $this->service->destroy($branch);
         return response()->json([
             'success' => true,
             'message' => 'تم حذف الفرع بنجاح'

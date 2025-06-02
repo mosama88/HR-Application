@@ -31,8 +31,8 @@ class BranchService
         return $this->repository->updateData($request, $branch);
     }
 
-    public function destroy()
+    public function destroy($branch)
     {
-        //
+        return $this->repository->deleteData($branch);
     }
 }
