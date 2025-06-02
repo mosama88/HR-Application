@@ -35,7 +35,6 @@ class ShiftTypesController extends Controller
      */
     public function store(ShiftsTypeRequest $request)
     {
-        dd($request->all());
         $com_code =  Auth::user()->com_code;
         $dataValidate = $request->validated();
         $dataInsert = array_merge($dataValidate, [
@@ -52,31 +51,41 @@ class ShiftTypesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ShiftsType $shiftsType)
+    public function show(ShiftsType $shiftType)
     {
-        return view('dashboard.settings.shiftTypes.show', compact('shiftsType'));
+        return view('dashboard.settings.shiftTypes.show', compact('shiftType'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ShiftsType $shiftsType)
+    public function edit(ShiftsType $shiftType)
     {
-        return view('dashboard.settings.shiftTypes.edit', compact('shiftsType'));
+        return view('dashboard.settings.shiftTypes.edit', compact('shiftType'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(ShiftsTypeRequest $request, ShiftsType $shiftsType)
+    public function update(ShiftsTypeRequest $request, ShiftsType $shiftType)
     {
-        //
+        $com_code =  Auth::user()->com_code;
+        $dataValidate = $request->validated();
+        $dataUpdate = array_merge($dataValidate, [
+            'updated_by' => Auth::user()->id,
+            'com_code' => $com_code,
+            'type' => ShiftTypesEnum::from((int) $dataValidate['type']),
+            'active' => $request->active,
+        ]);
+
+        $shiftType->update($dataUpdate);
+        return redirect()->route('dashboard.shiftTypes.index')->with('success', 'تم تعديل الشفت بنجاح');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ShiftsType $shiftsType)
+    public function destroy(ShiftsType $shiftType)
     {
         //
     }

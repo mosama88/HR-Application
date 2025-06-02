@@ -80,7 +80,7 @@
                                                 <select name="active"
                                                     class="form-select @error('active') is-invalid @enderror"
                                                     id="exampleFormControlSelect1" aria-label="Default select example">
-                                                    <option selected="">-- أختر الحالة--</option>
+                                                    <option selected value="">-- أختر الحالة--</option>
                                                     <option @if (old('active', $branch->active) == StatusActiveEnum::ACTIVE) selected @endif
                                                         value="{{ StatusActiveEnum::ACTIVE }}">
                                                         {{ StatusActiveEnum::ACTIVE->label() }}</option>

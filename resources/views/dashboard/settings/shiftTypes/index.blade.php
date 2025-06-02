@@ -4,7 +4,7 @@
 @endphp
 @extends('dashboard.layouts.master')
 @section('active-shiftTypes', 'active')
-@section('title', 'الفروع')
+@section('title', 'الشفتات')
 @push('css')
     <style>
         .btn-actions {
@@ -23,10 +23,10 @@
     @include('dashboard.layouts.message')
     <!-- Content Header (Page header) -->
     @include('dashboard.layouts.breadcrumb', [
-        'pageTitle' => 'الفروع',
+        'pageTitle' => 'الشفتات',
         'previousPage' => 'لوحة التحكم',
         'urlPreviousPage' => 'dashboard', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'جدول الفروع',
+        'currentPage' => 'جدول الشفتات',
     ])
 
     <section class="content">
@@ -37,7 +37,7 @@
 
                     <div class="card">
                         <h5 class="card-header d-flex justify-content-between align-items-center">
-                            <span class="ml-auto">جدول الفروع</span>
+                            <span class="ml-auto">جدول الشفتات</span>
                             <a href="{{ route('dashboard.shiftTypes.create') }}" class="btn btn-info text-white">
                                 <i class="fa-solid fa-plus mx-1"></i>
                                 أضافة

@@ -72,9 +72,9 @@
                                                 <label for="exampleFormControlReadOnlyInput1" class="form-label">من
                                                     الساعه</label>
                                                 <input type="text" name="from_time"
-                                                    class="form-control flatpickr-input  @error('from_time') is-invalid @enderror"
-                                                    placeholder="HH:MM" id="from_time" readonly="readonly"
-                                                    onchange="calculateHours()">
+                                                    class="form-control flatpickr-input @error('from_time') is-invalid @enderror"
+                                                    placeholder="HH:MM" id="from_time" value="{{ old('from_time') }}"
+                                                    readonly="readonly" onchange="calculateHours()">
                                                 @error('from_time')
                                                     <span class="invalid-feedback text-right" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -85,9 +85,9 @@
                                                 <label for="exampleFormControlReadOnlyInput1" class="form-label">إلى
                                                     الساعه</label>
                                                 <input type="text" name="to_time"
-                                                    class="form-control flatpickr-input  @error('to_time') is-invalid @enderror"
-                                                    placeholder="HH:MM" id="to_time" readonly="readonly"
-                                                    onchange="calculateHours()">
+                                                    class="form-control flatpickr-input @error('to_time') is-invalid @enderror"
+                                                    placeholder="HH:MM" id="to_time" value="{{ old('to_time') }}"
+                                                    readonly="readonly" onchange="calculateHours()">
                                                 @error('to_time')
                                                     <span class="invalid-feedback text-right" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -99,7 +99,7 @@
                                                     الساعات</label>
                                                 <input type="text" name="total_hours"
                                                     class="form-control @error('total_hours') is-invalid @enderror"
-                                                    id="total_hours" readonly="readonly">
+                                                    id="total_hours" value="{{ old('total_hours') }}" readonly="readonly">
                                                 @error('total_hours')
                                                     <span class="invalid-feedback text-right" role="alert">
                                                         <strong>{{ $message }}</strong>
