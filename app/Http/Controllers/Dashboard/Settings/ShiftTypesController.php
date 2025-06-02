@@ -35,6 +35,7 @@ class ShiftTypesController extends Controller
      */
     public function store(ShiftsTypeRequest $request)
     {
+        dd($request->all());
         $com_code =  Auth::user()->com_code;
         $dataValidate = $request->validated();
         $dataInsert = array_merge($dataValidate, [

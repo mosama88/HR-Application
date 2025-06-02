@@ -36,84 +36,70 @@
                                     @method('PUT')
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-6 mb-3">
-                                                <label for="exampleFormControlInput1" class="form-label">أسم الفرع</label>
-                                                <input name="name" value="{{ old('name', $branch->name) }}"
-                                                    type="text" class="form-control @error('name') is-invalid @enderror"
-                                                    id="exampleFormControlInput1" placeholder="مثال:فرع....">
-                                                @error('name')
-                                                    <span class="invalid-feedback text-right" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="exampleFormControlReadOnlyInput1" class="form-label">هاتف
-                                                    الفرع</label>
-                                                <input name="phones"
-                                                    class="form-control @error('phones') is-invalid @enderror"
-                                                    value="{{ old('name', $branch->phones) }}" type="text"
-                                                    id="exampleFormControlReadOnlyInput1" placeholder="010...">
-                                                @error('phones')
-                                                    <span class="invalid-feedback text-right" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="exampleFormControlReadOnlyInput1" class="form-label">البريد
-                                                    الالكترونى
-                                                </label>
-                                                <input name="email"
-                                                    class="form-control @error('email') is-invalid @enderror"
-                                                    value="{{ old('email', $branch->email) }}" type="text"
-                                                    id="exampleFormControlReadOnlyInput1" placeholder="p@p.com...">
-                                                @error('email')
-                                                    <span class="invalid-feedback text-right" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-
-                                            <div class="col-md-6 mb-3">
-                                                <label for="exampleFormControlSelect1" class="form-label">حالة الفرع</label>
-                                                <select name="active"
-                                                    class="form-select @error('active') is-invalid @enderror"
+                                            <div class="col-md-3 mb-3">
+                                                <label for="exampleFormControlInput1" class="form-label">نوع الشفت</label>
+                                                <select name="type"
+                                                    class="form-select @error('type') is-invalid @enderror"
                                                     id="exampleFormControlSelect1" aria-label="Default select example">
                                                     <option selected="">-- أختر الحالة--</option>
-                                                    <option @if (old('active', $branch->active) == StatusActiveEnum::ACTIVE) selected @endif
-                                                        value="{{ StatusActiveEnum::ACTIVE }}">
-                                                        {{ StatusActiveEnum::ACTIVE->label() }}</option>
-                                                    <option @if (old('active', $branch->active) == StatusActiveEnum::INACTIVE) selected @endif
-                                                        value="{{ StatusActiveEnum::INACTIVE }}">
-                                                        {{ StatusActiveEnum::INACTIVE->label() }}</option>
+                                                    <option @if (old('type') == ShiftTypesEnum::MORNING) selected @endif
+                                                        value="{{ ShiftTypesEnum::MORNING }}">
+                                                        {{ ShiftTypesEnum::MORNING->label() }}
+                                                    </option>
+                                                    <option @if (old('type') == ShiftTypesEnum::NIGHT) selected @endif
+                                                        value="{{ ShiftTypesEnum::NIGHT }}">
+                                                        {{ ShiftTypesEnum::NIGHT->label() }}
+                                                    </option>
+                                                    <option @if (old('type') == ShiftTypesEnum::FULLTIME) selected @endif
+                                                        value="{{ ShiftTypesEnum::FULLTIME }}">
+                                                        {{ ShiftTypesEnum::FULLTIME->label() }}
+                                                    </option>
                                                 </select>
-                                                @error('active')
+                                                @error('type')
+                                                    <span class="invalid-feedback text-right" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <label for="exampleFormControlReadOnlyInput1" class="form-label">من
+                                                    الساعه</label>
+                                                <input type="text" name="from_time"
+                                                    class="form-control flatpickr-input @error('from_time') is-invalid @enderror"
+                                                    placeholder="HH:MM" id="from_time" readonly="readonly"
+                                                    onchange="calculateHours()">
+                                                @error('from_time')
+                                                    <span class="invalid-feedback text-right" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <label for="exampleFormControlReadOnlyInput1" class="form-label">إلى
+                                                    الساعه</label>
+                                                <input type="text" name="to_time"
+                                                    class="form-control flatpickr-input  @error('to_time') is-invalid @enderror"
+                                                    placeholder="HH:MM" id="to_time" readonly="readonly"
+                                                    onchange="calculateHours()">
+                                                @error('to_time')
+                                                    <span class="invalid-feedback text-right" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <label for="exampleFormControlReadOnlyInput1" class="form-label">عدد
+                                                    الساعات</label>
+                                                <input type="text" name="total_hours"
+                                                    class="form-control @error('total_hours') is-invalid @enderror"
+                                                    id="total_hours" readonly="readonly">
+                                                @error('total_hours')
                                                     <span class="invalid-feedback text-right" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
                                             </div>
                                         </div>
-
-
-
-                                        <div class="col-md-12 mb-3">
-                                            <label for="exampleFormControlReadOnlyInput1" class="form-label">عنوان الفرع
-                                            </label>
-                                            <input name="address"
-                                                class="form-control @error('address') is-invalid @enderror"
-                                                value="{{ old('address', $branch->address) }}" type="text"
-                                                id="exampleFormControlReadOnlyInput1" placeholder="21 ش...">
-                                            @error('address')
-                                                <span class="invalid-feedback text-right" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-
-
-
                                     </div>
                             </div>
                         </div>

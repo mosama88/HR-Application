@@ -88,7 +88,7 @@
 
                                             <td>
                                                 @include('dashboard.partials.actions', [
-                                                    'name' => 'branches',
+                                                    'name' => 'shiftTypes',
                                                     'name_id' => $info->slug,
                                                 ])
                                             </td>

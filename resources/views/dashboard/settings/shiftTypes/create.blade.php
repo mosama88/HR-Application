@@ -47,8 +47,8 @@
                                                 <label for="exampleFormControlInput1" class="form-label">نوع الشفت</label>
                                                 <select name="type"
                                                     class="form-select @error('type') is-invalid @enderror"
-                                                    id="exampleFormControlSelect1" aria-label="Default select example">
-                                                    <option selected="">-- أختر الحالة--</option>
+                                                    aria-label="Default select example">
+                                                    <option selected value="">-- أختر الحالة--</option>
                                                     <option @if (old('type') == ShiftTypesEnum::MORNING) selected @endif
                                                         value="{{ ShiftTypesEnum::MORNING }}">
                                                         {{ ShiftTypesEnum::MORNING->label() }}

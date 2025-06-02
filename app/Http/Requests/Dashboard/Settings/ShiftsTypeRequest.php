@@ -33,7 +33,7 @@ class ShiftsTypeRequest extends FormRequest
     public function messages()
     {
         return [
-            'type.required' => 'حقل نوع الشفت مطلوب',
+            'type.required' => 'الرجاء اختيار نوع الشفت.',
             'from_time.required' => 'حقل يبدا من الساعه مطلوب',
             'to_time.required' => 'حقل ينتهي  الساعه مطلوب',
             'total_hours.required' => 'حقل عدد الساعات مطلوب',
