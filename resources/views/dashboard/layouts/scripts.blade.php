@@ -21,11 +21,14 @@
     <!-- Page JS -->
     <script src="{{ asset('dashboard') }}/assets/js/dashboards-analytics.js"></script>
 
-    <!-- Toastr -->
-    <script src="{{ asset('dashboard') }}/assets/plugins/toastr/toastr.min.js"></script>
-
     <!-- flatpickr -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ar.js"></script>
+
+
+    <!-- Toastr -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 
     @stack('js')

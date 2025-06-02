@@ -3,9 +3,9 @@
         $(document).ready(function() {
             // إعدادات toastr
             toastr.options = {
-                "closeButton": true,
+                "closeButton": false, // <--- لا تظهر علامة الإغلاق
                 "progressBar": true,
-                "positionClass": "toast-top-left", // <-- الزاوية العلوية اليمنى
+                "positionClass": "toast-top-left", // الزاوية العلوية اليسرى
                 "timeOut": "5000",
                 "extendedTimeOut": "1000",
             };
