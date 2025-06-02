@@ -67,7 +67,7 @@
 
         <!-- Layouts -->
         <li
-            class="menu-item {{ request()->is('dashboard/financeCalendars*') || request()->is('dashboard/admin_panel_settings*') || request()->is('dashboard/branches*') || request()->is('dashboard/jobGrades*') || request()->is('dashboard/jobTypes*') ? 'open active' : '' }}">
+            class="menu-item {{ request()->is('dashboard/financeCalendars*') || request()->is('dashboard/admin_panel_settings*') || request()->is('dashboard/branches*') || request()->is('dashboard/shiftTypes*') || request()->is('dashboard/jobTypes*') ? 'open active' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div data-i18n="الأعدادت">الأعدادت</div>
@@ -89,6 +89,11 @@
                 <li class="menu-item @yield('active-branches')">
                     <a href="{{ route('dashboard.branches.index') }}" class="menu-link">
                         <div data-i18n="الفروع">الفروع</div>
+                    </a>
+                </li>
+                <li class="menu-item @yield('active-shiftTypes')">
+                    <a href="{{ route('dashboard.shiftTypes.index') }}" class="menu-link">
+                        <div data-i18n="مواعيد الشفتات">مواعيد الشفتات</div>
                     </a>
                 </li>
 

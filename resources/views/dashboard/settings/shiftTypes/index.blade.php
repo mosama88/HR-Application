@@ -2,7 +2,7 @@
     use App\Enums\StatusActiveEnum;
 @endphp
 @extends('dashboard.layouts.master')
-@section('active-branches', 'active')
+@section('active-shiftTypes', 'active')
 @section('title', 'الفروع')
 @push('css')
     <style>
@@ -37,7 +37,7 @@
                     <div class="card">
                         <h5 class="card-header d-flex justify-content-between align-items-center">
                             <span class="ml-auto">جدول الفروع</span>
-                            <a href="{{ route('dashboard.branches.create') }}" class="btn btn-info text-white">
+                            <a href="{{ route('dashboard.shiftTypes.create') }}" class="btn btn-info text-white">
                                 <i class="fa-solid fa-plus mx-1"></i>
                                 أضافة
                             </a>

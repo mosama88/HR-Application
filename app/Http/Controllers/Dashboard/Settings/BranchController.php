@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Settings;
 
 use App\Models\Branch;
-use App\Enums\StatusActive;
+use App\Enums\StatusActiveEnum;
 use Illuminate\Http\Request;
 use App\Services\BranchService;
 use App\Http\Controllers\Controller;

@@ -2,7 +2,7 @@
     use App\Enums\StatusActiveEnum;
 @endphp
 @extends('dashboard.layouts.master')
-@section('active-branches', 'active')
+@section('active-shiftTypes', 'active')
 @section('title', 'عرض بيانات الفرع')
 @push('css')
 @endpush
@@ -13,7 +13,7 @@
     @include('dashboard.layouts.breadcrumb', [
         'pageTitle' => 'الفروع',
         'previousPage' => 'الفروع',
-        'urlPreviousPage' => 'dashboard/branches', //سيتم تغيير لوحة التحكم لاحقآ
+        'urlPreviousPage' => 'dashboard/shiftTypes', //سيتم تغيير لوحة التحكم لاحقآ
         'currentPage' => 'عرض بيانات الفرع',
     ])
 

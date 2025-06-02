@@ -2,7 +2,7 @@
     use App\Enums\StatusActiveEnum;
 @endphp
 @extends('dashboard.layouts.master')
-@section('active-branches', 'active')
+@section('active-shiftTypes', 'active')
 @section('title', 'تعديل بيانات الفرع')
 @push('css')
 @endpush
@@ -30,7 +30,7 @@
                         <div class="col-md-12">
                             <div class="card mb-4">
                                 <h5 class="card-header">تعديل بيانات الفرع</h5>
-                                <form action="{{ route('dashboard.branches.update', $branch->slug) }}" method="POST"
+                                <form action="{{ route('dashboard.shiftTypes.update', $branch->slug) }}" method="POST"
                                     id="updateForm">
                                     @csrf
                                     @method('PUT')

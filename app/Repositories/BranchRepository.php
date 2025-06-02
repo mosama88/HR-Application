@@ -3,13 +3,8 @@
 namespace App\Repositories;
 
 use App\Models\Branch;
-use App\Enums\StatusActive;
-use App\Models\FinanceClnPeriod;
-use App\Models\AdminPanelSetting;
-use Illuminate\Support\Collection;
+use App\Enums\StatusActiveEnum;
 use Illuminate\Support\Facades\Auth;
-use App\Enums\FinanceCalendarsIsOpen;
-use App\Enums\PanelSettingSystemStatusEnum;
 use App\Repositories\Interfaces\BranchInterface;
 
 class BranchRepository implements BranchInterface
@@ -31,7 +26,7 @@ class BranchRepository implements BranchInterface
         $dataInsert = array_merge($dataValidate, [
             'created_by' => Auth::user()->id,
             'com_code' => $com_code,
-            'active' => StatusActive::ACTIVE,
+            'active' => StatusActiveEnum::ACTIVE,
         ]);
         return Branch::create($dataInsert);
     }

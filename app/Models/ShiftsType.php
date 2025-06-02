@@ -3,29 +3,32 @@
 namespace App\Models;
 
 use App\Enums\StatusActiveEnum;
+use App\Enums\ShiftTypesEnum;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
-class Branch extends Model
+class ShiftsType extends Model
 {
     use HasFactory, HasSlug;
 
-    protected $table = 'branches';
+    protected $table = 'shifts_types';
 
     protected $fillable = [
-        'name',
+        'type',
         'slug',
-        'address',
-        'phones',
-        'email',
+        'from_time',
+        'to_time',
+        'total_hours',
         'active',
         'created_by',
         'updated_by',
         'com_code',
     ];
+
+
 
     public function getSlugOptions(): SlugOptions
     {
@@ -41,7 +44,6 @@ class Branch extends Model
     }
 
 
-
     public function createdBy()
     {
         return $this->belongsTo(Admin::class, 'created_by');
@@ -52,5 +54,9 @@ class Branch extends Model
         return $this->belongsTo(Admin::class, 'updated_by');
     }
 
-    protected $casts = ['active' => StatusActiveEnum::class];
+
+    protected $casts = [
+        'type' => ShiftTypesEnum::class,
+        'active' => StatusActiveEnum::class
+    ];
 }
