@@ -11,7 +11,7 @@ class CurrencyRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,22 @@ class CurrencyRequest extends FormRequest
      */
     public function rules(): array
     {
+        $currencyId = $this->route('currency') ? $this->route('currency')->id : null;
+
         return [
-            //
+            'name' => 'required|unique:currencies,name,' . $currencyId,
+            'currency_symbol' => 'required|unique:currencies,currency_symbol,' . $currencyId,
+            'active' => 'nullable',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'اسم العملة مطلوب.',
+            'name.unique' => 'اسم العملة مستخدم من قبل.',
+            'currency_symbol.required' => 'كود العملة مطلوب.',
+            'currency_symbol.unique' => 'كود العملة مستخدم من قبل.',
         ];
     }
 }

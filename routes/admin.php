@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\Settings\BranchController;
 use App\Http\Controllers\Dashboard\Settings\CountryController;
+use App\Http\Controllers\Dashboard\Settings\CurrencyController;
 use App\Http\Controllers\Dashboard\Settings\LanguageController;
 use App\Http\Controllers\Dashboard\Settings\ShiftTypesController;
 use App\Http\Controllers\Dashboard\Settings\FinanceCalendarController;
@@ -24,4 +25,6 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::resource('countries', CountryController::class);
     //################################### اللغات ##################################
     Route::resource('languages', LanguageController::class);
+    //################################### العملات ##################################
+    Route::resource('currencies', CurrencyController::class);
 });

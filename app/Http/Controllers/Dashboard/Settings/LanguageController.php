@@ -11,6 +11,9 @@ use App\Http\Requests\Dashboard\Settings\LanguageRequest;
 
 class LanguageController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
         /**

@@ -72,6 +72,7 @@
             request()->is('dashboard/branches*') ||
             request()->is('dashboard/shiftTypes*') ||
             request()->is('dashboard/countries*') ||
+            request()->is('dashboard/currencies*') ||
             request()->is('dashboard/languages*')
                 ? 'open active'
                 : '' }}">
@@ -111,6 +112,11 @@
                 <li class="menu-item @yield('active-languages')">
                     <a href="{{ route('dashboard.languages.index') }}" class="menu-link">
                         <div data-i18n="اللغات">اللغات</div>
+                    </a>
+                </li>
+                <li class="menu-item @yield('active-currencies')">
+                    <a href="{{ route('dashboard.currencies.index') }}" class="menu-link">
+                        <div data-i18n="العملات">العملات</div>
                     </a>
                 </li>
 
