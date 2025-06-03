@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Dashboard\Settings;
 
 use App\Models\Country;
 use Illuminate\Http\Request;
+use App\Enums\StatusActiveEnum;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Dashboard\Settings\CountryRequest;
 
 class CountryController extends Controller
 {
@@ -30,31 +32,41 @@ class CountryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CountryRequest $request)
     {
-        //
+        $com_code =  Auth::user()->com_code;
+        $active = StatusActiveEnum::ACTIVE;
+        $dataValidate = $request->validated();
+        $dataInsert = array_merge($dataValidate, [
+            'created_by' => Auth::user()->id,
+            'com_code' => $com_code,
+            'active' =>  $active,
+        ]);
+
+        Country::create($dataInsert);
+        return redirect()->route('dashboard.countries.index')->with('success', 'تم أضافة البلد بنجاح');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Country $country)
     {
-        //
+        return view('dashboard.settings.countries.show', compact('country'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Country $country)
     {
-        //
+        return view('dashboard.settings.countries.edit', compact('country'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CountryRequest $request, Country $country)
     {
         //
     }
@@ -62,7 +74,7 @@ class CountryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Country $country)
     {
         //
     }

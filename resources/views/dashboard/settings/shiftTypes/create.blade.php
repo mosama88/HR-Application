@@ -39,97 +39,91 @@
                             @csrf
 
                             <div class="col-md-12">
-                                <div class="card mb-4">
-                                    <h5 class="card-header">أضافة شفت جديد</h5>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-3 mb-3">
-                                                <label for="exampleFormControlInput1" class="form-label">نوع الشفت</label>
-                                                <select name="type"
-                                                    class="form-select @error('type') is-invalid @enderror"
-                                                    aria-label="Default select example">
-                                                    <option selected value="">-- أختر الحالة--</option>
-                                                    <option @if (old('type') == ShiftTypesEnum::MORNING) selected @endif
-                                                        value="{{ ShiftTypesEnum::MORNING }}">
-                                                        {{ ShiftTypesEnum::MORNING->label() }}
-                                                    </option>
-                                                    <option @if (old('type') == ShiftTypesEnum::NIGHT) selected @endif
-                                                        value="{{ ShiftTypesEnum::NIGHT }}">
-                                                        {{ ShiftTypesEnum::NIGHT->label() }}
-                                                    </option>
-                                                    <option @if (old('type') == ShiftTypesEnum::FULLTIME) selected @endif
-                                                        value="{{ ShiftTypesEnum::FULLTIME }}">
-                                                        {{ ShiftTypesEnum::FULLTIME->label() }}
-                                                    </option>
-                                                </select>
-                                                @error('type')
-                                                    <span class="invalid-feedback text-right" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="col-md-3 mb-3">
-                                                <label for="exampleFormControlReadOnlyInput1" class="form-label">من
-                                                    الساعه</label>
-                                                <input type="text" name="from_time"
-                                                    class="form-control flatpickr-input @error('from_time') is-invalid @enderror"
-                                                    placeholder="HH:MM" id="from_time" value="{{ old('from_time') }}"
-                                                    readonly="readonly" onchange="calculateHours()">
-                                                @error('from_time')
-                                                    <span class="invalid-feedback text-right" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="col-md-3 mb-3">
-                                                <label for="exampleFormControlReadOnlyInput1" class="form-label">إلى
-                                                    الساعه</label>
-                                                <input type="text" name="to_time"
-                                                    class="form-control flatpickr-input @error('to_time') is-invalid @enderror"
-                                                    placeholder="HH:MM" id="to_time" value="{{ old('to_time') }}"
-                                                    readonly="readonly" onchange="calculateHours()">
-                                                @error('to_time')
-                                                    <span class="invalid-feedback text-right" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="col-md-3 mb-3">
-                                                <label for="exampleFormControlReadOnlyInput1" class="form-label">عدد
-                                                    الساعات</label>
-                                                <input type="text" name="total_hours"
-                                                    class="form-control @error('total_hours') is-invalid @enderror"
-                                                    id="total_hours" value="{{ old('total_hours') }}" readonly="readonly">
-                                                @error('total_hours')
-                                                    <span class="invalid-feedback text-right" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
+                                <h5 class="card-header">أضافة شفت جديد</h5>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-3 mb-3">
+                                            <label for="exampleFormControlInput1" class="form-label">نوع الشفت</label>
+                                            <select name="type" class="form-select @error('type') is-invalid @enderror"
+                                                aria-label="Default select example">
+                                                <option selected value="">-- أختر الحالة--</option>
+                                                <option @if (old('type') == ShiftTypesEnum::MORNING) selected @endif
+                                                    value="{{ ShiftTypesEnum::MORNING }}">
+                                                    {{ ShiftTypesEnum::MORNING->label() }}
+                                                </option>
+                                                <option @if (old('type') == ShiftTypesEnum::NIGHT) selected @endif
+                                                    value="{{ ShiftTypesEnum::NIGHT }}">
+                                                    {{ ShiftTypesEnum::NIGHT->label() }}
+                                                </option>
+                                                <option @if (old('type') == ShiftTypesEnum::FULLTIME) selected @endif
+                                                    value="{{ ShiftTypesEnum::FULLTIME }}">
+                                                    {{ ShiftTypesEnum::FULLTIME->label() }}
+                                                </option>
+                                            </select>
+                                            @error('type')
+                                                <span class="invalid-feedback text-right" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <label for="exampleFormControlReadOnlyInput1" class="form-label">من
+                                                الساعه</label>
+                                            <input type="text" name="from_time"
+                                                class="form-control flatpickr-input @error('from_time') is-invalid @enderror"
+                                                placeholder="HH:MM" id="from_time" value="{{ old('from_time') }}"
+                                                readonly="readonly" onchange="calculateHours()">
+                                            @error('from_time')
+                                                <span class="invalid-feedback text-right" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <label for="exampleFormControlReadOnlyInput1" class="form-label">إلى
+                                                الساعه</label>
+                                            <input type="text" name="to_time"
+                                                class="form-control flatpickr-input @error('to_time') is-invalid @enderror"
+                                                placeholder="HH:MM" id="to_time" value="{{ old('to_time') }}"
+                                                readonly="readonly" onchange="calculateHours()">
+                                            @error('to_time')
+                                                <span class="invalid-feedback text-right" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <label for="exampleFormControlReadOnlyInput1" class="form-label">عدد
+                                                الساعات</label>
+                                            <input type="text" name="total_hours"
+                                                class="form-control @error('total_hours') is-invalid @enderror"
+                                                id="total_hours" value="{{ old('total_hours') }}" readonly="readonly">
+                                            @error('total_hours')
+                                                <span class="invalid-feedback text-right" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <!-- /.card-body -->
 
-                            <div class="card-footer text-center">
-                                <button type="submit" id="submitButton" class="btn btn-primary"> <i
-                                        class="far fa-save mx-1"></i> حفظ
-                                    البيانات</button>
-                            </div>
+                                    <!-- /.card-body -->
+
+                                    <div class="card-footer text-center">
+                                        <button type="submit" id="submitButton" class="btn btn-primary"> <i
+                                                class="far fa-save mx-1"></i>
+                                            حفظ
+                                            البيانات</button>
+                                    </div>
                         </form>
                     </div>
-                </div>
-                <!-- /.row (main row) -->
+                    <!-- /.row (main row) -->
+                </div><!-- /.container-fluid -->
             </div><!-- /.container-fluid -->
     </section>
 
 
 @endsection
 @push('js')
- 
-
-
     <script>
         function calculateHours() {
             const from = document.getElementById('from_time').value;

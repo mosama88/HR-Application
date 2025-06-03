@@ -21,16 +21,22 @@ class CountryRequest extends FormRequest
      */
     public function rules(): array
     {
+        $countryId = $this->route('country') ? $this->route('country')->id : null;
+
         return [
-            'name' => 'required',
+            'name' => 'required|unique:countries,name,' . $countryId,
+            'country_code' => 'required|unique:countries,country_code,' . $countryId,
             'active' => 'nullable',
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
-            'name.required' => 'اسم البلد مطلوب',
+            'name.required' => 'اسم الدولة مطلوب.',
+            'name.unique' => 'اسم الدولة مستخدم من قبل.',
+            'country_code.required' => 'كود الدولة مطلوب.',
+            'country_code.unique' => 'كود الدولة مستخدم من قبل.',
         ];
     }
 }

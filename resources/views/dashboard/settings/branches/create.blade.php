@@ -28,7 +28,6 @@
                             @csrf
 
                             <div class="col-md-12">
-                                <div class="card mb-4">
                                     <h5 class="card-header">أضافة فرع جديد</h5>
                                     <div class="card-body">
                                         <div class="row">
@@ -89,7 +88,6 @@
 
 
                                     </div>
-                                </div>
                             </div>
                             <!-- /.card-body -->
 

@@ -27,7 +27,6 @@
                         <form action="{{ route('dashboard.countries.store') }}" method="POST" id="storeForm">
                             @csrf
                             <div class="col-md-12">
-                                <div class="card mb-4">
                                     <h5 class="card-header">أضافة بلد جديدة</h5>
                                     <div class="card-body">
                                         <div class="row">
@@ -56,7 +55,6 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                    </div>
                                 </div>
                             </div>
                             <!-- /.card-body -->
