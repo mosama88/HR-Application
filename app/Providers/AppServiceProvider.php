@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use App\Faker\CountryFacker;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\ServiceProvider;
 
 
 
@@ -23,5 +24,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrapFive();
+        fake()->addProvider(new CountryFacker(fake()));
     }
 }

@@ -152,13 +152,7 @@
 
 @endsection
 @push('js')
-    <script>
-        document.getElementById('updateForm').addEventListener('submit', function(event) {
-            var submitButton = document.getElementById('submitButton');
-            submitButton.disabled = true;
-            submitButton.innerHTML = 'جاري التعديل...'; // Optional: Change text while submitting
-        });
-    </script>
+ 
     <script>
         function calculateHours() {
             const from = document.getElementById('from_time').value;

@@ -108,11 +108,5 @@
 
 @endsection
 @push('js')
-    <script>
-        document.getElementById('storeForm').addEventListener('submit', function(event) {
-            var submitButton = document.getElementById('submitButton');
-            submitButton.disabled = true;
-            submitButton.innerHTML = 'جاري الحفظ...'; // Optional: Change text while submitting
-        });
-    </script>
+    
 @endpush

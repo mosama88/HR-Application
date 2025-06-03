@@ -55,6 +55,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             AdminSeeder::class,
+            ShiftTypeSeeder::class,
+            BranchSeeder::class,
+            // CountrySeeder::class,
             // AdminPanelSettingSeeder::class,
         ]);
     }

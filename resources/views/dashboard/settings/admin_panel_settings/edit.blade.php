@@ -388,11 +388,5 @@
     <script src="{{ asset('dashboard') }}/assets/dist/js/filepond/filepond.js"></script>
     <script src="{{ asset('dashboard') }}/assets/dist/js/filepond/filepond-plugin-image-preview.js"></script>
     <script src="{{ asset('dashboard') }}/assets/dist/js/filepond/filepond-plugin-file-validate-type.js"></script>
-    <script>
-        document.getElementById('editForm').addEventListener('submit', function(event) {
-            var submitButton = document.getElementById('submitButton');
-            submitButton.disabled = true;
-            submitButton.innerHTML = 'جاري التعديل...'; // Optional: Change text while submitting
-        });
-    </script>
+  
 @endpush

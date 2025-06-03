@@ -110,13 +110,7 @@
 @endsection
 @push('js')
     <script src="{{ asset('dashboard') }}/assets/js/forms-pickers.js"></script>
-    <script>
-        document.getElementById('storeForm').addEventListener('submit', function(event) {
-            var submitButton = document.getElementById('submitButton');
-            submitButton.disabled = true;
-            submitButton.innerHTML = 'جاري الحفظ...'; // Optional: Change text while submitting
-        });
-    </script>
+   
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             flatpickr("#start_date_picker", {

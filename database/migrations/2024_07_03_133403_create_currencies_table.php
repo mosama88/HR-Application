@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('nationalities', function (Blueprint $table) {
+        Schema::create('currencies', function (Blueprint $table) {
             $table->id();
             $table->string('name', 225)->unique();
+            $table->string('currency_symbol', 225);
             $table->string('slug')->unique()->nullable();
             $table->tinyInteger('active')->default(1)->nullable();
             $table->foreignId('created_by')->references('id')->on('admins')->onUpdate('cascade');
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('nationalities');
+        Schema::dropIfExists('currencies');
     }
 };

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 225);
+            $table->string('name', 225)->unique();
             $table->string('slug')->unique()->nullable();
             $table->tinyInteger('active')->default(1)->nullable();
             $table->foreignId('governorate_id')->nullable()->comment('محافظة الموظف')->references('id')->on('governorates')->onUpdate('cascade');

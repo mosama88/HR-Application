@@ -32,3 +32,17 @@
 
 
     @stack('js')
+    <script>
+        document.getElementById('storeForm').addEventListener('submit', function(event) {
+            var submitButton = document.getElementById('submitButton');
+            submitButton.disabled = true;
+            submitButton.innerHTML = 'جاري الحفظ...'; // Optional: Change text while submitting
+        });
+
+        //التعديل
+        document.getElementById('updateForm').addEventListener('submit', function(event) {
+            var submitButton = document.getElementById('submitButton');
+            submitButton.disabled = true;
+            submitButton.innerHTML = 'جاري التعديل...'; // Optional: Change text while submitting
+        });
+    </script>
