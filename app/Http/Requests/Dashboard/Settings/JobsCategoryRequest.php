@@ -21,8 +21,10 @@ class JobsCategoryRequest extends FormRequest
      */
     public function rules(): array
     {
+        $jobCategoryId = $this->route('jobCategory') ? $this->route('jobCategory')->id : null;
+
         return [
-            'name' => 'required',
+            'name' => 'required|unique:job_categories,name,' . $jobCategoryId,
             'active' => 'nullable',
         ];
     }
@@ -31,6 +33,7 @@ class JobsCategoryRequest extends FormRequest
     {
         return [
             'name.required' => 'اسم الوظيفة مطلوب',
+            'name.unique' => 'اسم الوظيفة موجود بالفعل',
         ];
     }
 }

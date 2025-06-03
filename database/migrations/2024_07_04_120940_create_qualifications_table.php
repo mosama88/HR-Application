@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('qualifications', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 225);
+            $table->string('name', 225)->unique();
             $table->string('slug')->unique()->nullable();
             $table->tinyInteger('active')->default(1)->nullable();
             $table->integer('com_code');

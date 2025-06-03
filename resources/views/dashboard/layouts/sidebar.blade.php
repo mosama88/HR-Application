@@ -74,6 +74,8 @@
             request()->is('dashboard/countries*') ||
             request()->is('dashboard/currencies*') ||
             request()->is('dashboard/departments*') ||
+            request()->is('dashboard/job_categories*') ||
+            request()->is('dashboard/qualifications*') ||
             request()->is('dashboard/languages*')
                 ? 'open active'
                 : '' }}">
@@ -123,6 +125,16 @@
                 <li class="menu-item @yield('active-departments')">
                     <a href="{{ route('dashboard.departments.index') }}" class="menu-link">
                         <div data-i18n="الادارات">الادارات</div>
+                    </a>
+                </li>
+                <li class="menu-item @yield('active-job_categories')">
+                    <a href="{{ route('dashboard.job_categories.index') }}" class="menu-link">
+                        <div data-i18n="الوظائف">الوظائف</div>
+                    </a>
+                </li>
+                <li class="menu-item @yield('active-qualifications')">
+                    <a href="{{ route('dashboard.qualifications.index') }}" class="menu-link">
+                        <div data-i18n="المؤهلات">المؤهلات</div>
                     </a>
                 </li>
 

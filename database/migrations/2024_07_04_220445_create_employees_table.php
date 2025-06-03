@@ -56,7 +56,7 @@ return new class extends Migration
             $table->date('work_start_date')->nullable()->comment('تاريخ بدء العمل للموظف');
             $table->enum('functional_status', ['Employee', 'Unemployed'])->default('Employee')->comment('حالة الموظف');
             $table->foreignId('department_id')->references('id')->on('departments')->onUpdate('cascade');
-            $table->foreignId('job_categories_id')->nullable()->references('id')->on('jobs_categories')->onUpdate('cascade');
+            $table->foreignId('job_categories_id')->nullable()->references('id')->on('job_categories')->onUpdate('cascade');
             $table->enum('has_attendance', ['Yes', 'No'])->nullable()->default('Yes')->comment('هل ملزم الموظف بعمل بصمه حضور وانصراف');
             $table->enum('has_fixed_shift', ['Yes', 'No'])->nullable()->comment('هل للموظف شفت ثابت')->default('Yes');
             $table->foreignId('shift_types_id')->nullable()->references('id')->on('shifts_types')->onUpdate('cascade');

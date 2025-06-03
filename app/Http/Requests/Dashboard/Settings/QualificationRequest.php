@@ -21,8 +21,10 @@ class QualificationRequest extends FormRequest
      */
     public function rules(): array
     {
+        $qualificationId = $this->route('qualification') ? $this->route('qualification')->id : null;
+
         return [
-            'name' => 'required',
+            'name' => 'required|unique:qualifications,name,' . $qualificationId,
             'active' => 'nullable',
         ];
     }
@@ -31,6 +33,8 @@ class QualificationRequest extends FormRequest
     {
         return [
             'name.required' => 'اسم المؤهل مطلوب',
+            'name.unique' => 'اسم المؤهل موجود بالفعل',
+
         ];
     }
 }
