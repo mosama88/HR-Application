@@ -6,6 +6,7 @@ use App\Http\Controllers\Dashboard\Settings\BranchController;
 use App\Http\Controllers\Dashboard\Settings\CountryController;
 use App\Http\Controllers\Dashboard\Settings\CurrencyController;
 use App\Http\Controllers\Dashboard\Settings\LanguageController;
+use App\Http\Controllers\Dashboard\Settings\DepartmentController;
 use App\Http\Controllers\Dashboard\Settings\ShiftTypesController;
 use App\Http\Controllers\Dashboard\Settings\FinanceCalendarController;
 use App\Http\Controllers\Dashboard\Settings\AdminPanelSettingController;
@@ -27,4 +28,6 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::resource('languages', LanguageController::class);
     //################################### العملات ##################################
     Route::resource('currencies', CurrencyController::class);
+    //################################### الادارات ##################################
+    Route::resource('departments', DepartmentController::class);
 });

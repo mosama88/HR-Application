@@ -21,8 +21,11 @@ class DepartmentRequest extends FormRequest
      */
     public function rules(): array
     {
+
+        $departmentId = $this->route('department') ? $this->route('department')->id : null;
+
         return [
-            'name' => 'required',
+            'name' => 'required|unique:departments,name,' . $departmentId,
             'phones' => 'required',
             'notes' => 'required',
             'active' => 'nullable|in:2,1',
@@ -33,6 +36,7 @@ class DepartmentRequest extends FormRequest
     {
         return [
             'name.required' => 'اسم الادارة مطلوب',
+            'name.unique' => 'اسم الادارة موجود بالفعل',
             'phones.required' => 'هاتف الادارة مطلوب',
             'notes.required' => 'ملاحظات الادارة مطلوب',
 

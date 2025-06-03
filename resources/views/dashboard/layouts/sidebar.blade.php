@@ -60,7 +60,7 @@
 
         <li class="menu-item @yield('active-dashboard')">
             <a href="{{ route('dashboard.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-envelope"></i>
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="لوحة التحكم">لوحة التحكم</div>
             </a>
         </li>
@@ -73,11 +73,12 @@
             request()->is('dashboard/shiftTypes*') ||
             request()->is('dashboard/countries*') ||
             request()->is('dashboard/currencies*') ||
+            request()->is('dashboard/departments*') ||
             request()->is('dashboard/languages*')
                 ? 'open active'
                 : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
+                <i class="menu-icon fa-solid fa-gear"></i>
                 <div data-i18n="الأعدادت">الأعدادت</div>
             </a>
 
@@ -117,6 +118,11 @@
                 <li class="menu-item @yield('active-currencies')">
                     <a href="{{ route('dashboard.currencies.index') }}" class="menu-link">
                         <div data-i18n="العملات">العملات</div>
+                    </a>
+                </li>
+                <li class="menu-item @yield('active-departments')">
+                    <a href="{{ route('dashboard.departments.index') }}" class="menu-link">
+                        <div data-i18n="الادارات">الادارات</div>
                     </a>
                 </li>
 
