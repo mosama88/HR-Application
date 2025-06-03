@@ -79,6 +79,7 @@
             request()->is('dashboard/bloodTypes*') ||
             request()->is('dashboard/nationalities*') ||
             request()->is('dashboard/governorates*') ||
+            request()->is('dashboard/cities*') ||
             request()->is('dashboard/languages*')
                 ? 'open active'
                 : '' }}">
@@ -153,6 +154,11 @@
                 <li class="menu-item @yield('active-governorates')">
                     <a href="{{ route('dashboard.governorates.index') }}" class="menu-link">
                         <div data-i18n="المحافظات">المحافظات</div>
+                    </a>
+                </li>
+                <li class="menu-item @yield('active-cities')">
+                    <a href="{{ route('dashboard.cities.index') }}" class="menu-link">
+                        <div data-i18n="المدن">المدن</div>
                     </a>
                 </li>
 

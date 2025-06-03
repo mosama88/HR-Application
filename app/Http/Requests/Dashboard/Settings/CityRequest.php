@@ -21,8 +21,10 @@ class CityRequest extends FormRequest
      */
     public function rules(): array
     {
+        $cityId = $this->route('city') ? $this->route('city')->id : null;
+
         return [
-            'name' => 'required',
+            'name' => 'required|unique:cities,name,' . $cityId,
             'governorate_id' => 'required|exists:governorates,id',
             'active' => 'nullable',
         ];
@@ -31,7 +33,8 @@ class CityRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'اسم الحى أو المنطقه مطلوب',
+            'name.required' => 'اسم المدينة مطلوب',
+            'name.unique' => 'اسم المدينة موجود بالفعل',
             'governorate_id.required' => 'المحافظة مطلوبة',
         ];
     }

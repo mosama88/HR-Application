@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\AdminController;
+use App\Http\Controllers\Dashboard\Settings\CityController;
 use App\Http\Controllers\Dashboard\Settings\BranchController;
 use App\Http\Controllers\Dashboard\Settings\CountryController;
 use App\Http\Controllers\Dashboard\Settings\CurrencyController;
@@ -45,4 +46,6 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::resource('nationalities', NationalityController::class);
     //################################### المحافظات ##################################
     Route::resource('governorates', GovernorateController::class);
+    //################################### المحافظات ##################################
+    Route::resource('cities', CityController::class);
 });
