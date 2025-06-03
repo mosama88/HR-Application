@@ -21,8 +21,10 @@ class GovernorateRequest extends FormRequest
      */
     public function rules(): array
     {
+        $governorateId = $this->route('governorate') ? $this->route('governorate')->id : null;
+
         return [
-            'name' => 'required',
+            'name' => 'required|unique:governorates,name,' . $governorateId,
             'country_id' => 'required|exists:countries,id',
             'active' => 'nullable',
         ];
@@ -32,6 +34,7 @@ class GovernorateRequest extends FormRequest
     {
         return [
             'name.required' => 'اسم المحافظة مطلوب',
+            'name.unique' => 'اسم المحافظة موجوده بالفعل',
             'country_id.required' => 'البلد مطلوبة',
         ];
     }

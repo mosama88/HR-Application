@@ -9,7 +9,9 @@ use App\Http\Controllers\Dashboard\Settings\LanguageController;
 use App\Http\Controllers\Dashboard\Settings\BloodTypeController;
 use App\Http\Controllers\Dashboard\Settings\DepartmentController;
 use App\Http\Controllers\Dashboard\Settings\ShiftTypesController;
+use App\Http\Controllers\Dashboard\Settings\GovernorateController;
 use App\Http\Controllers\Dashboard\Settings\JobCategoryController;
+use App\Http\Controllers\Dashboard\Settings\NationalityController;
 use App\Http\Controllers\Dashboard\Settings\QualificationController;
 use App\Http\Controllers\Dashboard\Settings\FinanceCalendarController;
 use App\Http\Controllers\Dashboard\Settings\AdminPanelSettingController;
@@ -39,4 +41,8 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::resource('qualifications', QualificationController::class);
     //################################### فصيلة الدم ##################################
     Route::resource('bloodTypes', BloodTypeController::class);
+    //################################### الجنسيات ##################################
+    Route::resource('nationalities', NationalityController::class);
+    //################################### المحافظات ##################################
+    Route::resource('governorates', GovernorateController::class);
 });

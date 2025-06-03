@@ -77,7 +77,6 @@ return new class extends Migration
             $table->text('staies_address')->nullable()->comment('عنوان الاقامة الفعلي للموظف');
             $table->integer('children_number')->nullable()->default(0);
             $table->enum('social_status', ['Divorced', 'Married', 'Single', 'Widowed'])->nullable()->default('Single')->comment('الحالة الاجتماعية');
-            $table->foreignId('resignation_id')->nullable()->references('id')->on('resignations')->onUpdate('cascade');
             $table->string('bank_number_account', 50)->nullable()->comment('رقم حساب البنك للموظف');
             $table->enum('disabilities', ['Yes', 'No'])->nullable()->default('Yes')->comment('هل له اعاقة  - واحد يوجد صفر لايوجد');
             $table->string('disabilities_type', 500)->nullable()->comment('نوع الاعاقة');

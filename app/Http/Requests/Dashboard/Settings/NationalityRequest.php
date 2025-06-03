@@ -21,8 +21,10 @@ class NationalityRequest extends FormRequest
      */
     public function rules(): array
     {
+        $nationalityId = $this->route('nationality') ? $this->route('nationality')->id : null;
+
         return [
-            'name' => 'required',
+            'name' => 'required|unique:nationalities,name,' . $nationalityId,
             'active' => 'nullable',
         ];
     }
@@ -31,6 +33,7 @@ class NationalityRequest extends FormRequest
     {
         return [
             'name.required' => 'اسم الجنسية مطلوب',
+            'name.unique' => 'اسم الجنسية موجود بالفعل',
         ];
     }
 }
