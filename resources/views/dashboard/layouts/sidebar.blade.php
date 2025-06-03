@@ -76,6 +76,7 @@
             request()->is('dashboard/departments*') ||
             request()->is('dashboard/job_categories*') ||
             request()->is('dashboard/qualifications*') ||
+            request()->is('dashboard/bloodTypes*') ||
             request()->is('dashboard/languages*')
                 ? 'open active'
                 : '' }}">
@@ -135,6 +136,11 @@
                 <li class="menu-item @yield('active-qualifications')">
                     <a href="{{ route('dashboard.qualifications.index') }}" class="menu-link">
                         <div data-i18n="المؤهلات">المؤهلات</div>
+                    </a>
+                </li>
+                <li class="menu-item @yield('active-bloodTypes')">
+                    <a href="{{ route('dashboard.bloodTypes.index') }}" class="menu-link">
+                        <div data-i18n="فصيلة الدم">فصيلة الدم</div>
                     </a>
                 </li>
 

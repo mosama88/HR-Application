@@ -6,6 +6,7 @@ use App\Http\Controllers\Dashboard\Settings\BranchController;
 use App\Http\Controllers\Dashboard\Settings\CountryController;
 use App\Http\Controllers\Dashboard\Settings\CurrencyController;
 use App\Http\Controllers\Dashboard\Settings\LanguageController;
+use App\Http\Controllers\Dashboard\Settings\BloodTypeController;
 use App\Http\Controllers\Dashboard\Settings\DepartmentController;
 use App\Http\Controllers\Dashboard\Settings\ShiftTypesController;
 use App\Http\Controllers\Dashboard\Settings\JobCategoryController;
@@ -36,4 +37,6 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::resource('job_categories', JobCategoryController::class);
     //################################### المؤهلات ##################################
     Route::resource('qualifications', QualificationController::class);
+    //################################### فصيلة الدم ##################################
+    Route::resource('bloodTypes', BloodTypeController::class);
 });

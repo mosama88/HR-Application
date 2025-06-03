@@ -21,8 +21,10 @@ class BloodTypeRequest extends FormRequest
      */
     public function rules(): array
     {
+        $bloodTypeId = $this->route('bloodType') ? $this->route('bloodType')->id : null;
+
         return [
-            'name' => 'required',
+            'name' => 'required|unique:blood_types,name,' . $bloodTypeId,
             'active' => 'nullable',
         ];
     }
@@ -31,6 +33,7 @@ class BloodTypeRequest extends FormRequest
     {
         return [
             'name.required' => 'اسم فصيلة الدم مطلوب',
+            'name.unique' => 'اسم فصيلة الدم موجود بالفعل',
         ];
     }
 }
