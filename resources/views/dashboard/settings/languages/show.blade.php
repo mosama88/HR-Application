@@ -2,8 +2,8 @@
     use App\Enums\StatusActiveEnum;
 @endphp
 @extends('dashboard.layouts.master')
-@section('active-countries', 'active')
-@section('title', 'عرض بيانات البلد')
+@section('active-languages', 'active')
+@section('title', 'عرض بيانات اللغه')
 @push('css')
 @endpush
 @section('content')
@@ -13,8 +13,8 @@
     @include('dashboard.layouts.breadcrumb', [
         'pageTitle' => 'البلاد',
         'previousPage' => 'البلاد',
-        'urlPreviousPage' => 'dashboard/countries', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'عرض بيانات البلد',
+        'urlPreviousPage' => 'dashboard/languages', //سيتم تغيير لوحة التحكم لاحقآ
+        'currentPage' => 'عرض بيانات اللغه',
     ])
 
     <section class="content">
@@ -28,33 +28,27 @@
                         <!-- /.card-header -->
                         <!-- form start -->
                         <div class="col-md-12">
-                            <h5 class="card-header">عرض بيانات البلد</h5>
+                            <h5 class="card-header">عرض بيانات اللغه</h5>
 
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-4 mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">أسم البلد</label>
+                                        <label for="exampleFormControlInput1" class="form-label">أسم اللغه</label>
                                         <input readonly name="name" type="text"
-                                            value="{{ old('name', $country->name) }}" class="form-control"
+                                            value="{{ old('name', $language->name) }}" class="form-control"
                                             id="exampleFormControlInput1" placeholder="مثال:بلد....">
                                     </div>
-                                    <div class="col-md-4 mb-3">
-                                        <label for="exampleFormControlReadOnlyInput1" class="form-label">كود
-                                            البلد</label>
-                                        <input readonly name="country_code"
-                                            value="{{ old('country_code', $country->country_code) }}" class="form-control"
-                                            type="text" id="exampleFormControlReadOnlyInput1" placeholder="EG...">
-                                    </div>
+
 
                                     <div class="col-md-4 mb-3">
-                                        <label for="exampleFormControlSelect1" class="form-label">حالة البلد</label>
+                                        <label for="exampleFormControlSelect1" class="form-label">حالة اللغه</label>
                                         <select readonly name="active" class="form-select" id="exampleFormControlSelect1"
                                             aria-label="Default select example">
                                             <option selected value="">-- أختر الحالة--</option>
-                                            <option @if (old('active', $country->active) == StatusActiveEnum::ACTIVE) selected @endif
+                                            <option @if (old('active', $language->active) == StatusActiveEnum::ACTIVE) selected @endif
                                                 value="{{ StatusActiveEnum::ACTIVE }}">
                                                 {{ StatusActiveEnum::ACTIVE->label() }}</option>
-                                            <option @if (old('active', $country->active) == StatusActiveEnum::INACTIVE) selected @endif
+                                            <option @if (old('active', $language->active) == StatusActiveEnum::INACTIVE) selected @endif
                                                 value="{{ StatusActiveEnum::INACTIVE }}">
                                                 {{ StatusActiveEnum::INACTIVE->label() }}</option>
                                         </select>

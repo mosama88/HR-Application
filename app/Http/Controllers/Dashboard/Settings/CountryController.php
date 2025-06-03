@@ -68,7 +68,16 @@ class CountryController extends Controller
      */
     public function update(CountryRequest $request, Country $country)
     {
-        //
+        $com_code =  Auth::user()->com_code;
+        $dataValidate = $request->validated();
+        $dataUpdate = array_merge($dataValidate, [
+            'updated_by' => Auth::user()->id,
+            'com_code' => $com_code,
+            'active' =>  $request->active,
+        ]);
+
+        $country->update($dataUpdate);
+        return redirect()->route('dashboard.countries.index')->with('success', 'تم تعديل البلد بنجاح');
     }
 
     /**
@@ -76,6 +85,10 @@ class CountryController extends Controller
      */
     public function destroy(Country $country)
     {
-        //
+        $country->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'تم حذف البلد بنجاح'
+        ]);
     }
 }

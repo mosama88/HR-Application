@@ -28,7 +28,6 @@
                         <!-- /.card-header -->
                         <!-- form start -->
                         <div class="col-md-12">
-                            <div class="card mb-4">
                                 <h5 class="card-header">تعديل بيانات الفرع</h5>
                                 <form action="{{ route('dashboard.branches.update', $branch->slug) }}" method="POST"
                                     id="updateForm">
@@ -115,7 +114,6 @@
 
 
                                     </div>
-                            </div>
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer text-center">
