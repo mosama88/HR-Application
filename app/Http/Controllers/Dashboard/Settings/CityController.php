@@ -39,7 +39,6 @@ class CityController extends Controller
      */
     public function store(CityRequest $request)
     {
-        dd($request->all());
         $com_code =  Auth::user()->com_code;
         $active = StatusActiveEnum::ACTIVE;
         $dataValidate = $request->validated();
@@ -49,7 +48,7 @@ class CityController extends Controller
             'active' =>  $active,
         ]);
 
-        Governorate::create($dataInsert);
+        City::create($dataInsert);
         return redirect()->route('dashboard.cities.index')->with('success', 'تم أضافة المدينة بنجاح');
     }
 
