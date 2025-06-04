@@ -21,8 +21,10 @@ class AdditionalTypeRequest extends FormRequest
      */
     public function rules(): array
     {
+        $additional_typeId = $this->route('additional_type') ? $this->route('additional_type')->id : null;
+
         return [
-            'name' => 'required',
+            'name' => 'required|unique:additional_types,name,' . $additional_typeId,
             'active' => 'nullable',
         ];
     }
@@ -31,6 +33,7 @@ class AdditionalTypeRequest extends FormRequest
     {
         return [
             'name.required' => 'اسم نوع الأضافى مطلوب',
+            'name.unique' => 'اسم نوع الأضافى موجود بالفعل',
         ];
     }
 }

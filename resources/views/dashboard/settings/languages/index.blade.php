@@ -49,8 +49,7 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>أسم البلد</th>
-                                        <th>كود البلد</th>
+                                        <th>أسم اللغه</th>
                                         <th>الحالة</th>
                                         <th>أضافة بواسطة</th>
                                         <th>تعديل بواسطة</th>
@@ -62,7 +61,6 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $info->name }}</td>
-                                            <td>{{ $info->country_code }}</td>
                                             <td>
                                                 @if ($info->active == StatusActiveEnum::ACTIVE)
                                                     <span class="badge bg-success">مفعل</span>

@@ -21,8 +21,10 @@ class AllowanceRequest extends FormRequest
      */
     public function rules(): array
     {
+        $allowanceId = $this->route('allowance') ? $this->route('allowance')->id : null;
+
         return [
-            'name' => 'required',
+            'name' => 'required|unique:allowances,name,' . $allowanceId,
             'active' => 'nullable',
         ];
     }
@@ -31,6 +33,7 @@ class AllowanceRequest extends FormRequest
     {
         return [
             'name.required' => 'اسم نوع البدلات مطلوب',
+            'name.unique' => 'اسم نوع البدلات موجود بالفعل',
         ];
     }
 }

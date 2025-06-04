@@ -39,7 +39,7 @@
                                             <label for="exampleFormControlInput1" class="form-label">أسم اللغه</label>
                                             <input name="name" type="text" value="{{ old('name', $language->name) }}"
                                                 class="form-control @error('name') is-invalid @enderror"
-                                                id="exampleFormControlInput1" placeholder="مثال:بلد....">
+                                                id="exampleFormControlInput1" placeholder="مثال:العربية....">
                                             @error('name')
                                                 <span class="invalid-feedback text-right" role="alert">
                                                     <strong>{{ $message }}</strong>

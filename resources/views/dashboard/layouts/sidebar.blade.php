@@ -177,8 +177,8 @@
         <li class="menu-header small text-uppercase"><span class="menu-header-text">إدارة شئون الموظفين</span></li>
         <li
             class="menu-item {{ request()->is('dashboard/additional_types*') ||
-            request()->is('dashboard/admin_panel_settings*') ||
-            request()->is('dashboard/branches*') ||
+            request()->is('dashboard/allowances*') ||
+            request()->is('dashboard/discount_types*') ||
             request()->is('dashboard/languages*')
                 ? 'open active'
                 : '' }}">
@@ -191,6 +191,16 @@
                 <li class="menu-item @yield('active-additional_types')">
                     <a href="{{ route('dashboard.additional_types.index') }}" class="menu-link">
                         <div data-i18n="أنواع الأضافى">أنواع الأضافى</div>
+                    </a>
+                </li>
+                <li class="menu-item @yield('active-allowances')">
+                    <a href="{{ route('dashboard.allowances.index') }}" class="menu-link">
+                        <div data-i18n="أنواع البدلات">أنواع البدلات</div>
+                    </a>
+                </li>
+                <li class="menu-item @yield('active-discount_types')">
+                    <a href="{{ route('dashboard.discount_types.index') }}" class="menu-link">
+                        <div data-i18n="أنواع الخصومات">أنواع الخصومات</div>
                     </a>
                 </li>
 

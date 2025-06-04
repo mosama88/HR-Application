@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.master')
-@section('active-languages', 'active')
-@section('title', 'اللغات')
+@section('active-allowances', 'active')
+@section('title', 'البدلات')
 @push('css')
 @endpush
 @section('content')
@@ -8,10 +8,10 @@
     @include('dashboard.layouts.message')
     <!-- Content Header (Page header) -->
     @include('dashboard.layouts.breadcrumb', [
-        'pageTitle' => 'اللغات',
-        'previousPage' => 'اللغات',
-        'urlPreviousPage' => 'dashboard/languages', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'أضافة بلد جديدة',
+        'pageTitle' => 'البدلات',
+        'previousPage' => 'البدلات',
+        'urlPreviousPage' => 'dashboard/allowances', //سيتم تغيير لوحة التحكم لاحقآ
+        'currentPage' => 'أضافة بدل جديد',
     ])
 
     <section class="content">
@@ -24,17 +24,17 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{ route('dashboard.languages.store') }}" method="POST" id="storeForm">
+                        <form action="{{ route('dashboard.allowances.store') }}" method="POST" id="storeForm">
                             @csrf
                             <div class="col-md-12">
-                                <h5 class="card-header">أضافة لغه جديدة</h5>
+                                <h5 class="card-header">أضافة بدل جديد</h5>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-4 mb-3">
-                                            <label for="exampleFormControlInput1" class="form-label">أسم اللغه</label>
+                                            <label for="exampleFormControlInput1" class="form-label">أسم البدل</label>
                                             <input name="name" type="text" value="{{ old('name') }}"
                                                 class="form-control @error('name') is-invalid @enderror"
-                                                id="exampleFormControlInput1" placeholder="مثال:بلد....">
+                                                id="exampleFormControlInput1" placeholder="مثال:بدل انتقال....">
                                             @error('name')
                                                 <span class="invalid-feedback text-right" role="alert">
                                                     <strong>{{ $message }}</strong>

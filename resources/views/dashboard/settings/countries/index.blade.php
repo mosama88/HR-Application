@@ -3,7 +3,7 @@
 @endphp
 @extends('dashboard.layouts.master')
 @section('active-countries', 'active')
-@section('title', 'البلاد')
+@section('title', 'الدول')
 @push('css')
     <style>
         .btn-actions {
@@ -22,10 +22,10 @@
     @include('dashboard.layouts.message')
     <!-- Content Header (Page header) -->
     @include('dashboard.layouts.breadcrumb', [
-        'pageTitle' => 'البلاد',
+        'pageTitle' => 'الدول',
         'previousPage' => 'لوحة التحكم',
         'urlPreviousPage' => 'dashboard', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'جدول البلاد',
+        'currentPage' => 'جدول الدول',
     ])
 
     <section class="content">
@@ -36,7 +36,7 @@
 
                     <div class="card">
                         <h5 class="card-header d-flex justify-content-between align-items-center">
-                            <span class="ml-auto">جدول البلاد</span>
+                            <span class="ml-auto">جدول الدول</span>
                             <a href="{{ route('dashboard.countries.create') }}" class="btn btn-info text-white">
                                 <i class="fa-solid fa-plus mx-1"></i>
                                 أضافة
@@ -49,8 +49,8 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>أسم البلد</th>
-                                        <th>كود البلد</th>
+                                        <th>أسم الدولة</th>
+                                        <th>كود الدولة</th>
                                         <th>الحالة</th>
                                         <th>أضافة بواسطة</th>
                                         <th>تعديل بواسطة</th>

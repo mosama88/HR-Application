@@ -36,7 +36,7 @@
                                         <label for="exampleFormControlInput1" class="form-label">أسم اللغه</label>
                                         <input readonly name="name" type="text"
                                             value="{{ old('name', $language->name) }}" class="form-control"
-                                            id="exampleFormControlInput1" placeholder="مثال:بلد....">
+                                            id="exampleFormControlInput1" placeholder="مثال:العربية....">
                                     </div>
 
 

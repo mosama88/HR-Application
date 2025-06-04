@@ -21,8 +21,10 @@ class DiscountTypeRequest extends FormRequest
      */
     public function rules(): array
     {
+        $discount_typeId = $this->route('discount_type') ? $this->route('discount_type')->id : null;
+
         return [
-            'name' => 'required',
+            'name' => 'required|unique:discount_types,name,' . $discount_typeId,
             'active' => 'nullable',
         ];
     }
@@ -31,6 +33,7 @@ class DiscountTypeRequest extends FormRequest
     {
         return [
             'name.required' => 'اسم نوع الخصم مطلوب',
+            'name.unique' => 'اسم نوع الخصم موجود بالفعل',
         ];
     }
 }

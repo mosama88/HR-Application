@@ -2,8 +2,8 @@
     use App\Enums\StatusActiveEnum;
 @endphp
 @extends('dashboard.layouts.master')
-@section('active-languages', 'active')
-@section('title', 'اللغات')
+@section('active-additional_types', 'active')
+@section('title', 'أنواع الأضافى')
 @push('css')
     <style>
         .btn-actions {
@@ -22,10 +22,10 @@
     @include('dashboard.layouts.message')
     <!-- Content Header (Page header) -->
     @include('dashboard.layouts.breadcrumb', [
-        'pageTitle' => 'اللغات',
+        'pageTitle' => 'أنواع الأضافى',
         'previousPage' => 'لوحة التحكم',
         'urlPreviousPage' => 'dashboard', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'جدول اللغات',
+        'currentPage' => 'جدول أنواع الأضافى',
     ])
 
     <section class="content">
@@ -36,8 +36,8 @@
 
                     <div class="card">
                         <h5 class="card-header d-flex justify-content-between align-items-center">
-                            <span class="ml-auto">جدول اللغات</span>
-                            <a href="{{ route('dashboard.languages.create') }}" class="btn btn-info text-white">
+                            <span class="ml-auto">جدول أنواع الأضافى</span>
+                            <a href="{{ route('dashboard.additional_types.create') }}" class="btn btn-info text-white">
                                 <i class="fa-solid fa-plus mx-1"></i>
                                 أضافة
                             </a>
@@ -49,8 +49,7 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>أسم البلد</th>
-                                        <th>كود البلد</th>
+                                        <th>أسم نوع اضافى</th>
                                         <th>الحالة</th>
                                         <th>أضافة بواسطة</th>
                                         <th>تعديل بواسطة</th>
@@ -62,7 +61,6 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $info->name }}</td>
-                                            <td>{{ $info->country_code }}</td>
                                             <td>
                                                 @if ($info->active == StatusActiveEnum::ACTIVE)
                                                     <span class="badge bg-success">مفعل</span>
@@ -82,7 +80,7 @@
 
                                             <td>
                                                 @include('dashboard.partials.actions', [
-                                                    'name' => 'languages',
+                                                    'name' => 'additional_types',
                                                     'name_id' => $info->slug,
                                                 ])
                                             </td>

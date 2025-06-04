@@ -16,7 +16,9 @@ use App\Http\Controllers\Dashboard\Settings\JobCategoryController;
 use App\Http\Controllers\Dashboard\Settings\NationalityController;
 use App\Http\Controllers\Dashboard\Settings\QualificationController;
 use App\Http\Controllers\Dashboard\Settings\FinanceCalendarController;
+use App\Http\Controllers\Dashboard\EmployeeAffairs\AllowanceController;
 use App\Http\Controllers\Dashboard\Settings\AdminPanelSettingController;
+use App\Http\Controllers\Dashboard\EmployeeAffairs\DiscountTypeController;
 use App\Http\Controllers\Dashboard\EmployeeAffairs\AdditionalTypeController;
 
 
@@ -52,7 +54,15 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::resource('cities', CityController::class);
     //################################### الدرجات الوظيفية ##################################
     Route::resource('job_grades', JobGradeController::class);
+    //################################### الانتهاء من الأعدادت #########################################
 
     //################################### شئون الموظفين ##################################
+    //################################### أنواع الاضافى ##################################
     Route::resource('additional_types', AdditionalTypeController::class);
+    //################################### أنواع البدلات ##################################
+    Route::resource('allowances', AllowanceController::class);
+    //################################### أنواع الخصومات ##################################
+    Route::resource('discount_types', DiscountTypeController::class);
+    //################################### الأنتهاء من شئون الموظفين ##################################
+
 });

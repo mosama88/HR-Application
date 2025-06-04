@@ -21,7 +21,7 @@ class JobGradeRequest extends FormRequest
      */
     public function rules(): array
     {
-        $job_gradeId = $this->route('jobGrade') ? $this->route('jobGrade')->id : null;
+        $job_gradeId = $this->route('job_grade') ? $this->route('job_grade')->id : null;
 
         return [
             'name' => 'required|unique:job_grades,name,' . $job_gradeId,

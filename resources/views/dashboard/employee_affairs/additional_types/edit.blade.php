@@ -2,8 +2,8 @@
     use App\Enums\StatusActiveEnum;
 @endphp
 @extends('dashboard.layouts.master')
-@section('active-languages', 'active')
-@section('title', 'تعديل بيانات اللغه')
+@section('active-additional_types', 'active')
+@section('title', 'تعديل بيانات أنواع الأضافى')
 @push('css')
 @endpush
 @section('content')
@@ -11,10 +11,10 @@
     @include('dashboard.layouts.message')
     <!-- Content Header (Page header) -->
     @include('dashboard.layouts.breadcrumb', [
-        'pageTitle' => 'اللغات',
-        'previousPage' => 'اللغات',
-        'urlPreviousPage' => 'dashboard/languages', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'تعديل بيانات اللغه',
+        'pageTitle' => 'أنواع الأضافى',
+        'previousPage' => 'أنواع الأضافى',
+        'urlPreviousPage' => 'dashboard/additional_types', //سيتم تغيير لوحة التحكم لاحقآ
+        'currentPage' => 'تعديل بيانات أنواع الأضافى',
     ])
 
     <section class="content">
@@ -28,18 +28,20 @@
                         <!-- /.card-header -->
                         <!-- form start -->
                         <div class="col-md-12">
-                            <h5 class="card-header">تعديل بيانات اللغه</h5>
-                            <form action="{{ route('dashboard.languages.update', $language->slug) }}" method="POST"
-                                id="updateForm">
+                            <h5 class="card-header">تعديل بيانات أنواع الأضافى</h5>
+                            <form action="{{ route('dashboard.additional_types.update', $additionalType->slug) }}"
+                                method="POST" id="updateForm">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-4 mb-3">
-                                            <label for="exampleFormControlInput1" class="form-label">أسم اللغه</label>
-                                            <input name="name" type="text" value="{{ old('name', $language->name) }}"
+                                            <label for="exampleFormControlInput1" class="form-label">أسم نوع
+                                                الأضافى</label>
+                                            <input name="name" type="text"
+                                                value="{{ old('name', $additionalType->name) }}"
                                                 class="form-control @error('name') is-invalid @enderror"
-                                                id="exampleFormControlInput1" placeholder="مثال:بلد....">
+                                                id="exampleFormControlInput1" placeholder="مثال:جهود....">
                                             @error('name')
                                                 <span class="invalid-feedback text-right" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -48,14 +50,15 @@
                                         </div>
 
                                         <div class="col-md-4 mb-3">
-                                            <label for="exampleFormControlSelect1" class="form-label">حالة اللغه</label>
+                                            <label for="exampleFormControlSelect1" class="form-label">حالة نوع
+                                                الأضافى</label>
                                             <select name="active" class="form-select @error('active') is-invalid @enderror"
                                                 id="exampleFormControlSelect1" aria-label="Default select example">
                                                 <option selected value="">-- أختر الحالة--</option>
-                                                <option @if (old('active', $language->active) == StatusActiveEnum::ACTIVE) selected @endif
+                                                <option @if (old('active', $additionalType->active) == StatusActiveEnum::ACTIVE) selected @endif
                                                     value="{{ StatusActiveEnum::ACTIVE }}">
                                                     {{ StatusActiveEnum::ACTIVE->label() }}</option>
-                                                <option @if (old('active', $language->active) == StatusActiveEnum::INACTIVE) selected @endif
+                                                <option @if (old('active', $additionalType->active) == StatusActiveEnum::INACTIVE) selected @endif
                                                     value="{{ StatusActiveEnum::INACTIVE }}">
                                                     {{ StatusActiveEnum::INACTIVE->label() }}</option>
                                             </select>

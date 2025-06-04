@@ -11,7 +11,7 @@
         'pageTitle' => 'اللغات',
         'previousPage' => 'اللغات',
         'urlPreviousPage' => 'dashboard/languages', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'أضافة بلد جديدة',
+        'currentPage' => 'أضافة لفه جديدة',
     ])
 
     <section class="content">
@@ -34,7 +34,7 @@
                                             <label for="exampleFormControlInput1" class="form-label">أسم اللغه</label>
                                             <input name="name" type="text" value="{{ old('name') }}"
                                                 class="form-control @error('name') is-invalid @enderror"
-                                                id="exampleFormControlInput1" placeholder="مثال:بلد....">
+                                                id="exampleFormControlInput1" placeholder="مثال:العربية....">
                                             @error('name')
                                                 <span class="invalid-feedback text-right" role="alert">
                                                     <strong>{{ $message }}</strong>
