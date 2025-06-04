@@ -37,7 +37,8 @@
                                     <div class="row">
                                         <div class="col-md-4 mb-3">
                                             <label for="exampleFormControlInput1" class="form-label">أسم الوظيفه</label>
-                                            <input name="name" type="text" value="{{ old('name', $jobCategory->name) }}"
+                                            <input name="name" type="text"
+                                                value="{{ old('name', $jobCategory->name) }}"
                                                 class="form-control @error('name') is-invalid @enderror"
                                                 id="exampleFormControlInput1" placeholder="مثال:محاسب....">
                                             @error('name')
@@ -69,12 +70,8 @@
                                 </div>
                         </div>
                         <!-- /.card-body -->
-                        <div class="card-footer text-center">
-                            <button type="submit" id="submitButton" class="btn btn-info"> <i
-                                    class="fas fa-marker mx-1"></i>
-                                تعديل
-                                البيانات</button>
-                        </div>
+                        <x-edit-button-component></x-edit-button-component>
+
                         </form>
                     </div>
                 </div>

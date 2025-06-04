@@ -98,12 +98,8 @@
                             </div>
                             <!-- /.card-body -->
 
-                            <div class="card-footer text-center">
-                                <button type="submit" id="submitButton" class="btn btn-info"> <i
-                                        class="fas fa-marker mx-1"></i>
-                                    تعديل
-                                    البيانات</button>
-                            </div>
+                            <x-edit-button-component></x-edit-button-component>
+
                         </form>
                     </div>
                 </div>
@@ -116,7 +112,7 @@
 @push('js')
     <script src="{{ asset('dashboard') }}/assets/js/forms-pickers.js"></script>
 
-  
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             flatpickr("#start_date_picker", {

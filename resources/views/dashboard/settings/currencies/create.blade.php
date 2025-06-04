@@ -58,11 +58,8 @@
                             </div>
                             <!-- /.card-body -->
 
-                            <div class="card-footer text-center">
-                                <button type="submit" id="submitButton" class="btn btn-primary"> <i
-                                        class="far fa-save mx-1"></i> حفظ
-                                    البيانات</button>
-                            </div>
+                            <x-create-button-component></x-create-button-component>
+
                         </form>
                     </div>
                 </div>

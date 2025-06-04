@@ -31,7 +31,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-4 mb-3">
-                                            <label for="exampleFormControlInput1" class="form-label">أسم المؤهل</label>
+                                            <label for="exampleFormControlInput1" class="form-label">أسم فصيلة الدم</label>
                                             <input name="name" type="text" value="{{ old('name') }}"
                                                 class="form-control @error('name') is-invalid @enderror"
                                                 id="exampleFormControlInput1" placeholder="مثال:O....">
@@ -46,11 +46,7 @@
                             </div>
                             <!-- /.card-body -->
 
-                            <div class="card-footer text-center">
-                                <button type="submit" id="submitButton" class="btn btn-primary"> <i
-                                        class="far fa-save mx-1"></i> حفظ
-                                    البيانات</button>
-                            </div>
+                            <x-create-button-component></x-create-button-component>
                         </form>
                     </div>
                 </div>

@@ -38,7 +38,8 @@
             submitButton.disabled = true;
             submitButton.innerHTML = 'جاري الحفظ...'; // Optional: Change text while submitting
         });
-
+    </script>
+    <script>
         //التعديل
         document.getElementById('updateForm').addEventListener('submit', function(event) {
             var submitButton = document.getElementById('submitButton');
