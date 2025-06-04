@@ -79,25 +79,26 @@ return new class extends Migration
             $table->string('bank_number_account', 50)->nullable(); //رقم حساب البنك للموظف
             $table->tinyInteger('motivation_type')->default(1)->nullable(); //نوع الحافز
             $table->decimal('motivation_value', 10, 2)->nullable()->default(0); //قيمة الحافز الثابت ان وجد
-            $table->tinyInteger('social_insurance')->default(1)->nullable(); //هل للموظف تأمين اجتماعي
+            $table->tinyInteger('has_social_insurance')->default(1)->nullable(); //هل للموظف تأمين اجتماعي
             $table->decimal('social_insurance_cut_monthely', 20, 2)->nullable(); // قيمة استقطاع التأمين الاجتماعي الشهري للموظف
             $table->string('social_insurance_number', 50)->nullable(); //رقم التأمين الاجتماعي
-            $table->tinyInteger('medical_insurance')->default(1)->nullable(); //هل للموظف تأمين طبي
+            $table->tinyInteger('has_medical_insurance')->default(1)->nullable(); //هل للموظف تأمين طبي
             $table->decimal('medical_insurance_cut_monthely', 20, 2)->nullable(); //قيمة استقطاع التأمين الطبي الشهري للموظف
             $table->string('medical_insurance_number', 50)->nullable(); //رقم التأمين الطبي
             $table->tinyInteger('type_salary_receipt')->default(1)->nullable(); //نوع صرف الراتب
-            $table->tinyInteger('have_vacation_balance')->default(1)->nullable(); //هل هذا الموظف ينزل له رصيد اجازات	
+            $table->tinyInteger('has_vacation_balance')->default(1)->nullable(); //هل هذا الموظف ينزل له رصيد اجازات	
             $table->string('urgent_person_details', 600)->nullable(); //تفاصيل شخص يمكن الرجوع اليه للوصول للموظف
             $table->integer('children_number')->nullable()->default(0);
             $table->tinyInteger('social_status')->default(1)->nullable(); //الحالة الاجتماعية
-            $table->tinyInteger('disabilities')->default(1)->nullable(); //هل له اعاقة
+            $table->tinyInteger('has_disabilities')->default(1)->nullable(); //هل له اعاقة
             $table->string('disabilities_type', 500)->nullable(); //نوع الاعاقة
             $table->foreignIdFor(Nationality::class)->nullable()->constrained()->nullOnDelete(); //الجنسية
             $table->string('pasport_identity', 100)->nullable(); //رقم الباسبور ان وجد
             $table->date('pasport_exp_date')->nullable(); //تاريخ انتهاء الباسبور
-            $table->tinyInteger('fixed_allowances')->nullable()->default(2); //هل له بدلات ثابته
+            $table->tinyInteger('has_fixed_allowances')->nullable()->default(2); //هل له بدلات ثابته
             $table->tinyInteger('is_done_Vacation_formula')->nullable()->default(1); //هل تمت المعادله التلقائية لاحتساب الرصيد السنوي للموظف
             $table->tinyInteger('is_Sensitive_manager_data')->nullable()->default(1); //هل بيانات حساساه للمديرين مثلا ولاتظهر الا بصلاحيات خاصة
+            $table->tinyInteger('active')->default(1)->nullable();
             $table->foreignId('created_by')->references('id')->on('admins')->onUpdate('cascade');
             $table->foreignId('updated_by')->nullable()->references('id')->on('admins')->onUpdate('cascade');
             $table->integer('com_code');
