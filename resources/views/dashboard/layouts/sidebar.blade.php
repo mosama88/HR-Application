@@ -80,6 +80,7 @@
             request()->is('dashboard/nationalities*') ||
             request()->is('dashboard/governorates*') ||
             request()->is('dashboard/cities*') ||
+            request()->is('dashboard/job_grades*') ||
             request()->is('dashboard/languages*')
                 ? 'open active'
                 : '' }}">
@@ -159,6 +160,11 @@
                 <li class="menu-item @yield('active-cities')">
                     <a href="{{ route('dashboard.cities.index') }}" class="menu-link">
                         <div data-i18n="المدن">المدن</div>
+                    </a>
+                </li>
+                <li class="menu-item @yield('active-job_grades')">
+                    <a href="{{ route('dashboard.job_grades.index') }}" class="menu-link">
+                        <div data-i18n="الدرجات الوظيفية">الدرجات الوظيفية</div>
                     </a>
                 </li>
 

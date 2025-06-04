@@ -16,7 +16,6 @@
 
     <section class="content">
         <div class="container-fluid">
-
             <div class="row">
                 <div class="col-12">
                     <div class="card card-primary">
@@ -27,11 +26,11 @@
                         <form action="{{ route('dashboard.nationalities.store') }}" method="POST" id="storeForm">
                             @csrf
                             <div class="col-md-12">
-                                <h5 class="card-header">أضافة جنسية جديدة</h5>
+                                <h5 class="card-header"></h5>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-4 mb-3">
-                                            <label for="exampleFormControlInput1" class="form-label">أسم الجنسيات</label>
+                                            <label for="exampleFormControlInput1" class="form-label">أسم الجنسية</label>
                                             <input name="name" type="text" value="{{ old('name') }}"
                                                 class="form-control @error('name') is-invalid @enderror"
                                                 id="exampleFormControlInput1" placeholder="مثال:مصرى....">

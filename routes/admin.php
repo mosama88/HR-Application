@@ -6,6 +6,7 @@ use App\Http\Controllers\Dashboard\Settings\CityController;
 use App\Http\Controllers\Dashboard\Settings\BranchController;
 use App\Http\Controllers\Dashboard\Settings\CountryController;
 use App\Http\Controllers\Dashboard\Settings\CurrencyController;
+use App\Http\Controllers\Dashboard\Settings\JobGradeController;
 use App\Http\Controllers\Dashboard\Settings\LanguageController;
 use App\Http\Controllers\Dashboard\Settings\BloodTypeController;
 use App\Http\Controllers\Dashboard\Settings\DepartmentController;
@@ -48,4 +49,6 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::resource('governorates', GovernorateController::class);
     //################################### المحافظات ##################################
     Route::resource('cities', CityController::class);
+    //################################### الدرجات الوظيفية ##################################
+    Route::resource('job_grades', JobGradeController::class);
 });

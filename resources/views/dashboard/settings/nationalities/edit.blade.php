@@ -80,6 +80,34 @@
     </section>
 
 
+
+    <x-card-body-component>
+        <form action="{{ route('dashboard.nationalities.store') }}" method="POST" id="storeForm">
+            @csrf
+            <div class="col-md-12">
+                <h5 class="card-header"></h5>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">أسم الجنسية</label>
+                            <input name="name" type="text" value="{{ old('name') }}"
+                                class="form-control @error('name') is-invalid @enderror" id="exampleFormControlInput1"
+                                placeholder="مثال:مصرى....">
+                            @error('name')
+                                <span class="invalid-feedback text-right" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+
+            <x-create-button-component></x-create-button-component>
+        </form>
+    </x-card-body-component>
+
 @endsection
 @push('js')
 @endpush
