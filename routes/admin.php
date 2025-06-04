@@ -15,6 +15,7 @@ use App\Http\Controllers\Dashboard\Settings\GovernorateController;
 use App\Http\Controllers\Dashboard\Settings\JobCategoryController;
 use App\Http\Controllers\Dashboard\Settings\NationalityController;
 use App\Http\Controllers\Dashboard\Settings\QualificationController;
+use App\Http\Controllers\Dashboard\EmployeeAffairs\EmployeeController;
 use App\Http\Controllers\Dashboard\Settings\FinanceCalendarController;
 use App\Http\Controllers\Dashboard\EmployeeAffairs\AllowanceController;
 use App\Http\Controllers\Dashboard\Settings\AdminPanelSettingController;
@@ -63,6 +64,8 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::resource('allowances', AllowanceController::class);
     //################################### أنواع الخصومات ##################################
     Route::resource('discount_types', DiscountTypeController::class);
+    //################################### الموظفين ##################################
+    Route::resource('employees', EmployeeController::class);
     //################################### الأنتهاء من شئون الموظفين ##################################
 
 });

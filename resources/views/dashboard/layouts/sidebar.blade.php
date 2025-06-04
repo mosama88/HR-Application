@@ -179,7 +179,7 @@
             class="menu-item {{ request()->is('dashboard/additional_types*') ||
             request()->is('dashboard/allowances*') ||
             request()->is('dashboard/discount_types*') ||
-            request()->is('dashboard/languages*')
+            request()->is('dashboard/employees*')
                 ? 'open active'
                 : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -201,6 +201,11 @@
                 <li class="menu-item @yield('active-discount_types')">
                     <a href="{{ route('dashboard.discount_types.index') }}" class="menu-link">
                         <div data-i18n="أنواع الخصومات">أنواع الخصومات</div>
+                    </a>
+                </li>
+                <li class="menu-item @yield('active-employees')">
+                    <a href="{{ route('dashboard.employees.index') }}" class="menu-link">
+                        <div data-i18n="الموظفين">الموظفين</div>
                     </a>
                 </li>
 
