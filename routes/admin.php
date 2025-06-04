@@ -17,6 +17,7 @@ use App\Http\Controllers\Dashboard\Settings\NationalityController;
 use App\Http\Controllers\Dashboard\Settings\QualificationController;
 use App\Http\Controllers\Dashboard\Settings\FinanceCalendarController;
 use App\Http\Controllers\Dashboard\Settings\AdminPanelSettingController;
+use App\Http\Controllers\Dashboard\EmployeeAffairs\AdditionalTypeController;
 
 
 Route::middleware(['auth:admin'])->group(function () {
@@ -51,4 +52,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::resource('cities', CityController::class);
     //################################### الدرجات الوظيفية ##################################
     Route::resource('job_grades', JobGradeController::class);
+
+    //################################### شئون الموظفين ##################################
+    Route::resource('additional_types', AdditionalTypeController::class);
 });

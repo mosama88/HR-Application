@@ -65,6 +65,8 @@
             </a>
         </li>
 
+
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">الأعدادات</span></li>
         <!-- Layouts -->
         <li
             class="menu-item {{ request()->is('dashboard/financeCalendars*') ||
@@ -172,6 +174,27 @@
             </ul>
         </li>
 
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">إدارة شئون الموظفين</span></li>
+        <li
+            class="menu-item {{ request()->is('dashboard/additional_types*') ||
+            request()->is('dashboard/admin_panel_settings*') ||
+            request()->is('dashboard/branches*') ||
+            request()->is('dashboard/languages*')
+                ? 'open active'
+                : '' }}">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon fa-solid fa-users-line"></i>
+                <div data-i18n="شئون الموظفين">شئون الموظفين</div>
+            </a>
 
+            <ul class="menu-sub">
+                <li class="menu-item @yield('active-additional_types')">
+                    <a href="{{ route('dashboard.additional_types.index') }}" class="menu-link">
+                        <div data-i18n="أنواع الأضافى">أنواع الأضافى</div>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
     </ul>
 </aside>

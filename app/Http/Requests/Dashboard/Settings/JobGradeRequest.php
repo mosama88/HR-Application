@@ -21,9 +21,11 @@ class JobGradeRequest extends FormRequest
      */
     public function rules(): array
     {
+        $job_gradeId = $this->route('jobGrade') ? $this->route('jobGrade')->id : null;
+
         return [
+            'name' => 'required|unique:job_grades,name,' . $job_gradeId,
             'job_grades_code' => 'nullable',
-            'name' => 'required',
             'min_salary' => 'required',
             'max_salary' => 'required|gt:min_salary',
             'notes' => 'nullable',
@@ -35,6 +37,7 @@ class JobGradeRequest extends FormRequest
     {
         return [
             'name.required' => 'اسم نوع الدرجه مطلوب',
+            'name.unique' => 'اسم نوع الدرجه موجود بالفعل',
             'min_salary.required' => 'الحد الأدنى للمرتب مطلوب',
             'max_salary.required' => 'الحد الأقصى مطلوب',
             'max_salary.gt' => 'يجب أن يكون الحد الأقصى للراتب أكبر من الحد الأدنى للراتب',

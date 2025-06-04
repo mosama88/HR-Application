@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Dashboard;
+namespace App\Http\Requests\Dashboard\EmployeeAffairs;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AllowanceRequest extends FormRequest
+class AdditionalTypeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,7 +30,7 @@ class AllowanceRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'اسم نوع البدلات مطلوب',
+            'name.required' => 'اسم نوع الأضافى مطلوب',
         ];
     }
 }
