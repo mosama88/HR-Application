@@ -91,7 +91,7 @@ return new class extends Migration
             $table->integer('children_number')->nullable()->default(0);
             $table->tinyInteger('social_status')->default(1)->nullable(); //الحالة الاجتماعية
             $table->tinyInteger('has_disabilities')->default(1)->nullable(); //هل له اعاقة
-            $table->string('disabilities_type', 500)->nullable(); //نوع الاعاقة
+            $table->string('disabilities_details', 500)->nullable(); //نوع الاعاقة
             $table->foreignIdFor(Nationality::class)->nullable()->constrained()->nullOnDelete(); //الجنسية
             $table->string('pasport_identity', 100)->nullable(); //رقم الباسبور ان وجد
             $table->date('pasport_exp_date')->nullable(); //تاريخ انتهاء الباسبور

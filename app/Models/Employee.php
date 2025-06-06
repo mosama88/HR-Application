@@ -95,7 +95,7 @@ class Employee extends Model implements HasMedia
         'children_number',
         'social_status',
         'has_disabilities',
-        'disabilities_type',
+        'disabilities_details',
         'nationality_id',
         'pasport_identity',
         'pasport_exp_date',
