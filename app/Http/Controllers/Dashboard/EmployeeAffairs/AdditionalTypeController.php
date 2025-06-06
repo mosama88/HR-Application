@@ -20,7 +20,7 @@ class AdditionalTypeController extends Controller
          * Display a listing of the resource.
          */
         $com_code = Auth::user()->com_code;
-        $data = AdditionalType::where('com_code', $com_code)->orderByDesc('id')->paginate(10);
+        $data = AdditionalType::with(['createdBy:id,name', 'updatedBy:id,name'])->where('com_code', $com_code)->orderByDesc('id')->paginate(10);
         return view('dashboard.employee_affairs.additional_types.index', compact('data'));
     }
 
