@@ -5,22 +5,25 @@ namespace App\Http\Controllers\Dashboard\Settings;
 use App\Models\BloodType;
 use Illuminate\Http\Request;
 use App\Enums\StatusActiveEnum;
+use App\Models\AdminPanelSetting;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Enums\PanelSettingSystemStatusEnum;
 use App\Http\Requests\Dashboard\Settings\BloodTypeRequest;
 
 class BloodTypeController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
         /**
          * Display a listing of the resource.
          */
         $com_code = Auth::user()->com_code;
-        $data = BloodType::where('com_code', $com_code)->orderByDesc('id')->paginate(10);
+        $data = BloodType::with(['createdBy:id,name', 'updatedBy:id,name'])->where('com_code', $com_code)->orderByDesc('id')->paginate(10);
         return view('dashboard.settings.bloodTypes.index', compact('data'));
     }
 
@@ -38,11 +41,16 @@ class BloodTypeController extends Controller
     public function store(BloodTypeRequest $request)
     {
         $com_code =  Auth::user()->com_code;
+        $system_status = AdminPanelSetting::where('com_code', $com_code)->first();
+        if ($system_status->system_status !== PanelSettingSystemStatusEnum::Active) {
+            return redirect()->back()->withErrors(['error' => 'لا توجد أعدادت الشركة للموظف']);
+        }
+
         $active = StatusActiveEnum::ACTIVE;
         $dataValidate = $request->validated();
         $dataInsert = array_merge($dataValidate, [
             'created_by' => Auth::user()->id,
-            'com_code' => $com_code,
+            'com_code' => $system_status->com_code,
             'active' =>  $active,
         ]);
 

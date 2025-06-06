@@ -20,7 +20,7 @@ class CurrencyController extends Controller
          * Display a listing of the resource.
          */
         $com_code = Auth::user()->com_code;
-        $data = Currency::where('com_code', $com_code)->orderByDesc('id')->paginate(10);
+        $data = Currency::with(['createdBy:id,name', 'updatedBy:id,name'])->where('com_code', $com_code)->orderByDesc('id')->paginate(10);
         return view('dashboard.settings.currencies.index', compact('data'));
     }
 

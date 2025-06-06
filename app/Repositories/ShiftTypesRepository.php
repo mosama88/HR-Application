@@ -15,7 +15,7 @@ class ShiftTypesRepository implements ShiftTypesInterface
     public function getData()
     {
         $com_code = Auth::user()->com_code;
-        $data = ShiftsType::where('com_code', $com_code)->orderByDesc('id')->paginate(10);
+        $data = ShiftsType::with(['createdBy:id,name', 'updatedBy:id,name'])->where('com_code', $com_code)->orderByDesc('id')->paginate(10);
         return $data;
     }
 

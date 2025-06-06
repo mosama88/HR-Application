@@ -56,9 +56,11 @@
                                         <td>
 
                                             @if ($data['system_status'] == PanelSettingSystemStatusEnum::Active)
-                                                <span class="badge badge-primary"> مفعل</span>
+                                                <span class="badge rounded-pill bg-label-primary">
+                                                    {{ PanelSettingSystemStatusEnum::Active->label() }}</span>
                                             @else
-                                                <span class="badge badge-danger"> معطل</span>
+                                                <span class="badge rounded-pill bg-label-danger">
+                                                    {{ PanelSettingSystemStatusEnum::Inactive->label() }}</span>
                                             @endif
                                         </td>
                                     </tr>
@@ -69,7 +71,7 @@
                                         <td>
 
                                             <h6>{{ $data['max_hours_take_fp_as_addtional'] * 1 }}
-                                                <span class="badge badge-primary">
+                                                <span class="badge rounded-pill bg-label-primary">
                                                     @if ($data['max_hours_take_fp_as_addtional'] <= 10)
                                                         ساعات
                                                     @else
@@ -84,7 +86,7 @@
                                         <td class="wd-500"> بعد كام دقيقة نحسب تاخير حضور </td>
                                         <td>
                                             <h6>{{ $data['after_minute_calculate_delay'] * 1 }}
-                                                <span class="badge badge-danger">
+                                                <span class="badge rounded-pill bg-label-danger">
                                                     @if ($data['after_minute_calculate_delay'] <= 10)
                                                         دقائق
                                                     @else
@@ -98,7 +100,7 @@
                                         <td class="wd-500"> بعد كام دقيقة نحسب انصراف مبكر </td>
                                         <td>
                                             <h6>{{ $data['after_minute_calculate_early_departure'] * 1 }}
-                                                <span class="badge badge-danger">
+                                                <span class="badge rounded-pill bg-label-danger">
                                                     @if ($data['after_minute_calculate_early_departure'] <= 10)
                                                         دقائق
                                                     @else
@@ -113,7 +115,7 @@
                                         </td>
                                         <td>
                                             <h6>{{ $data['after_minute_quarterday'] * 1 }}
-                                                <span class="badge badge-danger">
+                                                <span class="badge rounded-pill bg-label-danger">
                                                     @if ($data['after_minute_quarterday'] <= 10)
                                                         دقائق
                                                     @else
@@ -127,7 +129,7 @@
                                         <td class="wd-500"> بعد كام مرة تأخير او أنصراف مبكر نخصم نص يوم </td>
                                         <td>
                                             <h6>{{ $data['after_time_half_daycut'] * 1 }}
-                                                <span class="badge badge-primary">
+                                                <span class="badge rounded-pill bg-label-primary">
                                                     @if ($data['after_time_half_daycut'] <= 10)
                                                         ساعات
                                                     @else
@@ -141,7 +143,7 @@
                                         <td class="wd-500">نخصم بعد كام مره تاخير او أنصراف مبكر يوم كامل </td>
                                         <td>
                                             <h6>{{ $data['after_time_allday_daycut'] * 1 }}
-                                                <span class="badge badge-primary">
+                                                <span class="badge rounded-pill bg-label-primary">
                                                     @if ($data['after_time_allday_daycut'] <= 10)
                                                         مرات
                                                     @else
@@ -157,7 +159,7 @@
                                         </td>
                                         <td>
                                             <h6>{{ $data['less_than_minute_neglecting_fp'] * 1 }}
-                                                <span class="badge badge-danger">
+                                                <span class="badge rounded-pill bg-label-danger">
                                                     @if ($data['less_than_minute_neglecting_fp'] <= 10)
                                                         دقائق
                                                     @else
@@ -171,7 +173,7 @@
                                         <td class="wd-500">رصيد اجازات الموظف الشهري </td>
                                         <td>
                                             <h6>{{ $data['monthly_vacation_balance'] * 1 }}
-                                                <span class="badge badge-success">
+                                                <span class="badge rounded-pill bg-label-success">
                                                     @if ($data['monthly_vacation_balance'] <= 10)
                                                         أيام
                                                     @else
@@ -185,7 +187,7 @@
                                         <td class="wd-500">بعد كام يوم ينزل للموظف رصيد اجازات </td>
                                         <td>
                                             <h6>{{ $data['after_days_begin_vacation'] * 1 }}
-                                                <span class="badge badge-success">
+                                                <span class="badge rounded-pill bg-label-success">
                                                     @if ($data['after_days_begin_vacation'] <= 10)
                                                         أيام
                                                     @else
@@ -201,7 +203,7 @@
                                             ونص بعد سته شهور للموظف </td>
                                         <td>
                                             <h6>{{ $data['first_balance_begin_vacation'] * 1 }}
-                                                <span class="badge badge-success">
+                                                <span class="badge rounded-pill bg-label-success">
                                                     @if ($data['first_balance_begin_vacation'] <= 10)
                                                         أيام
                                                     @else
@@ -215,7 +217,7 @@
                                         <td class="wd-500">قيمة خصم الايام بعد اول مرة غياب بدون اذن </td>
                                         <td>
                                             <h6>{{ $data['sanctions_value_first_absence'] * 1 }}
-                                                <span class="badge badge-success">
+                                                <span class="badge rounded-pill bg-label-success">
                                                     @if ($data['sanctions_value_first_absence'] <= 10)
                                                         أيام
                                                     @else
@@ -229,7 +231,7 @@
                                         <td class="wd-500">قيمة خصم الايام بعد ثاني مرة غياب بدون اذن </td>
                                         <td>
                                             <h6>{{ $data['sanctions_value_second_absence'] * 1 }}
-                                                <span class="badge badge-success">
+                                                <span class="badge rounded-pill bg-label-success">
                                                     @if ($data['sanctions_value_second_absence'] <= 10)
                                                         أيام
                                                     @else
@@ -243,7 +245,7 @@
                                         <td class="wd-500">قيمة خصم الايام بعد ثالث مرة غياب بدون اذن </td>
                                         <td>
                                             <h6>{{ $data['sanctions_value_thaird_absence'] * 1 }}
-                                                <span class="badge badge-success">
+                                                <span class="badge rounded-pill bg-label-success">
                                                     @if ($data['sanctions_value_thaird_absence'] <= 10)
                                                         أيام
                                                     @else
@@ -257,7 +259,7 @@
                                         <td class="wd-500">قيمة خصم الايام بعد رابع مرة غياب بدون اذن </td>
                                         <td>
                                             <h6>{{ $data['sanctions_value_forth_absence'] * 1 }}
-                                                <span class="badge badge-success">
+                                                <span class="badge rounded-pill bg-label-success">
                                                     @if ($data['sanctions_value_forth_absence'] <= 10)
                                                         أيام
                                                     @else

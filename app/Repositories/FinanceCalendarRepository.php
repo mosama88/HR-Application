@@ -15,7 +15,7 @@ class FinanceCalendarRepository implements FinanceCalendarInterface
     public function getData()
     {
         $com_code = Auth::user()->com_code;
-        $data =  FinanceCalendar::where('com_code', $com_code)->paginate(10);
+        $data =  FinanceCalendar::with(['createdBy:id,name', 'updatedBy:id,name'])->where('com_code', $com_code)->paginate(10);
         return $data;
     }
 

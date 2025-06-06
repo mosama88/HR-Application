@@ -108,7 +108,7 @@
                                                         value="{{ PanelSettingSystemStatusEnum::Active }}"
                                                         @if (old('system_status', $adminPanelSetting->system_status) == PanelSettingSystemStatusEnum::Active) checked @endif>
                                                     <label for="customActive" class="custom-control-label"> <i
-                                                            class="fas fa-fire text-primary mx-1"></i>مفعل</label>
+                                                            class="fas fa-fire text-primary mx-1"></i>{{ PanelSettingSystemStatusEnum::Active->label() }}</label>
                                                 </div>
 
                                                 <div class="custom-control custom-radio">
@@ -117,7 +117,7 @@
                                                         value="{{ PanelSettingSystemStatusEnum::Inactive }}"
                                                         @if (old('system_status', $adminPanelSetting->system_status) == PanelSettingSystemStatusEnum::Inactive) checked @endif>
                                                     <label for="customInactive" class="custom-control-label"> <i
-                                                            class="fas fa-times text-danger mx-1"></i>معطل</label>
+                                                            class="fas fa-times text-danger mx-1"></i>{{ PanelSettingSystemStatusEnum::Inactive->label() }}</label>
                                                 </div>
 
                                                 @error('system_status')
@@ -388,5 +388,4 @@
     <script src="{{ asset('dashboard') }}/assets/dist/js/filepond/filepond.js"></script>
     <script src="{{ asset('dashboard') }}/assets/dist/js/filepond/filepond-plugin-image-preview.js"></script>
     <script src="{{ asset('dashboard') }}/assets/dist/js/filepond/filepond-plugin-file-validate-type.js"></script>
-  
 @endpush

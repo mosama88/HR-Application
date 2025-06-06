@@ -17,7 +17,7 @@ class DepartmentController extends Controller
     public function index()
     {
         $com_code = Auth::user()->com_code;
-        $data = Department::where('com_code', $com_code)->orderByDesc('id')->paginate(10);
+        $data = Department::with(['createdBy:id,name', 'updatedBy:id,name'])->where('com_code', $com_code)->orderByDesc('id')->paginate(10);
         return view('dashboard.settings.departments.index', compact('data'));
     }
 

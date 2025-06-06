@@ -20,7 +20,7 @@ class NationalityController extends Controller
          * Display a listing of the resource.
          */
         $com_code = Auth::user()->com_code;
-        $data = Nationality::where('com_code', $com_code)->orderByDesc('id')->paginate(10);
+        $data = Nationality::with(['createdBy:id,name', 'updatedBy:id,name'])->where('com_code', $com_code)->orderByDesc('id')->paginate(10);
         return view('dashboard.settings.nationalities.index', compact('data'));
     }
 

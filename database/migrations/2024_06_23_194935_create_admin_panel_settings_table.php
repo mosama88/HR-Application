@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('com_code');
             $table->string('company_name', 250);
             $table->string('slug', 255)->unique()->nullable();
-            $table->enum('system_status', [1, 2])->default(1)->nullable(); //1=>active,2=>inactive
+            $table->tinyInteger('system_status')->default(1)->nullable(); //1=>active,2=>inactive
             $table->string('mobile', 250);
             $table->string('address', 250);
             $table->string('email', 100);
