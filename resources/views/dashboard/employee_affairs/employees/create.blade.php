@@ -35,7 +35,11 @@
                         <div class="col-md-12">
                             <h5 class="card-header d-flex justify-content-between align-items-center">
                                 <span>إضافة موظف جديد</span>
-                                <x-create-button-component id="submitButton" />
+
+
+                                <button type="submit" id="submitButton" class="btn btn-icon btn-outline-primary">
+                                    <i class="fa-solid fa-floppy-disk"></i>
+                                </button>
                             </h5>
 
                             <div class="card-body">
@@ -136,23 +140,23 @@
                                                                 @enderror
                                                             </div>
 
-                                                            <!-- الفرع -->
-                                                            <div class="col-md-6">
-                                                                <label class="form-label" for="formtabs-country">الفرع
-                                                                    التابع له الموظف</label>
-                                                                <select
-                                                                    class="select2 form-select @error('branch_id') is-invalid @enderror"
-                                                                    name="branch_id" data-allow-clear="true">
-                                                                    <option selected value="">-- أختر الفرع --
-                                                                    </option>
-                                                                    <option value="Australia">Australia</option>
-                                                                </select>
-                                                                @error('branch_id')
+                                                            <!--  سنة التخرج -->
+                                                            <div class="col-md-3 ">
+                                                                <label class="form-label" for="formtabs-first-name">
+                                                                    سنة التخرج </label>
+                                                                <input type="text" id="formtabs-first-name"
+                                                                    value="{{ old('qualification_year') }}"
+                                                                    class="form-control @error('qualification_year') is-invalid @enderror"
+                                                                    name="qualification_year"
+                                                                    oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                                                    placeholder="John" />
+                                                                @error('qualification_year')
                                                                     <span class="invalid-feedback text-right" role="alert">
                                                                         <strong>{{ $message }}</strong>
                                                                     </span>
                                                                 @enderror
                                                             </div>
+
 
 
                                                             <!-- المؤهل الدراسي  -->
@@ -173,22 +177,7 @@
                                                                 @enderror
                                                             </div>
 
-                                                            <!--  سنة التخرج -->
-                                                            <div class="col-md-3 ">
-                                                                <label class="form-label" for="formtabs-first-name">
-                                                                    سنة التخرج </label>
-                                                                <input type="text" id="formtabs-first-name"
-                                                                    value="{{ old('qualification_year') }}"
-                                                                    class="form-control @error('qualification_year') is-invalid @enderror"
-                                                                    name="qualification_year"
-                                                                    oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
-                                                                    placeholder="John" />
-                                                                @error('qualification_year')
-                                                                    <span class="invalid-feedback text-right" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
-                                                            </div>
+
 
                                                             <!-- تقدير التخرج -->
                                                             <div class="col-md-3 ">
@@ -225,8 +214,29 @@
                                                                 @enderror
                                                             </div>
 
-                                                            <!-- تاريخ الميلاد -->
+                                                            <!-- الفرع -->
                                                             <div class="col-md-6">
+                                                                <label class="form-label" for="formtabs-country">الفرع
+                                                                    التابع له الموظف</label>
+                                                                <select
+                                                                    class="select2 form-select @error('branch_id') is-invalid @enderror"
+                                                                    name="branch_id" data-allow-clear="true">
+                                                                    <option selected value="">-- أختر الفرع --
+                                                                    </option>
+                                                                    <option value="Australia">Australia</option>
+                                                                </select>
+                                                                @error('branch_id')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+
+
+
+                                                            <!-- تاريخ الميلاد -->
+                                                            <div class="col-md-3">
                                                                 <label class="form-label" for="formtabs-birthdate">تاريخ
                                                                     الميلاد</label>
                                                                 <input type="text" name="birth_date"
@@ -260,7 +270,7 @@
 
 
                                                             <!--  مركز اصدار بطاقة الهوية -->
-                                                            <div class="col-md-3 ">
+                                                            <div class="col-md-6 ">
                                                                 <label class="form-label" for="formtabs-first-name">
                                                                     مركز اصدار بطاقة الهوية </label>
                                                                 <input type="text" id="formtabs-first-name"
@@ -277,7 +287,7 @@
 
 
                                                             <!-- تاريخ انتهاء بطاقة الهوية -->
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-3">
                                                                 <label class="form-label" for="formtabs-birthdate">تاريخ
                                                                     انتهاء بطاقة الهوية</label>
                                                                 <input type="text" name="end_national_id"
@@ -332,7 +342,7 @@
                                                             </div>
 
                                                             <!-- فصيلة الدم   -->
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-3">
                                                                 <label class="form-label" for="formtabs-country">فصيلة
                                                                     الدم </label>
                                                                 <select name="blood_type_id"
@@ -352,7 +362,7 @@
                                                             </div>
 
                                                             <!-- الجنسية  -->
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-3">
                                                                 <label class="form-label"
                                                                     for="formtabs-country">الجنسية</label>
                                                                 <select name="nationality_id"
@@ -371,7 +381,7 @@
 
 
                                                             <!-- اللغة الاساسية التي يتحدث بها   -->
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-3">
                                                                 <label class="form-label" for="formtabs-country">اللغة
                                                                     الاساسية التي يتحدث بها </label>
                                                                 <select name="language_id"
@@ -430,7 +440,7 @@
                                                             </div>
 
                                                             <!-- الدولة التابع لها الموظف   -->
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-4">
                                                                 <label class="form-label" for="formtabs-country">الدولة
                                                                     التابع لها الموظف</label>
                                                                 <select name="country_id"
@@ -448,7 +458,7 @@
                                                             </div>
 
                                                             <!-- المحافظة التابع لها الموظف   -->
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-4">
                                                                 <label class="form-label" for="formtabs-country">المحافظة
                                                                     التابع لها الموظف</label>
                                                                 <select name="governorate_id"
@@ -466,7 +476,7 @@
                                                             </div>
 
                                                             <!-- المدينة التابع لها الموظف   -->
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-4">
                                                                 <label class="form-label"
                                                                     for="formtabs-country">المدينة/المركز</label>
                                                                 <select name="city_id"
@@ -500,7 +510,7 @@
                                                             </div>
 
                                                             <!-- هاتف المحمول-->
-                                                            <div class="col-md-3 ">
+                                                            <div class="col-md-4 ">
                                                                 <label class="form-label" for="formtabs-first-name">
                                                                     هاتف المحمول</label>
                                                                 <input type="text" id="formtabs-first-name"
@@ -517,7 +527,7 @@
                                                             </div>
 
                                                             <!-- هاتف المنزل-->
-                                                            <div class="col-md-3 ">
+                                                            <div class="col-md-4 ">
                                                                 <label class="form-label" for="formtabs-first-name">
                                                                     هاتف المنزل</label>
                                                                 <input type="text" id="formtabs-first-name"
@@ -534,7 +544,7 @@
                                                             </div>
 
                                                             <!-- هل يمتلك رخصة قيادة -->
-                                                            <div class="col-md-3 ">
+                                                            <div class="col-md-4 ">
                                                                 <label for="exampleFormControlSelect1" class="form-label">
                                                                     هل يمتلك رخصة قيادة</label>
                                                                 <select
@@ -555,7 +565,7 @@
 
 
                                                             <!-- رقم رخصة القيادة-->
-                                                            <div class="col-md-3 ">
+                                                            <div class="col-md-4 ">
                                                                 <label class="form-label" for="formtabs-first-name">
                                                                     رقم رخصة القيادة</label>
                                                                 <input type="text" id="formtabs-first-name"
@@ -573,7 +583,7 @@
 
 
                                                             <!-- نوع رخصة القيادة  -->
-                                                            <div class="col-md-3 ">
+                                                            <div class="col-md-4 ">
                                                                 <label for="exampleFormControlSelect1" class="form-label">
                                                                     نوع رخصة القيادة </label>
                                                                 <select
@@ -594,7 +604,7 @@
 
 
                                                             <!-- هل يمتلك أقارب بالعمل-->
-                                                            <div class="col-md-3 ">
+                                                            <div class="col-md-4 ">
                                                                 <label for="exampleFormControlSelect1" class="form-label">
                                                                     هل يمتلك أقارب بالعمل</label>
                                                                 <select
@@ -688,7 +698,7 @@
                                                     <div class="row g-3">
 
                                                         <!-- حالة الخدمة العسكرية -->
-                                                        <div class="col-md-3 ">
+                                                        <div class="col-md-6 ">
                                                             <label for="exampleFormControlSelect1" class="form-label">
                                                                 حالة الخدمة العسكرية
                                                             </label>
@@ -815,7 +825,7 @@
 
 
                                                         <!-- تاريخ التعيين -->
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <label class="form-label" for="formtabs-birthdate">تاريخ
                                                                 التعيين
                                                             </label>
@@ -831,7 +841,7 @@
                                                         </div>
 
                                                         <!-- الحالة الوظيفية -->
-                                                        <div class="col-md-3 ">
+                                                        <div class="col-md-4 ">
                                                             <label for="exampleFormControlSelect1" class="form-label">
                                                                 الحالة الوظيفية
                                                             </label>
@@ -853,7 +863,7 @@
 
 
                                                         <!-- الدرجه الوظيفية -->
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <label class="form-label" for="formtabs-country">الدرجه
                                                                 الوظيفية</label>
                                                             <select name="job_grade_id"
@@ -871,7 +881,7 @@
                                                         </div>
 
                                                         <!-- الادارة التابع لها الموظف -->
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <label class="form-label" for="formtabs-country">الادارة
                                                                 التابع لها الموظف</label>
                                                             <select name="department_id"
@@ -889,7 +899,7 @@
                                                         </div>
 
                                                         <!--  وظيفة الموظف -->
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <label class="form-label" for="formtabs-country">وظيفة
                                                                 الموظف</label>
                                                             <select name="job_category_id"
@@ -908,7 +918,7 @@
 
 
                                                         <!-- هل له بصمة حضور وانصراف -->
-                                                        <div class="col-md-3 ">
+                                                        <div class="col-md-4">
                                                             <label for="exampleFormControlSelect1" class="form-label">
                                                                 هل له بصمة حضور وانصراف
                                                             </label>
@@ -951,7 +961,7 @@
 
 
                                                         <!-- أنواع الشفتات -->
-                                                        <div class="col-md-3 ">
+                                                        <div class="col-md-6 ">
                                                             <label for="exampleFormControlSelect1" class="form-label">
                                                                 أنواع الشفتات
                                                             </label>
@@ -1025,7 +1035,7 @@
                                                         </div>
 
                                                         <!-- قيمة الحافز الشهري الثابت -->
-                                                        <div class="col-md-3 ">
+                                                        <div class="col-md-3">
                                                             <label class="form-label" for="formtabs-first-name">
                                                                 قيمة الحافز الشهري الثابت </label>
                                                             <input type="text" id="formtabs-first-name"
@@ -1042,7 +1052,7 @@
                                                         </div>
 
                                                         <!--  هل له تأمين اجتماعي -->
-                                                        <div class="col-md-3 ">
+                                                        <div class="col-md-3">
                                                             <label class="form-label" for="formtabs-first-name">
                                                                 هل له تأمين اجتماعي</label>
                                                             <select
@@ -1062,7 +1072,7 @@
                                                         </div>
 
                                                         <!-- قيمة التأمين الاجتماعي المستقطع شهرياً -->
-                                                        <div class="col-md-3 ">
+                                                        <div class="col-md-6 ">
                                                             <label class="form-label" for="formtabs-first-name">
                                                                 قيمة التأمين الاجتماعي المستقطع شهرياً </label>
                                                             <input type="text" id="formtabs-first-name"
@@ -1079,7 +1089,7 @@
                                                         </div>
 
                                                         <!-- رقم التامين الاجتماعي للموظف -->
-                                                        <div class="col-md-3 ">
+                                                        <div class="col-md-6 ">
                                                             <label class="form-label" for="formtabs-first-name">
                                                                 رقم التامين الاجتماعي للموظف </label>
                                                             <input type="text" id="formtabs-first-name"
@@ -1115,7 +1125,7 @@
                                                         </div>
 
                                                         <!-- قيمة التأمين الطبي المستقطع شهرياً -->
-                                                        <div class="col-md-3 ">
+                                                        <div class="col-md-6 ">
                                                             <label class="form-label" for="formtabs-first-name">
                                                                 قيمة التأمين الطبي المستقطع شهرياً </label>
                                                             <input type="text" id="formtabs-first-name"
@@ -1132,7 +1142,7 @@
                                                         </div>
 
                                                         <!-- رقم التامين الطبي للموظف -->
-                                                        <div class="col-md-3 ">
+                                                        <div class="col-md-3">
                                                             <label class="form-label" for="formtabs-first-name">
                                                                 رقم التامين الطبي للموظف </label>
                                                             <input type="text" id="formtabs-first-name"
