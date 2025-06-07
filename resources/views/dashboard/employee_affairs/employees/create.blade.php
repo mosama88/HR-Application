@@ -1,4 +1,5 @@
 @php
+    use App\Enums\Employee\DrivingLicenseType;
     use App\Enums\Employee\MotivationType;
     use App\Enums\Employee\TypeSalaryReceipt;
     use App\Enums\YesOrNoEnum;
@@ -596,7 +597,7 @@
                                                                     class="form-control @error('driving_License_id') is-invalid @enderror"
                                                                     name="driving_License_id"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
-                                                                    placeholder="John" />
+                                                                    placeholder="مثال:123..." />
                                                                 @error('driving_License_id')
                                                                     <span class="invalid-feedback text-right" role="alert">
                                                                         <strong>{{ $message }}</strong>
@@ -615,8 +616,12 @@
                                                                     aria-label="Default select example">
                                                                     <option selected value="">-- أختر النوع --
                                                                     </option>
-                                                                    <option value="1">One</option>
-                                                                    <option value="2">Two</option>
+                                                                    @foreach (DrivingLicenseType::cases() as $licenseType)
+                                                                        <option
+                                                                            @if (old('driving_license_type') == $licenseType->value) selected @endif
+                                                                            value="{{ $licenseType->value }}">
+                                                                            {{ $licenseType->label() }}</option>
+                                                                    @endforeach
                                                                 </select>
                                                                 @error('driving_license_type')
                                                                     <span class="invalid-feedback text-right" role="alert">
@@ -1039,58 +1044,52 @@
                                                         </div>
 
                                                         <!--  راتب الموظف الشهري -->
-                                                        <div class="col-md-3 ">
+                                                        <div class="col-md-4">
                                                             <label class="form-label" for="formtabs-first-name">
                                                                 راتب الموظف الشهري</label>
                                                             <input type="text" id="formtabs-first-name"
-                                                                value="{{ old('daily_work_hour') }}"
-                                                                class="form-control @error('daily_work_hour') is-invalid @enderror"
-                                                                name="daily_work_hour"
+                                                                value="{{ old('salary') }}"
+                                                                class="form-control @error('salary') is-invalid @enderror"
+                                                                name="salary"
                                                                 oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
                                                                 placeholder="مثال:3000" />
-                                                            @error('daily_work_hour')
+                                                            @error('salary')
                                                                 <span class="invalid-feedback text-right" role="alert">
                                                                     <strong>{{ $message }}</strong>
                                                                 </span>
                                                             @enderror
                                                         </div>
 
-
-                                                        <!--  هل له حافز -->
-                                                        <div class="col-md-3 ">
+                                                        <!--  راتب الموظف اليومى -->
+                                                        <div class="col-md-4">
                                                             <label class="form-label" for="formtabs-first-name">
-                                                                هل له حافز</label>
-                                                            <select
-                                                                class="form-select @error('motivation_type') is-invalid @enderror"
-                                                                name="motivation_type"
-                                                                aria-label="Default select example">
-                                                                <option selected value="">-- أختر الحالة --
-                                                                </option>
-                                                                @foreach (MotivationType::cases() as $motivation)
-                                                                    <option
-                                                                        @if (old('motivation_type') == $motivation->value) selected @endif
-                                                                        value="{{ $motivation->value }}">
-                                                                        {{ $motivation->label() }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                            @error('motivation_type')
-                                                                <span class="invalid-feedback text-right" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
-                                                        </div>
-
-                                                        <!-- قيمة الحافز الشهري الثابت -->
-                                                        <div class="col-md-3">
-                                                            <label class="form-label" for="formtabs-first-name">
-                                                                قيمة الحافز الشهري الثابت </label>
+                                                                راتب الموظف اليومى</label>
                                                             <input type="text" id="formtabs-first-name"
-                                                                value="{{ old('motivation_value') }}"
-                                                                class="form-control @error('motivation_value') is-invalid @enderror"
-                                                                name="motivation_value"
+                                                                value="{{ old('day_price') }}"
+                                                                class="form-control @error('day_price') is-invalid @enderror"
+                                                                name="day_price"
                                                                 oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
-                                                                placeholder="مثال:500" />
-                                                            @error('motivation_value')
+                                                                placeholder="مثال:3000" />
+                                                            @error('day_price')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <!-- عملة قبض الموظف -->
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" for="formtabs-country">عملة قبض
+                                                                الموظف
+                                                            </label>
+                                                            <select name="currency_id"
+                                                                class="select2 form-select @error('currency_id') is-invalid @enderror"
+                                                                data-allow-clear="true">
+                                                                <option selected value="">-- أختر المحافظة --
+                                                                </option>
+                                                                <option value="Australia">Australia</option>
+                                                            </select>
+                                                            @error('currency_id')
                                                                 <span class="invalid-feedback text-right" role="alert">
                                                                     <strong>{{ $message }}</strong>
                                                                 </span>
@@ -1122,7 +1121,7 @@
                                                         </div>
 
                                                         <!-- قيمة التأمين الاجتماعي المستقطع شهرياً -->
-                                                        <div class="col-md-6 ">
+                                                        <div class="col-md-5">
                                                             <label class="form-label" for="formtabs-first-name">
                                                                 قيمة التأمين الاجتماعي المستقطع شهرياً </label>
                                                             <input type="text" id="formtabs-first-name"
@@ -1139,7 +1138,7 @@
                                                         </div>
 
                                                         <!-- رقم التامين الاجتماعي للموظف -->
-                                                        <div class="col-md-6 ">
+                                                        <div class="col-md-4">
                                                             <label class="form-label" for="formtabs-first-name">
                                                                 رقم التامين الاجتماعي للموظف </label>
                                                             <input type="text" id="formtabs-first-name"
@@ -1155,7 +1154,7 @@
                                                             @enderror
                                                         </div>
                                                         <!--  هل له تأمين طبي -->
-                                                        <div class="col-md-3 ">
+                                                        <div class="col-md-3">
                                                             <label class="form-label" for="formtabs-first-name">
                                                                 هل له تأمين طبي</label>
                                                             <select
@@ -1179,7 +1178,7 @@
                                                         </div>
 
                                                         <!-- قيمة التأمين الطبي المستقطع شهرياً -->
-                                                        <div class="col-md-6 ">
+                                                        <div class="col-md-5">
                                                             <label class="form-label" for="formtabs-first-name">
                                                                 قيمة التأمين الطبي المستقطع شهرياً </label>
                                                             <input type="text" id="formtabs-first-name"
@@ -1196,7 +1195,7 @@
                                                         </div>
 
                                                         <!-- رقم التامين الطبي للموظف -->
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-4">
                                                             <label class="form-label" for="formtabs-first-name">
                                                                 رقم التامين الطبي للموظف </label>
                                                             <input type="text" id="formtabs-first-name"
@@ -1261,6 +1260,49 @@
                                                             @enderror
                                                         </div>
 
+
+                                                        <!--  هل له حافز -->
+                                                        <div class="col-md-3 ">
+                                                            <label class="form-label" for="formtabs-first-name">
+                                                                هل له حافز</label>
+                                                            <select
+                                                                class="form-select @error('motivation_type') is-invalid @enderror"
+                                                                name="motivation_type"
+                                                                aria-label="Default select example">
+                                                                <option selected value="">-- أختر الحالة --
+                                                                </option>
+                                                                @foreach (MotivationType::cases() as $motivation)
+                                                                    <option
+                                                                        @if (old('motivation_type') == $motivation->value) selected @endif
+                                                                        value="{{ $motivation->value }}">
+                                                                        {{ $motivation->label() }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('motivation_type')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <!-- قيمة الحافز الشهري الثابت -->
+                                                        <div class="col-md-3">
+                                                            <label class="form-label" for="formtabs-first-name">
+                                                                قيمة الحافز الشهري الثابت </label>
+                                                            <input type="text" id="formtabs-first-name"
+                                                                value="{{ old('motivation_value') }}"
+                                                                class="form-control @error('motivation_value') is-invalid @enderror"
+                                                                name="motivation_value"
+                                                                oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                                                placeholder="مثال:500" />
+                                                            @error('motivation_value')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+
                                                         <!--  هل له رصيد اجازات سنوي -->
                                                         <div class="col-md-3 ">
                                                             <label class="form-label" for="formtabs-first-name">
@@ -1298,7 +1340,7 @@
                                                 <div class="tab-pane fade" id="form-tabs-addtional" role="tabpanel">
                                                     <div class="row g-3">
                                                         <!-- شخص يمكن الرجوع اليه للضرورة -->
-                                                        <div class="col-md-3 ">
+                                                        <div class="col-md-4">
                                                             <label class="form-label" for="formtabs-first-name">
                                                                 شخص يمكن الرجوع اليه للضرورة </label>
                                                             <input type="text" id="formtabs-first-name"
@@ -1313,7 +1355,7 @@
                                                         </div>
 
                                                         <!-- رقم الباسبور ان وجد -->
-                                                        <div class="col-md-3 ">
+                                                        <div class="col-md-4">
                                                             <label class="form-label" for="formtabs-first-name">
                                                                 رقم الباسبور ان وجد</label>
                                                             <input type="text" id="formtabs-first-name"
@@ -1329,7 +1371,7 @@
                                                             @enderror
                                                         </div>
                                                         <!-- تاريخ انتهاء الباسبور -->
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <label class="form-label" for="formtabs-birthdate">تاريخ
                                                                 انتهاء الباسبور
                                                             </label>

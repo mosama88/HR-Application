@@ -80,6 +80,7 @@ class Employee extends Model implements HasMedia
         'daily_work_hour',
         'salary',
         'day_price',
+        'currency_id',
         'bank_number_account',
         'motivation_type',
         'motivation_value',
@@ -201,6 +202,11 @@ class Employee extends Model implements HasMedia
     public function nationality()
     {
         return $this->belongsTo(Nationality::class, 'nationality_id');
+    }
+
+    public function currency()
+    {
+        return $this->belongsTo(Currency::class, 'currency_id');
     }
 
 

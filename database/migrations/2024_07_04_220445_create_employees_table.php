@@ -3,6 +3,7 @@
 use App\Models\City;
 use App\Models\Branch;
 use App\Models\Country;
+use App\Models\Currency;
 use App\Models\JobGrade;
 use App\Models\Language;
 use App\Models\BloodType;
@@ -76,6 +77,7 @@ return new class extends Migration
             $table->decimal('daily_work_hour', 10, 2)->nullable(); //عدد ساعات العمل للموظف وهذا في حالة ان ليس له شفت ثابت
             $table->decimal('salary', 10, 2)->nullable()->default(0); //راتب الموظف
             $table->decimal('day_price', 10, 2)->nullable(); //سعر يوم الموظف
+            $table->foreignIdFor(Currency::class)->nullable()->constrained()->nullOnDelete(); //العملة
             $table->string('bank_number_account', 50)->nullable(); //رقم حساب البنك للموظف
             $table->tinyInteger('motivation_type')->default(1)->nullable(); //نوع الحافز
             $table->decimal('motivation_value', 10, 2)->nullable()->default(0); //قيمة الحافز الثابت ان وجد

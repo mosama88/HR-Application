@@ -188,6 +188,11 @@
             </a>
 
             <ul class="menu-sub">
+                <li class="menu-item @yield('active-employees')">
+                    <a href="{{ route('dashboard.employees.index') }}" class="menu-link">
+                        <div data-i18n="بيانات الموظفين">بيانات الموظفين</div>
+                    </a>
+                </li>
                 <li class="menu-item @yield('active-additional_types')">
                     <a href="{{ route('dashboard.additional_types.index') }}" class="menu-link">
                         <div data-i18n="أنواع الأضافى">أنواع الأضافى</div>
@@ -203,12 +208,6 @@
                         <div data-i18n="أنواع الخصومات">أنواع الخصومات</div>
                     </a>
                 </li>
-                <li class="menu-item @yield('active-employees')">
-                    <a href="{{ route('dashboard.employees.index') }}" class="menu-link">
-                        <div data-i18n="الموظفين">الموظفين</div>
-                    </a>
-                </li>
-
             </ul>
         </li>
     </ul>
