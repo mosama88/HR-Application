@@ -57,9 +57,8 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             ShiftTypeSeeder::class,
             BranchSeeder::class,
-            // CountrySeeder::class,
-            // CurrencySeeder::class,
-            // AdminPanelSettingSeeder::class,
+            CountrySeeder::class,
+            CurrencySeeder::class,
         ]);
     }
 }

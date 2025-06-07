@@ -18,11 +18,11 @@ class CurrencyFactory extends Factory
      */
     public function definition(): array
     {
-        $country = CurrencyFacker::uniqueCountry();
+        $currency = CurrencyFacker::uniqueCurrency();
 
         return [
-            'name' => $country['name'],
-            'currency_symbol' => $country['currency_symbol'],
+            'name' => $currency['name'],
+            'currency_symbol' => $currency['currency_symbol'],
             'active' => 1,
             'com_code' => 6000,
             'created_by' => 1,
