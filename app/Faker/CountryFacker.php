@@ -10,85 +10,84 @@ class CountryFacker extends Base
     protected static $usedCountries = [];
 
     protected static $countries = [
-        'مصر' => 'EG',
-        'السعودية' => 'SA',
-        'الإمارات' => 'AE',
-        'الكويت' => 'KW',
-        'قطر' => 'QA',
-        'البحرين' => 'BH',
-        'عمان' => 'OM',
-        'الأردن' => 'JO',
-        'سوريا' => 'SY',
-        'لبنان' => 'LB',
-        'العراق' => 'IQ',
-        'اليمن' => 'YE',
-        'الجزائر' => 'DZ',
-        'المغرب' => 'MA',
-        'تونس' => 'TN',
-        'ليبيا' => 'LY',
-        'السودان' => 'SD',
-        'فلسطين' => 'PS',
-        'موريتانيا' => 'MR',
-        'جيبوتي' => 'DJ',
-        'جزر القمر' => 'KM',
-        'الولايات المتحدة' => 'US',
-        'كندا' => 'CA',
-        'المملكة المتحدة' => 'GB',
-        'فرنسا' => 'FR',
-        'ألمانيا' => 'DE',
-        'إيطاليا' => 'IT',
-        'إسبانيا' => 'ES',
-        'البرتغال' => 'PT',
-        'اليونان' => 'GR',
-        'تركيا' => 'TR',
-        'الهند' => 'IN',
-        'الصين' => 'CN',
-        'اليابان' => 'JP',
-        'كوريا الجنوبية' => 'KR',
-        'أستراليا' => 'AU',
-        'البرازيل' => 'BR',
-        'الأرجنتين' => 'AR',
-        'جنوب أفريقيا' => 'ZA',
-        'نيجيريا' => 'NG',
-        'إندونيسيا' => 'ID',
-        'باكستان' => 'PK',
-        'روسيا' => 'RU',
-        'أوكرانيا' => 'UA',
-        'بولندا' => 'PL',
-        'السويد' => 'SE',
-        'النرويج' => 'NO',
-        'الدنمارك' => 'DK',
-        'هولندا' => 'NL',
-        'سويسرا' => 'CH',
-        'النمسا' => 'AT',
-        'فنلندا' => 'FI',
-        'بلجيكا' => 'BE',
-        'تشيكيا' => 'CZ',
+        ['name' => 'مصر', 'country_code' => 'EG'],
+        ['name' => 'السعودية', 'country_code' => 'SA'],
+        ['name' => 'الإمارات', 'country_code' => 'AE'],
+        ['name' => 'الكويت', 'country_code' => 'KW'],
+        ['name' => 'قطر', 'country_code' => 'QA'],
+        ['name' => 'البحرين', 'country_code' => 'BH'],
+        ['name' => 'عمان', 'country_code' => 'OM'],
+        ['name' => 'الأردن', 'country_code' => 'JO'],
+        ['name' => 'سوريا', 'country_code' => 'SY'],
+        ['name' => 'لبنان', 'country_code' => 'LB'],
+        ['name' => 'العراق', 'country_code' => 'IQ'],
+        ['name' => 'اليمن', 'country_code' => 'YE'],
+        ['name' => 'الجزائر', 'country_code' => 'DZ'],
+        ['name' => 'المغرب', 'country_code' => 'MA'],
+        ['name' => 'تونس', 'country_code' => 'TN'],
+        ['name' => 'ليبيا', 'country_code' => 'LY'],
+        ['name' => 'السودان', 'country_code' => 'SD'],
+        ['name' => 'فلسطين', 'country_code' => 'PS'],
+        ['name' => 'موريتانيا', 'country_code' => 'MR'],
+        ['name' => 'جيبوتي', 'country_code' => 'DJ'],
+        ['name' => 'جزر القمر', 'country_code' => 'KM'],
+        ['name' => 'الولايات المتحدة', 'country_code' => 'US'],
+        ['name' => 'كندا', 'country_code' => 'CA'],
+        ['name' => 'المملكة المتحدة', 'country_code' => 'GB'],
+        ['name' => 'فرنسا', 'country_code' => 'FR'],
+        ['name' => 'ألمانيا', 'country_code' => 'DE'],
+        ['name' => 'إيطاليا', 'country_code' => 'IT'],
+        ['name' => 'إسبانيا', 'country_code' => 'ES'],
+        ['name' => 'البرتغال', 'country_code' => 'PT'],
+        ['name' => 'اليونان', 'country_code' => 'GR'],
+        ['name' => 'تركيا', 'country_code' => 'TR'],
+        ['name' => 'الهند', 'country_code' => 'IN'],
+        ['name' => 'الصين', 'country_code' => 'CN'],
+        ['name' => 'اليابان', 'country_code' => 'JP'],
+        ['name' => 'كوريا الجنوبية', 'country_code' => 'KR'],
+        ['name' => 'أستراليا', 'country_code' => 'AU'],
+        ['name' => 'البرازيل', 'country_code' => 'BR'],
+        ['name' => 'الأرجنتين', 'country_code' => 'AR'],
+        ['name' => 'جنوب أفريقيا', 'country_code' => 'ZA'],
+        ['name' => 'نيجيريا', 'country_code' => 'NG'],
+        ['name' => 'إندونيسيا', 'country_code' => 'ID'],
+        ['name' => 'باكستان', 'country_code' => 'PK'],
+        ['name' => 'روسيا', 'country_code' => 'RU'],
+        ['name' => 'أوكرانيا', 'country_code' => 'UA'],
+        ['name' => 'بولندا', 'country_code' => 'PL'],
+        ['name' => 'السويد', 'country_code' => 'SE'],
+        ['name' => 'النرويج', 'country_code' => 'NO'],
+        ['name' => 'الدنمارك', 'country_code' => 'DK'],
+        ['name' => 'هولندا', 'country_code' => 'NL'],
+        ['name' => 'سويسرا', 'country_code' => 'CH'],
+        ['name' => 'النمسا', 'country_code' => 'AT'],
+        ['name' => 'فنلندا', 'country_code' => 'FI'],
+        ['name' => 'بلجيكا', 'country_code' => 'BE'],
+        ['name' => 'تشيكيا', 'country_code' => 'CZ'],
     ];
 
-    /**
-     * الحصول على اسم دولة وكودها بدون تكرار
-     */
+
+
     public static function uniqueCountry()
     {
-        $available = array_diff_key(static::$countries, static::$usedCountries);
+        $available = array_filter(static::$countries, function ($country) {
+            return !in_array($country['name'], static::$usedCountries);
+        });
 
         if (empty($available)) {
-            // Reset if exhausted
-            static::$usedCountries = [];
-            $available = static::$countries;
+          
+            static::$usedCountries = [];  // Reset the used categories
+            $available = static::$countries;  // Reset the available categories
         }
 
-        // اختر عشوائي من الدول المتاحة
-        $countryName = array_rand($available);
-        $countryCode = static::$countries[$countryName];
-
-        // سجل كأنها تم استخدامها
-        static::$usedCountries[$countryName] = true;
+        $country = static::randomElement($available);
+        static::$usedCountries[] = $country['name'];
 
         return [
-            'name' => $countryName,
-            'country_code' => $countryCode,
+            'name' => $country['name'],
+            'country_code' => $country['country_code']
         ];
     }
+
+
 }
