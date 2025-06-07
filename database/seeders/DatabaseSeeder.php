@@ -55,10 +55,13 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             AdminSeeder::class,
+            FinanceCalendarSeeder::class,
+            FinanceClnPeriodsSeeder::class,
             ShiftTypeSeeder::class,
             BranchSeeder::class,
             CountrySeeder::class,
             CurrencySeeder::class,
+            LanguageSeeder::class,
         ]);
     }
 }
