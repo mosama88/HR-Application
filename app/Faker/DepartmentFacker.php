@@ -7,9 +7,9 @@ use Faker\Provider\Base;
 
 class DepartmentFacker extends Base
 {
-    protected static $usedLanguages = [];
+    protected static $usedDepartments = [];
 
-    protected static $languages = [
+    protected static $departments = [
         'إدارة الموارد البشرية',
         'إدارة الشؤون الإدارية',
         'إدارة الشؤون القانونية',
@@ -53,15 +53,15 @@ class DepartmentFacker extends Base
         'إدارة الشؤون التجارية',
     ];
 
-    public function uniqueLanguageName()
+    public function uniqueDepartmentName()
     {
-        $available = array_diff(static::$languages, static::$usedLanguages);
+        $available = array_diff(static::$departments, static::$usedDepartments);
         if (empty($available)) {
-            throw new \Exception("No unique languages left.");
+            throw new \Exception("No unique department left.");
         }
 
-        $language = static::randomElement($available);
-        static::$usedLanguages[] = $language;
-        return $language;
+        $department = static::randomElement($available);
+        static::$usedDepartments[] = $department;
+        return $department;
     }
 }

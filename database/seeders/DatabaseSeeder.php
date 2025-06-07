@@ -59,9 +59,10 @@ class DatabaseSeeder extends Seeder
             FinanceClnPeriodsSeeder::class,
             ShiftTypeSeeder::class,
             BranchSeeder::class,
-            CountrySeeder::class,
             CurrencySeeder::class,
             LanguageSeeder::class,
+            CountrySeeder::class,
+            DepartmentSeeder::class,
         ]);
     }
 }
