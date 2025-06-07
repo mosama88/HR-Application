@@ -1,0 +1,1480 @@
+@php
+    use App\Enums\Employee\DrivingLicenseType;
+    use App\Enums\Employee\MotivationType;
+    use App\Enums\Employee\TypeSalaryReceipt;
+    use App\Enums\YesOrNoEnum;
+    use App\Enums\Employee\ReligionEnum;
+    use App\Enums\Employee\SocialStatus;
+    use App\Enums\Employee\GraduationEstimateEnum;
+@endphp
+@extends('dashboard.layouts.master')
+@section('active-employees', 'active')
+@section('title', 'عرض بيانات الموظفين')
+@push('css')
+    <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/libs/typeahead-js/typeahead.css" />
+    <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/libs/flatpickr/flatpickr.css" />
+    <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/libs/select2/select2.css" />
+
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet" />
+@endpush
+@section('content')
+
+    @include('dashboard.layouts.message')
+    <!-- Content Header (Page header) -->
+    @include('dashboard.layouts.breadcrumb', [
+        'pageTitle' => ' عرض بيانات الموظفين',
+        'previousPage' => ' جدول الموظفين',
+        'urlPreviousPage' => 'dashboard/employees', //سيتم تغيير لوحة التحكم لاحقآ
+        'currentPage' => 'عرض بيانات الموظفين',
+    ])
+
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+
+                        <div class="col-md-12">
+                            <h5 class="card-header d-flex justify-content-between align-items-center">
+                                <span>إضافة موظف جديد</span>
+
+
+                                <button type="submit" id="submitButton" class="btn btn-icon btn-outline-primary">
+                                    <i class="fa-solid fa-floppy-disk"></i>
+                                </button>
+                            </h5>
+
+                            <div class="card-body">
+
+
+
+
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="nav-align-top mb-3">
+                                            <ul class="nav nav-tabs" role="tablist">
+                                                <li class="nav-item">
+                                                    <button class="nav-link active" data-bs-toggle="tab"
+                                                        data-bs-target="#form-tabs-personal" role="tab"
+                                                        aria-selected="true">
+                                                        بيانات شخصية
+                                                    </button>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <button class="nav-link" data-bs-toggle="tab"
+                                                        data-bs-target="#form-tabs-account" role="tab"
+                                                        aria-selected="false">
+                                                        بيانات الخدمة العسكرية
+                                                    </button>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <button class="nav-link" data-bs-toggle="tab"
+                                                        data-bs-target="#form-tabs-social" role="tab"
+                                                        aria-selected="false">
+                                                        بيانات وظيفية
+                                                    </button>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <button class="nav-link" data-bs-toggle="tab"
+                                                        data-bs-target="#form-tabs-addtional" role="tab"
+                                                        aria-selected="false">
+                                                        بيانات إضافية
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div class="tab-pane fade active show" id="form-tabs-personal"
+                                                    role="tabpanel">
+                                                    <form action="{{ route('dashboard.employees.store') }}" method="POST"
+                                                        id="storeForm" enctype="multipart/form-data">
+                                                        @csrf
+                                                        <div class="row g-3">
+                                                            <!-- كود البصمة -->
+                                                            <div class="col-md-3 ">
+                                                                <label class="form-label" for="formtabs-first-name">كود بصمة
+                                                                    الموظف</label>
+                                                                <input type="text"
+                                                                    class="form-control @error('fp_code') is-invalid @enderror"
+                                                                    name="fp_code" value="{{ old('fp_code') }}"
+                                                                    oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                                                    placeholder="مثال:1000" />
+                                                                @error('fp_code')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                            <!-- الأسم -->
+                                                            <div class="col-md-6 ">
+                                                                <label class="form-label" for="formtabs-last-name">اسم
+                                                                    الموظف بالكامل <span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="text" name="name"
+                                                                    value="{{ old('fp_code') }}"
+                                                                    class="form-control @error('name') is-invalid @enderror"
+                                                                    placeholder="مثال:John" />
+                                                                @error('name')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+                                                            <!-- الجنس -->
+                                                            <div class="col-md-3 ">
+                                                                <label for="exampleFormControlSelect1"
+                                                                    class="form-label">نوع الجنس</label>
+                                                                <select
+                                                                    class="form-select @error('gender') is-invalid @enderror"
+                                                                    name="gender" aria-label="Default select example">
+                                                                    <option selected value="">-- أختر نوع الجنس --
+                                                                    </option>
+                                                                    <option value="1">One</option>
+                                                                    <option value="2">Two</option>
+                                                                </select>
+                                                                @error('gender')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+                                                            <!--  سنة التخرج -->
+                                                            <div class="col-md-3 ">
+                                                                <label class="form-label" for="formtabs-first-name">
+                                                                    سنة التخرج </label>
+                                                                <input type="text" id="formtabs-first-name"
+                                                                    value="{{ old('qualification_year') }}"
+                                                                    class="form-control @error('qualification_year') is-invalid @enderror"
+                                                                    name="qualification_year"
+                                                                    oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                                                    placeholder="مثال:2020" />
+                                                                @error('qualification_year')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+
+
+                                                            <!-- المؤهل الدراسي  -->
+                                                            <div class="col-md-6">
+                                                                <label class="form-label" for="formtabs-country">المؤهل
+                                                                    الدراسي</label>
+                                                                <select name="qualification_id"
+                                                                    class="select2 form-select @error('qualification_id') is-invalid @enderror"
+                                                                    data-allow-clear="true">
+                                                                    <option selected value="">-- أختر المؤهل --
+                                                                    </option>
+                                                                    <option value="Australia">Australia</option>
+                                                                </select>
+                                                                @error('qualification_id')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+
+
+                                                            <!-- تقدير التخرج -->
+                                                            <div class="col-md-3 ">
+                                                                <label for="exampleFormControlSelect1" class="form-label">
+                                                                    تقدير التخرج</label>
+                                                                <select
+                                                                    class="form-select @error('graduation_estimate') is-invalid @enderror"
+                                                                    name="graduation_estimate"
+                                                                    aria-label="Default select example">
+                                                                    <option selected value="">-- أختر تقدير التخرج --
+                                                                    </option>
+                                                                    @foreach (GraduationEstimateEnum::cases() as $estimate)
+                                                                        <option value="{{ $estimate->value }}"
+                                                                            @if (old('graduation_estimate') == $estimate->value) selected @endif>
+                                                                            {{ $estimate->label() }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('graduation_estimate')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+                                                            <!-- تخصص  التخرج -->
+                                                            <div class="col-md-3 ">
+                                                                <label for="exampleFormControlSelect1" class="form-label">
+                                                                    تخصص التخرج</label>
+                                                                <input type="text" id="formtabs-first-name"
+                                                                    value="{{ old('major') }}"
+                                                                    class="form-control @error('major') is-invalid @enderror"
+                                                                    name="major" placeholder="مثال:علوم الحاسوب" />
+                                                                @error('major')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+                                                            <!-- الفرع -->
+                                                            <div class="col-md-6">
+                                                                <label class="form-label" for="formtabs-country">الفرع
+                                                                    التابع له الموظف</label>
+                                                                <select
+                                                                    class="select2 form-select @error('branch_id') is-invalid @enderror"
+                                                                    name="branch_id" data-allow-clear="true">
+                                                                    <option selected value="">-- أختر الفرع --
+                                                                    </option>
+                                                                    <option value="Australia">Australia</option>
+                                                                </select>
+                                                                @error('branch_id')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+
+
+
+                                                            <!-- تاريخ الميلاد -->
+                                                            <div class="col-md-3">
+                                                                <label class="form-label" for="formtabs-birthdate">تاريخ
+                                                                    الميلاد</label>
+                                                                <input type="text" name="birth_date"
+                                                                    value="{{ old('birth_date') }}"
+                                                                    id="formtabs-birthdate"
+                                                                    class="form-control dob-picker @error('birth_date') is-invalid @enderror"
+                                                                    placeholder="YYYY-MM-DD" />
+                                                                @error('birth_date')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+                                                            <!--  رقم بطاقة الهوية -->
+                                                            <div class="col-md-3 ">
+                                                                <label class="form-label" for="formtabs-first-name">
+                                                                    رقم بطاقة الهوية </label>
+                                                                <input type="text" id="formtabs-first-name"
+                                                                    value="{{ old('national_id') }}"
+                                                                    class="form-control @error('national_id') is-invalid @enderror"
+                                                                    name="national_id"
+                                                                    oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                                                    placeholder="مثال:الرقم القومى المكون من 14 رقم" />
+                                                                @error('national_id')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+
+                                                            <!--  مركز اصدار بطاقة الهوية -->
+                                                            <div class="col-md-6 ">
+                                                                <label class="form-label" for="formtabs-first-name">
+                                                                    مركز اصدار بطاقة الهوية </label>
+                                                                <input type="text" id="formtabs-first-name"
+                                                                    value="{{ old('national_id_place') }}"
+                                                                    class="form-control @error('national_id_place') is-invalid @enderror"
+                                                                    name="national_id_place"
+                                                                    placeholder="مثال:قسم الهرم" />
+                                                                @error('national_id_place')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+
+
+                                                            <!-- تاريخ انتهاء بطاقة الهوية -->
+                                                            <div class="col-md-3">
+                                                                <label class="form-label" for="formtabs-birthdate">تاريخ
+                                                                    انتهاء بطاقة الهوية</label>
+                                                                <input type="text" name="end_national_id"
+                                                                    value="{{ old('end_national_id') }}"
+                                                                    id="formtabs-birthdate"
+                                                                    class="form-control dob-picker @error('end_national_id') is-invalid @enderror"
+                                                                    placeholder="YYYY-MM-DD" />
+                                                                @error('end_national_id')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+
+                                                            <!-- الحالة الأجتماعية -->
+                                                            <div class="col-md-3 ">
+                                                                <label for="exampleFormControlSelect1" class="form-label">
+                                                                    الحالة الأجتماعية</label>
+                                                                <select
+                                                                    class="form-select @error('social_status') is-invalid @enderror"
+                                                                    name="social_status"
+                                                                    aria-label="Default select example">
+                                                                    <option selected value="">-- أختر الحالة
+                                                                        الأجتماعية --
+                                                                    </option>
+                                                                    @foreach (SocialStatus::cases() as $socialStatus)
+                                                                        <option
+                                                                            @if (old('social_status') == $socialStatus->value) selected @endif
+                                                                            value="{{ $socialStatus->value }}">
+                                                                            {{ $socialStatus->label() }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('social_status')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+                                                            <!-- عدد الأطفال-->
+                                                            <div class="col-md-3 ">
+                                                                <label class="form-label" for="formtabs-first-name">
+                                                                    عدد الأطفال</label>
+                                                                <input type="text" id="formtabs-first-name"
+                                                                    value="{{ old('children_number') }}"
+                                                                    class="form-control @error('children_number') is-invalid @enderror"
+                                                                    name="children_number"
+                                                                    oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                                                    placeholder="مثال:1" />
+                                                                @error('children_number')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+                                                            <!-- فصيلة الدم   -->
+                                                            <div class="col-md-3">
+                                                                <label class="form-label" for="formtabs-country">فصيلة
+                                                                    الدم </label>
+                                                                <select name="blood_type_id"
+                                                                    value="{{ old('blood_type_id') }}"
+                                                                    class="select2 form-select @error('blood_type_id') is-invalid @enderror"
+                                                                    data-allow-clear="true">
+                                                                    <option selected value="">-- أختر نوع فصيلة الدم
+                                                                        --
+                                                                    </option>
+                                                                    <option value="Australia">Australia</option>
+                                                                </select>
+                                                                @error('blood_type_id')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+                                                            <!-- الجنسية  -->
+                                                            <div class="col-md-3">
+                                                                <label class="form-label"
+                                                                    for="formtabs-country">الجنسية</label>
+                                                                <select name="nationality_id"
+                                                                    class="select2 form-select @error('nationality_id') is-invalid @enderror"
+                                                                    data-allow-clear="true">
+                                                                    <option selected value="">-- أختر الجنسية --
+                                                                    </option>
+                                                                    <option value="Australia">Australia</option>
+                                                                </select>
+                                                                @error('nationality_id')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+
+                                                            <!-- اللغة الاساسية التي يتحدث بها   -->
+                                                            <div class="col-md-3">
+                                                                <label class="form-label" for="formtabs-country">اللغة
+                                                                    الاساسية التي يتحدث بها </label>
+                                                                <select name="language_id"
+                                                                    class="select2 form-select @error('language_id') is-invalid @enderror"
+                                                                    data-allow-clear="true">
+                                                                    <option selected value="">-- أختر اللغة --
+                                                                    </option>
+                                                                    <option value="Australia">Australia</option>
+                                                                </select>
+                                                                @error('language_id')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+
+                                                            <!-- الديانة -->
+                                                            <div class="col-md-3 ">
+                                                                <label for="exampleFormControlSelect1" class="form-label">
+                                                                    الديانة</label>
+                                                                <select
+                                                                    class="form-select @error('religion') is-invalid @enderror"
+                                                                    name="religion" aria-label="Default select example">
+                                                                    <option selected value="">-- أختر الديانة --
+                                                                    </option>
+                                                                    @foreach (ReligionEnum::cases() as $religion)
+                                                                        <option
+                                                                            @if (old('religion') == $religion->value) selected @endif
+                                                                            value="{{ $religion->value }}">
+                                                                            {{ $religion->label() }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('religion')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+
+                                                            <!-- البريد الالكتروني-->
+                                                            <div class="col-md-6">
+                                                                <label class="form-label" for="formtabs-email">البريد
+                                                                    الالكتروني</label>
+                                                                <div class="input-group input-group-merge">
+                                                                    <input type="text" id="formtabs-email"
+                                                                        name="email" value="{{ old('email') }}"
+                                                                        class="form-control @error('email') is-invalid @enderror"
+                                                                        placeholder="john.doe" aria-label="john.doe"
+                                                                        aria-describedby="formtabs-email2" />
+                                                                    <span class="input-group-text"
+                                                                        id="formtabs-email2">@example.com</span>
+                                                                </div>
+                                                                @error('email')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+                                                            <!-- الدولة التابع لها الموظف   -->
+                                                            <div class="col-md-4">
+                                                                <label class="form-label" for="formtabs-country">الدولة
+                                                                    التابع لها الموظف</label>
+                                                                <select name="country_id"
+                                                                    class="select2 form-select @error('country_id') is-invalid @enderror"
+                                                                    data-allow-clear="true">
+                                                                    <option selected value="">-- أختر الدولة --
+                                                                    </option>
+                                                                    <option value="Australia">Australia</option>
+                                                                </select>
+                                                                @error('country_id')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+                                                            <!-- المحافظة التابع لها الموظف   -->
+                                                            <div class="col-md-4">
+                                                                <label class="form-label" for="formtabs-country">المحافظة
+                                                                    التابع لها الموظف</label>
+                                                                <select name="governorate_id"
+                                                                    class="select2 form-select @error('governorate_id') is-invalid @enderror"
+                                                                    data-allow-clear="true">
+                                                                    <option selected value="">-- أختر المحافظة --
+                                                                    </option>
+                                                                    <option value="Australia">Australia</option>
+                                                                </select>
+                                                                @error('governorate_id')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+                                                            <!-- المدينة التابع لها الموظف   -->
+                                                            <div class="col-md-4">
+                                                                <label class="form-label"
+                                                                    for="formtabs-country">المدينة/المركز</label>
+                                                                <select name="city_id"
+                                                                    class="select2 form-select @error('city_id') is-invalid @enderror"
+                                                                    data-allow-clear="true">
+                                                                    <option selected value="">-- أختر المدينة/المركز
+                                                                        --
+                                                                    </option>
+                                                                    <option value="Australia">Australia</option>
+                                                                </select>
+                                                                @error('city_id')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+                                                            <!-- عنوان الاقامة -->
+                                                            <div class="col-md-12">
+                                                                <label class="form-label" for="formtabs-first-name">
+                                                                    عنوان الاقامة </label>
+                                                                <input type="text" id="formtabs-first-name"
+                                                                    value="{{ old('address') }}"
+                                                                    class="form-control @error('address') is-invalid @enderror"
+                                                                    name="address" placeholder="مثال: شارع..." />
+                                                                @error('address')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+                                                            <!-- هاتف المحمول-->
+                                                            <div class="col-md-4 ">
+                                                                <label class="form-label" for="formtabs-first-name">
+                                                                    هاتف المحمول</label>
+                                                                <input type="text" id="formtabs-first-name"
+                                                                    value="{{ old('mobile') }}"
+                                                                    class="form-control @error('mobile') is-invalid @enderror"
+                                                                    name="mobile"
+                                                                    oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                                                    placeholder="658 799 8941" />
+                                                                @error('mobile')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+                                                            <!-- هاتف المنزل-->
+                                                            <div class="col-md-4 ">
+                                                                <label class="form-label" for="formtabs-first-name">
+                                                                    هاتف المنزل</label>
+                                                                <input type="text" id="formtabs-first-name"
+                                                                    value="{{ old('home_telephone') }}"
+                                                                    class="form-control @error('home_telephone') is-invalid @enderror"
+                                                                    name="home_telephone"
+                                                                    oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                                                    placeholder="028 799 8941" />
+                                                                @error('home_telephone')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+                                                            <!-- هل يمتلك رخصة قيادة -->
+                                                            <div class="col-md-4 ">
+                                                                <label for="exampleFormControlSelect1" class="form-label">
+                                                                    هل يمتلك رخصة قيادة</label>
+                                                                <select
+                                                                    class="form-select @error('driving_license') is-invalid @enderror"
+                                                                    name="driving_license"
+                                                                    aria-label="Default select example">
+                                                                    <option selected value="">-- أختر الحالة --
+                                                                    </option>
+                                                                    @foreach (YesOrNoEnum::cases() as $license)
+                                                                        <option
+                                                                            @if (old('driving_license') == $license->value) selected @endif
+                                                                            value="{{ $license->value }}">
+                                                                            {{ $license->label() }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('driving_license')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+
+                                                            <!-- رقم رخصة القيادة-->
+                                                            <div class="col-md-4 ">
+                                                                <label class="form-label" for="formtabs-first-name">
+                                                                    رقم رخصة القيادة</label>
+                                                                <input type="text" id="formtabs-first-name"
+                                                                    value="{{ old('driving_License_id') }}"
+                                                                    class="form-control @error('driving_License_id') is-invalid @enderror"
+                                                                    name="driving_License_id"
+                                                                    oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                                                    placeholder="مثال:123..." />
+                                                                @error('driving_License_id')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+
+                                                            <!-- نوع رخصة القيادة  -->
+                                                            <div class="col-md-4 ">
+                                                                <label for="exampleFormControlSelect1" class="form-label">
+                                                                    نوع رخصة القيادة </label>
+                                                                <select
+                                                                    class="form-select @error('driving_license_type') is-invalid @enderror"
+                                                                    name="driving_license_type"
+                                                                    aria-label="Default select example">
+                                                                    <option selected value="">-- أختر النوع --
+                                                                    </option>
+                                                                    @foreach (DrivingLicenseType::cases() as $licenseType)
+                                                                        <option
+                                                                            @if (old('driving_license_type') == $licenseType->value) selected @endif
+                                                                            value="{{ $licenseType->value }}">
+                                                                            {{ $licenseType->label() }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('driving_license_type')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+
+                                                            <!-- هل يمتلك أقارب بالعمل-->
+                                                            <div class="col-md-4 ">
+                                                                <label for="exampleFormControlSelect1" class="form-label">
+                                                                    هل يمتلك أقارب بالعمل</label>
+                                                                <select
+                                                                    class="form-select @error('has_relatives') is-invalid @enderror"
+                                                                    name="has_relatives"
+                                                                    aria-label="Default select example">
+                                                                    <option selected value="">-- أختر الحالة --
+                                                                    </option>
+                                                                    @foreach (YesOrNoEnum::cases() as $relatives)
+                                                                        <option
+                                                                            @if (old('has_relatives') == $relatives->value) selected @endif
+                                                                            value="{{ $relatives->value }}">
+                                                                            {{ $relatives->label() }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('has_relatives')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+                                                            <!-- تفاصيل الاقارب -->
+                                                            <div class="col-md-12">
+                                                                <label class="form-label" for="formtabs-first-name">
+                                                                    تفاصيل الاقارب </label>
+                                                                <input type="text" id="formtabs-first-name"
+                                                                    value="{{ old('relatives_details') }}"
+                                                                    class="form-control @error('relatives_details') is-invalid @enderror"
+                                                                    name="relatives_details" placeholder="John" />
+                                                                @error('relatives_details')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+                                                            <!--هل يمتلك اعاقة / عمليات سابقة-->
+                                                            <div class="col-md-3 ">
+                                                                <label for="exampleFormControlSelect1" class="form-label">
+                                                                    هل يمتلك اعاقة / عمليات سابقة</label>
+                                                                <select
+                                                                    class="form-select @error('has_disabilities') is-invalid @enderror"
+                                                                    name="has_disabilities"
+                                                                    aria-label="Default select example">
+                                                                    <option selected value="">-- أختر الحالة --
+                                                                    </option>
+                                                                    @foreach (YesOrNoEnum::cases() as $disabilities)
+                                                                        <option
+                                                                            @if (old('has_disabilities') == $disabilities->value) selected @endif
+                                                                            value="{{ $disabilities->value }}">
+                                                                            {{ $disabilities->label() }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('has_disabilities')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+                                                            <!-- تفاصيل الاعاقة / عمليات سابقة -->
+                                                            <div class="col-md-12">
+                                                                <label class="form-label" for="formtabs-first-name">
+                                                                    تفاصيل الاعاقة / عمليات سابقة </label>
+                                                                <input type="text" id="formtabs-first-name"
+                                                                    value="{{ old('disabilities_details') }}"
+                                                                    class="form-control @error('disabilities_details') is-invalid @enderror"
+                                                                    name="disabilities_details" placeholder="John" />
+                                                                @error('disabilities_details')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+                                                            <!-- ملاحظات علي الموظف -->
+                                                            <div class="col-md-12">
+                                                                <label class="form-label" for="formtabs-first-name">
+                                                                    ملاحظات علي الموظف </label>
+                                                                <input type="text" id="formtabs-first-name"
+                                                                    value="{{ old('notes') }}"
+                                                                    class="form-control @error('notes') is-invalid @enderror"
+                                                                    name="notes" placeholder="John" />
+                                                                @error('notes')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+
+
+                                                        </div>
+                                                </div>
+
+                                                <!-- بيانات الخدمة العسكرية -->
+                                                <div class="tab-pane fade" id="form-tabs-account" role="tabpanel">
+                                                    <div class="row g-3">
+
+                                                        <!-- حالة الخدمة العسكرية -->
+                                                        <div class="col-md-6 ">
+                                                            <label for="exampleFormControlSelect1" class="form-label">
+                                                                حالة الخدمة العسكرية
+                                                            </label>
+                                                            <select
+                                                                class="form-select @error('military') is-invalid @enderror"
+                                                                name="military" aria-label="Default select example">
+                                                                <option selected value="">-- أختر الحالة --
+                                                                </option>
+                                                                <option value="1">One</option>
+                                                                <option value="2">Two</option>
+                                                            </select>
+                                                            @error('military')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <!-- تاريخ اعفاء الخدمة العسكرية -->
+                                                        <div class="col-md-6">
+                                                            <label class="form-label" for="formtabs-birthdate">تاريخ اعفاء
+                                                                الخدمة العسكرية
+                                                            </label>
+                                                            <input type="text" name="military_exemption_date"
+                                                                value="{{ old('military_exemption_date') }}"
+                                                                id="formtabs-birthdate"
+                                                                class="form-control dob-picker @error('military_exemption_date') is-invalid @enderror"
+                                                                placeholder="YYYY-MM-DD" />
+                                                            @error('military_exemption_date')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <!-- سبب اعفاء الخدمة العسكرية -->
+                                                        <div class="col-md-6">
+                                                            <label class="form-label" for="formtabs-first-name">
+                                                                سبب اعفاء الخدمة العسكرية </label>
+                                                            <input type="text" id="formtabs-first-name"
+                                                                value="{{ old('military_exemption_reason') }}"
+                                                                class="form-control @error('military_exemption_reason') is-invalid @enderror"
+                                                                name="military_exemption_reason"
+                                                                placeholder="أذكر السبب" />
+                                                            @error('military_exemption_reason')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <!-- سبب ومدة تأجيل الخدمة العسكرية -->
+                                                        <div class="col-md-6">
+                                                            <label class="form-label" for="formtabs-first-name">
+                                                                سبب ومدة تأجيل الخدمة العسكرية </label>
+                                                            <input type="text" id="formtabs-first-name"
+                                                                value="{{ old('military_postponement_reason') }}"
+                                                                class="form-control @error('military_postponement_reason') is-invalid @enderror"
+                                                                name="military_postponement_reason"
+                                                                placeholder="أذكر السبب" />
+                                                            @error('military_postponement_reason')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+
+                                                        <!-- تاريخ بداية الخدمة العسكرية -->
+                                                        <div class="col-md-6">
+                                                            <label class="form-label" for="formtabs-birthdate">تاريخ بداية
+                                                                الخدمة العسكرية
+                                                            </label>
+                                                            <input type="text" name="military_service_start_date"
+                                                                id="formtabs-birthdate"
+                                                                value="{{ old('military_service_start_date') }}"
+                                                                class="form-control dob-picker @error('military_service_start_date') is-invalid @enderror"
+                                                                placeholder="YYYY-MM-DD" />
+                                                            @error('military_service_start_date')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+
+                                                        <!-- تاريخ نهاية الخدمة العسكرية -->
+                                                        <div class="col-md-6">
+                                                            <label class="form-label" for="formtabs-birthdate">تاريخ نهاية
+                                                                الخدمة العسكرية
+
+                                                            </label>
+                                                            <input type="text" name="military_service_end_date"
+                                                                id="formtabs-birthdate"
+                                                                value="{{ old('military_service_end_date') }}"
+                                                                class="form-control dob-picker @error('military_service_end_date') is-invalid @enderror"
+                                                                placeholder="YYYY-MM-DD" />
+                                                            @error('military_service_end_date')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+
+                                                        <!-- سلاح الخدمة العسكرية -->
+                                                        <div class="col-md-6">
+                                                            <label class="form-label" for="formtabs-first-name">
+                                                                سلاح الخدمة العسكرية </label>
+                                                            <input type="text" id="formtabs-first-name"
+                                                                value="{{ old('military_wepon') }}"
+                                                                class="form-control @error('military_wepon') is-invalid @enderror"
+                                                                name="military_wepon" placeholder="مثال:سلاح المشاه" />
+                                                            @error('military_wepon')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!--  بيانات وظيفية -->
+                                                <div class="tab-pane fade" id="form-tabs-social" role="tabpanel">
+                                                    <div class="row g-3">
+
+
+                                                        <!-- تاريخ التعيين -->
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" for="formtabs-birthdate">تاريخ
+                                                                التعيين
+                                                            </label>
+                                                            <input type="text" name="hiring_date"
+                                                                id="formtabs-birthdate" value="{{ old('hiring_date') }}"
+                                                                class="form-control dob-picker @error('hiring_date') is-invalid @enderror"
+                                                                placeholder="YYYY-MM-DD" />
+                                                            @error('hiring_date')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <!-- الحالة الوظيفية -->
+                                                        <div class="col-md-4 ">
+                                                            <label for="exampleFormControlSelect1" class="form-label">
+                                                                الحالة الوظيفية
+                                                            </label>
+                                                            <select
+                                                                class="form-select @error('functional_status') is-invalid @enderror"
+                                                                name="functional_status"
+                                                                aria-label="Default select example">
+                                                                <option selected value="">-- أختر الحالة --
+                                                                </option>
+                                                                <option value="1">One</option>
+                                                                <option value="2">Two</option>
+                                                            </select>
+                                                            @error('functional_status')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+
+                                                        <!-- الدرجه الوظيفية -->
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" for="formtabs-country">الدرجه
+                                                                الوظيفية</label>
+                                                            <select name="job_grade_id"
+                                                                class="select2 form-select @error('job_grade_id') is-invalid @enderror"
+                                                                data-allow-clear="true">
+                                                                <option selected value="">-- أختر الدرجه --
+                                                                </option>
+                                                                <option value="Australia">Australia</option>
+                                                            </select>
+                                                            @error('job_grade_id')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <!-- الادارة التابع لها الموظف -->
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" for="formtabs-country">الادارة
+                                                                التابع لها الموظف</label>
+                                                            <select name="department_id"
+                                                                class="select2 form-select @error('department_id') is-invalid @enderror"
+                                                                data-allow-clear="true">
+                                                                <option selected value="">-- أختر الادارة --
+                                                                </option>
+                                                                <option value="Australia">Australia</option>
+                                                            </select>
+                                                            @error('department_id')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <!--  وظيفة الموظف -->
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" for="formtabs-country">وظيفة
+                                                                الموظف</label>
+                                                            <select name="job_category_id"
+                                                                class="select2 form-select @error('job_category_id') is-invalid @enderror"
+                                                                data-allow-clear="true">
+                                                                <option selected value="">-- أختر الوظيفة --
+                                                                </option>
+                                                                <option value="Australia">Australia</option>
+                                                            </select>
+                                                            @error('job_category_id')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+
+                                                        <!-- هل له بصمة حضور وانصراف -->
+                                                        <div class="col-md-4">
+                                                            <label for="exampleFormControlSelect1" class="form-label">
+                                                                هل له بصمة حضور وانصراف
+                                                            </label>
+                                                            <select
+                                                                class="form-select @error('has_attendance') is-invalid @enderror"
+                                                                name="has_attendance" aria-label="Default select example">
+                                                                <option selected value="">-- أختر الحالة --
+                                                                </option>
+                                                                @foreach (YesOrNoEnum::cases() as $attendance)
+                                                                    <option
+                                                                        @if (old('has_attendance') == $attendance->value) selected @endif
+                                                                        value="{{ $attendance->value }}">
+                                                                        {{ $attendance->label() }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('has_attendance')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+
+                                                        <!-- هل شفت ثابت -->
+                                                        <div class="col-md-3 ">
+                                                            <label for="exampleFormControlSelect1" class="form-label">
+                                                                هل شفت ثابت
+                                                            </label>
+                                                            <select
+                                                                class="form-select @error('has_fixed_shift') is-invalid @enderror"
+                                                                name="has_fixed_shift"
+                                                                aria-label="Default select example">
+                                                                <option selected value="">-- أختر الحالة --
+                                                                </option>
+                                                                @foreach (YesOrNoEnum::cases() as $fixedShift)
+                                                                    <option
+                                                                        @if (old('has_fixed_shift') == $fixedShift->value) selected @endif
+                                                                        value="{{ $fixedShift->value }}">
+                                                                        {{ $fixedShift->label() }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('has_fixed_shift')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+
+                                                        <!-- أنواع الشفتات -->
+                                                        <div class="col-md-6 ">
+                                                            <label for="exampleFormControlSelect1" class="form-label">
+                                                                أنواع الشفتات
+                                                            </label>
+                                                            <select
+                                                                class="form-select @error('shifts_type_id') is-invalid @enderror"
+                                                                name="shifts_type_id" aria-label="Default select example">
+                                                                <option selected value="">-- أختر الحالة --
+                                                                </option>
+                                                                <option value="1">One</option>
+                                                                <option value="2">Two</option>
+                                                            </select>
+                                                            @error('shifts_type_id')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <!-- عدد ساعات العمل اليومي-->
+                                                        <div class="col-md-3 ">
+                                                            <label class="form-label" for="formtabs-first-name">
+                                                                عدد ساعات العمل اليومي</label>
+                                                            <input type="text" id="formtabs-first-name"
+                                                                value="{{ old('daily_work_hour') }}"
+                                                                class="form-control @error('daily_work_hour') is-invalid @enderror"
+                                                                name="daily_work_hour"
+                                                                oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                                                placeholder="مثال:8" />
+                                                            @error('daily_work_hour')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <!--  راتب الموظف الشهري -->
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" for="formtabs-first-name">
+                                                                راتب الموظف الشهري</label>
+                                                            <input type="text" id="formtabs-first-name"
+                                                                value="{{ old('salary') }}"
+                                                                class="form-control @error('salary') is-invalid @enderror"
+                                                                name="salary"
+                                                                oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                                                placeholder="مثال:3000" />
+                                                            @error('salary')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <!--  راتب الموظف اليومى -->
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" for="formtabs-first-name">
+                                                                راتب الموظف اليومى</label>
+                                                            <input type="text" id="formtabs-first-name"
+                                                                value="{{ old('day_price') }}"
+                                                                class="form-control @error('day_price') is-invalid @enderror"
+                                                                name="day_price"
+                                                                oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                                                placeholder="مثال:3000" />
+                                                            @error('day_price')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <!-- عملة قبض الموظف -->
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" for="formtabs-country">عملة قبض
+                                                                الموظف
+                                                            </label>
+                                                            <select name="currency_id"
+                                                                class="select2 form-select @error('currency_id') is-invalid @enderror"
+                                                                data-allow-clear="true">
+                                                                <option selected value="">-- أختر المحافظة --
+                                                                </option>
+                                                                <option value="Australia">Australia</option>
+                                                            </select>
+                                                            @error('currency_id')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <!--  هل له تأمين اجتماعي -->
+                                                        <div class="col-md-3">
+                                                            <label class="form-label" for="formtabs-first-name">
+                                                                هل له تأمين اجتماعي</label>
+                                                            <select
+                                                                class="form-select @error('has_social_insurance') is-invalid @enderror"
+                                                                name="has_social_insurance"
+                                                                aria-label="Default select example">
+                                                                <option selected value="">-- أختر الحالة --
+                                                                </option>
+                                                                @foreach (YesOrNoEnum::cases() as $social)
+                                                                    <option
+                                                                        @if (old('has_social_insurance') == $social->value) selected @endif
+                                                                        value="{{ $social->value }}">
+                                                                        {{ $social->label() }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('has_social_insurance')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <!-- قيمة التأمين الاجتماعي المستقطع شهرياً -->
+                                                        <div class="col-md-5">
+                                                            <label class="form-label" for="formtabs-first-name">
+                                                                قيمة التأمين الاجتماعي المستقطع شهرياً </label>
+                                                            <input type="text" id="formtabs-first-name"
+                                                                value="{{ old('social_insurance_cut_monthely') }}"
+                                                                class="form-control @error('social_insurance_cut_monthely') is-invalid @enderror"
+                                                                name="social_insurance_cut_monthely"
+                                                                oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                                                placeholder="مثال:500" />
+                                                            @error('social_insurance_cut_monthely')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <!-- رقم التامين الاجتماعي للموظف -->
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" for="formtabs-first-name">
+                                                                رقم التامين الاجتماعي للموظف </label>
+                                                            <input type="text" id="formtabs-first-name"
+                                                                value="{{ old('social_insurance_number') }}"
+                                                                class="form-control @error('social_insurance_number') is-invalid @enderror"
+                                                                name="social_insurance_number"
+                                                                oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                                                placeholder="مثال:123..." />
+                                                            @error('social_insurance_number')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                        <!--  هل له تأمين طبي -->
+                                                        <div class="col-md-3">
+                                                            <label class="form-label" for="formtabs-first-name">
+                                                                هل له تأمين طبي</label>
+                                                            <select
+                                                                class="form-select @error('has_medical_insurance') is-invalid @enderror"
+                                                                name="has_medical_insurance"
+                                                                aria-label="Default select example">
+                                                                <option selected value="">-- أختر الحالة --
+                                                                </option>
+                                                                @foreach (YesOrNoEnum::cases() as $medical)
+                                                                    <option
+                                                                        @if (old('has_medical_insurance') == $medical->value) selected @endif
+                                                                        value="{{ $medical->value }}">
+                                                                        {{ $medical->label() }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('has_medical_insurance')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <!-- قيمة التأمين الطبي المستقطع شهرياً -->
+                                                        <div class="col-md-5">
+                                                            <label class="form-label" for="formtabs-first-name">
+                                                                قيمة التأمين الطبي المستقطع شهرياً </label>
+                                                            <input type="text" id="formtabs-first-name"
+                                                                value="{{ old('medical_insurance_cut_monthely') }}"
+                                                                class="form-control @error('medical_insurance_cut_monthely') is-invalid @enderror"
+                                                                name="medical_insurance_cut_monthely"
+                                                                oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                                                placeholder="مثال:500" />
+                                                            @error('medical_insurance_cut_monthely')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <!-- رقم التامين الطبي للموظف -->
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" for="formtabs-first-name">
+                                                                رقم التامين الطبي للموظف </label>
+                                                            <input type="text" id="formtabs-first-name"
+                                                                value="{{ old('medical_insurance_number') }}"
+                                                                class="form-control @error('medical_insurance_number') is-invalid @enderror"
+                                                                name="medical_insurance_number"
+                                                                oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                                                placeholder="مثال:123..." />
+                                                            @error('medical_insurance_number')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+
+                                                        <!--  نوع صرف راتب الموظف -->
+                                                        <div class="col-md-3 ">
+                                                            <label class="form-label" for="formtabs-first-name">
+                                                                نوع صرف راتب الموظف</label>
+                                                            <select
+                                                                class="form-select @error('type_salary_receipt') is-invalid @enderror"
+                                                                name="type_salary_receipt"
+                                                                aria-label="Default select example">
+                                                                <option selected value="">-- أختر الحالة --
+                                                                </option>
+                                                                @foreach (TypeSalaryReceipt::cases() as $salary)
+                                                                    <option
+                                                                        @if (old('type_salary_receipt') == $salary->value) selected @endif
+                                                                        value="{{ $salary->value }}">
+                                                                        {{ $salary->label() }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('type_salary_receipt')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <!-- هل له بدلات ثابتة  -->
+                                                        <div class="col-md-3 ">
+                                                            <label class="form-label" for="formtabs-first-name">
+                                                                هل له بدلات ثابتة</label>
+                                                            <select
+                                                                class="form-select @error('has_fixed_allowances') is-invalid @enderror"
+                                                                name="has_fixed_allowances"
+                                                                aria-label="Default select example">
+                                                                <option selected value="">-- أختر الحالة --
+                                                                </option>
+                                                                @foreach (YesOrNoEnum::cases() as $allowances)
+                                                                    <option
+                                                                        @if (old('has_fixed_allowances') == $allowances->value) selected @endif
+                                                                        value="{{ $allowances->value }}">
+                                                                        {{ $allowances->label() }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('has_fixed_allowances')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+
+                                                        <!--  هل له حافز -->
+                                                        <div class="col-md-3 ">
+                                                            <label class="form-label" for="formtabs-first-name">
+                                                                هل له حافز</label>
+                                                            <select
+                                                                class="form-select @error('motivation_type') is-invalid @enderror"
+                                                                name="motivation_type"
+                                                                aria-label="Default select example">
+                                                                <option selected value="">-- أختر الحالة --
+                                                                </option>
+                                                                @foreach (MotivationType::cases() as $motivation)
+                                                                    <option
+                                                                        @if (old('motivation_type') == $motivation->value) selected @endif
+                                                                        value="{{ $motivation->value }}">
+                                                                        {{ $motivation->label() }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('motivation_type')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <!-- قيمة الحافز الشهري الثابت -->
+                                                        <div class="col-md-3">
+                                                            <label class="form-label" for="formtabs-first-name">
+                                                                قيمة الحافز الشهري الثابت </label>
+                                                            <input type="text" id="formtabs-first-name"
+                                                                value="{{ old('motivation_value') }}"
+                                                                class="form-control @error('motivation_value') is-invalid @enderror"
+                                                                name="motivation_value"
+                                                                oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                                                placeholder="مثال:500" />
+                                                            @error('motivation_value')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+
+                                                        <!--  هل له رصيد اجازات سنوي -->
+                                                        <div class="col-md-3 ">
+                                                            <label class="form-label" for="formtabs-first-name">
+                                                                هل له رصيد اجازات سنوي</label>
+                                                            <select
+                                                                class="form-select @error('has_vacation_balance') is-invalid @enderror"
+                                                                name="has_vacation_balance"
+                                                                aria-label="Default select example">
+                                                                <option selected value="">-- أختر الحالة --
+                                                                </option>
+                                                                @foreach (YesOrNoEnum::cases() as $vacation)
+                                                                    <option
+                                                                        @if (old('has_vacation_balance') == $vacation->value) selected @endif
+                                                                        value="{{ $vacation->value }}">
+                                                                        {{ $vacation->label() }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('has_vacation_balance')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+
+
+
+                                                    </div>
+                                                    <div class="pt-4">
+
+                                                    </div>
+                                                </div>
+
+                                                <!--  بيانات إضافية -->
+                                                <div class="tab-pane fade" id="form-tabs-addtional" role="tabpanel">
+                                                    <div class="row g-3">
+                                                        <!-- شخص يمكن الرجوع اليه للضرورة -->
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" for="formtabs-first-name">
+                                                                شخص يمكن الرجوع اليه للضرورة </label>
+                                                            <input type="text" id="formtabs-first-name"
+                                                                value="{{ old('urgent_person_details') }}"
+                                                                class="form-control @error('urgent_person_details') is-invalid @enderror"
+                                                                name="urgent_person_details" placeholder="John" />
+                                                            @error('urgent_person_details')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <!-- رقم الباسبور ان وجد -->
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" for="formtabs-first-name">
+                                                                رقم الباسبور ان وجد</label>
+                                                            <input type="text" id="formtabs-first-name"
+                                                                value="{{ old('pasport_identity') }}"
+                                                                class="form-control @error('pasport_identity') is-invalid @enderror"
+                                                                name="pasport_identity"
+                                                                oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                                                placeholder="مثال:123..." />
+                                                            @error('pasport_identity')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                        <!-- تاريخ انتهاء الباسبور -->
+                                                        <div class="col-md-4">
+                                                            <label class="form-label" for="formtabs-birthdate">تاريخ
+                                                                انتهاء الباسبور
+                                                            </label>
+                                                            <input type="text" name="pasport_exp_date"
+                                                                value="{{ old('pasport_exp_date') }}"
+                                                                id="formtabs-birthdate"
+                                                                class="form-control dob-picker @error('pasport_exp_date') is-invalid @enderror"
+                                                                placeholder="YYYY-MM-DD" />
+                                                            @error('pasport_exp_date')
+                                                                <span class="invalid-feedback text-right" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <div class="col-md-12">
+                                                            <div class="box-header with-border">
+                                                                <h3 class="box-title">
+                                                                    أرفق صورة الموظف</h3>
+                                                            </div>
+                                                            <div class="box-body">
+                                                                <input type="file" id="imageInput" name="photo" />
+
+                                                                <img id="imagePreview"
+                                                                    style="max-width: 200px; display: none;" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <label for="formFile" class="form-label">أرفاق السيرة
+                                                                الذاتية</label>
+                                                            <input class="form-control" name="cv" type="file"
+                                                                id="formFile">
+                                                        </div>
+                                                    </div>
+                                                    <div class="pt-4">
+
+                                                    </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
+
+
+@endsection
+@push('js')
+    <!-- Vendors JS -->
+    <script src="{{ asset('dashboard') }}/assets/vendor/libs/cleavejs/cleave.js"></script>
+    <script src="{{ asset('dashboard') }}/assets/vendor/libs/cleavejs/cleave-phone.js"></script>
+    <script src="{{ asset('dashboard') }}/assets/vendor/libs/moment/moment.js"></script>
+    <script src="{{ asset('dashboard') }}/assets/vendor/libs/select2/select2.js"></script>
+
+    <!-- Main JS -->
+
+    <!-- Page JS -->
+    <script src="{{ asset('dashboard') }}/assets/js/form-layouts.js"></script>
+
+    <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            FilePond.registerPlugin(FilePondPluginImagePreview);
+            const pond = FilePond.create(document.querySelector('#imageInput'), {
+                allowImagePreview: true,
+                imagePreviewMaxHeight: 200,
+                storeAsFile: true,
+                allowMultiple: false,
+                acceptedFileTypes: ['image/*'],
+            });
+
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var submitButton = document.getElementById('submitButton');
+            var form = document.getElementById('storeForm');
+
+            // لما تضغط على الزر
+            submitButton.addEventListener('click', function(e) {
+                e.preventDefault(); // نمنع الإفتراضي لو كان الزر داخل الفورم
+                form.submit();
+            });
+
+            // عند إرسال الفورم
+            form.addEventListener('submit', function(event) {
+                submitButton.disabled = true;
+                submitButton.innerHTML = 'جاري الحفظ...';
+            });
+        });
+    </script>
+@endpush
