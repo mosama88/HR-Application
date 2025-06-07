@@ -51,12 +51,8 @@
                                 </button>
                             </h5>
 
+
                             <div class="card-body">
-
-
-
-
-
                                 <div class="row">
                                     <div class="col">
                                         <div class="nav-align-top mb-3">
@@ -234,7 +230,12 @@
                                                                     name="branch_id" data-allow-clear="true">
                                                                     <option selected value="">-- أختر الفرع --
                                                                     </option>
-                                                                    <option value="Australia">Australia</option>
+                                                                    @foreach ($other['branches'] as $branch)
+                                                                        <option
+                                                                            @if (old('branch_id') == $branch->id) selected @endif
+                                                                            value="{{ $branch->id }}">
+                                                                            {{ $branch->name }}</option>
+                                                                    @endforeach
                                                                 </select>
                                                                 @error('branch_id')
                                                                     <span class="invalid-feedback text-right" role="alert">
@@ -368,7 +369,12 @@
                                                                     <option selected value="">-- أختر نوع فصيلة الدم
                                                                         --
                                                                     </option>
-                                                                    <option value="Australia">Australia</option>
+                                                                    @foreach ($other['blood_types'] as $blood)
+                                                                        <option
+                                                                            @if (old('blood_type_id') == $blood->id) selected @endif
+                                                                            value="{{ $blood->id }}">
+                                                                            {{ $blood->name }}</option>
+                                                                    @endforeach
                                                                 </select>
                                                                 @error('blood_type_id')
                                                                     <span class="invalid-feedback text-right" role="alert">
@@ -386,7 +392,12 @@
                                                                     data-allow-clear="true">
                                                                     <option selected value="">-- أختر الجنسية --
                                                                     </option>
-                                                                    <option value="Australia">Australia</option>
+                                                                    @foreach ($other['nationalities'] as $nationality)
+                                                                        <option
+                                                                            @if (old('nationality_id') == $nationality->id) selected @endif
+                                                                            value="{{ $nationality->id }}">
+                                                                            {{ $nationality->name }}</option>
+                                                                    @endforeach
                                                                 </select>
                                                                 @error('nationality_id')
                                                                     <span class="invalid-feedback text-right" role="alert">
@@ -405,7 +416,12 @@
                                                                     data-allow-clear="true">
                                                                     <option selected value="">-- أختر اللغة --
                                                                     </option>
-                                                                    <option value="Australia">Australia</option>
+                                                                    @foreach ($other['languages'] as $language)
+                                                                        <option
+                                                                            @if (old('language_id') == $language->id) selected @endif
+                                                                            value="{{ $language->id }}">
+                                                                            {{ $language->name }}</option>
+                                                                    @endforeach
                                                                 </select>
                                                                 @error('language_id')
                                                                     <span class="invalid-feedback text-right" role="alert">
@@ -468,7 +484,12 @@
                                                                     data-allow-clear="true">
                                                                     <option selected value="">-- أختر الدولة --
                                                                     </option>
-                                                                    <option value="Australia">Australia</option>
+                                                                    @foreach ($other['countries'] as $country)
+                                                                        <option
+                                                                            @if (old('country_id') == $country->id) selected @endif
+                                                                            value="{{ $country->id }}">
+                                                                            {{ $country->name }}</option>
+                                                                    @endforeach
                                                                 </select>
                                                                 @error('country_id')
                                                                     <span class="invalid-feedback text-right" role="alert">
@@ -486,7 +507,12 @@
                                                                     data-allow-clear="true">
                                                                     <option selected value="">-- أختر المحافظة --
                                                                     </option>
-                                                                    <option value="Australia">Australia</option>
+                                                                    @foreach ($other['governorates'] as $governorate)
+                                                                        <option
+                                                                            @if (old('governorate_id') == $governorate->id) selected @endif
+                                                                            value="{{ $governorate->id }}">
+                                                                            {{ $governorate->name }}</option>
+                                                                    @endforeach
                                                                 </select>
                                                                 @error('governorate_id')
                                                                     <span class="invalid-feedback text-right" role="alert">
@@ -505,7 +531,13 @@
                                                                     <option selected value="">-- أختر المدينة/المركز
                                                                         --
                                                                     </option>
-                                                                    <option value="Australia">Australia</option>
+                                                                    @foreach ($other['cities'] as $city)
+                                                                        <option
+                                                                            @if (old('city_id') == $city->id) selected @endif
+                                                                            value="{{ $city->id }}">
+                                                                            {{ $city->name }}
+                                                                        </option>
+                                                                    @endforeach
                                                                 </select>
                                                                 @error('city_id')
                                                                     <span class="invalid-feedback text-right" role="alert">
@@ -743,8 +775,12 @@
                                                                 name="military" aria-label="Default select example">
                                                                 <option selected value="">-- أختر الحالة --
                                                                 </option>
-                                                                <option value="1">One</option>
-                                                                <option value="2">Two</option>
+                                                                @foreach (Military::cases() as $military)
+                                                                    <option
+                                                                        @if (old('military') == $military->value) selected @endif
+                                                                        value="{{ $military->value }}">
+                                                                        {{ $military->label() }}</option>
+                                                                @endforeach
                                                             </select>
                                                             @error('military')
                                                                 <span class="invalid-feedback text-right" role="alert">
@@ -889,8 +925,12 @@
                                                                 aria-label="Default select example">
                                                                 <option selected value="">-- أختر الحالة --
                                                                 </option>
-                                                                <option value="1">One</option>
-                                                                <option value="2">Two</option>
+                                                                @foreach (FunctionalStatus::cases() as $functional)
+                                                                    <option
+                                                                        @if (old('functional_status') == $functional->value) selected @endif
+                                                                        value="{{ $functional->value }}">
+                                                                        {{ $functional->label() }}</option>
+                                                                @endforeach
                                                             </select>
                                                             @error('functional_status')
                                                                 <span class="invalid-feedback text-right" role="alert">
@@ -909,7 +949,13 @@
                                                                 data-allow-clear="true">
                                                                 <option selected value="">-- أختر الدرجه --
                                                                 </option>
-                                                                <option value="Australia">Australia</option>
+                                                                @foreach ($other['job_grades'] as $jobGrade)
+                                                                    <option
+                                                                        @if (old('job_grade_id') == $jobGrade->id) selected @endif
+                                                                        value="{{ $jobGrade->id }}">
+                                                                        {{ $jobGrade->name }}
+                                                                    </option>
+                                                                @endforeach
                                                             </select>
                                                             @error('job_grade_id')
                                                                 <span class="invalid-feedback text-right" role="alert">
@@ -927,7 +973,13 @@
                                                                 data-allow-clear="true">
                                                                 <option selected value="">-- أختر الادارة --
                                                                 </option>
-                                                                <option value="Australia">Australia</option>
+                                                                @foreach ($other['departments'] as $department)
+                                                                    <option
+                                                                        @if (old('department_id') == $department->id) selected @endif
+                                                                        value="{{ $department->id }}">
+                                                                        {{ $department->name }}
+                                                                    </option>
+                                                                @endforeach
                                                             </select>
                                                             @error('department_id')
                                                                 <span class="invalid-feedback text-right" role="alert">
@@ -945,7 +997,13 @@
                                                                 data-allow-clear="true">
                                                                 <option selected value="">-- أختر الوظيفة --
                                                                 </option>
-                                                                <option value="Australia">Australia</option>
+                                                                @foreach ($other['job_categories'] as $jobCategory)
+                                                                    <option
+                                                                        @if (old('job_category_id') == $jobCategory->id) selected @endif
+                                                                        value="{{ $jobCategory->id }}">
+                                                                        {{ $jobCategory->name }}
+                                                                    </option>
+                                                                @endforeach
                                                             </select>
                                                             @error('job_category_id')
                                                                 <span class="invalid-feedback text-right" role="alert">
@@ -1016,8 +1074,13 @@
                                                                 name="shifts_type_id" aria-label="Default select example">
                                                                 <option selected value="">-- أختر الحالة --
                                                                 </option>
-                                                                <option value="1">One</option>
-                                                                <option value="2">Two</option>
+                                                                @foreach ($other['shifts_types'] as $shift)
+                                                                    <option
+                                                                        @if (old('shifts_type_id') == $shift->id) selected @endif
+                                                                        value="{{ $shift->id }}">
+                                                                        {{ $shift->name }}
+                                                                    </option>
+                                                                @endforeach
                                                             </select>
                                                             @error('shifts_type_id')
                                                                 <span class="invalid-feedback text-right" role="alert">
@@ -1087,7 +1150,13 @@
                                                                 data-allow-clear="true">
                                                                 <option selected value="">-- أختر المحافظة --
                                                                 </option>
-                                                                <option value="Australia">Australia</option>
+                                                                @foreach ($other['currencies'] as $currency)
+                                                                    <option
+                                                                        @if (old('currency_id') == $currency->id) selected @endif
+                                                                        value="{{ $currency->id }}">
+                                                                        {{ $currency->name }}
+                                                                    </option>
+                                                                @endforeach
                                                             </select>
                                                             @error('currency_id')
                                                                 <span class="invalid-feedback text-right" role="alert">

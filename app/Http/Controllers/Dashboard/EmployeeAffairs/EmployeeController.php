@@ -2,11 +2,24 @@
 
 namespace App\Http\Controllers\Dashboard\EmployeeAffairs;
 
+use App\Models\City;
+use App\Models\Branch;
+use App\Models\Country;
 use App\Models\Employee;
+use App\Models\JobGrade;
+use App\Models\Language;
+use App\Models\BloodType;
+use App\Models\Governorate;
+use App\Models\Nationality;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Dashboard\EmployeeAffairs\EmployeeRequest;
+use App\Models\Currency;
+use App\Models\Department;
+use App\Models\JobCategory;
+use App\Models\ShiftsType;
+use PhpParser\Node\Expr\AssignOp\ShiftLeft;
 
 class EmployeeController extends Controller
 {
@@ -28,7 +41,19 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('dashboard.employee_affairs.employees.create');
+        $other['branches'] = Branch::all();
+        $other['countries'] = Country::all();
+        $other['governorates'] = Governorate::all();
+        $other['cities'] = City::all();
+        $other['blood_types'] = BloodType::all();
+        $other['nationalities'] = Nationality::all();
+        $other['languages'] = Language::all();
+        $other['job_grades'] = JobGrade::all();
+        $other['departments'] = Department::all();
+        $other['job_categories'] = JobCategory::all();
+        $other['shifts_types'] = ShiftsType::all();
+        $other['currencies'] = Currency::all();
+        return view('dashboard.employee_affairs.employees.create', compact('other'));
     }
 
     /**
