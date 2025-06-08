@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Faker\CurrencyFacker;
+use App\Faker\CurrencyFaker;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -18,7 +18,7 @@ class CurrencyFactory extends Factory
      */
     public function definition(): array
     {
-        $currency = CurrencyFacker::uniqueCurrency();
+        $currency = CurrencyFaker::uniqueCurrency();
 
         return [
             'name' => $currency['name'],

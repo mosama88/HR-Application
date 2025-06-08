@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Faker\CountryFacker;
+use App\Faker\CountryFaker;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -18,8 +18,8 @@ class CountryFactory extends Factory
      */
     public function definition(): array
     {
-        
-        $country = CountryFacker::uniqueCountry();
+
+        $country = CountryFaker::uniqueCountry();
 
         return [
             'name' => $country['name'],
