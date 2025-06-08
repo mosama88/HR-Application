@@ -10,58 +10,48 @@ class GovernorateFaker extends Base
     protected static $usedGovernorates = [];
 
     protected static $governorates = [
-        'countries' => [
-            "مصر" => [
-                'القاهرة',
-                'الجيزة',
-                'الأسكندرية',
-                'الدقهلية',
-                'البحر الأحمر',
-                'البحيرة',
-                'الفيوم',
-                'الغربية',
-                'الإسماعلية',
-                'المنوفية',
-                'المنيا',
-                'القليوبية',
-                'الوادي الجديد',
-                'السويس',
-                'اسوان',
-                'اسيوط',
-                'بني سويف',
-                'بورسعيد',
-                'دمياط',
-                'الشرقية',
-                'جنوب سيناء',
-                'كفر الشيخ',
-                'مطروح',
-                'الأقصر',
-                'قنا',
-                'شمال سيناء',
-                'سوهاج'
-            ]
-        ]
+        'القاهرة',
+        'الجيزة',
+        'الأسكندرية',
+        'الدقهلية',
+        'البحر الأحمر',
+        'البحيرة',
+        'الفيوم',
+        'الغربية',
+        'الإسماعلية',
+        'المنوفية',
+        'المنيا',
+        'القليوبية',
+        'الوادي الجديد',
+        'السويس',
+        'اسوان',
+        'اسيوط',
+        'بني سويف',
+        'بورسعيد',
+        'دمياط',
+        'الشرقية',
+        'جنوب سيناء',
+        'كفر الشيخ',
+        'مطروح',
+        'الأقصر',
+        'قنا',
+        'شمال سيناء',
+        'سوهاج'
     ];
     /**
      * الحصول على اسم دولة وكودها بدون تكرار
      */
-    public static function uniqueCurrency()
+
+
+    public function uniqueGovernorate()
     {
-        $available = array_filter(static::$governorates, function ($governorate) {
-            return !in_array($governorate['name'], static::$usedGovernorates);
-        });
-
+        $available = array_diff(static::$governorates, static::$usedGovernorates);
         if (empty($available)) {
-
-            static::$usedGovernorates = [];  // Reset the used categories
-            $available = static::$governorates;  // Reset the available categories
+            throw new \Exception("No unique department left.");
         }
 
         $governorate = static::randomElement($available);
-        static::$governorates[] = $governorate['name'];
-
-        return [
-            'name' => $governorate['name'],
-        ];
+        static::$usedGovernorates[] = $governorate;
+        return $governorate;
     }
 }

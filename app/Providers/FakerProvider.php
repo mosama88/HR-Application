@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Faker\CityFaker;
 use App\Faker\CountryFaker;
 use App\Faker\CurrencyFaker;
 use App\Faker\LanguageFaker;
 use App\Faker\DepartmentFaker;
+use App\Faker\GovernorateFaker;
 use App\Faker\NationalityFaker;
 use App\Faker\QualificationFaker;
 use Illuminate\Support\ServiceProvider;
@@ -31,5 +33,7 @@ class FakerProvider extends ServiceProvider
         fake()->addProvider(new DepartmentFaker(fake()));
         fake()->addProvider(new QualificationFaker(fake()));
         fake()->addProvider(new NationalityFaker(fake()));
+        fake()->addProvider(new GovernorateFaker(fake()));
+        fake()->addProvider(new CityFaker(fake()));
     }
 }
