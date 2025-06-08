@@ -4,6 +4,7 @@
 namespace App\Faker;
 
 use Faker\Provider\Base;
+use Faker\Factory as FakerFactory;
 
 class CityFaker extends Base
 {
@@ -576,46 +577,52 @@ class CityFaker extends Base
         //     "العلا"
         // ]
     ];
+
     /**
      * الحصول على اسم دولة وكودها بدون تكرار
      */
     public static function uniqueCity()
     {
-        // Get all available governorates that still have unused cities
+
+
+        // احصل على جميع المحافظات المتاحة التي لا تزال بها مدن غير مستخدمة
         $availableGovernorates = array_filter(static::$cities, function ($cities, $governorate) {
+            // حساب عدد المدن المستخدمة لهذه المحافظة
             $usedCitiesForGovernorate = array_filter(static::$usedCities, function ($usedCity) use ($governorate) {
                 return $usedCity['governorate'] === $governorate;
             });
+            // إذا كانت المدن المتاحة أكثر من المستخدمة
             return count($cities) > count($usedCitiesForGovernorate);
         }, ARRAY_FILTER_USE_BOTH);
+        dd($availableGovernorates);
 
         if (empty($availableGovernorates)) {
-            static::$usedCities = [];  // Reset used cities if all have been used
-            $availableGovernorates = static::$cities;
+            static::$usedCities = [];  // نعيد ضبط القائمة لتبدأ من جديد
+            $availableGovernorates = static::$cities; //نأخذ كل المحافظات من جديد
         }
 
-        // Select a random governorate
-        $governorate = array_rand($availableGovernorates);
-        $cities = $availableGovernorates[$governorate];
+        // اختر محافظة عشوائية
+        $governorate = array_rand($availableGovernorates); // اسم المحافظة
+        $cities = $availableGovernorates[$governorate]; // قائمة مدن هذه المحافظة
 
-        // Get cities that haven't been used for this governorate
+        // احصل على المدن التي لم يتم استخدامها لهذه المحافظة
         $usedCityNames = array_map(function ($usedCity) {
-            return $usedCity['name'];
+            return $usedCity['name']; // نأخذ أسماء المدن المستخدمة فقط
         }, array_filter(static::$usedCities, function ($usedCity) use ($governorate) {
-            return $usedCity['governorate'] === $governorate;
+            return $usedCity['governorate'] === $governorate; // فقط مدن هذه المحافظة
         }));
 
-        $availableCities = array_diff($cities, $usedCityNames);
+        $availableCities = array_diff($cities, $usedCityNames); // المدن الغير مستخدمة بعد
 
-        if (empty($availableCities)) {
-            // If all cities for this governorate have been used, try another governorate
+        if (empty($availableCities)) { // نعيد المحاولة مع محافظة أخرى
+            // إذا تم استخدام جميع المدن لهذه المحافظة، حاول استخدام محافظة أخرى
             return static::uniqueCity();
         }
 
-        // Select a random city
-        $cityName = $availableCities[array_rand($availableCities)];
+        // اختر مدينة عشوائية
+        $cityName = $availableCities[array_rand($availableCities)]; // اسم المدينة العشوائية
 
-        // Mark this city as used
+        // قم بوضع علامة على هذه المدينة على أنها مستخدمة
         static::$usedCities[] = [
             'governorate' => $governorate,
             'name' => $cityName,
@@ -627,3 +634,9 @@ class CityFaker extends Base
         ];
     }
 }
+
+$faker = FakerFactory::create();
+$cityFaker = new CityFaker($faker);
+$cityData = $cityFaker->uniqueCity();
+
+dd($cityData);
