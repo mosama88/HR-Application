@@ -5,7 +5,7 @@ namespace App\Faker;
 
 use Faker\Provider\Base;
 
-class LanguageFacker extends Base
+class LanguageFaker extends Base
 {
     protected static $usedLanguages = [];
 

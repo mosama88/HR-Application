@@ -18,6 +18,7 @@ use App\Http\Requests\Dashboard\EmployeeAffairs\EmployeeRequest;
 use App\Models\Currency;
 use App\Models\Department;
 use App\Models\JobCategory;
+use App\Models\Qualification;
 use App\Models\ShiftsType;
 use PhpParser\Node\Expr\AssignOp\ShiftLeft;
 
@@ -41,6 +42,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
+        $other['qualifications'] = Qualification::all();
         $other['branches'] = Branch::all();
         $other['countries'] = Country::all();
         $other['governorates'] = Governorate::all();

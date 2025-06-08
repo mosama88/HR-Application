@@ -1,4 +1,5 @@
 @php
+    use App\Enums\AdminGenderEnum;
     use App\Enums\ShiftTypesEnum;
     use App\Enums\Employee\FunctionalStatus;
     use App\Enums\Employee\Military;
@@ -135,8 +136,12 @@
                                                                     name="gender" aria-label="Default select example">
                                                                     <option selected value="">-- أختر نوع الجنس --
                                                                     </option>
-                                                                    <option value="1">One</option>
-                                                                    <option value="2">Two</option>
+                                                                    @foreach (AdminGenderEnum::cases() as $gender)
+                                                                        <option value="{{ $gender->value }}"
+                                                                            @if (old('gender') == $gender->value) selected @endif>
+                                                                            {{ $gender->label() }}
+                                                                        </option>
+                                                                    @endforeach
                                                                 </select>
                                                                 @error('gender')
                                                                     <span class="invalid-feedback text-right" role="alert">
@@ -173,7 +178,12 @@
                                                                     data-allow-clear="true">
                                                                     <option selected value="">-- أختر المؤهل --
                                                                     </option>
-                                                                    <option value="Australia">Australia</option>
+                                                                    @foreach ($other['qualifications'] as $qualification)
+                                                                        <option
+                                                                            @if (old('qualification_id') == $qualification->id) selected @endif
+                                                                            value="{{ $qualification->id }}">
+                                                                            {{ $qualification->name }}</option>
+                                                                    @endforeach
                                                                 </select>
                                                                 @error('qualification_id')
                                                                     <span class="invalid-feedback text-right" role="alert">
@@ -1080,7 +1090,7 @@
                                                                     <option
                                                                         @if (old('shifts_type_id') == $shift->id) selected @endif
                                                                         value="{{ $shift->id }}">
-                                                                        {{$shift->type->label()}}
+                                                                        {{ $shift->type->label() }}
                                                                     </option>
                                                                 @endforeach
                                                             </select>

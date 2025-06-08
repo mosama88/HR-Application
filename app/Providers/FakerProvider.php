@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
-use App\Faker\CountryFacker;
-use App\Faker\CurrencyFacker;
-use App\Faker\LanguageFacker;
-use App\Faker\DepartmentFacker;
+use App\Faker\CountryFaker;
+use App\Faker\CurrencyFaker;
+use App\Faker\LanguageFaker;
+use App\Faker\DepartmentFaker;
+use App\Faker\NationalityFaker;
+use App\Faker\QualificationFaker;
 use Illuminate\Support\ServiceProvider;
 
 class FakerProvider extends ServiceProvider
@@ -23,9 +25,11 @@ class FakerProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        fake()->addProvider(new CountryFacker(fake()));
-        fake()->addProvider(new LanguageFacker(fake()));
-        fake()->addProvider(new CurrencyFacker(fake()));
-        fake()->addProvider(new DepartmentFacker(fake()));
+        fake()->addProvider(new CountryFaker(fake()));
+        fake()->addProvider(new LanguageFaker(fake()));
+        fake()->addProvider(new CurrencyFaker(fake()));
+        fake()->addProvider(new DepartmentFaker(fake()));
+        fake()->addProvider(new QualificationFaker(fake()));
+        fake()->addProvider(new NationalityFaker(fake()));
     }
 }

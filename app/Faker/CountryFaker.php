@@ -5,7 +5,7 @@ namespace App\Faker;
 
 use Faker\Provider\Base;
 
-class CountryFacker extends Base
+class CountryFaker extends Base
 {
     protected static $usedCountries = [];
 
@@ -75,7 +75,7 @@ class CountryFacker extends Base
         });
 
         if (empty($available)) {
-          
+
             static::$usedCountries = [];  // Reset the used categories
             $available = static::$countries;  // Reset the available categories
         }
@@ -88,6 +88,4 @@ class CountryFacker extends Base
             'country_code' => $country['country_code']
         ];
     }
-
-
 }

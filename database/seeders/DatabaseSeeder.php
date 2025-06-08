@@ -63,6 +63,8 @@ class DatabaseSeeder extends Seeder
             LanguageSeeder::class,
             CountrySeeder::class,
             DepartmentSeeder::class,
+            QualificationSeeder::class,
+            NationalitySeeder::class,
         ]);
     }
 }

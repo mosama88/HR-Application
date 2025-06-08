@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Language;
 use App\Models\Department;
-use App\Faker\LanguageFacker;
-use App\Faker\DepartmentFacker;
+use App\Faker\DepartmentFaker;
 use Illuminate\Database\Seeder;
 use Faker\Factory as FakerFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -15,7 +13,7 @@ class DepartmentSeeder extends Seeder
     public function run(): void
     {
         $faker = FakerFactory::create();
-        $departmentFaker = new DepartmentFacker($faker); // ✅ تمرير Faker
+        $departmentFaker = new DepartmentFaker($faker); // ✅ تمرير Faker
 
         for ($i = 0; $i < 40; $i++) {
             $department = $departmentFaker->uniqueDepartmentName();

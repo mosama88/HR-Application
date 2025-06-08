@@ -5,7 +5,7 @@ namespace App\Faker;
 
 use Faker\Provider\Base;
 
-class CurrencyFacker extends Base
+class CurrencyFaker extends Base
 {
     protected static $usedCurrencies = [];
 

@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Language;
-use App\Faker\LanguageFacker;
+use App\Faker\LanguageFaker;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Faker\Factory as FakerFactory;
@@ -13,7 +13,7 @@ class LanguageSeeder extends Seeder
     public function run(): void
     {
         $faker = FakerFactory::create();
-        $languageFaker = new LanguageFacker($faker); // ✅ تمرير Faker
+        $languageFaker = new LanguageFaker($faker); // ✅ تمرير Faker
 
         for ($i = 0; $i < 50; $i++) {
             $language = $languageFaker->uniqueLanguageName();

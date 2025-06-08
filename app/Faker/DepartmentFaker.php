@@ -5,7 +5,7 @@ namespace App\Faker;
 
 use Faker\Provider\Base;
 
-class DepartmentFacker extends Base
+class DepartmentFaker extends Base
 {
     protected static $usedDepartments = [];
 
