@@ -1,4 +1,5 @@
 @php
+    use Carbon\Carbon;
     use App\Enums\AdminGenderEnum;
     use App\Enums\ShiftTypesEnum;
     use App\Enums\Employee\FunctionalStatus;
@@ -1122,7 +1123,11 @@
                                                                     <option
                                                                         @if (old('shifts_type_id') == $shift->id) selected @endif
                                                                         value="{{ $shift->id }}">
-                                                                        {{ $shift->type->label() }}
+                                                                        {{ $shift->type->label() }} من
+                                                                        ({{ Carbon::createFromFormat('H:i:s', $shift->from_time)->format('H:i') }})
+                                                                        إلى
+                                                                        ({{ Carbon::createFromFormat('H:i:s', $shift->to_time)->format('H:i') }})عدد
+                                                                        الساعات {{ $shift->total_hours }}
                                                                     </option>
                                                                 @endforeach
                                                             </select>
@@ -1151,11 +1156,12 @@
                                                             @enderror
                                                         </div>
 
-                                                        <!--  راتب الموظف الشهري -->
+                                                        <!-- راتب الموظف الشهري -->
                                                         <div class="col-md-4">
-                                                            <label class="form-label" for="formtabs-first-name">
-                                                                راتب الموظف الشهري</label>
-                                                            <input type="text" id="formtabs-first-name"
+                                                            <label class="form-label" for="monthly_salary">
+                                                                راتب الموظف الشهري
+                                                            </label>
+                                                            <input type="text" id="monthly_salary"
                                                                 value="{{ old('salary') }}"
                                                                 class="form-control @error('salary') is-invalid @enderror"
                                                                 name="salary"
@@ -1168,16 +1174,15 @@
                                                             @enderror
                                                         </div>
 
-                                                        <!--  راتب الموظف اليومى -->
+                                                        <!-- راتب الموظف اليومى -->
                                                         <div class="col-md-4">
-                                                            <label class="form-label" for="formtabs-first-name">
-                                                                راتب الموظف اليومى</label>
-                                                            <input type="text" id="formtabs-first-name"
+                                                            <label class="form-label" for="daily_salary">
+                                                                راتب الموظف اليومى
+                                                            </label>
+                                                            <input type="text" id="daily_salary"
                                                                 value="{{ old('day_price') }}"
                                                                 class="form-control @error('day_price') is-invalid @enderror"
-                                                                name="day_price"
-                                                                oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
-                                                                placeholder="مثال:3000" />
+                                                                name="day_price" placeholder="مثال:100" />
                                                             @error('day_price')
                                                                 <span class="invalid-feedback text-right" role="alert">
                                                                     <strong>{{ $message }}</strong>
@@ -1597,4 +1602,6 @@
             });
         });
     </script>
+
+
 @endpush
