@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Country;
 use App\Models\Governorate;
 use App\Faker\GovernorateFaker;
 use Illuminate\Database\Seeder;
@@ -16,20 +17,25 @@ class GovernorateSeeder extends Seeder
     public function run(): void
     {
         $faker = FakerFactory::create();
-        $governorateFaker = new GovernorateFaker($faker); // ✅ تمرير Faker
+        $governorateFaker = new GovernorateFaker($faker);
 
-        for ($i = 0; $i < 27; $i++) {
-            $governorate = $governorateFaker->uniqueGovernorate();
+        for ($i = 0; $i < 500; $i++) {
+            $governorateData = $governorateFaker->uniqueGovernorate();
 
-            Governorate::updateOrCreate(
-                ['name' => $governorate],
-                [
-                    'country_id' => 5,
-                    'active' => 1,
-                    'com_code' => 6000,
-                    'created_by' => 1,
-                ]
-            );
+            // Find the governorate by name
+            $country = Country::where('name', $governorateData['country_id'])->first();
+
+            if ($country) {
+                Governorate::updateOrCreate(
+                    ['name' => $governorateData['name']],
+                    [
+                        'country_id' => $country->id,
+                        'active' => 1,
+                        'com_code' => 6000,
+                        'created_by' => 1,
+                    ]
+                );
+            }
         }
     }
 }

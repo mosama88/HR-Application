@@ -114,16 +114,7 @@
                         <div data-i18n="مواعيد الشفتات">مواعيد الشفتات</div>
                     </a>
                 </li>
-                <li class="menu-item @yield('active-countries')">
-                    <a href="{{ route('dashboard.countries.index') }}" class="menu-link">
-                        <div data-i18n="الدول">الدول</div>
-                    </a>
-                </li>
-                <li class="menu-item @yield('active-languages')">
-                    <a href="{{ route('dashboard.languages.index') }}" class="menu-link">
-                        <div data-i18n="اللغات">اللغات</div>
-                    </a>
-                </li>
+
                 <li class="menu-item @yield('active-currencies')">
                     <a href="{{ route('dashboard.currencies.index') }}" class="menu-link">
                         <div data-i18n="العملات">العملات</div>
@@ -152,6 +143,16 @@
                 <li class="menu-item @yield('active-nationalities')">
                     <a href="{{ route('dashboard.nationalities.index') }}" class="menu-link">
                         <div data-i18n="الجنسيات">الجنسيات</div>
+                    </a>
+                </li>
+                <li class="menu-item @yield('active-languages')">
+                    <a href="{{ route('dashboard.languages.index') }}" class="menu-link">
+                        <div data-i18n="اللغات">اللغات</div>
+                    </a>
+                </li>
+                <li class="menu-item @yield('active-countries')">
+                    <a href="{{ route('dashboard.countries.index') }}" class="menu-link">
+                        <div data-i18n="الدول">الدول</div>
                     </a>
                 </li>
                 <li class="menu-item @yield('active-governorates')">

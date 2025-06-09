@@ -594,24 +594,23 @@ class CityFaker extends Base
             // إذا كانت المدن المتاحة أكثر من المستخدمة
             return count($cities) > count($usedCitiesForGovernorate);
         }, ARRAY_FILTER_USE_BOTH);
-        dd($availableGovernorates);
-
+        
         if (empty($availableGovernorates)) {
             static::$usedCities = [];  // نعيد ضبط القائمة لتبدأ من جديد
             $availableGovernorates = static::$cities; //نأخذ كل المحافظات من جديد
         }
-
+        
         // اختر محافظة عشوائية
         $governorate = array_rand($availableGovernorates); // اسم المحافظة
         $cities = $availableGovernorates[$governorate]; // قائمة مدن هذه المحافظة
-
+        
         // احصل على المدن التي لم يتم استخدامها لهذه المحافظة
         $usedCityNames = array_map(function ($usedCity) {
             return $usedCity['name']; // نأخذ أسماء المدن المستخدمة فقط
         }, array_filter(static::$usedCities, function ($usedCity) use ($governorate) {
             return $usedCity['governorate'] === $governorate; // فقط مدن هذه المحافظة
         }));
-
+        
         $availableCities = array_diff($cities, $usedCityNames); // المدن الغير مستخدمة بعد
 
         if (empty($availableCities)) { // نعيد المحاولة مع محافظة أخرى
@@ -635,8 +634,8 @@ class CityFaker extends Base
     }
 }
 
-$faker = FakerFactory::create();
-$cityFaker = new CityFaker($faker);
-$cityData = $cityFaker->uniqueCity();
+// $faker = FakerFactory::create();
+// $cityFaker = new CityFaker($faker);
+// $cityData = $cityFaker->uniqueCity();
 
-dd($cityData);
+// dd($cityData);
