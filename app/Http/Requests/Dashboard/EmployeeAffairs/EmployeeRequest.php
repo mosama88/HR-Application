@@ -2,7 +2,17 @@
 
 namespace App\Http\Requests\Dashboard\EmployeeAffairs;
 
+use App\Enums\YesOrNoEnum;
+use App\Enums\AdminGenderEnum;
+use App\Enums\StatusActiveEnum;
+use Illuminate\Validation\Rule;
+use App\Enums\Employee\ReligionEnum;
+use App\Enums\Employee\SocialStatus;
+use App\Enums\Employee\MotivationType;
+use App\Enums\Employee\FunctionalStatus;
+use App\Enums\Employee\TypeSalaryReceipt;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Enums\Employee\GraduationEstimateEnum;
 
 class EmployeeRequest extends FormRequest
 {
@@ -21,139 +31,269 @@ class EmployeeRequest extends FormRequest
      */
     public function rules(): array
     {
+        $employeeId = $this->route('employee') ? $this->route('employee')->id : null;
+
         return [
-            'employee_code' => 'nullable|unique:employees,employee_code', // كود بصمة الموظف
-            'fp_code' => 'required|unique:employees,fp_code', // كود بصمة الموظف
-            'name' => 'required|min:7|unique:employees,name', // اسم الموظف
-            'gender' => 'required|in:Male,Female', // نوع الجنس
-            'branch_id' => 'required|exists:branches,id', // الفرع التابع له الموظف
-            'job_grade_id' => 'required|exists:job_grades,id', // الفرع التابع له الموظف
+            'fp_code' => 'required|unique:employees,fp_code,' . $employeeId,
+            'name' => 'required|min:7|unique:employees,name,' . $employeeId,
+            'gender' => [
+                'required',
+                Rule::in(array_column(AdminGenderEnum::cases(), 'value')),
+            ],
+            'gender' => 'required|in:1,2', // نوع الجنس
+            'branch_id' => 'required|exists:branches,id',
+            'job_grade_id' => 'required|exists:job_grades,id',
+            'qualification_id' => 'required|exists:qualifications,id', // المؤهل الدراسي
+            'qualification_year' => 'nullable|digits:4|integer|min:1950|max:' . date('Y'),
+            'major' => 'nullable', // تخصص التخرج
+            'graduation_estimate' => [
+                'required',
+                Rule::in(array_column(GraduationEstimateEnum::cases(), 'value')),
+            ],
+            'birth_date' => 'required|date', // تاريخ الميلاد
             'national_id' => 'required|unique:employees,national_id|max:14|min:14', //رقم الهوية
             'end_national_id' => 'required|date', //
             'national_id_place' => 'required', //
-            'qualification_id' => 'nullable|exists:qualifications,id', // المؤهل الدراسي
-            'qualification_year' => 'nullable', // سنة التخرج
-            'major' => 'nullable', // تخصص التخرج
-            'graduation_estimate' => 'nullable|in:Fair,Good,Very_Good,Excellent', // تقدير التخرج
-            'birth_date' => 'required|date', // تاريخ الميلاد
-            'blood_types_id' => 'nullable|exists:blood_types,id', // فصيلة الدم
-            'religion' => 'nullable|in:Muslim,Christian', //الديانة
-            'language_id' => 'nullable|exists:languages,id', // اللغة الاساسية
-            'email' => 'required|email|unique:employees,email', // البريد الالكترونى
+            'blood_type_id' => 'nullable|exists:blood_types,id', // فصيلة الدم
+            'religion' => [
+                'required',
+                Rule::in(array_column(ReligionEnum::cases(), 'value')),
+            ],
+
+            'language_id' => 'required|exists:languages,id', // اللغة الاساسية
+            'email' => 'required|unique:employees,email,' . $employeeId,
+
             'country_id' => 'required|exists:countries,id', // الدول
             'governorate_id' => 'required|exists:governorates,id', // المحافظات
             'city_id' => 'required|exists:cities,id', // المدينة/المركز
-            'home_telephone' => 'nullable', //  هاتف المنزل
-            'work_telephone' => 'nullable', // هاتف العمل
-            'mobile' => 'required', // هاتف المحمول
-            'military' => 'nullable|in:Exemption,Exemption_Temporary,Complete', // حالة الخدمة العسكرية
-            'military_date_from' => 'nullable|date', // تاريخ بداية الخدمة العسكرية
-            'military_date_to' => 'nullable|date', // تاريخ نهاية الخدمة العسكرية
-            'military_exemption_date' => 'nullable|date', // تاريخ اعفاء الخدمة العسكرية
-            'military_wepon' => 'nullable', // سلاح الخدمة العسكرية
-            'military_exemption_reason' => 'nullable|max:150', // سبب اعفاء الخدمة العسكرية
-            'military_postponement_reason' => 'nullable|max:150', // سبب ومدة تأجيل الخدمة العسكرية
-            'date_resignation' => 'nullable|date', // تاريخ ترك العمل
-            'resignation_reason' => 'nullable', // سبب ترك العمل
-            'driving_license' => 'nullable|in:Yes,No', // رخصه قياده
-            'driving_license_type' => 'nullable|in:Special,First,Second,Third,Fourth,Pro,Motorcycle', // نوع رخصه القيادة
-            'driving_License_id' => 'nullable|unique:employees,driving_License_id', // رخصه قياده
-            'has_relatives' => 'nullable|in:Yes,No', // اقارب بالعمل
-            'relatives_details' => 'nullable|max:150', // تفاصيل الاقارب بالعمل
-            'notes' => 'nullable|max:200', // ملاحظات عن الموظف
-            'work_start_date' => 'required|date', // تاريخ بدء العمل للموظف
-            'functional_status' => 'required|in:Employee,Unemployed', // حالة الموظف
-            'department_id' => 'required|exists:departments,id', // إدارة الموظف
-            'job_categories_id' => 'required|exists:jobs_categories,id', // وظيفة الموظف
-            'has_attendance' => 'required|in:Yes,No', //هل ملزم الموظف بعمل بصمه حضور وانصراف
-            'has_fixed_shift' => 'required|in:Yes,No', // هل للموظف شفت ثابت
-            'shift_types_id' => 'nullable|exists:shifts_types,id', // هل للموظف شفت ثابت
-            'daily_work_hour' => 'nullable', // هل للموظف شفت ثابت
-            'salary' => 'required', // هل للموظف شفت ثابت
-            'day_price' => 'required', // هل للموظف شفت ثابت
-            'motivation_type' => 'required|in:Changeable,None,Fixed', // هل له حافز
-            'motivation' => 'nullable', // قيمة الحافز الثابت ان وجد
-            'social_insurance' => 'nullable|in:Yes,No', // قيمة استقطاع التأمين الاجتماعي الشهري للموظف
-            'social_insurance_number' => 'nullable', // رقم التامين الاجتماعي للموظف
-            'social_insurance_cut_monthely' => 'nullable', // رقم التامين الاجتماعي للموظف
-            'medical_insurance' => 'nullable|in:Yes,No', // هل للموظف تأمين طبي
-            'medical_insurance_cut_monthely' => 'nullable', // قيمة استقطاع التأمين الطبي الشهري للموظف
-            'medical_insurance_number' => 'nullable', // رقم التامين الطبي للموظف
-            'Type_salary_receipt' => 'required|in:Cach,Visa', // نوع صرف الراتب - واحد كاش - اثنين فيزا بنكي
-            'active_vacation' => 'nullable|in:Yes,No', // هل هذا الموظف ينزل له رصيد اجازات
-            'urgent_person_details' => 'nullable', // تفاصيل شخص يمكن الرجوع اليه للوصول للموظف
-            'social_status' => 'nullable|in:Divorced,Married,Single,Widowed', // الحالة الاجتماعية
-            'children_number' => 'nullable', // عدد الأطفال
-            'num_vacation_days' => 'nullable', // عدد الأطفال
-            'add_service' => 'nullable', // عدد الأطفال
-            'years_service' => 'nullable', // عدد الأطفال
-            'resignation_id' => 'nullable|exists:resignations,id', // الاستقاله
-            'bank_number_account' => 'nullable', // رقم حساب البنك للموظف
-            'staies_address' => 'nullable', // رقم حساب البنك للموظف
-            'disabilities' => 'nullable|in:Yes,No', // هل له اعاقة
-            'disabilities_type' => 'nullable', // نوع الاعاقة
-            'nationality_id' => 'required|exists:nationalities,id', // الجنسية
-            'name_sponsor' => 'nullable', // اسم الكفيل
-            'pasport_identity' => 'nullable', // رقم الباسبور
-            'pasport_from_place' => 'nullable', // مكان استخراج الباسبور
-            'pasport_exp_date' => 'nullable|date', // تاريخ انتهاء الباسبور
-            'basic_address_country' => 'nullable', // عنوان اقامة الموظف في بلده الام
-            'fixed_allowances' => 'required', // هل له بدلات ثابته
-            'cv' => 'nullable|mimes:png,jpg,jpeg,webp,pdf,doc,docx|max:5000', //
-            'photo' => 'nullable|mimes:png,jpg,jpeg,webp|max:5000', //
+            'home_telephone' => 'required', //  هاتف المنزل
+            'work_telephone' => 'required', // هاتف العمل
+            'mobile' => 'required', // هاتف المحمول  
+            'address' => 'required|string|min:5|max:300',
+            'military' => 'required|string|min:5|max:300',
+            'military_service_start_date' => 'nullable',
+            'military_service_end_date' => 'nullable',
+            'military_wepon' => 'nullable',
+            'military_exemption_date' => 'nullable',
+            'military_exemption_reason' => 'nullable',
+            'military_postponement_reason' => 'nullable',
+            'date_resignation' => 'nullable',
+            'resignation_reason' => 'nullable',
+            'driving_license' => 'nullable',
+            'driving_license_type' => 'nullable',
+            'driving_License_id' => 'nullable',
+            'has_relatives' => 'nullable',
+            'relatives_details' => 'nullable',
+            'notes' => 'nullable',
+            'hiring_date' => 'required|date',
+            'functional_status' => [
+                'required',
+                Rule::in(array_column(FunctionalStatus::cases(), 'value')),
+            ],
+            'department_id' => 'required|exists:departments,id',
+            'job_category_id' => 'required|exists:job_categories,id',
+            'has_attendance' => [
+                'required',
+                Rule::in(array_column(YesOrNoEnum::cases(), 'value')),
+            ],
+            'has_fixed_shift' => [
+                'required',
+                Rule::in(array_column(YesOrNoEnum::cases(), 'value')),
+            ],
+            'shifts_type_id' => 'required|exists:shifts_types,id',
+            'daily_work_hour' => 'required',
+            'salary' => 'required',
+            'day_price' => 'required',
+            'currency_id' => 'required|exists:currencies,id',
+            'bank_number_account' => 'nullable',
+            'motivation_type' => [
+                'required',
+                Rule::in(array_column(MotivationType::cases(), 'value')),
+            ],
+            'motivation_value' => 'nullable',
+            'has_social_insurance' => [
+                'required',
+                Rule::in(array_column(YesOrNoEnum::cases(), 'value')),
+            ],
+            'social_insurance_cut_monthely' => 'nullable',
+            'social_insurance_number' => 'nullable',
+            'has_medical_insurance' => [
+                'required',
+                Rule::in(array_column(YesOrNoEnum::cases(), 'value')),
+            ],
+            'medical_insurance_cut_monthely' => 'nullable',
+            'medical_insurance_number' => 'nullable',
+            'type_salary_receipt' => [
+                'required',
+                Rule::in(array_column(TypeSalaryReceipt::cases(), 'value')),
+            ],
+            'has_vacation_balance' => [
+                'required',
+                Rule::in(array_column(YesOrNoEnum::cases(), 'value')),
+            ],
+            'urgent_person_details' => 'nullable',
+            'children_number' => 'nullable',
+            'social_status' => [
+                'required',
+                Rule::in(array_column(SocialStatus::cases(), 'value')),
+            ],
+            'has_disabilities' => [
+                'required',
+                Rule::in(array_column(YesOrNoEnum::cases(), 'value')),
+            ],
+            'disabilities_details' => 'nullable',
+            'nationality_id' => 'required|exists:nationalities,id',
+            'pasport_identity' => 'nullable',
+            'pasport_exp_date' => 'nullable|date',
+            'has_fixed_allowances' => [
+                'required',
+                Rule::in(array_column(YesOrNoEnum::cases(), 'value')),
+            ],
+            'is_done_Vacation_formula' => 'nullable',
+            'is_Sensitive_manager_data' => 'nullable',
+            'active' => [
+                'nullable',
+                Rule::in(array_column(StatusActiveEnum::cases(), 'value')),
+            ],
         ];
     }
 
     public function messages(): array
     {
         return [
-            'fp_code.required' => 'كود بصمة الموظف مطلوب.',
-            'fp_code.unique' => 'رقم كود بصمة الموظف موجود بالفعل، يرجى كتابة رقم مختلف.',
+            'fp_code.required' => 'كود البصمة مطلوب.',
+            'fp_code.unique' => 'كود البصمة مستخدم من قبل.',
+
             'name.required' => 'اسم الموظف مطلوب.',
-            'name.min' => 'يرجى كتابة الاسم بالكامل.',
-            'name.unique' => 'اسم الموظف موجود بالفعل.',
-            'gender.required' => 'نوع الجنس مطلوب.',
-            'branch_id.required' => 'الفرع التابع له الموظف مطلوب.',
-            'branch_id.exists' => 'الفرع المحدد غير موجود في السجلات.',
-            'national_id.required' => 'رقم الهوية مطلوب.',
-            'national_id.unique' => 'رقم الهوية مسجل بالفعل.',
-            'national_id.max' => 'رقم الهوية يجب ألا يتجاوز 14 رقماً.',
-            'national_id.min' => 'رقم الهوية يجب أن يكون 14 رقماً.',
-            'end_national_id.required' => 'تاريخ انتهاء الهوية مطلوب.',
-            'end_national_id.date' => 'تاريخ انتهاء الهوية يجب أن يكون بتنسيق صحيح.',
-            'national_id_place.required' => 'مكان إصدار الهوية مطلوب.',
+            'name.min' => 'يجب ألا يقل الاسم عن 7 أحرف.',
+            'name.unique' => 'اسم الموظف مستخدم من قبل.',
+
+            'gender.required' => 'النوع مطلوب.',
+            'gender.in' => 'النوع المحدد غير صحيح.',
+
+            'branch_id.required' => 'الفرع مطلوب.',
+            'branch_id.exists' => 'الفرع المحدد غير موجود.',
+
+            'job_grade_id.required' => 'يرجى اختيار الدرجة الوظيفية.',
+            'job_grade_id.exists' => 'الدرجة الوظيفية المختارة غير صحيحة.',
+
+            'qualification_id.required' => 'المؤهل الدراسي مطلوب.',
             'qualification_id.exists' => 'المؤهل الدراسي المحدد غير موجود.',
+
+            'qualification_year.digits' => 'سنة التخرج يجب أن تتكون من 4 أرقام.',
+            'qualification_year.integer' => 'سنة التخرج يجب أن تكون عددًا صحيحًا.',
+            'qualification_year.min' => 'سنة التخرج يجب ألا تقل عن 1950.',
+            'qualification_year.max' => 'سنة التخرج يجب ألا تتجاوز السنة الحالية.',
+
+            'graduation_estimate.required' => 'تقدير التخرج مطلوب.',
+            'graduation_estimate.in' => 'تقدير التخرج المحدد غير صحيح.',
+
             'birth_date.required' => 'تاريخ الميلاد مطلوب.',
-            'birth_date.date' => 'تاريخ الميلاد يجب أن يكون بتنسيق صحيح.',
+            'birth_date.date' => 'تنسيق تاريخ الميلاد غير صحيح.',
+
+            'national_id.required' => 'رقم الهوية مطلوب.',
+            'national_id.unique' => 'رقم الهوية مستخدم من قبل.',
+            'national_id.max' => 'رقم الهوية يجب أن يتكون من 14 رقم.',
+            'national_id.min' => 'رقم الهوية يجب أن يتكون من 14 رقم.',
+
+            'end_national_id.required' => 'تاريخ انتهاء الهوية مطلوب.',
+            'end_national_id.date' => 'تنسيق تاريخ انتهاء الهوية غير صحيح.',
+
+            'national_id_place.required' => 'مكان إصدار الهوية مطلوب.',
+
+            'blood_type_id.exists' => 'فصيلة الدم المحددة غير موجودة.',
+
+            'religion.required' => 'الديانة مطلوبة.',
+            'religion.in' => 'الديانة المحددة غير صحيحة.',
+
+            'language_id.required' => 'اللغة الأساسية مطلوبة.',
+            'language_id.exists' => 'اللغة المحددة غير موجودة.',
+
             'email.required' => 'البريد الإلكتروني مطلوب.',
-            'email.unique' => 'البريد الإلكتروني مسجل بالفعل.',
-            'email.email' => 'يرجى إدخال بريد إلكتروني صالح.',
-            'mobile.required' => 'رقم الهاتف المحمول مطلوب.',
-            'military.in' => 'حالة الخدمة العسكرية يجب أن تكون ضمن القيم المحددة.',
-            'work_start_date.required' => 'تاريخ بدء العمل مطلوب.',
-            'functional_status.required' => 'حالة الموظف الوظيفية مطلوبة.',
-            'functional_status.in' => 'حالة الموظف الوظيفية يجب أن تكون "موظف" أو "عاطل".',
-            'department_id.required' => 'الإدارة المطلوبة للموظف مطلوبة.',
-            'department_id.exists' => 'الإدارة المحددة غير موجودة.',
-            'job_categories_id.required' => 'فئة الوظيفة مطلوبة.',
-            'job_categories_id.exists' => 'فئة الوظيفة المحددة غير موجودة.',
-            'has_attendance.required' => 'حالة الحضور مطلوبة.',
-            'has_attendance.in' => 'حالة الحضور يجب أن تكون "نعم" أو "لا".',
-            'salary.required' => 'الراتب مطلوب.',
-            'day_price.required' => 'سعر اليوم مطلوب.',
-            'Type_salary_receipt.required' => 'نوع صرف الراتب مطلوب.',
-            'cv.mimes' => 'ملف السيرة الذاتية يجب أن يكون بصيغة png, jpg, jpeg, webp, pdf, doc, docx.',
-            'cv.max' => 'حجم ملف السيرة الذاتية لا يجب أن يتجاوز 5 ميجا.',
-            'photo.mimes' => 'ملف الصورة يجب أن يكون بصيغة png, jpg, jpeg, webp.',
-            'photo.max' => 'حجم ملف الصورة لا يجب أن يتجاوز 5 ميجا.',
-            'nationality_id.exists' => 'الجنسية غير موجود',
-            'nationality_id.required' => 'من فضلك أختر الجنسية.',
-            'country_id.required' => 'من فضلك أختر الدولة',
-            'governorate_id.required' => 'من فضلك أختر المحافظة',
-            'city_id.required' => 'من فضلك أختر المدينة/المركز ',
-            'has_fixed_shift.required' => 'من فضلك أختر الشفت الثابت ',
-            'motivation_type.required' => 'من فضلك أختر الحافز ',
-            'fixed_allowances.required' => 'من فضلك أختر نوع البدلات الثابته ',
+            'email.unique' => 'البريد الإلكتروني مستخدم من قبل.',
+
+            'country_id.required' => 'الدولة مطلوبة.',
+            'country_id.exists' => 'الدولة المحددة غير موجودة.',
+
+            'governorate_id.required' => 'المحافظة مطلوبة.',
+            'governorate_id.exists' => 'المحافظة المحددة غير موجودة.',
+
+            'city_id.required' => 'المدينة مطلوبة.',
+            'city_id.exists' => 'المدينة المحددة غير موجودة.',
+
+            'home_telephone.required' => 'رقم هاتف المنزل مطلوب.',
+            'work_telephone.required' => 'رقم هاتف العمل مطلوب.',
+            'mobile.required' => 'رقم المحمول مطلوب.',
+
+            'address.required' => 'العنوان مطلوب.',
+            'address.string' => 'العنوان يجب أن يكون نصًا.',
+            'address.min' => 'العنوان يجب أن يحتوي على 5 أحرف على الأقل.',
+            'address.max' => 'العنوان يجب ألا يزيد عن 300 حرف.',
+
+            'military.required' => 'موقف التجنيد مطلوب.',
+            'military.string' => 'موقف التجنيد يجب أن يكون نصًا.',
+            'military.min' => 'موقف التجنيد يجب أن يحتوي على 5 أحرف على الأقل.',
+            'military.max' => 'موقف التجنيد يجب ألا يزيد عن 300 حرف.',
+
+            'hiring_date.required' => 'تاريخ التعيين مطلوب.',
+            'hiring_date.date' => 'تنسيق تاريخ التعيين غير صحيح.',
+
+            'functional_status.required' => 'الحالة الوظيفية مطلوبة.',
+            'functional_status.in' => 'الحالة الوظيفية المحددة غير صحيحة.',
+
+            'department_id.required' => 'القسم مطلوب.',
+            'department_id.exists' => 'القسم المحدد غير موجود.',
+
+            'job_category_id.required' => 'الفئة الوظيفية مطلوبة.',
+            'job_category_id.exists' => 'الفئة الوظيفية المحددة غير موجودة.',
+
+            'has_attendance.required' => 'حقل الحضور مطلوب.',
+            'has_attendance.in' => 'قيمة الحضور غير صحيحة.',
+
+            'has_fixed_shift.required' => 'حقل دوام ثابت مطلوب.',
+            'has_fixed_shift.in' => 'قيمة الدوام الثابت غير صحيحة.',
+
+            'shifts_type_id.required' => 'نوع الورديات مطلوب.',
+            'shifts_type_id.exists' => 'نوع الورديات المحدد غير موجود.',
+
+            'daily_work_hour.required' => 'عدد ساعات العمل اليومية مطلوب.',
+
+            'salary.required' => 'الراتب الشهري مطلوب.',
+            'day_price.required' => 'الراتب اليومي مطلوب.',
+
+            'currency_id.required' => 'العملة مطلوبة.',
+            'currency_id.exists' => 'العملة المحددة غير موجودة.',
+
+            'motivation_type.required' => 'نوع الحافز مطلوب.',
+            'motivation_type.in' => 'نوع الحافز المحدد غير صحيح.',
+
+            'has_social_insurance.required' => 'بيان التأمين الاجتماعي مطلوب.',
+            'has_social_insurance.in' => 'قيمة التأمين الاجتماعي غير صحيحة.',
+
+            'has_medical_insurance.required' => 'بيان التأمين الطبي مطلوب.',
+            'has_medical_insurance.in' => 'قيمة التأمين الطبي غير صحيحة.',
+
+            'type_salary_receipt.required' => 'نوع استلام الراتب مطلوب.',
+            'type_salary_receipt.in' => 'نوع استلام الراتب غير صحيح.',
+
+            'has_vacation_balance.required' => 'رصيد الإجازات مطلوب.',
+            'has_vacation_balance.in' => 'قيمة رصيد الإجازات غير صحيحة.',
+
+            'social_status.required' => 'الحالة الاجتماعية مطلوبة.',
+            'social_status.in' => 'الحالة الاجتماعية غير صحيحة.',
+
+            'has_disabilities.required' => 'بيان وجود إعاقة مطلوب.',
+            'has_disabilities.in' => 'قيمة الإعاقة غير صحيحة.',
+
+            'nationality_id.required' => 'الجنسية مطلوبة.',
+            'nationality_id.exists' => 'الجنسية المحددة غير موجودة.',
+
+            'pasport_exp_date.date' => 'تاريخ انتهاء جواز السفر غير صحيح.',
+
+            'has_fixed_allowances.required' => 'بيان وجود بدلات ثابتة مطلوب.',
+            'has_fixed_allowances.in' => 'قيمة البدلات الثابتة غير صحيحة.',
+
+            'active.in' => 'حالة التفعيل غير صحيحة.',
         ];
     }
 }

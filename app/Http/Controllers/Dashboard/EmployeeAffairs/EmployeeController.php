@@ -63,7 +63,7 @@ class EmployeeController extends Controller
      */
     public function store(EmployeeRequest $request)
     {
-        //
+        $validateData = $request->validated();
     }
 
     /**

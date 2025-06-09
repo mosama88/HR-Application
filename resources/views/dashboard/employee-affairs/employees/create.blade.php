@@ -994,7 +994,7 @@
                                                             <select name="job_grade_id"
                                                                 class="select2 form-select @error('job_grade_id') is-invalid @enderror"
                                                                 data-allow-clear="true">
-                                                                <option selected value="">-- أختر الدرجه --
+                                                                <option selected value="">-- أختر الدرجه --</option>
                                                                 </option>
                                                                 @foreach ($other['job_grades'] as $jobGrade)
                                                                     <option
@@ -1602,6 +1602,4 @@
             });
         });
     </script>
-
-
 @endpush
