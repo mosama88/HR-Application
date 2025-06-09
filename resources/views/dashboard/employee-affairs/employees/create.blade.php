@@ -1581,7 +1581,7 @@
     <!-- Main JS -->
 
     <!-- Page JS -->
-    {{-- <script src="{{ asset('dashboard') }}/assets/js/form-layouts.js"></script> --}}
+    <script src="{{ asset('dashboard') }}/assets/js/form-layouts.js"></script>
 
     <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
     <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
