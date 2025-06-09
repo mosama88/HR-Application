@@ -334,7 +334,7 @@
                                                                     الحالة الأجتماعية</label>
                                                                 <select
                                                                     class="form-select @error('social_status') is-invalid @enderror"
-                                                                    name="social_status"
+                                                                    name="social_status" id="social_status"
                                                                     aria-label="Default select example">
                                                                     <option selected value="">-- أختر الحالة
                                                                         الأجتماعية --
@@ -353,11 +353,12 @@
                                                                 @enderror
                                                             </div>
 
-                                                            <!-- عدد الأطفال-->
-                                                            <div class="col-md-3 ">
-                                                                <label class="form-label" for="formtabs-first-name">
-                                                                    عدد الأطفال</label>
-                                                                <input type="text" id="formtabs-first-name"
+                                                            <!-- عدد الأطفال -->
+                                                            <div class="col-md-3" id="children_number_container"
+                                                                style="display: none;">
+                                                                <label class="form-label" for="children_number">عدد
+                                                                    الأطفال</label>
+                                                                <input type="text" id="children_number"
                                                                     value="{{ old('children_number') }}"
                                                                     class="form-control @error('children_number') is-invalid @enderror"
                                                                     name="children_number"
@@ -608,12 +609,12 @@
                                                             </div>
 
                                                             <!-- هل يمتلك رخصة قيادة -->
-                                                            <div class="col-md-4 ">
-                                                                <label for="exampleFormControlSelect1" class="form-label">
-                                                                    هل يمتلك رخصة قيادة</label>
+                                                            <div class="col-md-4">
+                                                                <label for="driving_license" class="form-label">هل يمتلك
+                                                                    رخصة قيادة</label>
                                                                 <select
                                                                     class="form-select @error('driving_license') is-invalid @enderror"
-                                                                    name="driving_license"
+                                                                    id="driving_license" name="driving_license"
                                                                     aria-label="Default select example">
                                                                     <option selected value="">-- أختر الحالة --
                                                                     </option>
@@ -621,7 +622,8 @@
                                                                         <option
                                                                             @if (old('driving_license') == $license->value) selected @endif
                                                                             value="{{ $license->value }}">
-                                                                            {{ $license->label() }}</option>
+                                                                            {{ $license->label() }}
+                                                                        </option>
                                                                     @endforeach
                                                                 </select>
                                                                 @error('driving_license')
@@ -631,12 +633,12 @@
                                                                 @enderror
                                                             </div>
 
-
-                                                            <!-- رقم رخصة القيادة-->
-                                                            <div class="col-md-4 ">
-                                                                <label class="form-label" for="formtabs-first-name">
-                                                                    رقم رخصة القيادة</label>
-                                                                <input type="text" id="formtabs-first-name"
+                                                            <!-- رقم رخصة القيادة (مخفي بشكل افتراضي) -->
+                                                            <div class="col-md-4" id="license_number_container"
+                                                                style="display: none;">
+                                                                <label class="form-label" for="driving_License_id">رقم
+                                                                    رخصة القيادة</label>
+                                                                <input type="text" id="driving_License_id"
                                                                     value="{{ old('driving_License_id') }}"
                                                                     class="form-control @error('driving_License_id') is-invalid @enderror"
                                                                     name="driving_License_id"
@@ -649,14 +651,14 @@
                                                                 @enderror
                                                             </div>
 
-
-                                                            <!-- نوع رخصة القيادة  -->
-                                                            <div class="col-md-4 ">
-                                                                <label for="exampleFormControlSelect1" class="form-label">
-                                                                    نوع رخصة القيادة </label>
+                                                            <!-- نوع رخصة القيادة (مخفي بشكل افتراضي) -->
+                                                            <div class="col-md-4" id="license_type_container"
+                                                                style="display: none;">
+                                                                <label for="driving_license_type" class="form-label">نوع
+                                                                    رخصة القيادة</label>
                                                                 <select
                                                                     class="form-select @error('driving_license_type') is-invalid @enderror"
-                                                                    name="driving_license_type"
+                                                                    id="driving_license_type" name="driving_license_type"
                                                                     aria-label="Default select example">
                                                                     <option selected value="">-- أختر النوع --
                                                                     </option>
@@ -664,7 +666,8 @@
                                                                         <option
                                                                             @if (old('driving_license_type') == $licenseType->value) selected @endif
                                                                             value="{{ $licenseType->value }}">
-                                                                            {{ $licenseType->label() }}</option>
+                                                                            {{ $licenseType->label() }}
+                                                                        </option>
                                                                     @endforeach
                                                                 </select>
                                                                 @error('driving_license_type')
@@ -675,13 +678,13 @@
                                                             </div>
 
 
-                                                            <!-- هل يمتلك أقارب بالعمل-->
-                                                            <div class="col-md-4 ">
-                                                                <label for="exampleFormControlSelect1" class="form-label">
-                                                                    هل يمتلك أقارب بالعمل</label>
+                                                            <!-- هل يمتلك أقارب بالعمل -->
+                                                            <div class="col-md-4">
+                                                                <label for="has_relatives" class="form-label">هل يمتلك
+                                                                    أقارب بالعمل</label>
                                                                 <select
                                                                     class="form-select @error('has_relatives') is-invalid @enderror"
-                                                                    name="has_relatives"
+                                                                    id="has_relatives" name="has_relatives"
                                                                     aria-label="Default select example">
                                                                     <option selected value="">-- أختر الحالة --
                                                                     </option>
@@ -689,7 +692,8 @@
                                                                         <option
                                                                             @if (old('has_relatives') == $relatives->value) selected @endif
                                                                             value="{{ $relatives->value }}">
-                                                                            {{ $relatives->label() }}</option>
+                                                                            {{ $relatives->label() }}
+                                                                        </option>
                                                                     @endforeach
                                                                 </select>
                                                                 @error('has_relatives')
@@ -699,14 +703,16 @@
                                                                 @enderror
                                                             </div>
 
-                                                            <!-- تفاصيل الاقارب -->
-                                                            <div class="col-md-12">
-                                                                <label class="form-label" for="formtabs-first-name">
-                                                                    تفاصيل الاقارب </label>
-                                                                <input type="text" id="formtabs-first-name"
+                                                            <!-- تفاصيل الاقارب (مخفي بشكل افتراضي) -->
+                                                            <div class="col-md-12" id="relatives_details_container"
+                                                                style="display: none;">
+                                                                <label class="form-label" for="relatives_details">تفاصيل
+                                                                    الاقارب</label>
+                                                                <input type="text" id="relatives_details"
                                                                     value="{{ old('relatives_details') }}"
                                                                     class="form-control @error('relatives_details') is-invalid @enderror"
-                                                                    name="relatives_details" placeholder="John" />
+                                                                    name="relatives_details"
+                                                                    placeholder="أدخل أسماء الأقارب وطبيعة عملهم" />
                                                                 @error('relatives_details')
                                                                     <span class="invalid-feedback text-right" role="alert">
                                                                         <strong>{{ $message }}</strong>
@@ -714,13 +720,13 @@
                                                                 @enderror
                                                             </div>
 
-                                                            <!--هل يمتلك اعاقة / عمليات سابقة-->
-                                                            <div class="col-md-3 ">
-                                                                <label for="exampleFormControlSelect1" class="form-label">
-                                                                    هل يمتلك اعاقة / عمليات سابقة</label>
+                                                            <!-- هل يمتلك اعاقة / عمليات سابقة -->
+                                                            <div class="col-md-3">
+                                                                <label for="has_disabilities" class="form-label">هل يمتلك
+                                                                    اعاقة / عمليات سابقة</label>
                                                                 <select
                                                                     class="form-select @error('has_disabilities') is-invalid @enderror"
-                                                                    name="has_disabilities"
+                                                                    id="has_disabilities" name="has_disabilities"
                                                                     aria-label="Default select example">
                                                                     <option selected value="">-- أختر الحالة --
                                                                     </option>
@@ -728,7 +734,8 @@
                                                                         <option
                                                                             @if (old('has_disabilities') == $disabilities->value) selected @endif
                                                                             value="{{ $disabilities->value }}">
-                                                                            {{ $disabilities->label() }}</option>
+                                                                            {{ $disabilities->label() }}
+                                                                        </option>
                                                                     @endforeach
                                                                 </select>
                                                                 @error('has_disabilities')
@@ -738,21 +745,23 @@
                                                                 @enderror
                                                             </div>
 
-                                                            <!-- تفاصيل الاعاقة / عمليات سابقة -->
-                                                            <div class="col-md-12">
-                                                                <label class="form-label" for="formtabs-first-name">
-                                                                    تفاصيل الاعاقة / عمليات سابقة </label>
-                                                                <input type="text" id="formtabs-first-name"
+                                                            <!-- تفاصيل الاعاقة / عمليات سابقة (مخفي بشكل افتراضي) -->
+                                                            <div class="col-md-12" id="disabilities_details_container"
+                                                                style="display: none;">
+                                                                <label class="form-label"
+                                                                    for="disabilities_details">تفاصيل الاعاقة / عمليات
+                                                                    سابقة</label>
+                                                                <input type="text" id="disabilities_details"
                                                                     value="{{ old('disabilities_details') }}"
                                                                     class="form-control @error('disabilities_details') is-invalid @enderror"
-                                                                    name="disabilities_details" placeholder="John" />
+                                                                    name="disabilities_details"
+                                                                    placeholder="أدخل تفاصيل الإعاقة أو العمليات السابقة" />
                                                                 @error('disabilities_details')
                                                                     <span class="invalid-feedback text-right" role="alert">
                                                                         <strong>{{ $message }}</strong>
                                                                     </span>
                                                                 @enderror
                                                             </div>
-
                                                             <!-- ملاحظات علي الموظف -->
                                                             <div class="col-md-12">
                                                                 <label class="form-label" for="formtabs-first-name">
@@ -776,22 +785,21 @@
                                                 <!-- بيانات الخدمة العسكرية -->
                                                 <div class="tab-pane fade" id="form-tabs-account" role="tabpanel">
                                                     <div class="row g-3">
-
                                                         <!-- حالة الخدمة العسكرية -->
-                                                        <div class="col-md-6 ">
-                                                            <label for="exampleFormControlSelect1" class="form-label">
-                                                                حالة الخدمة العسكرية
-                                                            </label>
+                                                        <div class="col-md-6">
+                                                            <label for="military_status" class="form-label">حالة الخدمة
+                                                                العسكرية</label>
                                                             <select
                                                                 class="form-select @error('military') is-invalid @enderror"
-                                                                name="military" aria-label="Default select example">
-                                                                <option selected value="">-- أختر الحالة --
-                                                                </option>
+                                                                id="military_status" name="military"
+                                                                aria-label="Default select example">
+                                                                <option selected value="">-- أختر الحالة --</option>
                                                                 @foreach (Military::cases() as $military)
                                                                     <option
                                                                         @if (old('military') == $military->value) selected @endif
                                                                         value="{{ $military->value }}">
-                                                                        {{ $military->label() }}</option>
+                                                                        {{ $military->label() }}
+                                                                    </option>
                                                                 @endforeach
                                                             </select>
                                                             @error('military')
@@ -801,107 +809,132 @@
                                                             @enderror
                                                         </div>
 
-                                                        <!-- تاريخ اعفاء الخدمة العسكرية -->
-                                                        <div class="col-md-6">
-                                                            <label class="form-label" for="formtabs-birthdate">تاريخ اعفاء
-                                                                الخدمة العسكرية
-                                                            </label>
-                                                            <input type="text" name="military_exemption_date"
-                                                                value="{{ old('military_exemption_date') }}"
-                                                                id="formtabs-birthdate"
-                                                                class="form-control dob-picker @error('military_exemption_date') is-invalid @enderror"
-                                                                placeholder="YYYY-MM-DD" />
-                                                            @error('military_exemption_date')
-                                                                <span class="invalid-feedback text-right" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
+                                                        <!-- الحقول المخفية بشكل افتراضي -->
+                                                        <div id="exemption_temporary_fields" style="display: none;">
+                                                            <!-- تاريخ اعفاء الخدمة العسكرية -->
+                                                            <div class="col-md-6">
+                                                                <label class="form-label"
+                                                                    for="military_exemption_date">تاريخ اعفاء الخدمة
+                                                                    العسكرية</label>
+                                                                <input type="text" name="military_exemption_date"
+                                                                    value="{{ old('military_exemption_date') }}"
+                                                                    id="military_exemption_date"
+                                                                    class="form-control dob-picker @error('military_exemption_date') is-invalid @enderror"
+                                                                    placeholder="YYYY-MM-DD" />
+                                                                @error('military_exemption_date')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+                                                            <!-- سبب ومدة تأجيل الخدمة العسكرية -->
+                                                            <div class="col-md-6">
+                                                                <label class="form-label"
+                                                                    for="military_postponement_reason">سبب ومدة تأجيل
+                                                                    الخدمة العسكرية</label>
+                                                                <input type="text" id="military_postponement_reason"
+                                                                    value="{{ old('military_postponement_reason') }}"
+                                                                    class="form-control @error('military_postponement_reason') is-invalid @enderror"
+                                                                    name="military_postponement_reason"
+                                                                    placeholder="أذكر السبب والمدة" />
+                                                                @error('military_postponement_reason')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
                                                         </div>
 
-                                                        <!-- سبب اعفاء الخدمة العسكرية -->
-                                                        <div class="col-md-6">
-                                                            <label class="form-label" for="formtabs-first-name">
-                                                                سبب اعفاء الخدمة العسكرية </label>
-                                                            <input type="text" id="formtabs-first-name"
-                                                                value="{{ old('military_exemption_reason') }}"
-                                                                class="form-control @error('military_exemption_reason') is-invalid @enderror"
-                                                                name="military_exemption_reason"
-                                                                placeholder="أذكر السبب" />
-                                                            @error('military_exemption_reason')
-                                                                <span class="invalid-feedback text-right" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
+                                                        <div id="final_exemption_fields" style="display: none;">
+                                                            <!-- تاريخ اعفاء الخدمة العسكرية -->
+                                                            <div class="col-md-6">
+                                                                <label class="form-label"
+                                                                    for="military_exemption_date_final">تاريخ اعفاء الخدمة
+                                                                    العسكرية</label>
+                                                                <input type="text" name="military_exemption_date"
+                                                                    value="{{ old('military_exemption_date') }}"
+                                                                    id="military_exemption_date_final"
+                                                                    class="form-control dob-picker @error('military_exemption_date') is-invalid @enderror"
+                                                                    placeholder="YYYY-MM-DD" />
+                                                                @error('military_exemption_date')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+                                                            <!-- سبب اعفاء الخدمة العسكرية -->
+                                                            <div class="col-md-6">
+                                                                <label class="form-label"
+                                                                    for="military_exemption_reason">سبب اعفاء الخدمة
+                                                                    العسكرية</label>
+                                                                <input type="text" id="military_exemption_reason"
+                                                                    value="{{ old('military_exemption_reason') }}"
+                                                                    class="form-control @error('military_exemption_reason') is-invalid @enderror"
+                                                                    name="military_exemption_reason"
+                                                                    placeholder="أذكر السبب" />
+                                                                @error('military_exemption_reason')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
                                                         </div>
 
-                                                        <!-- سبب ومدة تأجيل الخدمة العسكرية -->
-                                                        <div class="col-md-6">
-                                                            <label class="form-label" for="formtabs-first-name">
-                                                                سبب ومدة تأجيل الخدمة العسكرية </label>
-                                                            <input type="text" id="formtabs-first-name"
-                                                                value="{{ old('military_postponement_reason') }}"
-                                                                class="form-control @error('military_postponement_reason') is-invalid @enderror"
-                                                                name="military_postponement_reason"
-                                                                placeholder="أذكر السبب" />
-                                                            @error('military_postponement_reason')
-                                                                <span class="invalid-feedback text-right" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
+                                                        <div id="complete_service_fields" style="display: none;">
+                                                            <!-- تاريخ بداية الخدمة العسكرية -->
+                                                            <div class="col-md-6">
+                                                                <label class="form-label"
+                                                                    for="military_service_start_date">تاريخ بداية الخدمة
+                                                                    العسكرية</label>
+                                                                <input type="text" name="military_service_start_date"
+                                                                    id="military_service_start_date"
+                                                                    value="{{ old('military_service_start_date') }}"
+                                                                    class="form-control dob-picker @error('military_service_start_date') is-invalid @enderror"
+                                                                    placeholder="YYYY-MM-DD" />
+                                                                @error('military_service_start_date')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+                                                            <!-- تاريخ نهاية الخدمة العسكرية -->
+                                                            <div class="col-md-6">
+                                                                <label class="form-label"
+                                                                    for="military_service_end_date">تاريخ نهاية الخدمة
+                                                                    العسكرية</label>
+                                                                <input type="text" name="military_service_end_date"
+                                                                    id="military_service_end_date"
+                                                                    value="{{ old('military_service_end_date') }}"
+                                                                    class="form-control dob-picker @error('military_service_end_date') is-invalid @enderror"
+                                                                    placeholder="YYYY-MM-DD" />
+                                                                @error('military_service_end_date')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+
+                                                            <!-- سلاح الخدمة العسكرية -->
+                                                            <div class="col-md-6">
+                                                                <label class="form-label" for="military_weapon">سلاح
+                                                                    الخدمة العسكرية</label>
+                                                                <input type="text" id="military_weapon"
+                                                                    value="{{ old('military_weapon') }}"
+                                                                    class="form-control @error('military_weapon') is-invalid @enderror"
+                                                                    name="military_weapon"
+                                                                    placeholder="مثال: سلاح المشاة" />
+                                                                @error('military_weapon')
+                                                                    <span class="invalid-feedback text-right" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
                                                         </div>
 
 
-                                                        <!-- تاريخ بداية الخدمة العسكرية -->
-                                                        <div class="col-md-6">
-                                                            <label class="form-label" for="formtabs-birthdate">تاريخ بداية
-                                                                الخدمة العسكرية
-                                                            </label>
-                                                            <input type="text" name="military_service_start_date"
-                                                                id="formtabs-birthdate"
-                                                                value="{{ old('military_service_start_date') }}"
-                                                                class="form-control dob-picker @error('military_service_start_date') is-invalid @enderror"
-                                                                placeholder="YYYY-MM-DD" />
-                                                            @error('military_service_start_date')
-                                                                <span class="invalid-feedback text-right" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
-                                                        </div>
-
-
-                                                        <!-- تاريخ نهاية الخدمة العسكرية -->
-                                                        <div class="col-md-6">
-                                                            <label class="form-label" for="formtabs-birthdate">تاريخ نهاية
-                                                                الخدمة العسكرية
-
-                                                            </label>
-                                                            <input type="text" name="military_service_end_date"
-                                                                id="formtabs-birthdate"
-                                                                value="{{ old('military_service_end_date') }}"
-                                                                class="form-control dob-picker @error('military_service_end_date') is-invalid @enderror"
-                                                                placeholder="YYYY-MM-DD" />
-                                                            @error('military_service_end_date')
-                                                                <span class="invalid-feedback text-right" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
-                                                        </div>
-
-
-                                                        <!-- سلاح الخدمة العسكرية -->
-                                                        <div class="col-md-6">
-                                                            <label class="form-label" for="formtabs-first-name">
-                                                                سلاح الخدمة العسكرية </label>
-                                                            <input type="text" id="formtabs-first-name"
-                                                                value="{{ old('military_wepon') }}"
-                                                                class="form-control @error('military_wepon') is-invalid @enderror"
-                                                                name="military_wepon" placeholder="مثال:سلاح المشاه" />
-                                                            @error('military_wepon')
-                                                                <span class="invalid-feedback text-right" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
-                                                        </div>
                                                     </div>
                                                 </div>
 
@@ -1051,21 +1084,20 @@
 
 
                                                         <!-- هل شفت ثابت -->
-                                                        <div class="col-md-3 ">
-                                                            <label for="exampleFormControlSelect1" class="form-label">
-                                                                هل شفت ثابت
-                                                            </label>
+                                                        <div class="col-md-3">
+                                                            <label for="has_fixed_shift" class="form-label">هل شفت
+                                                                ثابت</label>
                                                             <select
                                                                 class="form-select @error('has_fixed_shift') is-invalid @enderror"
-                                                                name="has_fixed_shift"
+                                                                id="has_fixed_shift" name="has_fixed_shift"
                                                                 aria-label="Default select example">
-                                                                <option selected value="">-- أختر الحالة --
-                                                                </option>
+                                                                <option selected value="">-- أختر الحالة --</option>
                                                                 @foreach (YesOrNoEnum::cases() as $fixedShift)
                                                                     <option
                                                                         @if (old('has_fixed_shift') == $fixedShift->value) selected @endif
                                                                         value="{{ $fixedShift->value }}">
-                                                                        {{ $fixedShift->label() }}</option>
+                                                                        {{ $fixedShift->label() }}
+                                                                    </option>
                                                                 @endforeach
                                                             </select>
                                                             @error('has_fixed_shift')
@@ -1075,17 +1107,16 @@
                                                             @enderror
                                                         </div>
 
-
-                                                        <!-- أنواع الشفتات -->
-                                                        <div class="col-md-6 ">
-                                                            <label for="exampleFormControlSelect1" class="form-label">
-                                                                أنواع الشفتات
-                                                            </label>
+                                                        <!-- أنواع الشفتات (مخفي بشكل افتراضي) -->
+                                                        <div class="col-md-6" id="shifts_type_container"
+                                                            style="display: none;">
+                                                            <label for="shifts_type_id" class="form-label">أنواع
+                                                                الشفتات</label>
                                                             <select
                                                                 class="form-select @error('shifts_type_id') is-invalid @enderror"
-                                                                name="shifts_type_id" aria-label="Default select example">
-                                                                <option selected value="">-- أختر الحالة --
-                                                                </option>
+                                                                id="shifts_type_id" name="shifts_type_id"
+                                                                aria-label="Default select example">
+                                                                <option selected value="">-- أختر النوع --</option>
                                                                 @foreach ($other['shifts_types'] as $shift)
                                                                     <option
                                                                         @if (old('shifts_type_id') == $shift->id) selected @endif
@@ -1100,6 +1131,7 @@
                                                                 </span>
                                                             @enderror
                                                         </div>
+
 
                                                         <!-- عدد ساعات العمل اليومي-->
                                                         <div class="col-md-3 ">
@@ -1181,7 +1213,7 @@
                                                         <div class="col-md-3">
                                                             <label class="form-label" for="formtabs-first-name">
                                                                 هل له تأمين اجتماعي</label>
-                                                            <select
+                                                            <select id="has_social_insurance"
                                                                 class="form-select @error('has_social_insurance') is-invalid @enderror"
                                                                 name="has_social_insurance"
                                                                 aria-label="Default select example">
@@ -1202,7 +1234,8 @@
                                                         </div>
 
                                                         <!-- قيمة التأمين الاجتماعي المستقطع شهرياً -->
-                                                        <div class="col-md-5">
+                                                        <div class="col-md-5" style="display: none;"
+                                                            id="social_insurance_fields">
                                                             <label class="form-label" for="formtabs-first-name">
                                                                 قيمة التأمين الاجتماعي المستقطع شهرياً </label>
                                                             <input type="text" id="formtabs-first-name"
@@ -1219,7 +1252,8 @@
                                                         </div>
 
                                                         <!-- رقم التامين الاجتماعي للموظف -->
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-4" style="display: none;"
+                                                            id="social_insurance_value">
                                                             <label class="form-label" for="formtabs-first-name">
                                                                 رقم التامين الاجتماعي للموظف </label>
                                                             <input type="text" id="formtabs-first-name"
@@ -1238,7 +1272,7 @@
                                                         <div class="col-md-3">
                                                             <label class="form-label" for="formtabs-first-name">
                                                                 هل له تأمين طبي</label>
-                                                            <select
+                                                            <select id="has_medical_insurance"
                                                                 class="form-select @error('has_medical_insurance') is-invalid @enderror"
                                                                 name="has_medical_insurance"
                                                                 aria-label="Default select example">
@@ -1259,7 +1293,8 @@
                                                         </div>
 
                                                         <!-- قيمة التأمين الطبي المستقطع شهرياً -->
-                                                        <div class="col-md-5">
+                                                        <div class="col-md-5" style="display: none;"
+                                                            id="medical_insurance_fields">
                                                             <label class="form-label" for="formtabs-first-name">
                                                                 قيمة التأمين الطبي المستقطع شهرياً </label>
                                                             <input type="text" id="formtabs-first-name"
@@ -1276,7 +1311,8 @@
                                                         </div>
 
                                                         <!-- رقم التامين الطبي للموظف -->
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-4" style="display: none;"
+                                                            id="medical_insurance_value">
                                                             <label class="form-label" for="formtabs-first-name">
                                                                 رقم التامين الطبي للموظف </label>
                                                             <input type="text" id="formtabs-first-name"
@@ -1367,7 +1403,8 @@
                                                         </div>
 
                                                         <!-- قيمة الحافز الشهري الثابت -->
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-3" style="display: none;"
+                                                            id="fixed_motivation_value">
                                                             <label class="form-label" for="formtabs-first-name">
                                                                 قيمة الحافز الشهري الثابت </label>
                                                             <input type="text" id="formtabs-first-name"
@@ -1516,6 +1553,7 @@
     <script src="{{ asset('dashboard') }}/assets/vendor/libs/cleavejs/cleave-phone.js"></script>
     <script src="{{ asset('dashboard') }}/assets/vendor/libs/moment/moment.js"></script>
     <script src="{{ asset('dashboard') }}/assets/vendor/libs/select2/select2.js"></script>
+    <script src="{{ asset('dashboard') }}/assets/js/employees/create-scripts.js"></script>
 
     <!-- Main JS -->
 
@@ -1558,4 +1596,8 @@
             });
         });
     </script>
+
+
+
+    
 @endpush
