@@ -34,7 +34,7 @@ class EmployeeController extends Controller
          */
         $com_code = Auth::user()->com_code;
         $data = Employee::with(['createdBy:id,name', 'updatedBy:id,name'])->where('com_code', $com_code)->orderByDesc('id')->paginate(10);
-        return view('dashboard.employee_affairs.employees.index', compact('data'));
+        return view('dashboard.employee-affairs.employees.index', compact('data'));
     }
 
     /**
@@ -55,7 +55,7 @@ class EmployeeController extends Controller
         $other['job_categories'] = JobCategory::all();
         $other['shifts_types'] = ShiftsType::all();
         $other['currencies'] = Currency::all();
-        return view('dashboard.employee_affairs.employees.create', compact('other'));
+        return view('dashboard.employee-affairs.employees.create', compact('other'));
     }
 
     /**

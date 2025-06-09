@@ -21,7 +21,7 @@ class AllowanceController extends Controller
          */
         $com_code = Auth::user()->com_code;
         $data = Allowance::with(['createdBy:id,name', 'updatedBy:id,name'])->where('com_code', $com_code)->orderByDesc('id')->paginate(10);
-        return view('dashboard.employee_affairs.allowances.index', compact('data'));
+        return view('dashboard.employee-affairs.allowances.index', compact('data'));
     }
 
     /**
@@ -29,7 +29,7 @@ class AllowanceController extends Controller
      */
     public function create()
     {
-        return view('dashboard.employee_affairs.allowances.create');
+        return view('dashboard.employee-affairs.allowances.create');
     }
 
     /**
@@ -55,7 +55,7 @@ class AllowanceController extends Controller
      */
     public function show(Allowance $allowance)
     {
-        return view('dashboard.employee_affairs.allowances.show', compact('allowance'));
+        return view('dashboard.employee-affairs.allowances.show', compact('allowance'));
     }
 
     /**
@@ -63,7 +63,7 @@ class AllowanceController extends Controller
      */
     public function edit(Allowance $allowance)
     {
-        return view('dashboard.employee_affairs.allowances.edit', compact('allowance'));
+        return view('dashboard.employee-affairs.allowances.edit', compact('allowance'));
     }
 
     /**

@@ -21,7 +21,7 @@ class DiscountTypeController extends Controller
          */
         $com_code = Auth::user()->com_code;
         $data = DiscountType::with(['createdBy:id,name', 'updatedBy:id,name'])->where('com_code', $com_code)->orderByDesc('id')->paginate(10);
-        return view('dashboard.employee_affairs.discount_types.index', compact('data'));
+        return view('dashboard.employee-affairs.discount_types.index', compact('data'));
     }
 
     /**
@@ -29,7 +29,7 @@ class DiscountTypeController extends Controller
      */
     public function create()
     {
-        return view('dashboard.employee_affairs.discount_types.create');
+        return view('dashboard.employee-affairs.discount_types.create');
     }
 
     /**
@@ -55,7 +55,7 @@ class DiscountTypeController extends Controller
      */
     public function show(DiscountType $discountType)
     {
-        return view('dashboard.employee_affairs.discount_types.show', compact('discountType'));
+        return view('dashboard.employee-affairs.discount_types.show', compact('discountType'));
     }
 
     /**
@@ -63,7 +63,7 @@ class DiscountTypeController extends Controller
      */
     public function edit(DiscountType $discountType)
     {
-        return view('dashboard.employee_affairs.discount_types.edit', compact('discountType'));
+        return view('dashboard.employee-affairs.discount_types.edit', compact('discountType'));
     }
 
     /**

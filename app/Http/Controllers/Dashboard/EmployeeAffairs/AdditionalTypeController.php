@@ -21,7 +21,7 @@ class AdditionalTypeController extends Controller
          */
         $com_code = Auth::user()->com_code;
         $data = AdditionalType::with(['createdBy:id,name', 'updatedBy:id,name'])->where('com_code', $com_code)->orderByDesc('id')->paginate(10);
-        return view('dashboard.employee_affairs.additional_types.index', compact('data'));
+        return view('dashboard.employee-affairs.additional_types.index', compact('data'));
     }
 
     /**
@@ -29,7 +29,7 @@ class AdditionalTypeController extends Controller
      */
     public function create()
     {
-        return view('dashboard.employee_affairs.additional_types.create');
+        return view('dashboard.employee-affairs.additional_types.create');
     }
 
     /**
@@ -55,7 +55,7 @@ class AdditionalTypeController extends Controller
      */
     public function show(AdditionalType $additionalType)
     {
-        return view('dashboard.employee_affairs.additional_types.show', compact('additionalType'));
+        return view('dashboard.employee-affairs.additional_types.show', compact('additionalType'));
     }
 
     /**
@@ -63,7 +63,7 @@ class AdditionalTypeController extends Controller
      */
     public function edit(AdditionalType $additionalType)
     {
-        return view('dashboard.employee_affairs.additional_types.edit', compact('additionalType'));
+        return view('dashboard.employee-affairs.additional_types.edit', compact('additionalType'));
     }
 
     /**
