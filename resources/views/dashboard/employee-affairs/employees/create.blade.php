@@ -1562,6 +1562,15 @@
 
 @endsection
 @push('js')
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2({
+                placeholder: '-- أختر --',
+                allowClear: true,
+                width: '100%' // مهم جدًا عشان التنسيق
+            });
+        });
+    </script>
     <!-- Vendors JS -->
     <script src="{{ asset('dashboard') }}/assets/vendor/libs/cleavejs/cleave.js"></script>
     <script src="{{ asset('dashboard') }}/assets/vendor/libs/cleavejs/cleave-phone.js"></script>
@@ -1572,7 +1581,7 @@
     <!-- Main JS -->
 
     <!-- Page JS -->
-    <script src="{{ asset('dashboard') }}/assets/js/form-layouts.js"></script>
+    {{-- <script src="{{ asset('dashboard') }}/assets/js/form-layouts.js"></script> --}}
 
     <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
     <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
