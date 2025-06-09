@@ -49,7 +49,7 @@
                             <h5 class="card-header d-flex justify-content-between align-items-center">
                                 <span>إضافة موظف جديد</span>
 
-                        <!-- Submit -->
+                                <!-- Submit -->
 
                                 <button type="submit" id="submitButton" class="btn btn-icon btn-outline-primary">
                                     <i class="fa-solid fa-floppy-disk"></i>
@@ -330,7 +330,7 @@
 
 
                                                             <!-- الحالة الأجتماعية -->
-                                                            <div class="col-md-3 ">
+                                                            <div class="col-md-4">
                                                                 <label for="exampleFormControlSelect1" class="form-label">
                                                                     الحالة الأجتماعية</label>
                                                                 <select
@@ -373,7 +373,7 @@
                                                             </div>
 
                                                             <!-- فصيلة الدم   -->
-                                                            <div class="col-md-3">
+                                                            <div class="col-md-4">
                                                                 <label class="form-label" for="formtabs-country">فصيلة
                                                                     الدم </label>
                                                                 <select name="blood_type_id"
@@ -398,7 +398,7 @@
                                                             </div>
 
                                                             <!-- الجنسية  -->
-                                                            <div class="col-md-3">
+                                                            <div class="col-md-4">
                                                                 <label class="form-label"
                                                                     for="formtabs-country">الجنسية</label>
                                                                 <select name="nationality_id"
@@ -1597,8 +1597,4 @@
             });
         });
     </script>
-
-
-
-    
 @endpush
