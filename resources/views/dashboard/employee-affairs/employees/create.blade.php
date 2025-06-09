@@ -1017,19 +1017,21 @@
                                                             @enderror
                                                         </div>
 
-                                                        <!-- الادارة التابع لها الموظف -->
+
+                                                        <!-- الادارة -->
                                                         <div class="col-md-4">
                                                             <label class="form-label" for="formtabs-country">الادارة
                                                                 التابع لها الموظف</label>
-                                                            <select name="department_id"
-                                                                class="select2 form-select @error('department_id') is-invalid @enderror">
+                                                            <select
+                                                                class="select2 form-select @error('department_id') is-invalid @enderror"
+                                                                name="department_id" data-allow-clear="true">
                                                                 <option selected value="">-- أختر الادارة --
                                                                 </option>
-                                                                @foreach ($other['departments'] as $department)
+                                                                @foreach ($other['departments'] as $branch)
                                                                     <option
-                                                                        @if (old('department_id') == $department->id) selected @endif
-                                                                        value="{{ $department->id }}">
-                                                                        {{ $department->name }}</option>
+                                                                        @if (old('department_id') == $branch->id) selected @endif
+                                                                        value="{{ $branch->id }}">
+                                                                        {{ $branch->name }}</option>
                                                                 @endforeach
                                                             </select>
                                                             @error('department_id')
@@ -1575,9 +1577,7 @@
     <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
     <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
     <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
-<script>
-    
-</script>
+    <script></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             FilePond.registerPlugin(FilePondPluginImagePreview);
