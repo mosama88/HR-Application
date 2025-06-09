@@ -1575,7 +1575,9 @@
     <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
     <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
     <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
-
+<script>
+    
+</script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             FilePond.registerPlugin(FilePondPluginImagePreview);
