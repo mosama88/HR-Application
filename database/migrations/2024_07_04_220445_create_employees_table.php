@@ -49,7 +49,6 @@ return new class extends Migration
             $table->foreignIdFor(Governorate::class)->nullable()->constrained()->nullOnDelete(); //محافظة
             $table->foreignIdFor(City::class)->nullable()->constrained()->nullOnDelete(); //مدينة
             $table->string('home_telephone', 20)->nullable(); //رقم هاتف المنزل
-            $table->string('work_telephone', 20)->nullable(); //رقم هاتف العمل
             $table->string('mobile', 20)->nullable(); //رقم هاتف المحمول
             $table->string('address', 500)->nullable(); //عنوان الموظف
             $table->tinyInteger('military')->default(1)->nullable(); //الحالة العسكرية

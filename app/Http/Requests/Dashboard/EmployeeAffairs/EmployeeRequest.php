@@ -42,7 +42,7 @@ class EmployeeRequest extends FormRequest
             ],
             'gender' => 'required|in:1,2', // نوع الجنس
             'branch_id' => 'required|exists:branches,id',
-            'job_grade_id' => 'required|exists:job_grades,id',
+            'job_grade_id' => 'nullable|exists:job_grades,id',
             'qualification_id' => 'required|exists:qualifications,id', // المؤهل الدراسي
             'qualification_year' => 'nullable|digits:4|integer|min:1950|max:' . date('Y'),
             'major' => 'nullable', // تخصص التخرج
@@ -67,10 +67,9 @@ class EmployeeRequest extends FormRequest
             'governorate_id' => 'required|exists:governorates,id', // المحافظات
             'city_id' => 'required|exists:cities,id', // المدينة/المركز
             'home_telephone' => 'required', //  هاتف المنزل
-            'work_telephone' => 'required', // هاتف العمل
             'mobile' => 'required', // هاتف المحمول  
             'address' => 'required|string|min:5|max:300',
-            'military' => 'required|string|min:5|max:300',
+            'military' => 'required',
             'military_service_start_date' => 'nullable',
             'military_service_end_date' => 'nullable',
             'military_wepon' => 'nullable',
@@ -90,8 +89,8 @@ class EmployeeRequest extends FormRequest
                 'required',
                 Rule::in(array_column(FunctionalStatus::cases(), 'value')),
             ],
-            'department_id' => 'required|exists:departments,id',
-            'job_category_id' => 'required|exists:job_categories,id',
+            'department_id' => ['nullable','exists:departments,id'],
+            'job_category_id' => 'nullable|exists:job_categories,id',
             'has_attendance' => [
                 'required',
                 Rule::in(array_column(YesOrNoEnum::cases(), 'value')),
@@ -104,7 +103,7 @@ class EmployeeRequest extends FormRequest
             'daily_work_hour' => 'required',
             'salary' => 'required',
             'day_price' => 'required',
-            'currency_id' => 'required|exists:currencies,id',
+            'currency_id' => 'nullable|exists:currencies,id',
             'bank_number_account' => 'nullable',
             'motivation_type' => [
                 'required',
@@ -222,7 +221,7 @@ class EmployeeRequest extends FormRequest
             'city_id.exists' => 'المدينة المحددة غير موجودة.',
 
             'home_telephone.required' => 'رقم هاتف المنزل مطلوب.',
-            'work_telephone.required' => 'رقم هاتف العمل مطلوب.',
+            'home_telephone.required' => 'رقم هاتف العمل مطلوب.',
             'mobile.required' => 'رقم المحمول مطلوب.',
 
             'address.required' => 'العنوان مطلوب.',

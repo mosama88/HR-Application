@@ -52,7 +52,6 @@ class Employee extends Model implements HasMedia
         'governorate_id',
         'city_id',
         'home_telephone',
-        'work_telephone',
         'mobile',
         'address',
         'military',

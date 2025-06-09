@@ -42,19 +42,19 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        $other['qualifications'] = Qualification::all();
-        $other['branches'] = Branch::all();
-        $other['countries'] = Country::all();
-        $other['governorates'] = Governorate::all();
-        $other['cities'] = City::all();
-        $other['blood_types'] = BloodType::all();
-        $other['nationalities'] = Nationality::all();
-        $other['languages'] = Language::all();
-        $other['job_grades'] = JobGrade::all();
-        $other['departments'] = Department::all();
-        $other['job_categories'] = JobCategory::all();
+        $other['qualifications'] = Qualification::select('id', 'name')->get();
+        $other['branches'] = Branch::select('id', 'name')->get();
+        $other['countries'] = Country::select('id', 'name')->get();
+        $other['governorates'] = Governorate::select('id', 'name')->get();
+        $other['cities'] = City::select('id', 'name')->get();
+        $other['blood_types'] = BloodType::select('id', 'name')->get();
+        $other['nationalities'] = Nationality::select('id', 'name')->get();
+        $other['languages'] = Language::select('id', 'name')->get();
+        $other['job_grades'] = JobGrade::select('id', 'name')->get();
+        $other['departments'] = Department::select('id', 'name')->get();
+        $other['job_categories'] = JobCategory::select('id', 'name')->get();
         $other['shifts_types'] = ShiftsType::all();
-        $other['currencies'] = Currency::all();
+        $other['currencies'] = Currency::select('id', 'name')->get();
         return view('dashboard.employee-affairs.employees.create', compact('other'));
     }
 
@@ -63,7 +63,10 @@ class EmployeeController extends Controller
      */
     public function store(EmployeeRequest $request)
     {
+        dd($request->all());
+
         $validateData = $request->validated();
+        dd($validateData);
     }
 
     /**

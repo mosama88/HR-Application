@@ -51,11 +51,19 @@
                                 <span>إضافة موظف جديد</span>
 
                                 <!-- Submit -->
-
+                                {{-- 
                                 <button type="submit" id="submitButton" class="btn btn-icon btn-outline-primary">
                                     <i class="fa-solid fa-floppy-disk"></i>
-                                </button>
+                                </button> --}}
                             </h5>
+
+                            @if ($errors->any())
+                                @foreach ($errors->all() as $error)
+                                    <div class="alert alert-danger text-center">
+                                        {{ $error }}
+                                    </div>
+                                @endforeach
+                            @endif
 
                             <div class="card-body">
                                 <div class="row">
@@ -119,7 +127,7 @@
                                                                     الموظف بالكامل <span
                                                                         class="text-danger">*</span></label>
                                                                 <input type="text" name="name"
-                                                                    value="{{ old('fp_code') }}"
+                                                                    value="{{ old('name') }}"
                                                                     class="form-control @error('name') is-invalid @enderror"
                                                                     placeholder="مثال:John" />
                                                                 @error('name')
@@ -580,8 +588,7 @@
                                                             <div class="col-md-4 ">
                                                                 <label class="form-label" for="formtabs-first-name">
                                                                     هاتف المحمول</label>
-                                                                <input type="text" id="formtabs-first-name"
-                                                                    value="{{ old('mobile') }}"
+                                                                <input type="text" value="{{ old('mobile') }}"
                                                                     class="form-control @error('mobile') is-invalid @enderror"
                                                                     name="mobile"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
@@ -597,8 +604,7 @@
                                                             <div class="col-md-4 ">
                                                                 <label class="form-label" for="formtabs-first-name">
                                                                     هاتف المنزل</label>
-                                                                <input type="text" id="formtabs-first-name"
-                                                                    value="{{ old('home_telephone') }}"
+                                                                <input type="text" value="{{ old('home_telephone') }}"
                                                                     class="form-control @error('home_telephone') is-invalid @enderror"
                                                                     name="home_telephone"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
@@ -1016,16 +1022,14 @@
                                                             <label class="form-label" for="formtabs-country">الادارة
                                                                 التابع لها الموظف</label>
                                                             <select name="department_id"
-                                                                class="select2 form-select @error('department_id') is-invalid @enderror"
-                                                                data-allow-clear="true">
+                                                                class="select2 form-select @error('department_id') is-invalid @enderror">
                                                                 <option selected value="">-- أختر الادارة --
                                                                 </option>
                                                                 @foreach ($other['departments'] as $department)
                                                                     <option
                                                                         @if (old('department_id') == $department->id) selected @endif
                                                                         value="{{ $department->id }}">
-                                                                        {{ $department->name }}
-                                                                    </option>
+                                                                        {{ $department->name }}</option>
                                                                 @endforeach
                                                             </select>
                                                             @error('department_id')
@@ -1542,6 +1546,8 @@
                                 </div>
                             </div>
                         </div>
+                        <x-create-button-component></x-create-button-component>
+
                         <!-- /.card-body -->
                         </form>
                     </div>
