@@ -68,6 +68,8 @@ class DatabaseSeeder extends Seeder
             GovernorateSeeder::class,
             CitySeeder::class,
             BloodTypeSeeder::class,
+            JobCategorySeeder::class,
+            JobGradesSeeder::class,
         ]);
     }
 }
