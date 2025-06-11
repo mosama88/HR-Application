@@ -5,22 +5,23 @@ namespace App\Http\Controllers\Dashboard\EmployeeAffairs;
 use App\Models\City;
 use App\Models\Branch;
 use App\Models\Country;
+use App\Models\Currency;
 use App\Models\Employee;
 use App\Models\JobGrade;
 use App\Models\Language;
 use App\Models\BloodType;
+use App\Models\Department;
+use App\Models\ShiftsType;
 use App\Models\Governorate;
+use App\Models\JobCategory;
 use App\Models\Nationality;
 use Illuminate\Http\Request;
+use App\Models\Qualification;
+use App\Enums\StatusActiveEnum;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\Dashboard\EmployeeAffairs\EmployeeRequest;
-use App\Models\Currency;
-use App\Models\Department;
-use App\Models\JobCategory;
-use App\Models\Qualification;
-use App\Models\ShiftsType;
 use PhpParser\Node\Expr\AssignOp\ShiftLeft;
+use App\Http\Requests\Dashboard\EmployeeAffairs\EmployeeRequest;
 
 class EmployeeController extends Controller
 {
@@ -63,10 +64,21 @@ class EmployeeController extends Controller
      */
     public function store(EmployeeRequest $request)
     {
-        dd($request->all());
+        $com_code =  Auth::user()->com_code;
+        $active = StatusActiveEnum::ACTIVE;
 
+        $lastEmployeeCode = Employee::orderByDesc('employee_code')->value('employee_code');
+        $newEmployeeCode = $lastEmployeeCode ? $lastEmployeeCode + 1 : 1;
         $validateData = $request->validated();
-        dd($validateData);
+        $dataInsert = array_merge($validateData, [
+            'employee_code' => $newEmployeeCode,
+            'com_code' => $com_code,
+            'active' =>  $active,
+            'created_by' => Auth::user()->id,
+        ]);
+
+        Employee::create($dataInsert);
+        return redirect()->route('dashboard.employees.index')->with('success', 'تم أضافة الموظف بنجاح');
     }
 
     /**

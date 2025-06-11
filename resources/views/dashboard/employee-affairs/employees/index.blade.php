@@ -49,7 +49,11 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>كود الموظف</th>
                                         <th>الأسم</th>
+                                        <th>الفرع</th>
+                                        <th>الوظيفه</th>
+                                        <th>الموبايل</th>
                                         <th>الحالة</th>
                                         <th>أضافة بواسطة</th>
                                         <th>تعديل بواسطة</th>
@@ -60,7 +64,11 @@
                                     @forelse ($data as $info)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $info->employee_code }}</td>
                                             <td>{{ $info->name }}</td>
+                                            <td>{{ $info->branch->name }}</td>
+                                            <td>{{ $info->jobCategory->name }}</td>
+                                            <td>{{ $info->mobile }}</td>
                                             <td>
                                                 @if ($info->active == StatusActiveEnum::ACTIVE)
                                                     <span class="badge bg-success">مفعل</span>

@@ -108,11 +108,12 @@
                                                         <div class="row g-3">
                                                             <!-- كود البصمة -->
                                                             <div class="col-md-3 ">
-                                                                <label class="form-label" for="formtabs-first-name">كود بصمة
+                                                                <label class="form-label" for="fp_code-input">كود بصمة
                                                                     الموظف</label>
                                                                 <input type="text"
                                                                     class="form-control @error('fp_code') is-invalid @enderror"
                                                                     name="fp_code" value="{{ old('fp_code') }}"
+                                                                    id="fp_code-input"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
                                                                     placeholder="مثال:1000" />
                                                                 @error('fp_code')
@@ -123,11 +124,11 @@
                                                             </div>
                                                             <!-- الأسم -->
                                                             <div class="col-md-6 ">
-                                                                <label class="form-label" for="formtabs-last-name">اسم
+                                                                <label class="form-label" for="name-input">اسم
                                                                     الموظف بالكامل <span
                                                                         class="text-danger">*</span></label>
                                                                 <input type="text" name="name"
-                                                                    value="{{ old('name') }}"
+                                                                    value="{{ old('name') }}" id="name-input"
                                                                     class="form-control @error('name') is-invalid @enderror"
                                                                     placeholder="مثال:John" />
                                                                 @error('name')
@@ -139,9 +140,9 @@
 
                                                             <!-- الجنس -->
                                                             <div class="col-md-3 ">
-                                                                <label for="exampleFormControlSelect1"
-                                                                    class="form-label">نوع الجنس</label>
-                                                                <select
+                                                                <label for="gender-input" class="form-label">نوع
+                                                                    الجنس</label>
+                                                                <select id="gender-input"
                                                                     class="form-select @error('gender') is-invalid @enderror"
                                                                     name="gender" aria-label="Default select example">
                                                                     <option selected value="">-- أختر نوع الجنس --
@@ -162,9 +163,9 @@
 
                                                             <!--  سنة التخرج -->
                                                             <div class="col-md-3 ">
-                                                                <label class="form-label" for="formtabs-first-name">
+                                                                <label class="form-label" for="qualification_year-input">
                                                                     سنة التخرج </label>
-                                                                <input type="text" id="formtabs-first-name"
+                                                                <input type="text" id="qualification_year-input"
                                                                     value="{{ old('qualification_year') }}"
                                                                     class="form-control @error('qualification_year') is-invalid @enderror"
                                                                     name="qualification_year"
@@ -181,7 +182,8 @@
 
                                                             <!-- المؤهل الدراسي  -->
                                                             <div class="col-md-6">
-                                                                <label class="form-label" for="formtabs-country">المؤهل
+                                                                <label class="form-label"
+                                                                    for="qualification_id-input">المؤهل
                                                                     الدراسي</label>
                                                                 <select name="qualification_id"
                                                                     class="select2 form-select @error('qualification_id') is-invalid @enderror"
@@ -230,9 +232,9 @@
 
                                                             <!-- تخصص  التخرج -->
                                                             <div class="col-md-3 ">
-                                                                <label for="exampleFormControlSelect1" class="form-label">
+                                                                <label for="major-input" class="form-label">
                                                                     تخصص التخرج</label>
-                                                                <input type="text" id="formtabs-first-name"
+                                                                <input type="text" id="major-input"
                                                                     value="{{ old('major') }}"
                                                                     class="form-control @error('major') is-invalid @enderror"
                                                                     name="major" placeholder="مثال:علوم الحاسوب" />
@@ -271,12 +273,12 @@
 
                                                             <!-- تاريخ الميلاد -->
                                                             <div class="col-md-3">
-                                                                <label class="form-label" for="formtabs-birthdate">تاريخ
+                                                                <label class="form-label" for="birth_date-input">تاريخ
                                                                     الميلاد</label>
                                                                 <input type="text" name="birth_date"
-                                                                    value="{{ old('birth_date') }}"
-                                                                    id="formtabs-birthdate"
-                                                                    class="form-control dob-picker @error('birth_date') is-invalid @enderror"
+                                                                    id="birth_date-input" value="{{ old('birth_date') }}"
+                                                                    autocomplete="none"
+                                                                    class="form-control date-picker @error('birth_date') is-invalid @enderror"
                                                                     placeholder="YYYY-MM-DD" />
                                                                 @error('birth_date')
                                                                     <span class="invalid-feedback text-right" role="alert">
@@ -287,9 +289,9 @@
 
                                                             <!--  رقم بطاقة الهوية -->
                                                             <div class="col-md-3 ">
-                                                                <label class="form-label" for="formtabs-first-name">
+                                                                <label class="form-label" for="national_id-input">
                                                                     رقم بطاقة الهوية </label>
-                                                                <input type="text" id="formtabs-first-name"
+                                                                <input type="text" id="national_id-input"
                                                                     value="{{ old('national_id') }}"
                                                                     class="form-control @error('national_id') is-invalid @enderror"
                                                                     name="national_id"
@@ -305,9 +307,9 @@
 
                                                             <!--  مركز اصدار بطاقة الهوية -->
                                                             <div class="col-md-6 ">
-                                                                <label class="form-label" for="formtabs-first-name">
+                                                                <label class="form-label" for="national_id_place-input">
                                                                     مركز اصدار بطاقة الهوية </label>
-                                                                <input type="text" id="formtabs-first-name"
+                                                                <input type="text" id="national_id_place-input"
                                                                     value="{{ old('national_id_place') }}"
                                                                     class="form-control @error('national_id_place') is-invalid @enderror"
                                                                     name="national_id_place"
@@ -323,12 +325,13 @@
 
                                                             <!-- تاريخ انتهاء بطاقة الهوية -->
                                                             <div class="col-md-3">
-                                                                <label class="form-label" for="formtabs-birthdate">تاريخ
+                                                                <label class="form-label"
+                                                                    for="end_national_id-input">تاريخ
                                                                     انتهاء بطاقة الهوية</label>
                                                                 <input type="text" name="end_national_id"
                                                                     value="{{ old('end_national_id') }}"
-                                                                    id="formtabs-birthdate"
-                                                                    class="form-control dob-picker @error('end_national_id') is-invalid @enderror"
+                                                                    autocomplete="none" id="end_national_id-input"
+                                                                    class="form-control date-picker @error('end_national_id') is-invalid @enderror"
                                                                     placeholder="YYYY-MM-DD" />
                                                                 @error('end_national_id')
                                                                     <span class="invalid-feedback text-right" role="alert">
@@ -571,9 +574,9 @@
 
                                                             <!-- عنوان الاقامة -->
                                                             <div class="col-md-12">
-                                                                <label class="form-label" for="formtabs-first-name">
+                                                                <label class="form-label" for="address-input">
                                                                     عنوان الاقامة </label>
-                                                                <input type="text" id="formtabs-first-name"
+                                                                <input type="text" id="address-input"
                                                                     value="{{ old('address') }}"
                                                                     class="form-control @error('address') is-invalid @enderror"
                                                                     name="address" placeholder="مثال: شارع..." />
@@ -586,11 +589,11 @@
 
                                                             <!-- هاتف المحمول-->
                                                             <div class="col-md-4 ">
-                                                                <label class="form-label" for="formtabs-first-name">
+                                                                <label class="form-label" for="mobile-input">
                                                                     هاتف المحمول</label>
                                                                 <input type="text" value="{{ old('mobile') }}"
                                                                     class="form-control @error('mobile') is-invalid @enderror"
-                                                                    name="mobile"
+                                                                    name="mobile" id="mobile-input"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
                                                                     placeholder="658 799 8941" />
                                                                 @error('mobile')
@@ -602,11 +605,11 @@
 
                                                             <!-- هاتف المنزل-->
                                                             <div class="col-md-4 ">
-                                                                <label class="form-label" for="formtabs-first-name">
+                                                                <label class="form-label" for="home_telephone-input">
                                                                     هاتف المنزل</label>
                                                                 <input type="text" value="{{ old('home_telephone') }}"
                                                                     class="form-control @error('home_telephone') is-invalid @enderror"
-                                                                    name="home_telephone"
+                                                                    name="home_telephone" id="home_telephone-input"
                                                                     oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
                                                                     placeholder="028 799 8941" />
                                                                 @error('home_telephone')
@@ -772,9 +775,9 @@
                                                             </div>
                                                             <!-- ملاحظات علي الموظف -->
                                                             <div class="col-md-12">
-                                                                <label class="form-label" for="formtabs-first-name">
+                                                                <label class="form-label" for="notes-input">
                                                                     ملاحظات علي الموظف </label>
-                                                                <input type="text" id="formtabs-first-name"
+                                                                <input type="text" id="notes-input"
                                                                     value="{{ old('notes') }}"
                                                                     class="form-control @error('notes') is-invalid @enderror"
                                                                     name="notes" placeholder="John" />
@@ -826,8 +829,8 @@
                                                                     العسكرية</label>
                                                                 <input type="text" name="military_exemption_date"
                                                                     value="{{ old('military_exemption_date') }}"
-                                                                    id="military_exemption_date"
-                                                                    class="form-control dob-picker @error('military_exemption_date') is-invalid @enderror"
+                                                                    id="military_exemption_date" autocomplete="none"
+                                                                    class="form-control date-picker @error('military_exemption_date') is-invalid @enderror"
                                                                     placeholder="YYYY-MM-DD" />
                                                                 @error('military_exemption_date')
                                                                     <span class="invalid-feedback text-right" role="alert">
@@ -862,8 +865,8 @@
                                                                     العسكرية</label>
                                                                 <input type="text" name="military_exemption_date"
                                                                     value="{{ old('military_exemption_date') }}"
-                                                                    id="military_exemption_date_final"
-                                                                    class="form-control dob-picker @error('military_exemption_date') is-invalid @enderror"
+                                                                    id="military_exemption_date_final" autocomplete="none"
+                                                                    class="form-control date-picker @error('military_exemption_date') is-invalid @enderror"
                                                                     placeholder="YYYY-MM-DD" />
                                                                 @error('military_exemption_date')
                                                                     <span class="invalid-feedback text-right" role="alert">
@@ -897,9 +900,9 @@
                                                                     for="military_service_start_date">تاريخ بداية الخدمة
                                                                     العسكرية</label>
                                                                 <input type="text" name="military_service_start_date"
-                                                                    id="military_service_start_date"
+                                                                    id="military_service_start_date" autocomplete="none"
                                                                     value="{{ old('military_service_start_date') }}"
-                                                                    class="form-control dob-picker @error('military_service_start_date') is-invalid @enderror"
+                                                                    class="form-control date-picker @error('military_service_start_date') is-invalid @enderror"
                                                                     placeholder="YYYY-MM-DD" />
                                                                 @error('military_service_start_date')
                                                                     <span class="invalid-feedback text-right" role="alert">
@@ -914,9 +917,9 @@
                                                                     for="military_service_end_date">تاريخ نهاية الخدمة
                                                                     العسكرية</label>
                                                                 <input type="text" name="military_service_end_date"
-                                                                    id="military_service_end_date"
+                                                                    id="military_service_end_date" autocomplete="none"
                                                                     value="{{ old('military_service_end_date') }}"
-                                                                    class="form-control dob-picker @error('military_service_end_date') is-invalid @enderror"
+                                                                    class="form-control date-picker @error('military_service_end_date') is-invalid @enderror"
                                                                     placeholder="YYYY-MM-DD" />
                                                                 @error('military_service_end_date')
                                                                     <span class="invalid-feedback text-right" role="alert">
@@ -953,12 +956,13 @@
 
                                                         <!-- تاريخ التعيين -->
                                                         <div class="col-md-4">
-                                                            <label class="form-label" for="formtabs-birthdate">تاريخ
+                                                            <label class="form-label" for="hiring_date-input">تاريخ
                                                                 التعيين
                                                             </label>
                                                             <input type="text" name="hiring_date"
-                                                                id="formtabs-birthdate" value="{{ old('hiring_date') }}"
-                                                                class="form-control dob-picker @error('hiring_date') is-invalid @enderror"
+                                                                id="hiring_date-input" value="{{ old('hiring_date') }}"
+                                                                autocomplete="none"
+                                                                class="form-control date-picker @error('hiring_date') is-invalid @enderror"
                                                                 placeholder="YYYY-MM-DD" />
                                                             @error('hiring_date')
                                                                 <span class="invalid-feedback text-right" role="alert">
@@ -969,12 +973,12 @@
 
                                                         <!-- الحالة الوظيفية -->
                                                         <div class="col-md-4 ">
-                                                            <label for="exampleFormControlSelect1" class="form-label">
+                                                            <label for="functional_status-input" class="form-label">
                                                                 الحالة الوظيفية
                                                             </label>
                                                             <select
                                                                 class="form-select @error('functional_status') is-invalid @enderror"
-                                                                name="functional_status"
+                                                                name="functional_status" id="functional_status-input"
                                                                 aria-label="Default select example">
                                                                 <option selected value="">-- أختر الحالة --
                                                                 </option>
@@ -995,9 +999,9 @@
 
                                                         <!-- الدرجه الوظيفية -->
                                                         <div class="col-md-4">
-                                                            <label class="form-label" for="formtabs-country">الدرجه
+                                                            <label class="form-label" for="job_grade_id-input">الدرجه
                                                                 الوظيفية</label>
-                                                            <select name="job_grade_id"
+                                                            <select name="job_grade_id" id="job_grade_id-input"
                                                                 class="select2 form-select @error('job_grade_id') is-invalid @enderror"
                                                                 data-allow-clear="true">
                                                                 <option selected value="">-- أختر الدرجه --</option>
@@ -1020,11 +1024,12 @@
 
                                                         <!-- الادارة -->
                                                         <div class="col-md-4">
-                                                            <label class="form-label" for="formtabs-country">الادارة
+                                                            <label class="form-label" for="department_id-input">الادارة
                                                                 التابع لها الموظف</label>
                                                             <select
                                                                 class="select2 form-select @error('department_id') is-invalid @enderror"
-                                                                name="department_id" data-allow-clear="true">
+                                                                name="department_id" data-allow-clear="true"
+                                                                id="department_id-input">
                                                                 <option selected value="">-- أختر الادارة --
                                                                 </option>
                                                                 @foreach ($other['departments'] as $branch)
@@ -1043,9 +1048,9 @@
 
                                                         <!--  وظيفة الموظف -->
                                                         <div class="col-md-4">
-                                                            <label class="form-label" for="formtabs-country">وظيفة
+                                                            <label class="form-label" for="job_category_id-input">وظيفة
                                                                 الموظف</label>
-                                                            <select name="job_category_id"
+                                                            <select name="job_category_id" id="job_category_id-input"
                                                                 class="select2 form-select @error('job_category_id') is-invalid @enderror"
                                                                 data-allow-clear="true">
                                                                 <option selected value="">-- أختر الوظيفة --
@@ -1068,10 +1073,10 @@
 
                                                         <!-- هل له بصمة حضور وانصراف -->
                                                         <div class="col-md-4">
-                                                            <label for="exampleFormControlSelect1" class="form-label">
+                                                            <label for="has_attendance-input" class="form-label">
                                                                 هل له بصمة حضور وانصراف
                                                             </label>
-                                                            <select
+                                                            <select id="has_attendance-input"
                                                                 class="form-select @error('has_attendance') is-invalid @enderror"
                                                                 name="has_attendance" aria-label="Default select example">
                                                                 <option selected value="">-- أختر الحالة --
@@ -1147,9 +1152,9 @@
 
                                                         <!-- عدد ساعات العمل اليومي-->
                                                         <div class="col-md-3 ">
-                                                            <label class="form-label" for="formtabs-first-name">
+                                                            <label class="form-label" for="daily_work_hour-input">
                                                                 عدد ساعات العمل اليومي</label>
-                                                            <input type="text" id="formtabs-first-name"
+                                                            <input type="text" id="daily_work_hour-input"
                                                                 value="{{ old('daily_work_hour') }}"
                                                                 class="form-control @error('daily_work_hour') is-invalid @enderror"
                                                                 name="daily_work_hour"
@@ -1198,10 +1203,10 @@
 
                                                         <!-- عملة قبض الموظف -->
                                                         <div class="col-md-4">
-                                                            <label class="form-label" for="formtabs-country">عملة قبض
+                                                            <label class="form-label" for="currency_id-input">عملة قبض
                                                                 الموظف
                                                             </label>
-                                                            <select name="currency_id"
+                                                            <select name="currency_id" id="currency_id-input"
                                                                 class="select2 form-select @error('currency_id') is-invalid @enderror"
                                                                 data-allow-clear="true">
                                                                 <option selected value="">-- أختر العملة --
@@ -1223,7 +1228,7 @@
 
                                                         <!--  هل له تأمين اجتماعي -->
                                                         <div class="col-md-3">
-                                                            <label class="form-label" for="formtabs-first-name">
+                                                            <label class="form-label" for="has_social_insurance">
                                                                 هل له تأمين اجتماعي</label>
                                                             <select id="has_social_insurance"
                                                                 class="form-select @error('has_social_insurance') is-invalid @enderror"
@@ -1248,9 +1253,10 @@
                                                         <!-- قيمة التأمين الاجتماعي المستقطع شهرياً -->
                                                         <div class="col-md-5" style="display: none;"
                                                             id="social_insurance_fields">
-                                                            <label class="form-label" for="formtabs-first-name">
+                                                            <label class="form-label"
+                                                                for="social_insurance_cut_monthely-input">
                                                                 قيمة التأمين الاجتماعي المستقطع شهرياً </label>
-                                                            <input type="text" id="formtabs-first-name"
+                                                            <input type="text" id="social_insurance_cut_monthely-input"
                                                                 value="{{ old('social_insurance_cut_monthely') }}"
                                                                 class="form-control @error('social_insurance_cut_monthely') is-invalid @enderror"
                                                                 name="social_insurance_cut_monthely"
@@ -1266,9 +1272,9 @@
                                                         <!-- رقم التامين الاجتماعي للموظف -->
                                                         <div class="col-md-4" style="display: none;"
                                                             id="social_insurance_value">
-                                                            <label class="form-label" for="formtabs-first-name">
+                                                            <label class="form-label" for="social_insurance_number-input">
                                                                 رقم التامين الاجتماعي للموظف </label>
-                                                            <input type="text" id="formtabs-first-name"
+                                                            <input type="text" id="social_insurance_number-input"
                                                                 value="{{ old('social_insurance_number') }}"
                                                                 class="form-control @error('social_insurance_number') is-invalid @enderror"
                                                                 name="social_insurance_number"
@@ -1282,7 +1288,7 @@
                                                         </div>
                                                         <!--  هل له تأمين طبي -->
                                                         <div class="col-md-3">
-                                                            <label class="form-label" for="formtabs-first-name">
+                                                            <label class="form-label" for="has_medical_insurance">
                                                                 هل له تأمين طبي</label>
                                                             <select id="has_medical_insurance"
                                                                 class="form-select @error('has_medical_insurance') is-invalid @enderror"
@@ -1307,9 +1313,9 @@
                                                         <!-- قيمة التأمين الطبي المستقطع شهرياً -->
                                                         <div class="col-md-5" style="display: none;"
                                                             id="medical_insurance_fields">
-                                                            <label class="form-label" for="formtabs-first-name">
+                                                            <label class="form-label" for="has_social_insurance">
                                                                 قيمة التأمين الطبي المستقطع شهرياً </label>
-                                                            <input type="text" id="formtabs-first-name"
+                                                            <input type="text" id="has_social_insurance"
                                                                 value="{{ old('medical_insurance_cut_monthely') }}"
                                                                 class="form-control @error('medical_insurance_cut_monthely') is-invalid @enderror"
                                                                 name="medical_insurance_cut_monthely"
@@ -1325,9 +1331,9 @@
                                                         <!-- رقم التامين الطبي للموظف -->
                                                         <div class="col-md-4" style="display: none;"
                                                             id="medical_insurance_value">
-                                                            <label class="form-label" for="formtabs-first-name">
+                                                            <label class="form-label" for="medical_insurance_number">
                                                                 رقم التامين الطبي للموظف </label>
-                                                            <input type="text" id="formtabs-first-name"
+                                                            <input type="text" id="medical_insurance_number"
                                                                 value="{{ old('medical_insurance_number') }}"
                                                                 class="form-control @error('medical_insurance_number') is-invalid @enderror"
                                                                 name="medical_insurance_number"
@@ -1343,11 +1349,11 @@
 
                                                         <!--  نوع صرف راتب الموظف -->
                                                         <div class="col-md-3 ">
-                                                            <label class="form-label" for="formtabs-first-name">
+                                                            <label class="form-label" for="type_salary_receipt">
                                                                 نوع صرف راتب الموظف</label>
                                                             <select
                                                                 class="form-select @error('type_salary_receipt') is-invalid @enderror"
-                                                                name="type_salary_receipt"
+                                                                name="type_salary_receipt" id="type_salary_receipt"
                                                                 aria-label="Default select example">
                                                                 <option selected value="">-- أختر الحالة --
                                                                 </option>
@@ -1367,11 +1373,11 @@
 
                                                         <!-- هل له بدلات ثابتة  -->
                                                         <div class="col-md-3 ">
-                                                            <label class="form-label" for="formtabs-first-name">
+                                                            <label class="form-label" for="has_fixed_allowances">
                                                                 هل له بدلات ثابتة</label>
                                                             <select
                                                                 class="form-select @error('has_fixed_allowances') is-invalid @enderror"
-                                                                name="has_fixed_allowances"
+                                                                name="has_fixed_allowances" id="has_fixed_allowances"
                                                                 aria-label="Default select example">
                                                                 <option selected value="">-- أختر الحالة --
                                                                 </option>
@@ -1392,11 +1398,11 @@
 
                                                         <!--  هل له حافز -->
                                                         <div class="col-md-3 ">
-                                                            <label class="form-label" for="formtabs-first-name">
+                                                            <label class="form-label" for="motivation_type">
                                                                 هل له حافز</label>
                                                             <select
                                                                 class="form-select @error('motivation_type') is-invalid @enderror"
-                                                                name="motivation_type"
+                                                                name="motivation_type" id="motivation_type"
                                                                 aria-label="Default select example">
                                                                 <option selected value="">-- أختر الحالة --
                                                                 </option>
@@ -1417,12 +1423,12 @@
                                                         <!-- قيمة الحافز الشهري الثابت -->
                                                         <div class="col-md-3" style="display: none;"
                                                             id="fixed_motivation_value">
-                                                            <label class="form-label" for="formtabs-first-name">
+                                                            <label class="form-label" for="motivation_value">
                                                                 قيمة الحافز الشهري الثابت </label>
-                                                            <input type="text" id="formtabs-first-name"
+                                                            <input type="text" id=""
                                                                 value="{{ old('motivation_value') }}"
                                                                 class="form-control @error('motivation_value') is-invalid @enderror"
-                                                                name="motivation_value"
+                                                                name="motivation_value" id="motivation_value"
                                                                 oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
                                                                 placeholder="مثال:500" />
                                                             @error('motivation_value')
@@ -1435,11 +1441,11 @@
 
                                                         <!--  هل له رصيد اجازات سنوي -->
                                                         <div class="col-md-3 ">
-                                                            <label class="form-label" for="formtabs-first-name">
+                                                            <label class="form-label" for="has_vacation_balance">
                                                                 هل له رصيد اجازات سنوي</label>
                                                             <select
                                                                 class="form-select @error('has_vacation_balance') is-invalid @enderror"
-                                                                name="has_vacation_balance"
+                                                                name="has_vacation_balance" id="has_vacation_balance"
                                                                 aria-label="Default select example">
                                                                 <option selected value="">-- أختر الحالة --
                                                                 </option>
@@ -1471,9 +1477,9 @@
                                                     <div class="row g-3">
                                                         <!-- شخص يمكن الرجوع اليه للضرورة -->
                                                         <div class="col-md-4">
-                                                            <label class="form-label" for="formtabs-first-name">
+                                                            <label class="form-label" for="urgent_person_details">
                                                                 شخص يمكن الرجوع اليه للضرورة </label>
-                                                            <input type="text" id="formtabs-first-name"
+                                                            <input type="text" id="urgent_person_details"
                                                                 value="{{ old('urgent_person_details') }}"
                                                                 class="form-control @error('urgent_person_details') is-invalid @enderror"
                                                                 name="urgent_person_details" placeholder="John" />
@@ -1486,9 +1492,9 @@
 
                                                         <!-- رقم الباسبور ان وجد -->
                                                         <div class="col-md-4">
-                                                            <label class="form-label" for="formtabs-first-name">
+                                                            <label class="form-label" for="has_social_insurance">
                                                                 رقم الباسبور ان وجد</label>
-                                                            <input type="text" id="formtabs-first-name"
+                                                            <input type="text" id=""
                                                                 value="{{ old('pasport_identity') }}"
                                                                 class="form-control @error('pasport_identity') is-invalid @enderror"
                                                                 name="pasport_identity"
@@ -1502,13 +1508,13 @@
                                                         </div>
                                                         <!-- تاريخ انتهاء الباسبور -->
                                                         <div class="col-md-4">
-                                                            <label class="form-label" for="formtabs-birthdate">تاريخ
+                                                            <label class="form-label">تاريخ
                                                                 انتهاء الباسبور
                                                             </label>
                                                             <input type="text" name="pasport_exp_date"
                                                                 value="{{ old('pasport_exp_date') }}"
-                                                                id="formtabs-birthdate"
-                                                                class="form-control dob-picker @error('pasport_exp_date') is-invalid @enderror"
+                                                                autocomplete="none"
+                                                                class="form-control date-picker @error('pasport_exp_date') is-invalid @enderror"
                                                                 placeholder="YYYY-MM-DD" />
                                                             @error('pasport_exp_date')
                                                                 <span class="invalid-feedback text-right" role="alert">
@@ -1571,6 +1577,17 @@
             });
         });
     </script>
+
+
+    <script>
+        $(document).ready(function() {
+            $('.date-picker').flatpickr({
+                dateFormat: "Y-m-d",
+                allowInput: true,
+                appendTo: document.body
+            });
+        });
+    </script>
     <!-- Vendors JS -->
     <script src="{{ asset('dashboard') }}/assets/vendor/libs/cleavejs/cleave.js"></script>
     <script src="{{ asset('dashboard') }}/assets/vendor/libs/cleavejs/cleave-phone.js"></script>
@@ -1578,11 +1595,7 @@
     <script src="{{ asset('dashboard') }}/assets/vendor/libs/select2/select2.js"></script>
     <script src="{{ asset('dashboard') }}/assets/js/employees/create-scripts.js"></script>
 
-    <!-- Main JS -->
-
-    <!-- Page JS -->
-    <script src="{{ asset('dashboard') }}/assets/js/form-layouts.js"></script>
-
+    <!-- filepond -->
     <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
     <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
     <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
