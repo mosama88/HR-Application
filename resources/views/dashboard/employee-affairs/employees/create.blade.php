@@ -51,10 +51,10 @@
                                 <span>إضافة موظف جديد</span>
 
                                 <!-- Submit -->
-                                {{-- 
+
                                 <button type="submit" id="submitButton" class="btn btn-icon btn-outline-primary">
                                     <i class="fa-solid fa-floppy-disk"></i>
-                                </button> --}}
+                                </button>
                             </h5>
 
                             @if ($errors->any())
@@ -505,7 +505,7 @@
                                                             <div class="col-md-4">
                                                                 <label class="form-label" for="formtabs-country">الدولة
                                                                     التابع لها الموظف</label>
-                                                                <select name="country_id"
+                                                                <select name="country_id" id="country_id"
                                                                     class="select2 form-select @error('country_id') is-invalid @enderror"
                                                                     data-allow-clear="true">
                                                                     <option selected value="">-- أختر الدولة --
@@ -528,7 +528,7 @@
                                                             <div class="col-md-4">
                                                                 <label class="form-label" for="formtabs-country">المحافظة
                                                                     التابع لها الموظف</label>
-                                                                <select name="governorate_id"
+                                                                <select name="governorate_id" id="governorate_id"
                                                                     class="select2 form-select @error('governorate_id') is-invalid @enderror"
                                                                     data-allow-clear="true">
                                                                     <option selected value="">-- أختر المحافظة --
@@ -551,7 +551,7 @@
                                                             <div class="col-md-4">
                                                                 <label class="form-label"
                                                                     for="formtabs-country">المدينة/المركز</label>
-                                                                <select name="city_id"
+                                                                <select name="city_id" id="city_id"
                                                                     class="select2 form-select @error('city_id') is-invalid @enderror"
                                                                     data-allow-clear="true">
                                                                     <option selected value="">-- أختر المدينة/المركز
@@ -1524,16 +1524,7 @@
                                                         </div>
 
                                                         <div class="col-md-12">
-                                                            <div class="box-header with-border">
-                                                                <h3 class="box-title">
-                                                                    أرفق صورة الموظف</h3>
-                                                            </div>
-                                                            <div class="box-body">
-                                                                <input type="file" id="imageInput" name="photo" />
-
-                                                                <img id="imagePreview"
-                                                                    style="max-width: 200px; display: none;" />
-                                                            </div>
+                                                          <x-image-preview name="photo" title="أرفق صورة الموظف"/>
                                                         </div>
 
                                                         <div class="col-md-6">
@@ -1554,7 +1545,7 @@
                                 </div>
                             </div>
                         </div>
-                        <x-create-button-component></x-create-button-component>
+
 
                         <!-- /.card-body -->
                         </form>
@@ -1599,20 +1590,7 @@
     <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
     <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
     <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
-    <script></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            FilePond.registerPlugin(FilePondPluginImagePreview);
-            const pond = FilePond.create(document.querySelector('#imageInput'), {
-                allowImagePreview: true,
-                imagePreviewMaxHeight: 200,
-                storeAsFile: true,
-                allowMultiple: false,
-                acceptedFileTypes: ['image/*'],
-            });
 
-        });
-    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -1632,4 +1610,64 @@
             });
         });
     </script>
+<script>
+$(document).ready(function() {
+    $('#country_id').change(function() {
+        var countryId = $(this).val();
+        if (countryId) {
+            $.ajax({
+                url: '/dashboard/employees/get-governorates/' + countryId, // أضيف '/' في البداية
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    $('#governorate_id').empty();
+                    $('#governorate_id').append('<option value="">-- أختر المحافظة --</option>');
+                    $.each(data, function(key, value) {
+                        $('#governorate_id').append('<option value="'+ key +'">'+ value +'</option>');
+                    });
+                    $('#governorate_id').trigger('change');
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error:", error); // لتتبع الأخطاء
+                }
+            });
+        } else {
+            $('#governorate_id').empty();
+            $('#governorate_id').append('<option value="">-- أختر المحافظة --</option>');
+        }
+    });
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    $('#governorate_id').change(function() {
+        var governorateId = $(this).val();
+        if (governorateId) {
+            $.ajax({
+                url: '/dashboard/employees/get-cities/' + governorateId, // أضيف '/' في البداية
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    $('#city_id').empty();
+                    $('#city_id').append('<option value="">-- أختر المدينه --</option>');
+                    $.each(data, function(key, value) {
+                        $('#city_id').append('<option value="'+ key +'">'+ value +'</option>');
+                    });
+                    $('#city_id').trigger('change');
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error:", error); // لتتبع الأخطاء
+                }
+            });
+        } else {
+            $('#city_id').empty();
+            $('#city_id').append('<option value="">-- أختر المدينه --</option>');
+        }
+    });
+});
+</script>
+
+
 @endpush

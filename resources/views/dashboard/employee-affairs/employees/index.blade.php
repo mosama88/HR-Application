@@ -67,7 +67,7 @@
                                             <td>{{ $info->employee_code }}</td>
                                             <td>{{ $info->name }}</td>
                                             <td>{{ $info->branch->name }}</td>
-                                            <td>{{ $info->jobCategory->name }}</td>
+                                            <td>{{ $info->jobCategory?->name }}</td>
                                             <td>{{ $info->mobile }}</td>
                                             <td>
                                                 @if ($info->active == StatusActiveEnum::ACTIVE)

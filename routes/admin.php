@@ -65,7 +65,11 @@ Route::middleware(['auth:admin'])->group(function () {
     //################################### أنواع الخصومات ##################################
     Route::resource('discount_types', DiscountTypeController::class);
     //################################### الموظفين ##################################
-    Route::resource('employees', EmployeeController::class);
+    Route::resource('/employees', EmployeeController::class); // إذا كنت تريد استخدام resource
+  Route::prefix('/employees')->group(function() {
+    Route::get('/get-governorates/{country}', [EmployeeController::class, 'getGovernorates'])->name('get-governorates');
+    Route::get('/get-cities/{governorate}', [EmployeeController::class, 'getCities'])->name(name: 'get-cities');
+});
     //################################### الأنتهاء من شئون الموظفين ##################################
 
 });

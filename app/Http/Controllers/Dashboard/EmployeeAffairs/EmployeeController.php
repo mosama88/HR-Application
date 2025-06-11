@@ -70,6 +70,9 @@ class EmployeeController extends Controller
         $lastEmployeeCode = Employee::orderByDesc('employee_code')->value('employee_code');
         $newEmployeeCode = $lastEmployeeCode ? $lastEmployeeCode + 1 : 1;
         $validateData = $request->validated();
+
+
+
         $dataInsert = array_merge($validateData, [
             'employee_code' => $newEmployeeCode,
             'com_code' => $com_code,
@@ -77,16 +80,37 @@ class EmployeeController extends Controller
             'created_by' => Auth::user()->id,
         ]);
 
-        Employee::create($dataInsert);
+           // إنشاء الموظف أولاً
+    $employee = Employee::create($dataInsert);
+
+    // ثم رفع الصورة إذا وجدت
+    if ($request->hasFile('photo')) {
+        $employee->addMediaFromRequest('photo')
+                ->toMediaCollection('photo');
+    }
+
         return redirect()->route('dashboard.employees.index')->with('success', 'تم أضافة الموظف بنجاح');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Employee $employee)
     {
-        //
+                $other['qualifications'] = Qualification::select('id', 'name')->get();
+        $other['branches'] = Branch::select('id', 'name')->get();
+        $other['countries'] = Country::select('id', 'name')->get();
+        $other['governorates'] = Governorate::select('id', 'name')->get();
+        $other['cities'] = City::select('id', 'name')->get();
+        $other['blood_types'] = BloodType::select('id', 'name')->get();
+        $other['nationalities'] = Nationality::select('id', 'name')->get();
+        $other['languages'] = Language::select('id', 'name')->get();
+        $other['job_grades'] = JobGrade::select('id', 'name')->get();
+        $other['departments'] = Department::select('id', 'name')->get();
+        $other['job_categories'] = JobCategory::select('id', 'name')->get();
+        $other['shifts_types'] = ShiftsType::all();
+        $other['currencies'] = Currency::select('id', 'name')->get();
+        return view('dashboard.employee-affairs.employees.show',compact('employee','other'));
     }
 
     /**
@@ -112,4 +136,16 @@ class EmployeeController extends Controller
     {
         //
     }
+
+    public function getGovernorates($countryId)
+{
+    $governorates = Governorate::where('country_id', $countryId)->pluck('name', 'id');
+    return response()->json($governorates);
+}
+
+    public function getCities($governorateId)
+{
+    $cities = City::where('governorate_id', $governorateId)->pluck('name', 'id');
+    return response()->json($cities);
+}
 }
