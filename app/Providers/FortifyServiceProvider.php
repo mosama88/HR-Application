@@ -46,7 +46,7 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         Fortify::loginView(function () {
-            return view('dashboard.auth.login');
+            return view('auth.login');
         });
 
         Fortify::authenticateUsing([new AdminLogin(), 'store']);
