@@ -320,12 +320,42 @@ return [
             'url' => 'admin/blog',
             'can' => 'manage-blog',
         ],
+
+
+        [
+            'text' => 'لوحة التحكم',
+            'url'  => 'dashboard',
+            'icon' => 'mx-1 fas fa-tachometer-alt',
+        ],
+
+
+        [
+            'text' => 'الإعدادات',
+            'icon' => 'fas fa-cogs',
+            'submenu' => [
+                [
+                    'text' => 'إعدادت الشركة',
+                    'url'  => 'dashboard/admin_panel_settings',
+                ],
+                [
+                    'text' => 'السنوات المالية',
+                    'url'  => 'dashboard/financeCalendars',
+                ],
+            ],
+        ],
+
+
+
+
+      
+
+      
         [
             'text' => 'pages',
-            'url' => 'admin/pages',
+            'url' => 'dashboard/admin_panel_settings',
             'icon' => 'far fa-fw fa-file',
             'label' => 4,
-            'label_color' => 'success',
+            'active' => ['dashboard/admin_panel_settings*'],
         ],
         ['header' => 'account_settings'],
         [
