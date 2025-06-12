@@ -71,7 +71,15 @@
 {{-- resources/views/admin/dashboard.blade.php --}}
 
 @extends('adminlte::page')
+@section('preloader')
+    <i class="fas fa-4x fa-spin fa-spinner text-secondary"></i>
+    @if (app()->getLocale() == 'ar')
+        <h4 class="mt-4 text-dark">تحميل</h4>
+    @else
+        <h4 class="mt-4 text-dark">Loading</h4>
+    @endif
 
+@stop
 @section('title', 'Dashboard')
 
 @section('content_header')
