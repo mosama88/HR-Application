@@ -1,3 +1,11 @@
+$(document).ready(function () {
+    $('.date-picker').flatpickr({
+        dateFormat: "Y-m-d",
+        allowInput: true,
+        appendTo: document.body
+    });
+});
+
 // الحالة الأجتماعية
 $(document).ready(function () {
     // عند تغيير الحالة الاجتماعية
@@ -196,4 +204,65 @@ $(document).ready(function () {
 
     // لحساب القيمة عند تحميل الصفحة إذا كانت موجودة
     $('#monthly_salary').trigger('input');
+
+
+
+
+    $('#country_id').change(function () {
+        var countryId = $(this).val();
+        if (countryId) {
+            $.ajax({
+                url: '/dashboard/employees/get-governorates/' +
+                    countryId, // أضيف '/' في البداية
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    $('#governorate_id').empty();
+                    $('#governorate_id').append(
+                        '<option value="">-- أختر المحافظة --</option>');
+                    $.each(data, function (key, value) {
+                        $('#governorate_id').append('<option value="' + key +
+                            '">' + value + '</option>');
+                    });
+                    $('#governorate_id').trigger('change');
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error:", error); // لتتبع الأخطاء
+                }
+            });
+        } else {
+            $('#governorate_id').empty();
+            $('#governorate_id').append('<option value="">-- أختر المحافظة --</option>');
+        }
+    });
+});
+
+$(document).ready(function () {
+    $('#governorate_id').change(function () {
+        var governorateId = $(this).val();
+        if (governorateId) {
+            $.ajax({
+                url: '/dashboard/employees/get-cities/' +
+                    governorateId, // أضيف '/' في البداية
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    $('#city_id').empty();
+                    $('#city_id').append(
+                        '<option value="">-- أختر المدينه --</option>');
+                    $.each(data, function (key, value) {
+                        $('#city_id').append('<option value="' + key + '">' +
+                            value + '</option>');
+                    });
+                    $('#city_id').trigger('change');
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error:", error); // لتتبع الأخطاء
+                }
+            });
+        } else {
+            $('#city_id').empty();
+            $('#city_id').append('<option value="">-- أختر المدينه --</option>');
+        }
+    });
 });

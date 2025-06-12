@@ -52,8 +52,8 @@
 
                                 <!-- Submit -->
 
-                                <button type="submit" id="submitButton" class="btn btn-icon btn-outline-primary">
-                                    <i class="fa-solid fa-floppy-disk"></i>
+                                <button type="submit" id="submitButton" class="btn btn-md btn-outline-primary">
+                                    <i class="fa-solid fa-floppy-disk mx-1"></i> حفظ البيانات
                                 </button>
                             </h5>
 
@@ -1524,7 +1524,7 @@
                                                         </div>
 
                                                         <div class="col-md-12">
-                                                          <x-image-preview name="photo" title="أرفق صورة الموظف"/>
+                                                            <x-image-preview name="photo" title="أرفق صورة الموظف" />
                                                         </div>
 
                                                         <div class="col-md-6">
@@ -1610,64 +1610,68 @@
             });
         });
     </script>
-<script>
-$(document).ready(function() {
-    $('#country_id').change(function() {
-        var countryId = $(this).val();
-        if (countryId) {
-            $.ajax({
-                url: '/dashboard/employees/get-governorates/' + countryId, // أضيف '/' في البداية
-                type: "GET",
-                dataType: "json",
-                success: function(data) {
+    <script>
+        $(document).ready(function() {
+            $('#country_id').change(function() {
+                var countryId = $(this).val();
+                if (countryId) {
+                    $.ajax({
+                        url: '/dashboard/employees/get-governorates/' +
+                        countryId, // أضيف '/' في البداية
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            $('#governorate_id').empty();
+                            $('#governorate_id').append(
+                                '<option value="">-- أختر المحافظة --</option>');
+                            $.each(data, function(key, value) {
+                                $('#governorate_id').append('<option value="' + key +
+                                    '">' + value + '</option>');
+                            });
+                            $('#governorate_id').trigger('change');
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("Error:", error); // لتتبع الأخطاء
+                        }
+                    });
+                } else {
                     $('#governorate_id').empty();
                     $('#governorate_id').append('<option value="">-- أختر المحافظة --</option>');
-                    $.each(data, function(key, value) {
-                        $('#governorate_id').append('<option value="'+ key +'">'+ value +'</option>');
-                    });
-                    $('#governorate_id').trigger('change');
-                },
-                error: function(xhr, status, error) {
-                    console.error("Error:", error); // لتتبع الأخطاء
                 }
             });
-        } else {
-            $('#governorate_id').empty();
-            $('#governorate_id').append('<option value="">-- أختر المحافظة --</option>');
-        }
-    });
-});
-</script>
+        });
+    </script>
 
 
-<script>
-$(document).ready(function() {
-    $('#governorate_id').change(function() {
-        var governorateId = $(this).val();
-        if (governorateId) {
-            $.ajax({
-                url: '/dashboard/employees/get-cities/' + governorateId, // أضيف '/' في البداية
-                type: "GET",
-                dataType: "json",
-                success: function(data) {
+    <script>
+        $(document).ready(function() {
+            $('#governorate_id').change(function() {
+                var governorateId = $(this).val();
+                if (governorateId) {
+                    $.ajax({
+                        url: '/dashboard/employees/get-cities/' +
+                        governorateId, // أضيف '/' في البداية
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            $('#city_id').empty();
+                            $('#city_id').append(
+                            '<option value="">-- أختر المدينه --</option>');
+                            $.each(data, function(key, value) {
+                                $('#city_id').append('<option value="' + key + '">' +
+                                    value + '</option>');
+                            });
+                            $('#city_id').trigger('change');
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("Error:", error); // لتتبع الأخطاء
+                        }
+                    });
+                } else {
                     $('#city_id').empty();
                     $('#city_id').append('<option value="">-- أختر المدينه --</option>');
-                    $.each(data, function(key, value) {
-                        $('#city_id').append('<option value="'+ key +'">'+ value +'</option>');
-                    });
-                    $('#city_id').trigger('change');
-                },
-                error: function(xhr, status, error) {
-                    console.error("Error:", error); // لتتبع الأخطاء
                 }
             });
-        } else {
-            $('#city_id').empty();
-            $('#city_id').append('<option value="">-- أختر المدينه --</option>');
-        }
-    });
-});
-</script>
-
-
+        });
+    </script>
 @endpush
