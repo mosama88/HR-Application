@@ -1,4 +1,5 @@
 @php
+    use App\Enums\AdminGenderEnum;
     use App\Enums\StatusActiveEnum;
 @endphp
 @extends('dashboard.layouts.master')
@@ -49,6 +50,7 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>صورة الموظف</th>
                                         <th>كود الموظف</th>
                                         <th>الأسم</th>
                                         <th>الفرع</th>
@@ -64,6 +66,25 @@
                                     @forelse ($data as $info)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
+                                            <td>
+                                                @if ($info->getFirstMediaUrl('photo', 'preview'))
+                                                    <img class="img-fluid rounded my-4"
+                                                        src="{{ $info->getFirstMediaUrl('photo', 'preview') }}"
+                                                        height="110" width="110" alt="{{ $info->name }}">
+                                                @elseif($info->gender === AdminGenderEnum::Male)
+                                                    <img class="img-fluid rounded my-4"
+                                                        src="{{ asset('dashboard') }}/assets/img/employees-default.png"
+                                                        height="110" width="110" alt="{{ $info->name }}">
+                                                @elseif($info->gender === AdminGenderEnum::Female)
+                                                    <img class="img-fluid rounded my-4"
+                                                        src="{{ asset('dashboard') }}/assets/img/employees-female-default.png"
+                                                        height="110" width="110" alt="{{ $info->name }}">
+                                                @else
+                                                    <img class="img-fluid rounded my-4"
+                                                        src="{{ asset('dashboard') }}/assets/img/Employee.png"
+                                                        height="110" width="110" alt="{{ $info->name }}">
+                                                @endif
+                                            </td>
                                             <td>{{ $info->employee_code }}</td>
                                             <td>{{ $info->name }}</td>
                                             <td>{{ $info->branch->name }}</td>

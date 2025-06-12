@@ -80,14 +80,14 @@ class EmployeeController extends Controller
             'created_by' => Auth::user()->id,
         ]);
 
-           // إنشاء الموظف أولاً
-    $employee = Employee::create($dataInsert);
+        // إنشاء الموظف أولاً
+        $employee = Employee::create($dataInsert);
 
-    // ثم رفع الصورة إذا وجدت
-    if ($request->hasFile('photo')) {
-        $employee->addMediaFromRequest('photo')
+        // ثم رفع الصورة إذا وجدت
+        if ($request->hasFile('photo')) {
+            $employee->addMediaFromRequest('photo')
                 ->toMediaCollection('photo');
-    }
+        }
 
         return redirect()->route('dashboard.employees.index')->with('success', 'تم أضافة الموظف بنجاح');
     }
@@ -97,7 +97,7 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-                $other['qualifications'] = Qualification::select('id', 'name')->get();
+        $other['qualifications'] = Qualification::select('id', 'name')->get();
         $other['branches'] = Branch::select('id', 'name')->get();
         $other['countries'] = Country::select('id', 'name')->get();
         $other['governorates'] = Governorate::select('id', 'name')->get();
@@ -110,15 +110,28 @@ class EmployeeController extends Controller
         $other['job_categories'] = JobCategory::select('id', 'name')->get();
         $other['shifts_types'] = ShiftsType::all();
         $other['currencies'] = Currency::select('id', 'name')->get();
-        return view('dashboard.employee-affairs.employees.show',compact('employee','other'));
+        return view('dashboard.employee-affairs.employees.show', compact('employee', 'other'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Employee $employee)
     {
-        //
+        $other['qualifications'] = Qualification::select('id', 'name')->get();
+        $other['branches'] = Branch::select('id', 'name')->get();
+        $other['countries'] = Country::select('id', 'name')->get();
+        $other['governorates'] = Governorate::select('id', 'name')->get();
+        $other['cities'] = City::select('id', 'name')->get();
+        $other['blood_types'] = BloodType::select('id', 'name')->get();
+        $other['nationalities'] = Nationality::select('id', 'name')->get();
+        $other['languages'] = Language::select('id', 'name')->get();
+        $other['job_grades'] = JobGrade::select('id', 'name')->get();
+        $other['departments'] = Department::select('id', 'name')->get();
+        $other['job_categories'] = JobCategory::select('id', 'name')->get();
+        $other['shifts_types'] = ShiftsType::all();
+        $other['currencies'] = Currency::select('id', 'name')->get();
+        return view('dashboard.employee-affairs.employees.edit', compact('employee', 'other'));
     }
 
     /**
@@ -138,14 +151,14 @@ class EmployeeController extends Controller
     }
 
     public function getGovernorates($countryId)
-{
-    $governorates = Governorate::where('country_id', $countryId)->pluck('name', 'id');
-    return response()->json($governorates);
-}
+    {
+        $governorates = Governorate::where('country_id', $countryId)->pluck('name', 'id');
+        return response()->json($governorates);
+    }
 
     public function getCities($governorateId)
-{
-    $cities = City::where('governorate_id', $governorateId)->pluck('name', 'id');
-    return response()->json($cities);
-}
+    {
+        $cities = City::where('governorate_id', $governorateId)->pluck('name', 'id');
+        return response()->json($cities);
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\YesOrNoEnum;
 use Spatie\Image\Enums\Fit;
 use Spatie\Sluggable\HasSlug;
+use App\Enums\AdminGenderEnum;
 use App\Enums\StatusActiveEnum;
 use App\Enums\Employee\Military;
 use Spatie\MediaLibrary\HasMedia;
@@ -210,6 +211,7 @@ class Employee extends Model implements HasMedia
 
 
     protected $casts = [
+        'gender' => AdminGenderEnum::class,
         'active' => StatusActiveEnum::class,
         'driving_license_type' => DrivingLicenseType::class,
         'functional_status' => FunctionalStatus::class,
