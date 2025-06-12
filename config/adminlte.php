@@ -331,15 +331,19 @@ return [
 
         [
             'text' => 'الإعدادات',
-            'icon' => 'fas fa-cogs',
+            'icon' => 'mx-1 fas fa-cogs',
             'submenu' => [
                 [
                     'text' => 'إعدادت الشركة',
                     'url'  => 'dashboard/admin_panel_settings',
+                    'active' => ['dashboard/admin_panel_settings*'],
+
                 ],
                 [
                     'text' => 'السنوات المالية',
                     'url'  => 'dashboard/financeCalendars',
+                    'active' => ['dashboard/financeCalendars*'],
+
                 ],
             ],
         ],
@@ -347,9 +351,9 @@ return [
 
 
 
-      
 
-      
+
+
         [
             'text' => 'pages',
             'url' => 'dashboard/admin_panel_settings',
