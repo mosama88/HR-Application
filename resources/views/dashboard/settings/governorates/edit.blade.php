@@ -5,7 +5,6 @@
 @section('active-governorates', 'active')
 @section('title', 'تعديل بيانات المحافظات')
 @push('css')
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/libs/select2/select2.css" />
 @endpush
 @section('content')
 

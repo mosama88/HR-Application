@@ -6,17 +6,7 @@
 @section('active-shiftTypes', 'active')
 @section('title', 'الشفتات')
 @push('css')
-    <style>
-        .btn-actions {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            border-radius: 6px;
-            padding: 0;
-        }
-    </style>
+
 @endpush
 @section('content')
 

@@ -2,7 +2,6 @@
 @section('active-governorates', 'active')
 @section('title', 'المحافظات')
 @push('css')
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/libs/select2/select2.css" />
 @endpush
 @section('content')
 
@@ -75,6 +74,5 @@
 
 @endsection
 @push('js')
-    <script src="{{ asset('dashboard') }}/assets/js/forms-selects.js"></script>
-    <script src="{{ asset('dashboard') }}/assets/vendor/libs/select2/select2.js"></script>
+
 @endpush

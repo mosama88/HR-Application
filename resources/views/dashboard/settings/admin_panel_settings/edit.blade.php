@@ -5,20 +5,7 @@
 @section('active-admin_panel_settings', 'active')
 @section('title', 'الصفحة الرئيسية')
 @push('css')
-    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet" />
-    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet" />
-    <style>
-        .filepond--image-preview-wrapper {
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
-        }
-
-        .filepond--image-preview {
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center center;
-        }
-    </style>
+  
 @endpush
 @section('content')
 
@@ -387,7 +374,5 @@
 
 @endsection
 @push('js')
-    <script src="{{ asset('dashboard') }}/assets/dist/js/filepond/filepond.js"></script>
-    <script src="{{ asset('dashboard') }}/assets/dist/js/filepond/filepond-plugin-image-preview.js"></script>
-    <script src="{{ asset('dashboard') }}/assets/dist/js/filepond/filepond-plugin-file-validate-type.js"></script>
+   
 @endpush

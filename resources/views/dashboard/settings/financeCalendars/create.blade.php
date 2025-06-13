@@ -2,14 +2,6 @@
 @section('active-financeCalendars', 'active')
 @section('title', 'أضافة سنه مالية')
 @push('css')
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/libs/pickr/pickr-themes.css" />
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/libs/typeahead-js/typeahead.css" />
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/libs/flatpickr/flatpickr.css" />
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css" />
-    <link rel="stylesheet"
-        href="{{ asset('dashboard') }}/assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css" />
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/libs/jquery-timepicker/jquery-timepicker.css" />
 @endpush
 @section('content')
 
@@ -61,28 +53,70 @@
 
 
                                 <div class="row">
-                                    <div class="form-group mb-3 col-6">
-                                        <label for="start_date" class="form-label">من</label>
-                                        <input type="text" name="start_date" value="{{ old('start_date') }}"
-                                            class="form-control @error('start_date') is-invalid @enderror"
-                                            placeholder="YYYY-MM-DD" id="start_date_picker" />
-                                        @error('start_date')
-                                            <span class="invalid-feedback text-right" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                                    <div class="form-group mb-3 col-6" dir="rtl">
+                                        @php
+                                            $configStart = [
+                                                'format' => 'YYYY-MM-DD',
+                                                'minDate' => "js:moment().startOf('month')",
+                                                'maxDate' => "js:moment().endOf('month')",
+                                                'daysOfWeekDisabled' => [0, 6],
+                                                'locale' => 'ar', // إضافة اللغة العربية (يدعم rtl تلقائيًا)
+                                                'icons' => [
+                                                    'time' => 'fas fa-clock',
+                                                    'date' => 'fas fa-calendar',
+                                                    'up' => 'fas fa-arrow-up',
+                                                    'down' => 'fas fa-arrow-down',
+                                                    'previous' => 'fas fa-chevron-right',
+                                                    'next' => 'fas fa-chevron-left',
+                                                    'today' => 'fas fa-calendar-check',
+                                                    'clear' => 'fas fa-trash',
+                                                    'close' => 'fas fa-times',
+                                                ],
+                                            ];
+                                        @endphp
+
+                                        <x-adminlte-input-date name="start_date" id="start_date_picker" label="من"
+                                            :config="$configStart" placeholder="YYYY-MM-DD HH:MM"
+                                            fgroup-class="@error('start_date') is-invalid @enderror" autocomplete="off">
+                                            <x-slot name="appendSlot">
+                                                <div class="input-group-text bg-dark">
+                                                    <i class="fas fa-calendar-day"></i>
+                                                </div>
+                                            </x-slot>
+                                        </x-adminlte-input-date>
                                     </div>
 
-                                    <div class="form-group mb-3 col-6">
-                                        <label for="end_date" class="form-label">إلى</label>
-                                        <input type="text" name="end_date" value="{{ old('end_date') }}"
-                                            class="form-control @error('end_date') is-invalid @enderror"
-                                            placeholder="YYYY-MM-DD" id="end_date_picker" />
-                                        @error('end_date')
-                                            <span class="invalid-feedback text-right" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                                    <div class="form-group mb-3 col-6" dir="rtl">
+                                        @php
+                                            $configEnd = [
+                                                'format' => 'YYYY-MM-DD',
+                                                'minDate' => "js:moment().startOf('month')",
+                                                'maxDate' => "js:moment().endOf('month')",
+                                                'daysOfWeekDisabled' => [0, 6],
+                                                'locale' => 'ar', // إضافة اللغة العربية (يدعم rtl تلقائيًا)
+                                                'icons' => [
+                                                    'time' => 'fas fa-clock',
+                                                    'date' => 'fas fa-calendar',
+                                                    'up' => 'fas fa-arrow-up',
+                                                    'down' => 'fas fa-arrow-down',
+                                                    'previous' => 'fas fa-chevron-right',
+                                                    'next' => 'fas fa-chevron-left',
+                                                    'today' => 'fas fa-calendar-check',
+                                                    'clear' => 'fas fa-trash',
+                                                    'close' => 'fas fa-times',
+                                                ],
+                                            ];
+                                        @endphp
+
+                                        <x-adminlte-input-date name="end_date" id="end_date_picker" label="إلى"
+                                            :config="$configEnd" placeholder="YYYY-MM-DD HH:MM"
+                                            fgroup-class="@error('end_date') is-invalid @enderror" autocomplete="off">
+                                            <x-slot name="appendSlot">
+                                                <div class="input-group-text bg-dark">
+                                                    <i class="fas fa-calendar-day"></i>
+                                                </div>
+                                            </x-slot>
+                                        </x-adminlte-input-date>
                                     </div>
                                 </div>
 
@@ -101,8 +135,6 @@
 
 @endsection
 @push('js')
-    <script src="{{ asset('dashboard') }}/assets/js/forms-pickers.js"></script>
-
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             flatpickr("#start_date_picker", {
