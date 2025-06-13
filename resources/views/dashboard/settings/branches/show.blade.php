@@ -19,12 +19,13 @@
                 <div class="col-12">
                     <div class="card card-primary">
                         <div class="card-header">
+                            <h4> عرض بيانات الفرع
+                            </h4>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
                         <div class="col-md-12">
                             <div class="card mb-4">
-                                <h5 class="card-header">عرض بيانات الفرع</h5>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
@@ -51,9 +52,9 @@
 
                                         <div class="col-md-6 mb-3">
                                             <label for="exampleFormControlSelect1" class="form-label">حالة الفرع</label>
-                                            <select readonly="" class="form-select" id="exampleFormControlSelect1"
+                                            <select readonly="" class="custom-select" id="exampleFormControlSelect1"
                                                 aria-label="Default select example">
-                                                    <option selected value="">-- أختر الحالة--</option>
+                                                <option selected value="">-- أختر الحالة--</option>
                                                 <option @if (old('active', $branch->active) == StatusActiveEnum::ACTIVE) selected @endif
                                                     value="{{ StatusActiveEnum::ACTIVE }}">
                                                     {{ StatusActiveEnum::ACTIVE->label() }}</option>

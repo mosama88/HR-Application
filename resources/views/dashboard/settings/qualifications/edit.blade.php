@@ -45,7 +45,7 @@
 
                                         <div class="col-md-4 mb-3">
                                             <label for="exampleFormControlSelect1" class="form-label">حالة المؤهل</label>
-                                            <select name="active" class="form-select @error('active') is-invalid @enderror"
+                                            <select name="active" class="custom-select @error('active') is-invalid @enderror"
                                                 id="exampleFormControlSelect1" aria-label="Default select example">
                                                 <option selected value="">-- أختر الحالة--</option>
                                                 <option @if (old('active', $qualification->active) == StatusActiveEnum::ACTIVE) selected @endif

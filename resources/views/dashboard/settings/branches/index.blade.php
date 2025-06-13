@@ -29,13 +29,18 @@
                 <div class="col-12">
 
                     <div class="card">
-                        <h5 class="card-header d-flex justify-content-between align-items-center">
-                            <span class="ml-auto">جدول الفروع</span>
-                            <a href="{{ route('dashboard.branches.create') }}" class="btn btn-info text-white">
-                                <i class="fa-solid fa-plus mx-1"></i>
-                                أضافة
-                            </a>
-                        </h5>
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <!-- العنوان على اليسار -->
+                                <h4 class="mb-0">جدول الفروع</h4>
+
+                                <!-- زر الإضافة على اليمين -->
+                                <a href="{{ route('dashboard.branches.create') }}" class="btn btn-success btn-md">
+                                    <i class="fas fa-plus-circle mx-1"></i>
+                                    <span>إضافة جديد</span>
+                                </a>
+                            </div>
+                        </div>
 
 
                         <div class="table-responsive text-nowrap">

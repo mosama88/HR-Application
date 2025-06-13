@@ -104,14 +104,47 @@
     <p>Welcome to this beautiful admin panel.</p>
 @stop
 
-@section('css')
+@push('css')
     <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/css/admin_custom.css">
     <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/css/adminlte-rtl.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.rtl.min.css">
-@stop
+@endpush
 
-@section('js')
+@push('js')
     <script>
-        console.log('Hi!');
+        // حل بديل أكثر موثوقية
+        function disableButton() {
+            const submitButton = document.getElementById('submitButton');
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الحفظ';
+
+            // إرسال النموذج تلقائيًا بعد تعطيل الزر
+            document.getElementById('storeForm').submit();
+        }
+
+        // أو يمكنك استخدام هذا الحدث
+        document.getElementById('storeForm').addEventListener('submit', function() {
+            const submitButton = document.getElementById('submitButton');
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الحفظ';
+        });
     </script>
-@stop
+    <script>
+        // حل بديل أكثر موثوقية
+        function disableButton() {
+            const submitButton = document.getElementById('submitButton');
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التعديل';
+
+            // إرسال النموذج تلقائيًا بعد تعطيل الزر
+            document.getElementById('editForm').submit();
+        }
+
+        // أو يمكنك استخدام هذا الحدث
+        document.getElementById('editForm').addEventListener('submit', function() {
+            const submitButton = document.getElementById('submitButton');
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التعديل';
+        });
+    </script>
+@endpush

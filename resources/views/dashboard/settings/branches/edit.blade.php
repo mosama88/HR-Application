@@ -19,11 +19,12 @@
                 <div class="col-12">
                     <div class="card card-primary">
                         <div class="card-header">
+                            <h4> تعديل بيانات الفرع
+                            </h4>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
                         <div class="col-md-12">
-                            <h5 class="card-header">تعديل بيانات الفرع</h5>
                             <form action="{{ route('dashboard.branches.update', $branch->slug) }}" method="POST"
                                 id="updateForm">
                                 @csrf
@@ -69,7 +70,7 @@
 
                                         <div class="col-md-6 mb-3">
                                             <label for="exampleFormControlSelect1" class="form-label">حالة الفرع</label>
-                                            <select name="active" class="form-select @error('active') is-invalid @enderror"
+                                            <select name="active" class="custom-select @error('active') is-invalid @enderror"
                                                 id="exampleFormControlSelect1" aria-label="Default select example">
                                                 <option selected value="">-- أختر الحالة--</option>
                                                 <option @if (old('active', $branch->active) == StatusActiveEnum::ACTIVE) selected @endif
@@ -79,6 +80,8 @@
                                                     value="{{ StatusActiveEnum::INACTIVE }}">
                                                     {{ StatusActiveEnum::INACTIVE->label() }}</option>
                                             </select>
+
+                                            
                                             @error('active')
                                                 <span class="invalid-feedback text-right" role="alert">
                                                     <strong>{{ $message }}</strong>

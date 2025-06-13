@@ -15,6 +15,7 @@
                 <div class="col-12">
                     <div class="card card-primary">
                         <div class="card-header">
+                            <h4>أضافة فرع جديد</h4>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
@@ -22,7 +23,6 @@
                             @csrf
 
                             <div class="col-md-12">
-                                <h5 class="card-header">أضافة فرع جديد</h5>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-4 mb-3">
@@ -88,6 +88,7 @@
 
                         </form>
                     </div>
+
                 </div>
                 <!-- /.row (main row) -->
             </div><!-- /.container-fluid -->

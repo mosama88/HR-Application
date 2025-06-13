@@ -36,15 +36,26 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4> شركة {{ $adminPanelSetting['company_name'] }} </h4>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <!-- الزر على اليسار -->
+                                    <h4 class="mb-0">شركة {{ $adminPanelSetting['company_name'] }}</h4>
+
+
+                                    <!-- النص على اليمين -->
+
+
+                                    <x-adminlte-button label="تعديل البيانات" theme="info" id="submitButton"
+                                        icon="fas fa-key" type="submit" />
+
+                                </div>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body p-0">
                                 <div class="mx-2 my-2">
 
                                     <div class="col-md-6 mb-3">
-                                        <label for="formFileMultiple" class="form-label">أرفق شعار الشركة</label>
-                                        <input class="form-control" name="logo" type="file" id="formFileMultiple">
+                                        <x-image-preview name='logo' title="أرفق شعار الشركة" />
+
                                     </div>
                                 </div>
 
@@ -366,11 +377,7 @@
                         </div>
                     </div>
                     <!-- /.row (main row) -->
-                    <div class="card-footer text-center mt-2">
-                        <button type="submit" id="submitButton" class="btn btn-info">تعديل البيانات <i
-                                class="fas fa-save mx-1"></i>
-                        </button>
-                    </div>
+                    
                 </div><!-- /.container-fluid -->
 
             </form>

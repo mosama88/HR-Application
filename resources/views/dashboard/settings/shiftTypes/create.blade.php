@@ -39,7 +39,7 @@
                                     <div class="row">
                                         <div class="col-md-3 mb-3">
                                             <label for="exampleFormControlInput1" class="form-label">نوع الشفت</label>
-                                            <select name="type" class="form-select @error('type') is-invalid @enderror"
+                                            <select name="type" class="custom-select @error('type') is-invalid @enderror"
                                                 aria-label="Default select example">
                                                 <option selected value="">-- أختر الحالة--</option>
                                                 <option @if (old('type') == ShiftTypesEnum::MORNING) selected @endif

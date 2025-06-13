@@ -37,7 +37,7 @@
 
                                     <div class="col-md-4 mb-3">
                                         <label for="exampleFormControlSelect1" class="form-label">حالة اللغه</label>
-                                        <select readonly name="active" class="form-select" id="exampleFormControlSelect1"
+                                        <select readonly name="active" class="custom-select" id="exampleFormControlSelect1"
                                             aria-label="Default select example">
                                             <option selected value="">-- أختر الحالة--</option>
                                             <option @if (old('active', $language->active) == StatusActiveEnum::ACTIVE) selected @endif

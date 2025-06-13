@@ -37,6 +37,8 @@
                                         <th>نهاية الشهر</th>
                                         <th>عدد الأيام</th>
                                         <th>حالة الشهر</th>
+                                        <th>أضافة بواسطة</th>
+                                        <th>تعديل بواسطة</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -63,6 +65,13 @@
                                                         {{ FinanceClnPeriodsIsOpen::Archived->label() }}
                                                     </span>
                                                 @endif
+                                            </td>
+                                            <td>
+                                                {{ optional($financeClnPeriod->createdBy)->name }}
+                                                {{ $financeClnPeriod->created_at ? '(' . $financeClnPeriod->created_at->format('Y-m-d H:i') . ')' : '' }}
+                                            </td>
+                                            <td>
+                                                {{ $financeClnPeriod->updated_by ? $financeClnPeriod->updatedBy->name : '' }}{{ ' ' }}{{ optional($financeClnPeriod->updated_at)->format('Y-m-d H:i') }}
                                             </td>
                                         </tr>
                                     @empty

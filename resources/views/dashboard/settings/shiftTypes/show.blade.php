@@ -30,7 +30,7 @@
                                     <div class="row">
                                         <div class="col-md-3 mb-3">
                                             <label for="exampleFormControlInput1" class="form-label">نوع الشفت</label>
-                                            <select readonly name="type" class="form-select"
+                                            <select readonly name="type" class="custom-select"
                                                 aria-label="Default select example">
                                                 <option selected value="">-- أختر الحالة--</option>
                                                 <option @if (old('type', $shiftType->type) == ShiftTypesEnum::MORNING) selected @endif
@@ -75,7 +75,7 @@
                                         <div class="col-md-3 mb-3">
                                             <label for="exampleFormControlInput1" class="form-label">نوع الشفت</label>
                                             <select readonly name="active"
-                                                class="form-select @error('active') is-invalid @enderror"
+                                                class="custom-select @error('active') is-invalid @enderror"
                                                 id="exampleFormControlSelect1" aria-label="Default select example">
                                                 <option selected value="">-- أختر الحالة--</option>
                                                 <option @if (old('active', $shiftType->active) == StatusActiveEnum::ACTIVE) selected @endif

@@ -41,7 +41,7 @@
                                         <div class="col-md-4 mb-3">
                                             <label for="select2Basic" class="form-label">المحافظة</label>
                                             <select name="governorate_id" id="select2Basic"
-                                                class="select2 form-select form-select-lg @error('governorate_id') is-invalid @enderror"
+                                                class="select2 custom-select custom-select-lg @error('governorate_id') is-invalid @enderror"
                                                 data-allow-clear="true">
                                                 <option selected value="">--أختر المحافظة --</option>
                                                 @forelse ($governorates as $governorate)

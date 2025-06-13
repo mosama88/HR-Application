@@ -50,7 +50,7 @@
 
                                         <div class="col-md-6 mb-3">
                                             <label for="exampleFormControlSelect1" class="form-label">حالة الادارة</label>
-                                            <select readonly="" class="form-select" id="exampleFormControlSelect1"
+                                            <select readonly="" class="custom-select" id="exampleFormControlSelect1"
                                                 aria-label="Default select example">
                                                 <option selected value="">-- أختر الحالة--</option>
                                                 <option @if (old('active', $department->active) == StatusActiveEnum::ACTIVE) selected @endif

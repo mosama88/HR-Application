@@ -30,17 +30,29 @@
                 <div class="col-12">
 
 
+
                     <div class="card">
-                        <h5 class="card-header d-flex justify-content-between align-items-center">
-                            <span class="ml-auto">جدول السنوات المالية</span>
-                            <a href="{{ route('dashboard.financeCalendars.create') }}" class="btn btn-info text-white">
-                                <i class="fas fa-edit mx-1"></i>
-                                أضافة
-                            </a>
-                        </h5>
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <!-- الزر على اليسار -->
 
 
-                        <div class="table-responsive text-nowrap">
+                                    <!-- النص على اليمين -->
+                                    <a href="{{ route('dashboard.financeCalendars.create') }}" class="btn btn-md btn-success">
+                                        <i class="mx-1 fas fa-plus"></i>إضافة
+                                        جديد</a>
+
+                                </div>
+                            </h3>
+
+                            <div class="card-tools">
+                                <h4 class="mb-0">جدول السنوات المالية</h4>
+
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive">
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
@@ -50,8 +62,6 @@
                                         <th>من</th>
                                         <th>الى</th>
                                         <th>الحالة</th>
-                                        <th>أضافة بواسطة</th>
-                                        <th>تعديل بواسطة</th>
                                         <th>الإجراءات</th>
                                     </tr>
                                 </thead>
@@ -73,15 +83,7 @@
                                                     <span class="badge bg-danger">مؤرشف</span>
                                                 @endif
                                             </td>
-                                            <td>{{ $info->createdBy->name }}</td>
-                                            <td>
-                                                @if ($info->updated_by > 0)
-                                                    {{ $info->updatedBy->name }}
-                                                @else
-                                                    لا يوجد تحديث
-                                                @endif
 
-                                            </td>
 
                                             <td>
                                                 @include('dashboard.partials.actions', [
@@ -96,7 +98,12 @@
                                 </tbody>
                             </table>
                         </div>
+                        <!-- /.card-body -->
                     </div>
+
+
+
+
 
 
                 </div>

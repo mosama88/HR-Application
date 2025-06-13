@@ -46,7 +46,7 @@
                                         <div class="col-md-4 mb-3">
                                             <label for="select2Basic" class="form-label">الدولة</label>
                                             <select name="country_id" id="select2Basic"
-                                                class="select2 form-select form-select-lg @error('country_id') is-invalid @enderror"
+                                                class="select2 custom-select custom-select-lg @error('country_id') is-invalid @enderror"
                                                 data-allow-clear="true">
                                                 <option selected value="">--أختر الدولة --</option>
                                                 @forelse ($countries as $country)
@@ -65,7 +65,7 @@
 
                                         <div class="col-md-4 mb-3">
                                             <label for="exampleFormControlSelect1" class="form-label">حالة المحافظات</label>
-                                            <select name="active" class="form-select @error('active') is-invalid @enderror"
+                                            <select name="active" class="custom-select @error('active') is-invalid @enderror"
                                                 id="exampleFormControlSelect1" aria-label="Default select example">
                                                 <option selected value="">-- أختر الحالة--</option>
                                                 <option @if (old('active', $governorate->active) == StatusActiveEnum::ACTIVE) selected @endif
