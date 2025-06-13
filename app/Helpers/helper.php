@@ -13,7 +13,7 @@ if (!function_exists('generate_breadcrumbs')) {
 
         foreach ($segments as $index => $segment) {
             $url .= '/' . $segment;
-            $text = ucfirst($segment);
+            $text = lcfirst($segment);
 
             if (is_numeric($text)) continue;
             $breadcrumbs[] = [

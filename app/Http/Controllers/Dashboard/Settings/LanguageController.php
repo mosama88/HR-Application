@@ -63,7 +63,14 @@ class LanguageController extends Controller
      */
     public function edit(Language $language)
     {
-        return view('dashboard.settings.languages.edit', compact('language'));
+        return view(
+            'dashboard.settings.languages.edit',
+            compact('language'),
+            [
+                'language' => $language,
+                'name' => $language->name
+            ]
+        );
     }
 
     /**

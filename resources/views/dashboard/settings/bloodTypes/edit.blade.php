@@ -23,7 +23,7 @@
                         <!-- form start -->
                         <div class="col-md-12">
                             <h5 class="card-header">تعديل بيانات فصيلة الدم</h5>
-                            <form action="{{ route('dashboard.bloodTypes.update', $bloodType->slug) }}" method="POST"
+                            <form action="{{ route('dashboard.bloodTypes.update', $bloodType->id) }}" method="POST"
                                 id="updateForm">
                                 @csrf
                                 @method('PUT')

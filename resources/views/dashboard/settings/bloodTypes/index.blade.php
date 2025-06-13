@@ -76,7 +76,7 @@
                                             <td>
                                                 @include('dashboard.partials.actions', [
                                                     'name' => 'bloodTypes',
-                                                    'name_id' => $info->slug,
+                                                    'name_id' => $info->id,
                                                 ])
                                             </td>
                                         </tr>

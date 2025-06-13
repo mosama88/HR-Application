@@ -90,7 +90,7 @@
                     @if ($loop->last)
                         {{ __('adminlte::menu.' . strtolower($breadcrumb['text'])) }}
                     @else
-                        <a href="{{ $breadcrumb['url'] }}">{{ __('adminlte::adminlte.' . $breadcrumb['text']) }} / </a>
+                        <a href="{{ $breadcrumb['url'] }}">{{ __('adminlte::menu.' . $breadcrumb['text']) }} / </a>
                     @endif
                 @endforeach
             </h1>

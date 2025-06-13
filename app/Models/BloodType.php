@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class BloodType extends Model
 {
-    use HasFactory, HasSlug;
+    use HasFactory;
 
     protected $table = 'blood_types';
 
@@ -23,18 +23,18 @@ class BloodType extends Model
         'com_code',
     ];
 
-    public function getSlugOptions(): SlugOptions
-    {
-        return SlugOptions::create()
-            ->generateSlugsFrom('name')
-            ->saveSlugsTo('slug');
-    }
+    // public function getSlugOptions(): SlugOptions
+    // {
+    //     return SlugOptions::create()
+    //         ->generateSlugsFrom('name')
+    //         ->saveSlugsTo('slug');
+    // }
 
 
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
+    // public function getRouteKeyName()
+    // {
+    //     return 'slug';
+    // }
 
 
 
