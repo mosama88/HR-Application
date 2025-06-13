@@ -22,7 +22,7 @@
 
     @include('dashboard.layouts.message')
     <!-- Content Header (Page header) -->
- 
+
 
     <section class="content">
         <div class="container-fluid">
@@ -31,13 +31,18 @@
                 <div class="col-12">
 
                     <div class="card">
-                        <h5 class="card-header d-flex justify-content-between align-items-center">
-                            <span class="ml-auto">جدول الشفتات</span>
-                            <a href="{{ route('dashboard.shiftTypes.create') }}" class="btn btn-info text-white">
-                                <i class="fa-solid fa-plus mx-1"></i>
-                                أضافة
-                            </a>
-                        </h5>
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <!-- العنوان على اليسار -->
+                                <h4 class="mb-0">جدول الشفتات</h4>
+
+                                <!-- زر الإضافة على اليمين -->
+                                <a href="{{ route('dashboard.shiftTypes.create') }}" class="btn btn-success btn-md">
+                                    <i class="fas fa-plus-circle mx-1"></i>
+                                    <span>إضافة جديد</span>
+                                </a>
+                            </div>
+                        </div>
 
 
                         <div class="table-responsive text-nowrap">
@@ -50,8 +55,6 @@
                                         <th>إلى الساعه</th>
                                         <th>عدد الساعات</th>
                                         <th>الحالة</th>
-                                        <th>أضافة بواسطة</th>
-                                        <th>تعديل بواسطة</th>
                                         <th>الإجراءات</th>
                                     </tr>
                                 </thead>
@@ -71,15 +74,7 @@
                                                     <span class="badge bg-danger">غير مفعل</span>
                                                 @endif
                                             </td>
-                                            <td>{{ $info->createdBy->name }}</td>
-                                            <td>
-                                                @if ($info->updated_by > 0)
-                                                    {{ $info->updatedBy->name }}
-                                                @else
-                                                    لا يوجد تحديث
-                                                @endif
 
-                                            </td>
 
                                             <td>
                                                 @include('dashboard.partials.actions', [

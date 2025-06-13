@@ -63,18 +63,38 @@
                                                     {{ StatusActiveEnum::INACTIVE->label() }}</option>
                                             </select>
                                         </div>
+                                        <div class="col-md-12 mb-3">
+                                            <label for="exampleFormControlReadOnlyInput1" class="form-label">عنوان الفرع
+                                            </label>
+                                            <input readonly="" name="address" class="form-control"
+                                                value="{{ $branch->address }}" type="text"
+                                                id="exampleFormControlReadOnlyInput1" placeholder="21 ش...">
+                                        </div>
                                     </div>
 
+                                    <div class="row">
+                                        {{-- الانشاء بواسطة --}}
+                                        <div class="form-group col-md-6 mb-3">
+                                            <label for="exampleInputdecision_number">الانشاء بواسطة</label>
+                                            <input disabled type="text"
+                                                value="{{ optional($branch->createdBy)->name }} {{ $branch->created_at ? '(' . $branch->created_at->format('Y-m-d H:i') . ')' : '' }}"
+                                                name="decision_number" class="form-control bg-white"
+                                                id="exampleInputdecision_number">
+                                        </div>
 
 
-                                    <div class="col-md-12 mb-3">
-                                        <label for="exampleFormControlReadOnlyInput1" class="form-label">عنوان الفرع
-                                        </label>
-                                        <input readonly="" name="address" class="form-control"
-                                            value="{{ $branch->address }}" type="text"
-                                            id="exampleFormControlReadOnlyInput1" placeholder="21 ش...">
+                                        {{-- التعديل بواسطة --}}
+                                        <div class="form-group col-md-6 mb-3">
+                                            <label for="exampleInputdecision_number">التعديل بواسطة</label>
+                                            <input disabled type="text"
+                                                value="{{ $branch->updated_by ? $branch->updatedBy->name : '' }}{{ ' ' }}({{ optional($branch->updated_at)->format('Y-m-d H:i') }})"
+                                                name="decision_number" class="form-control bg-white"
+                                                id="exampleInputdecision_number">
+                                        </div>
+
+
+
                                     </div>
-
 
 
                                 </div>

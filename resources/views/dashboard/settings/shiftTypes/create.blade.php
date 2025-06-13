@@ -5,14 +5,6 @@
 @section('active-shiftTypes', 'active')
 @section('title', 'الشفتات')
 @push('css')
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/libs/pickr/pickr-themes.css" />
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/libs/typeahead-js/typeahead.css" />
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/libs/flatpickr/flatpickr.css" />
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css" />
-    <link rel="stylesheet"
-        href="{{ asset('dashboard') }}/assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css" />
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/vendor/libs/jquery-timepicker/jquery-timepicker.css" />
 @endpush
 @section('content')
 
@@ -62,12 +54,21 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-3 mb-3">
-                                            <label for="exampleFormControlReadOnlyInput1" class="form-label">من
-                                                الساعه</label>
-                                            <input type="text" name="from_time"
-                                                class="form-control flatpickr-input @error('from_time') is-invalid @enderror"
-                                                placeholder="HH:MM" id="from_time" value="{{ old('from_time') }}"
-                                                readonly="readonly" onchange="calculateHours()">
+                                            @php
+                                                $configFromTime = ['format' => 'HH:mm:ss'];
+                                            @endphp
+                                            <x-adminlte-input-date label="من الساعة" name="from_time"
+                                                value="{{ old('from_time') }}" id="from_time" :config="$configFromTime"
+                                                placeholder="HH:MM" onchange="calculateHours()" autocomplete="off">
+                                                <x-slot name="prependSlot">
+                                                    <div
+                                                        class="input-group-text bg-gradient-info @error('from_time') is-invalid @enderror">
+                                                        <i class="fas fa-clock"></i>
+                                                    </div>
+                                                </x-slot>
+                                            </x-adminlte-input-date>
+
+
                                             @error('from_time')
                                                 <span class="invalid-feedback text-right" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -75,12 +76,22 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-3 mb-3">
-                                            <label for="exampleFormControlReadOnlyInput1" class="form-label">إلى
-                                                الساعه</label>
-                                            <input type="text" name="to_time"
-                                                class="form-control flatpickr-input @error('to_time') is-invalid @enderror"
-                                                placeholder="HH:MM" id="to_time" value="{{ old('to_time') }}"
-                                                readonly="readonly" onchange="calculateHours()">
+                                            @php
+                                                $configToTime = ['format' => 'HH:mm:ss'];
+
+                                            @endphp
+                                            <x-adminlte-input-date label="إلى الساعة" name="to_time"
+                                                value="{{ old('to_time') }}" id="to_time" :config="$configToTime"
+                                                placeholder="HH:MM" onchange="calculateHours()" autocomplete="off">
+                                                <x-slot name="prependSlot">
+                                                    <div
+                                                        class="input-group-text bg-gradient-info @error('to_time') is-invalid @enderror">
+                                                        <i class="fas fa-clock"></i>
+                                                    </div>
+                                                </x-slot>
+                                            </x-adminlte-input-date>
+
+
                                             @error('to_time')
                                                 <span class="invalid-feedback text-right" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -119,47 +130,22 @@
             const to = document.getElementById('to_time').value;
 
             if (from && to) {
-                const [fromHour, fromMin] = from.split(':').map(Number);
-                const [toHour, toMin] = to.split(':').map(Number);
+                let fromTime = moment(from, 'HH:mm');
+                let toTime = moment(to, 'HH:mm');
 
-                let fromDate = new Date();
-                fromDate.setHours(fromHour, fromMin, 0);
-
-                let toDate = new Date();
-                toDate.setHours(toHour, toMin, 0);
-
-                // إذا كان "إلى" أصغر من "من" (يعني اليوم التالي)
-                if (toDate < fromDate) {
-                    toDate.setDate(toDate.getDate() + 1);
+                // إذا كان الوقت "إلى" أصغر من "من" نضيف يوم
+                if (toTime.isBefore(fromTime)) {
+                    toTime.add(1, 'day');
                 }
 
-                const diffMs = toDate - fromDate;
-                const totalMinutes = diffMs / 1000 / 60;
-                const totalHoursDecimal = (totalMinutes / 60).toFixed(2); // الناتج: 12.50 مثلا
+                const duration = moment.duration(toTime.diff(fromTime));
+                const totalHoursDecimal = (duration.asMinutes() / 60).toFixed(2);
 
                 document.getElementById('total_hours').value = totalHoursDecimal;
             }
         }
-
-        // تفعيل flatpickr
-        flatpickr("#from_time", {
-            enableTime: true,
-            noCalendar: true,
-            dateFormat: "H:i",
-            time_24hr: true,
-            allowInput: true,
-            onChange: calculateHours
-        });
-
-        flatpickr("#to_time", {
-            enableTime: true,
-            noCalendar: true,
-            dateFormat: "H:i",
-            time_24hr: true,
-            allowInput: true,
-            onChange: calculateHours
-        });
     </script>
+
 
 
     <script src="{{ asset('dashboard') }}/assets/js/forms-pickers.js"></script>
