@@ -125,7 +125,7 @@
                                                                 <label for="gender-input" class="form-label">نوع
                                                                     الجنس</label>
                                                                 <select id="gender-input"
-                                                                    class="form-select @error('gender') is-invalid @enderror"
+                                                                    class="custom-select @error('gender') is-invalid @enderror"
                                                                     name="gender" aria-label="Default select example">
                                                                     <option selected value="">-- أختر نوع الجنس --
                                                                     </option>
@@ -168,7 +168,7 @@
                                                                     for="qualification_id-input">المؤهل
                                                                     الدراسي</label>
                                                                 <select name="qualification_id"
-                                                                    class="select2 form-select @error('qualification_id') is-invalid @enderror"
+                                                                    class="select2 custom-select @error('qualification_id') is-invalid @enderror"
                                                                     data-allow-clear="true">
                                                                     <option selected value="">-- أختر المؤهل --
                                                                     </option>
@@ -193,7 +193,7 @@
                                                                 <label for="exampleFormControlSelect1" class="form-label">
                                                                     تقدير التخرج</label>
                                                                 <select
-                                                                    class="form-select @error('graduation_estimate') is-invalid @enderror"
+                                                                    class="custom-select @error('graduation_estimate') is-invalid @enderror"
                                                                     name="graduation_estimate"
                                                                     aria-label="Default select example">
                                                                     <option selected value="">-- أختر تقدير التخرج --
@@ -232,7 +232,7 @@
                                                                 <label class="form-label" for="formtabs-country">الفرع
                                                                     التابع له الموظف</label>
                                                                 <select
-                                                                    class="select2 form-select @error('branch_id') is-invalid @enderror"
+                                                                    class="select2 custom-select @error('branch_id') is-invalid @enderror"
                                                                     name="branch_id" data-allow-clear="true">
                                                                     <option selected value="">-- أختر الفرع --
                                                                     </option>
@@ -328,7 +328,7 @@
                                                                 <label for="exampleFormControlSelect1" class="form-label">
                                                                     الحالة الأجتماعية</label>
                                                                 <select
-                                                                    class="form-select @error('social_status') is-invalid @enderror"
+                                                                    class="custom-select @error('social_status') is-invalid @enderror"
                                                                     name="social_status" id="social_status"
                                                                     aria-label="Default select example">
                                                                     <option selected value="">-- أختر الحالة
@@ -372,7 +372,7 @@
                                                                     الدم </label>
                                                                 <select name="blood_type_id"
                                                                     value="{{ old('blood_type_id') }}"
-                                                                    class="select2 form-select @error('blood_type_id') is-invalid @enderror"
+                                                                    class="select2 custom-select @error('blood_type_id') is-invalid @enderror"
                                                                     data-allow-clear="true">
                                                                     <option selected value="">-- أختر نوع فصيلة الدم
                                                                         --
@@ -396,7 +396,7 @@
                                                                 <label class="form-label"
                                                                     for="formtabs-country">الجنسية</label>
                                                                 <select name="nationality_id"
-                                                                    class="select2 form-select @error('nationality_id') is-invalid @enderror"
+                                                                    class="select2 custom-select @error('nationality_id') is-invalid @enderror"
                                                                     data-allow-clear="true">
                                                                     <option selected value="">-- أختر الجنسية --
                                                                     </option>
@@ -420,7 +420,7 @@
                                                                 <label class="form-label" for="formtabs-country">اللغة
                                                                     الاساسية التي يتحدث بها </label>
                                                                 <select name="language_id"
-                                                                    class="select2 form-select @error('language_id') is-invalid @enderror"
+                                                                    class="select2 custom-select @error('language_id') is-invalid @enderror"
                                                                     data-allow-clear="true">
                                                                     <option selected value="">-- أختر اللغة --
                                                                     </option>
@@ -444,7 +444,7 @@
                                                                 <label for="exampleFormControlSelect1" class="form-label">
                                                                     الديانة</label>
                                                                 <select
-                                                                    class="form-select @error('religion') is-invalid @enderror"
+                                                                    class="custom-select @error('religion') is-invalid @enderror"
                                                                     name="religion" aria-label="Default select example">
                                                                     <option selected value="">-- أختر الديانة --
                                                                     </option>
@@ -488,7 +488,7 @@
                                                                 <label class="form-label" for="formtabs-country">الدولة
                                                                     التابع لها الموظف</label>
                                                                 <select name="country_id"
-                                                                    class="select2 form-select @error('country_id') is-invalid @enderror"
+                                                                    class="select2 custom-select @error('country_id') is-invalid @enderror"
                                                                     data-allow-clear="true">
                                                                     <option selected value="">-- أختر الدولة --
                                                                     </option>
@@ -511,7 +511,7 @@
                                                                 <label class="form-label" for="formtabs-country">المحافظة
                                                                     التابع لها الموظف</label>
                                                                 <select name="governorate_id"
-                                                                    class="select2 form-select @error('governorate_id') is-invalid @enderror"
+                                                                    class="select2 custom-select @error('governorate_id') is-invalid @enderror"
                                                                     data-allow-clear="true">
                                                                     <option selected value="">-- أختر المحافظة --
                                                                     </option>
@@ -534,7 +534,7 @@
                                                                 <label class="form-label"
                                                                     for="formtabs-country">المدينة/المركز</label>
                                                                 <select name="city_id"
-                                                                    class="select2 form-select @error('city_id') is-invalid @enderror"
+                                                                    class="select2 custom-select @error('city_id') is-invalid @enderror"
                                                                     data-allow-clear="true">
                                                                     <option selected value="">-- أختر المدينة/المركز
                                                                         --
@@ -606,7 +606,7 @@
                                                                 <label for="driving_license" class="form-label">هل يمتلك
                                                                     رخصة قيادة</label>
                                                                 <select
-                                                                    class="form-select @error('driving_license') is-invalid @enderror"
+                                                                    class="custom-select @error('driving_license') is-invalid @enderror"
                                                                     id="driving_license" name="driving_license"
                                                                     aria-label="Default select example">
                                                                     <option selected value="">-- أختر الحالة --
@@ -650,7 +650,7 @@
                                                                 <label for="driving_license_type" class="form-label">نوع
                                                                     رخصة القيادة</label>
                                                                 <select
-                                                                    class="form-select @error('driving_license_type') is-invalid @enderror"
+                                                                    class="custom-select @error('driving_license_type') is-invalid @enderror"
                                                                     id="driving_license_type" name="driving_license_type"
                                                                     aria-label="Default select example">
                                                                     <option selected value="">-- أختر النوع --
@@ -676,7 +676,7 @@
                                                                 <label for="has_relatives" class="form-label">هل يمتلك
                                                                     أقارب بالعمل</label>
                                                                 <select
-                                                                    class="form-select @error('has_relatives') is-invalid @enderror"
+                                                                    class="custom-select @error('has_relatives') is-invalid @enderror"
                                                                     id="has_relatives" name="has_relatives"
                                                                     aria-label="Default select example">
                                                                     <option selected value="">-- أختر الحالة --
@@ -718,7 +718,7 @@
                                                                 <label for="has_disabilities" class="form-label">هل يمتلك
                                                                     اعاقة / عمليات سابقة</label>
                                                                 <select
-                                                                    class="form-select @error('has_disabilities') is-invalid @enderror"
+                                                                    class="custom-select @error('has_disabilities') is-invalid @enderror"
                                                                     id="has_disabilities" name="has_disabilities"
                                                                     aria-label="Default select example">
                                                                     <option selected value="">-- أختر الحالة --
@@ -783,7 +783,7 @@
                                                             <label for="military_status" class="form-label">حالة الخدمة
                                                                 العسكرية</label>
                                                             <select
-                                                                class="form-select @error('military') is-invalid @enderror"
+                                                                class="custom-select @error('military') is-invalid @enderror"
                                                                 id="military_status" name="military"
                                                                 aria-label="Default select example">
                                                                 <option selected value="">-- أختر الحالة --</option>
@@ -953,7 +953,7 @@
                                                                 الحالة الوظيفية
                                                             </label>
                                                             <select
-                                                                class="form-select @error('functional_status') is-invalid @enderror"
+                                                                class="custom-select @error('functional_status') is-invalid @enderror"
                                                                 name="functional_status" id="functional_status-input"
                                                                 aria-label="Default select example">
                                                                 <option selected value="">-- أختر الحالة --
@@ -978,7 +978,7 @@
                                                             <label class="form-label" for="job_grade_id-input">الدرجه
                                                                 الوظيفية</label>
                                                             <select name="job_grade_id" id="job_grade_id-input"
-                                                                class="select2 form-select @error('job_grade_id') is-invalid @enderror"
+                                                                class="select2 custom-select @error('job_grade_id') is-invalid @enderror"
                                                                 data-allow-clear="true">
                                                                 <option selected value="">-- أختر الدرجه --</option>
                                                                 </option>
@@ -1003,7 +1003,7 @@
                                                             <label class="form-label" for="department_id-input">الادارة
                                                                 التابع لها الموظف</label>
                                                             <select
-                                                                class="select2 form-select @error('department_id') is-invalid @enderror"
+                                                                class="select2 custom-select @error('department_id') is-invalid @enderror"
                                                                 name="department_id" data-allow-clear="true"
                                                                 id="department_id-input">
                                                                 <option selected value="">-- أختر الادارة --
@@ -1027,7 +1027,7 @@
                                                             <label class="form-label" for="job_category_id-input">وظيفة
                                                                 الموظف</label>
                                                             <select name="job_category_id" id="job_category_id-input"
-                                                                class="select2 form-select @error('job_category_id') is-invalid @enderror"
+                                                                class="select2 custom-select @error('job_category_id') is-invalid @enderror"
                                                                 data-allow-clear="true">
                                                                 <option selected value="">-- أختر الوظيفة --
                                                                 </option>
@@ -1053,7 +1053,7 @@
                                                                 هل له بصمة حضور وانصراف
                                                             </label>
                                                             <select id="has_attendance-input"
-                                                                class="form-select @error('has_attendance') is-invalid @enderror"
+                                                                class="custom-select @error('has_attendance') is-invalid @enderror"
                                                                 name="has_attendance" aria-label="Default select example">
                                                                 <option selected value="">-- أختر الحالة --
                                                                 </option>
@@ -1077,7 +1077,7 @@
                                                             <label for="has_fixed_shift" class="form-label">هل شفت
                                                                 ثابت</label>
                                                             <select
-                                                                class="form-select @error('has_fixed_shift') is-invalid @enderror"
+                                                                class="custom-select @error('has_fixed_shift') is-invalid @enderror"
                                                                 id="has_fixed_shift" name="has_fixed_shift"
                                                                 aria-label="Default select example">
                                                                 <option selected value="">-- أختر الحالة --</option>
@@ -1102,7 +1102,7 @@
                                                             <label for="shifts_type_id" class="form-label">أنواع
                                                                 الشفتات</label>
                                                             <select
-                                                                class="form-select @error('shifts_type_id') is-invalid @enderror"
+                                                                class="custom-select @error('shifts_type_id') is-invalid @enderror"
                                                                 id="shifts_type_id" name="shifts_type_id"
                                                                 aria-label="Default select example">
                                                                 <option selected value="">-- أختر النوع --</option>
@@ -1183,7 +1183,7 @@
                                                                 الموظف
                                                             </label>
                                                             <select name="currency_id" id="currency_id-input"
-                                                                class="select2 form-select @error('currency_id') is-invalid @enderror"
+                                                                class="select2 custom-select @error('currency_id') is-invalid @enderror"
                                                                 data-allow-clear="true">
                                                                 <option selected value="">-- أختر العملة --
                                                                 </option>
@@ -1207,7 +1207,7 @@
                                                             <label class="form-label" for="has_social_insurance">
                                                                 هل له تأمين اجتماعي</label>
                                                             <select id="has_social_insurance"
-                                                                class="form-select @error('has_social_insurance') is-invalid @enderror"
+                                                                class="custom-select @error('has_social_insurance') is-invalid @enderror"
                                                                 name="has_social_insurance"
                                                                 aria-label="Default select example">
                                                                 <option selected value="">-- أختر الحالة --
@@ -1267,7 +1267,7 @@
                                                             <label class="form-label" for="has_medical_insurance">
                                                                 هل له تأمين طبي</label>
                                                             <select id="has_medical_insurance"
-                                                                class="form-select @error('has_medical_insurance') is-invalid @enderror"
+                                                                class="custom-select @error('has_medical_insurance') is-invalid @enderror"
                                                                 name="has_medical_insurance"
                                                                 aria-label="Default select example">
                                                                 <option selected value="">-- أختر الحالة --
@@ -1328,7 +1328,7 @@
                                                             <label class="form-label" for="type_salary_receipt">
                                                                 نوع صرف راتب الموظف</label>
                                                             <select
-                                                                class="form-select @error('type_salary_receipt') is-invalid @enderror"
+                                                                class="custom-select @error('type_salary_receipt') is-invalid @enderror"
                                                                 name="type_salary_receipt" id="type_salary_receipt"
                                                                 aria-label="Default select example">
                                                                 <option selected value="">-- أختر الحالة --
@@ -1352,7 +1352,7 @@
                                                             <label class="form-label" for="has_fixed_allowances">
                                                                 هل له بدلات ثابتة</label>
                                                             <select
-                                                                class="form-select @error('has_fixed_allowances') is-invalid @enderror"
+                                                                class="custom-select @error('has_fixed_allowances') is-invalid @enderror"
                                                                 name="has_fixed_allowances" id="has_fixed_allowances"
                                                                 aria-label="Default select example">
                                                                 <option selected value="">-- أختر الحالة --
@@ -1377,7 +1377,7 @@
                                                             <label class="form-label" for="motivation_type">
                                                                 هل له حافز</label>
                                                             <select
-                                                                class="form-select @error('motivation_type') is-invalid @enderror"
+                                                                class="custom-select @error('motivation_type') is-invalid @enderror"
                                                                 name="motivation_type" id="motivation_type"
                                                                 aria-label="Default select example">
                                                                 <option selected value="">-- أختر الحالة --
@@ -1420,7 +1420,7 @@
                                                             <label class="form-label" for="has_vacation_balance">
                                                                 هل له رصيد اجازات سنوي</label>
                                                             <select
-                                                                class="form-select @error('has_vacation_balance') is-invalid @enderror"
+                                                                class="custom-select @error('has_vacation_balance') is-invalid @enderror"
                                                                 name="has_vacation_balance" id="has_vacation_balance"
                                                                 aria-label="Default select example">
                                                                 <option selected value="">-- أختر الحالة --
