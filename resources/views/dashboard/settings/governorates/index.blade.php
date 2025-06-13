@@ -21,12 +21,7 @@
 
     @include('dashboard.layouts.message')
     <!-- Content Header (Page header) -->
-    @include('dashboard.layouts.breadcrumb', [
-        'pageTitle' => 'المحافظات',
-        'previousPage' => 'لوحة التحكم',
-        'urlPreviousPage' => 'dashboard', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'جدول المحافظات',
-    ])
+
 
     <section class="content">
         <div class="container-fluid">

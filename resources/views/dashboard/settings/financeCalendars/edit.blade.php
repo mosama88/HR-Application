@@ -15,12 +15,7 @@
 
     @include('dashboard.layouts.message')
     <!-- Content Header (Page header) -->
-    @include('dashboard.layouts.breadcrumb', [
-        'pageTitle' => 'السنوات المالية',
-        'previousPage' => 'السنوات المالية',
-        'urlPreviousPage' => 'dashboard/financeCalendars', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'تعديل السنه المالية ',
-    ])
+
 
     <section class="content">
         <div class="container-fluid">

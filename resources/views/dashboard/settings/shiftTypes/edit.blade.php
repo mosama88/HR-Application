@@ -19,13 +19,7 @@
 
     @include('dashboard.layouts.message')
     <!-- Content Header (Page header) -->
-    @include('dashboard.layouts.breadcrumb', [
-        'pageTitle' => 'الشفتات',
-        'previousPage' => 'الشفتات',
-        'urlPreviousPage' => 'dashboard/shiftTypes', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'تعديل بيانات الشفتات',
-    ])
-
+ 
     <section class="content">
         <div class="container-fluid">
 

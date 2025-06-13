@@ -21,12 +21,6 @@
 
     @include('dashboard.layouts.message')
     <!-- Content Header (Page header) -->
-    @include('dashboard.layouts.breadcrumb', [
-        'pageTitle' => 'أنواع الخصومات',
-        'previousPage' => 'لوحة التحكم',
-        'urlPreviousPage' => 'dashboard', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'جدول أنواع الخصومات',
-    ])
 
     <section class="content">
         <div class="container-fluid">

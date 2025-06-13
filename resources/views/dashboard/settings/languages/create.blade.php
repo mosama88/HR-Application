@@ -7,12 +7,7 @@
 
     @include('dashboard.layouts.message')
     <!-- Content Header (Page header) -->
-    @include('dashboard.layouts.breadcrumb', [
-        'pageTitle' => 'اللغات',
-        'previousPage' => 'اللغات',
-        'urlPreviousPage' => 'dashboard/languages', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'أضافة لفه جديدة',
-    ])
+
 
     <section class="content">
         <div class="container-fluid">

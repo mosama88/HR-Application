@@ -10,12 +10,6 @@
 
     @include('dashboard.layouts.message')
     <!-- Content Header (Page header) -->
-    @include('dashboard.layouts.breadcrumb', [
-        'pageTitle' => 'أنواع الأضافى',
-        'previousPage' => 'أنواع الأضافى',
-        'urlPreviousPage' => 'dashboard/additional_types', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'عرض بيانات أنواع الأضافى',
-    ])
 
     <section class="content">
         <div class="container-fluid">

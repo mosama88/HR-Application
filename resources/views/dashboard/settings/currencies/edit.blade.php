@@ -10,12 +10,7 @@
 
     @include('dashboard.layouts.message')
     <!-- Content Header (Page header) -->
-    @include('dashboard.layouts.breadcrumb', [
-        'pageTitle' => 'العملات',
-        'previousPage' => 'العملات',
-        'urlPreviousPage' => 'dashboard/currencies', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'تعديل بيانات العملة',
-    ])
+ 
 
     <section class="content">
         <div class="container-fluid">

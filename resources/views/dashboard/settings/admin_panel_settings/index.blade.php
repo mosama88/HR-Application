@@ -10,12 +10,7 @@
 
     @include('dashboard.layouts.message')
     <!-- Content Header (Page header) -->
-    @include('dashboard.layouts.breadcrumb', [
-        'pageTitle' => 'إعدادات الشركة',
-        'previousPage' => 'لوحة التحكم',
-        'urlPreviousPage' => 'dashboard', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'جدول إعدادات الشركة',
-    ])
+
 
     <section class="content">
         <div class="container-fluid">

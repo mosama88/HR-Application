@@ -10,12 +10,7 @@
 
     @include('dashboard.layouts.message')
     <!-- Content Header (Page header) -->
-    @include('dashboard.layouts.breadcrumb', [
-        'pageTitle' => 'المدن',
-        'previousPage' => 'المدن',
-        'urlPreviousPage' => 'dashboard/cities', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'عرض بيانات المدينة',
-    ])
+
 
     <section class="content">
         <div class="container-fluid">

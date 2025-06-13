@@ -7,12 +7,7 @@
 
     @include('dashboard.layouts.message')
     <!-- Content Header (Page header) -->
-    @include('dashboard.layouts.breadcrumb', [
-        'pageTitle' => 'الوظائف',
-        'previousPage' => 'الوظائف',
-        'urlPreviousPage' => 'dashboard/job_categories', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'أضافة وظيفه جديدة',
-    ])
+
 
     <section class="content">
         <div class="container-fluid">

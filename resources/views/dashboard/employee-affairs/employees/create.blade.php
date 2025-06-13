@@ -28,12 +28,7 @@
 
     @include('dashboard.layouts.message')
     <!-- Content Header (Page header) -->
-    @include('dashboard.layouts.breadcrumb', [
-        'pageTitle' => 'الموظفين',
-        'previousPage' => 'الموظفين',
-        'urlPreviousPage' => 'dashboard/employees', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'أضافة موظف جديد',
-    ])
+
 
     <section class="content">
         <div class="container-fluid">

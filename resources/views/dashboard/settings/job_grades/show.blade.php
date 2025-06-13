@@ -10,12 +10,6 @@
 
     @include('dashboard.layouts.message')
     <!-- Content Header (Page header) -->
-    @include('dashboard.layouts.breadcrumb', [
-        'pageTitle' => 'الدرجات الوظيفية',
-        'previousPage' => 'الدرجات الوظيفية',
-        'urlPreviousPage' => 'dashboard/job_grades', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'عرض درجة الوظيفية جديدة',
-    ])
 
     <section class="content">
         <div class="container-fluid">

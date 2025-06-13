@@ -24,12 +24,7 @@
 
     @include('dashboard.layouts.message')
     <!-- Content Header (Page header) -->
-    @include('dashboard.layouts.breadcrumb', [
-        'pageTitle' => 'تعديل إعدادات الشركة',
-        'previousPage' => 'إعدادات الشركة',
-        'urlPreviousPage' => 'dashboard/admin_panel_settings', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'تعديل إعدادات الشركة',
-    ])
+
 
     <section class="content">
         <div class="container-fluid">

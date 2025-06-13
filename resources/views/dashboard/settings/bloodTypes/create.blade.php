@@ -7,12 +7,7 @@
 
     @include('dashboard.layouts.message')
     <!-- Content Header (Page header) -->
-    @include('dashboard.layouts.breadcrumb', [
-        'pageTitle' => 'فصيلة الدم',
-        'previousPage' => 'فصيلة الدم',
-        'urlPreviousPage' => 'dashboard/bloodTypes', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'أضافة فصيلة دم جديدة',
-    ])
+
 
     <section class="content">
         <div class="container-fluid">

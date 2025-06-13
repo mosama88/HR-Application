@@ -7,12 +7,7 @@
 
     @include('dashboard.layouts.message')
     <!-- Content Header (Page header) -->
-    @include('dashboard.layouts.breadcrumb', [
-        'pageTitle' => 'الجنسيات',
-        'previousPage' => 'الجنسيات',
-        'urlPreviousPage' => 'dashboard/nationalities', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'أضافة جنسية جديدة',
-    ])
+
 
     <section class="content">
         <div class="container-fluid">

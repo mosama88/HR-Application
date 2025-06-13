@@ -7,12 +7,7 @@
 
     @include('dashboard.layouts.message')
     <!-- Content Header (Page header) -->
-    @include('dashboard.layouts.breadcrumb', [
-        'pageTitle' => 'الدول',
-        'previousPage' => 'الدول',
-        'urlPreviousPage' => 'dashboard/countries', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'أضافة دولة جديدة',
-    ])
+
 
     <section class="content">
         <div class="container-fluid">

@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'مستشفى الرحمة',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>مستشفى </b>الرحمة',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -328,6 +328,7 @@ return [
             'icon' => 'mx-1 fas fa-tachometer-alt',
         ],
 
+        ['header' => 'الإعدادات'],
 
         [
             'text' => 'الإعدادات',
@@ -345,11 +346,139 @@ return [
                     'active' => ['dashboard/financeCalendars*'],
 
                 ],
+
+                [
+                    'text' => 'الفروع',
+                    'url'  => 'dashboard/branches',
+                    'active' => ['dashboard/branches*'],
+
+                ],
+
+                [
+                    'text' => 'مواعيد الشفتات',
+                    'url'  => 'dashboard/shiftTypes',
+                    'active' => ['dashboard/shiftTypes*'],
+
+                ],
+
+                [
+                    'text' => 'العملات',
+                    'url'  => 'dashboard/currencies',
+                    'active' => ['dashboard/currencies*'],
+
+                ],
+
+                [
+                    'text' => 'الادارات',
+                    'url'  => 'dashboard/departments',
+                    'active' => ['dashboard/departments*'],
+
+                ],
+
+                [
+                    'text' => 'الوظائف',
+                    'url'  => 'dashboard/job_categories',
+                    'active' => ['dashboard/job_categories*'],
+
+                ],
+
+                [
+                    'text' => 'المؤهلات',
+                    'url'  => 'dashboard/qualifications',
+                    'active' => ['dashboard/qualifications*'],
+
+                ],
+
+                [
+                    'text' => 'فصيلة الدم',
+                    'url'  => 'dashboard/bloodTypes',
+                    'active' => ['dashboard/bloodTypes*'],
+
+                ],
+
+                [
+                    'text' => 'الجنسيات',
+                    'url'  => 'dashboard/nationalities',
+                    'active' => ['dashboard/nationalities*'],
+
+                ],
+
+                [
+                    'text' => 'اللغات',
+                    'url'  => 'dashboard/languages',
+                    'active' => ['dashboard/languages*'],
+
+                ],
+
+                [
+                    'text' => 'الدول',
+                    'url'  => 'dashboard/countries',
+                    'active' => ['dashboard/countries*'],
+
+                ],
+
+                [
+                    'text' => 'المحافظات',
+                    'url'  => 'dashboard/governorates',
+                    'active' => ['dashboard/governorates*'],
+
+                ],
+
+                [
+                    'text' => 'المدن',
+                    'url'  => 'dashboard/cities',
+                    'active' => ['dashboard/cities*'],
+
+                ],
+
+                [
+                    'text' => 'الدرجات الوظيفية',
+                    'url'  => 'dashboard/job_grades',
+                    'active' => ['dashboard/job_grades*'],
+
+                ],
+
             ],
         ],
 
+        ['header' => 'شئون الموظفين'],
+
+        [
+            'text' => 'شئون الموظفين',
+            'icon' => 'mx-1 fas fa-users',
+            'submenu' => [
 
 
+                [
+                    'text' => 'بيانات الموظفين',
+                    'url'  => 'dashboard/employees',
+                    'active' => ['dashboard/employees*'],
+
+                ],
+
+                [
+                    'text' => 'أنواع الأضافى',
+                    'url'  => 'dashboard/additional_types',
+                    'active' => ['dashboard/additional_types*'],
+
+                ],
+
+                [
+                    'text' => 'أنواع البدلات',
+                    'url'  => 'dashboard/allowances',
+                    'active' => ['dashboard/allowances*'],
+
+                ],
+
+                [
+                    'text' => 'أنواع الخصومات',
+                    'url'  => 'dashboard/discount_types',
+                    'active' => ['dashboard/discount_types*'],
+
+                ],
+
+            ],
+        ],
 
 
 

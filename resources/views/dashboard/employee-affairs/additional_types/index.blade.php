@@ -21,12 +21,6 @@
 
     @include('dashboard.layouts.message')
     <!-- Content Header (Page header) -->
-    @include('dashboard.layouts.breadcrumb', [
-        'pageTitle' => 'أنواع الأضافى',
-        'previousPage' => 'لوحة التحكم',
-        'urlPreviousPage' => 'dashboard', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'جدول أنواع الأضافى',
-    ])
 
     <section class="content">
         <div class="container-fluid">
@@ -36,9 +30,10 @@
 
                     <div class="card">
                         <h5 class="card-header d-flex justify-content-between align-items-center">
-                            <span class="ml-auto">جدول أنواع الأضافى</span>
+                          
                             <a href="{{ route('dashboard.additional_types.create') }}" class="btn btn-info text-white">
-                                <i class="fa-solid fa-plus mx-1"></i>
+                                <i class="fas fa-plus-square mx-1"></i>
+
                                 أضافة
                             </a>
                         </h5>

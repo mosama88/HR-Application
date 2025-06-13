@@ -10,12 +10,7 @@
 
     @include('dashboard.layouts.message')
     <!-- Content Header (Page header) -->
-    @include('dashboard.layouts.breadcrumb', [
-        'pageTitle' => 'أنواع الخصومات',
-        'previousPage' => 'أنواع الخصومات',
-        'urlPreviousPage' => 'dashboard/discount_types', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'تعديل بيانات نوع الخصم',
-    ])
+
 
     <section class="content">
         <div class="container-fluid">

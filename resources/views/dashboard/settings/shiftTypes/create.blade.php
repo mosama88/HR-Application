@@ -18,12 +18,7 @@
 
     @include('dashboard.layouts.message')
     <!-- Content Header (Page header) -->
-    @include('dashboard.layouts.breadcrumb', [
-        'pageTitle' => 'الشفتات',
-        'previousPage' => 'الشفتات',
-        'urlPreviousPage' => 'dashboard/shiftTypes', //سيتم تغيير لوحة التحكم لاحقآ
-        'currentPage' => 'أضافة فرع جديد',
-    ])
+
 
     <section class="content">
         <div class="container-fluid">

@@ -83,7 +83,21 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1>
+        <ol class="breadcrumb">
+            <h1>
+                @foreach (generate_breadcrumbs() as $breadcrumb)
+                    @if ($loop->last)
+                        {{ __('adminlte::menu.' . strtolower($breadcrumb['text'])) }}
+                    @else
+                        <a href="{{ $breadcrumb['url'] }}">{{ __('adminlte::adminlte.' . $breadcrumb['text']) }} / </a>
+                    @endif
+                @endforeach
+            </h1>
+
+        </ol>
+    </h1>
+
 @stop
 
 @section('content')
